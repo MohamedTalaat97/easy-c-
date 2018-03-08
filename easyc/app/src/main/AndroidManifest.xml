@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.easyc">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,7 @@
         android:theme="@style/C_theme">
         <activity
             android:name=".sign_in_activity"
-            android:label="Welcome"
+            android:label="Easy C++"
             android:theme="@style/C_theme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,10 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".sign_up"
             android:label="create an account"></activity>
         <activity android:name=".student_menu"></activity>
+
+
     </application>
 
 </manifest>

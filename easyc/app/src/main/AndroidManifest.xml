@@ -11,7 +11,8 @@
         android:theme="@style/C_theme">
         <activity
             android:name=".sign_in_activity"
-            android:label="Welcome">
+            android:label="Welcome"
+            android:theme="@style/C_theme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

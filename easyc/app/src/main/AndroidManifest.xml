@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.easyc">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -20,13 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".sign_up"
-            android:label="create an account"></activity>
-        <activity android:name=".student_menu"></activity>
-
-
+            android:label="create an account" />
+        <activity android:name=".student_menu" />
+        <activity android:name=".categories"></activity>
     </application>
 
 </manifest>

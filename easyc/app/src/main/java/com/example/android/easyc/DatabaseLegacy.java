@@ -13,6 +13,18 @@ import java.sql.Statement;
 public class DatabaseLegacy {
 
     private ConnectionDb conn = ConnectionDb.getInstance();
+    private int userId;
+
+
+    public void setUserId(int userid)
+    {
+        this.userId = userid;
+    }
+
+    public int getUserId()
+    {
+        return userId;
+    }
     public void iud(final  String sql, final OnTaskListeners.Bool listener) {
 
         new AsyncTask<Void, Void, Boolean>() {

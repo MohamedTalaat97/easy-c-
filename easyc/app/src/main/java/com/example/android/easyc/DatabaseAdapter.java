@@ -1,5 +1,6 @@
 package com.example.android.easyc;
 
+import java.security.PrivateKey;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -7,7 +8,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DatabaseAdapter {
-    public DatabaseLegacy db;
+
+    private DatabaseLegacy databaseLegacy;
+    private String query;
+
+    public DatabaseAdapter()
+    {
+        databaseLegacy =  new DatabaseLegacy();
+    }
+
     private final Map<String,ArrayList<String>> mappings = new HashMap<String, ArrayList<String>>();
 
     public ArrayList<String> getValues(String key)
@@ -28,79 +37,39 @@ public class DatabaseAdapter {
         return target.add(value);
     }
 
-    public DatabaseAdapter()
+
+    public void selectEmployeeId(OnTaskListeners.Result listeners)
     {
-        db =  new DatabaseLegacy();
-    }
-
-  /*  public int insert(String Table,String Value)
-    {
-        String query = "insert into "+Table+" values("+Value+")";
-        return db.iud(query);
-    }
-
-    public  int update(String Table,String Values)
-    {
-        String query = "update "+Table + " set "+Values;
-        return  db.iud(query);
-    }
-
-    public  int update(String Table,String Values,String Condition)
-    {
-        String query = "update "+Table + " set "+Values + "where " + Condition;
-        return  db.iud(query);
-    }
-
-    public  int delete(String Table,String Condition)
-    {
-        String query = "delete from "+Table + " where  "+Condition;
-        return  db.iud(query);
-    }
-
-*/
-    public  ArrayList<Object> ResultToSelect(ResultSet data) {
-        ArrayList<Object> list = new ArrayList<Object>();
-
-        try {
-            if (data == null)
-                list = null;
-            while (data.next()) {
-                //Retrieve by column name
-
-                list.add((Object)data.getObject(1));
-
-            }
-        }
-        catch (SQLException se) {
-            //Handle errors for JDBC
-            se.printStackTrace();
-        }
-        return list;
+         query = "select * from employee";
+        databaseLegacy.Select(query,listeners);
 
     }
 
-
-
-    public void selectEmployeesId(OnTaskListeners.Result listeners)
+    public void selectEmployeeName(OnTaskListeners.Result listeners)
     {
-        String query = "select * from employee";
-        db.Select(query,listeners);
-
-    }
-
-    public void selectEmployeesNames(OnTaskListeners.Result listeners)
-    {
-        String query = "select name from employee";
-        db.Select(query,listeners);
+         query = "select name from employee";
+        databaseLegacy.Select(query,listeners);
 
     }
 
 
     public void insertEmployeeName(String Name,OnTaskListeners.Bool listener)
     {
-        String query = "insert into employee (Name) values('"+Name+"')";
-        db.iud(query,listener);
+        query = "insert into employee (Name) values('"+Name+"')";
+        databaseLegacy.iud(query,listener);
 
+    }
+
+    public  void selectUserName(String username,String password,OnTaskListeners.Result listener)
+    {
+        query = "select id from Log where username = '" + username +"' and password = '"+ password +"'";
+        databaseLegacy.Select(query,listener);
+    }
+
+    public  void selectEmail(String Email,String password,OnTaskListeners.Result listener)
+    {
+        query = "select id from Log where Email = '" + Email +"' and password = '"+ password +"'";
+        databaseLegacy.Select(query,listener);
     }
 
 }

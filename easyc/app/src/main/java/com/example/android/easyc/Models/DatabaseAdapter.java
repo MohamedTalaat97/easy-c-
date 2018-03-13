@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class DatabaseAdapter {
 
-    private DatabaseLegacy databaseLegacy;
+    private DatabaseLegacy databaseLegacy = null;
     private String query;
 
     public DatabaseAdapter()
@@ -16,24 +16,9 @@ public class DatabaseAdapter {
         databaseLegacy =  new DatabaseLegacy();
     }
 
-    private final Map<String,ArrayList<String>> mappings = new HashMap<String, ArrayList<String>>();
-
-    public ArrayList<String> getValues(String key)
+    public  DatabaseLegacy getDatabaseLegacy()
     {
-        return mappings.get(key);
-    }
-
-    public Boolean putValue(String key, String value)
-    {
-        ArrayList<String> target = mappings.get(key);
-
-        if(target == null)
-        {
-            target = new ArrayList<>();
-            mappings.put(key,target);
-        }
-
-        return target.add(value);
+        return  databaseLegacy;
     }
 
 

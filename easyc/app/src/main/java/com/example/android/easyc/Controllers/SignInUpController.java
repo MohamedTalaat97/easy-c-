@@ -20,7 +20,7 @@ public class SignInUpController extends Controller {
                 @Override
                 public void onSuccess(ResultSet data) {
                     if (checkIfFound(data))
-                        databaseLegacy().setUserId((Integer) getOneValue(data));
+                        dataModel().setUserId((Integer) getOneValue(data));
                     //next here we take an action
                     listener.OnSuccess(checkIfFound(data));
 
@@ -32,7 +32,7 @@ public class SignInUpController extends Controller {
                 @Override
                 public void onSuccess(ResultSet data) {
                     if (checkIfFound(data))
-                        databaseLegacy().setUserId((Integer) getOneValue(data));
+                        dataModel().setUserId((Integer) getOneValue(data));
                     //next here we take an action
 
                     listener.OnSuccess(checkIfFound(data));

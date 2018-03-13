@@ -1,9 +1,12 @@
 package com.example.android.easyc.Controllers;
 
+import android.widget.Toast;
+
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.Interfaces.ViewListener;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  * Created by KhALeD SaBrY on 12-Mar-18.
@@ -23,7 +26,6 @@ public class SignInUpController extends Controller {
                         dataModel().setUserId((Integer) getOneValue(data));
                     //next here we take an action
                     listener.OnSuccess(checkIfFound(data));
-
                 }
             });
         }

@@ -34,6 +34,7 @@ public void signIn(View view)
     if (username.getText().toString().matches("") || pass.getText().toString().matches("")) {
         Toast.makeText(this, "You did not enter a username or a password", Toast.LENGTH_SHORT).show();
         return;
+
     }
     //from the controller call signin function that you made and after it finish the function will call back to this function
     signInUpController.signIn(username.getText().toString(),pass.getText().toString(), new ViewListener.Bool() {
@@ -46,7 +47,7 @@ public void signIn(View view)
 
             }
             else
-                Toast.makeText(sign_in_activity.this,"True",Toast.LENGTH_LONG).show();
+                Toast.makeText(sign_in_activity.this,"False",Toast.LENGTH_LONG).show();
         }
     });
 }

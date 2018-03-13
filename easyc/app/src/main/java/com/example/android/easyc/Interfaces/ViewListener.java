@@ -25,7 +25,7 @@ public interface ViewListener {
         void OnSuccess(String result);
     }
 
-    public interface Array
+    public interface List
     {
         void OnSuccess(ArrayList<Object> result);
     }

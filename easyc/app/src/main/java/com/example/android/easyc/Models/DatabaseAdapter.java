@@ -1,8 +1,7 @@
-package com.example.android.easyc;
+package com.example.android.easyc.Models;
 
-import java.security.PrivateKey;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

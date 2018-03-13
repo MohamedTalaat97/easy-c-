@@ -1,6 +1,8 @@
-package com.example.android.easyc;
+package com.example.android.easyc.Models;
 
 import android.os.AsyncTask;
+
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,6 +1,4 @@
-package com.example.android.easyc;
-
-import android.os.AsyncTask;
+package com.example.android.easyc.Models;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

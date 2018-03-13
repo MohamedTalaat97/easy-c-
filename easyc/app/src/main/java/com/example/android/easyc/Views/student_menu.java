@@ -1,13 +1,12 @@
-package com.example.android.easyc;
+package com.example.android.easyc.Views;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.android.easyc.R;
 
 public class student_menu extends AppCompatActivity {
 

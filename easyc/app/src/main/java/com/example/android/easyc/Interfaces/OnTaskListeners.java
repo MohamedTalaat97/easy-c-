@@ -1,4 +1,4 @@
-package com.example.android.easyc;
+package com.example.android.easyc.Interfaces;
 
 import java.sql.ResultSet;
 

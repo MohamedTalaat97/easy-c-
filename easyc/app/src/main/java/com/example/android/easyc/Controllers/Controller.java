@@ -1,4 +1,7 @@
-package com.example.android.easyc;
+package com.example.android.easyc.Controllers;
+
+import com.example.android.easyc.Models.DatabaseAdapter;
+import com.example.android.easyc.Models.DatabaseLegacy;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

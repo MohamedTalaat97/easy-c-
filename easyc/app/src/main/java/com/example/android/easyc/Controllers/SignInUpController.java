@@ -45,4 +45,24 @@ public class SignInUpController extends Controller {
             );
         }
     }
+
+    ///////////////////////////
+    public void signUp(String name, String password,int type, String age, String email ,final ViewListener.Bool listener)
+    {
+// this '@' to check if the user accessed by username or email
+
+            databaseAdapter().insertNewUser(name, password,type,age ,email, new OnTaskListeners.Result() {
+                @Override
+                public void onSuccess(ResultSet data) {
+                    if (checkIfFound(data))
+                        dataModel().setUserId((Integer) getOneValue(data));
+                    //next here we take an action
+                    listener.OnSuccess(checkIfFound(data));
+
+                }
+            });
+        }
+
+
+
 }

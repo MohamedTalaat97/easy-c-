@@ -11,6 +11,10 @@
         android:scaleType="centerCrop"
         android:src="@drawable/background" />
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -24,8 +28,17 @@
             android:id="@+id/ET_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="190dp"
+            android:layout_marginTop="120dp"
             android:hint="User Name" />
+
+
+        <EditText
+            android:id="@+id/ET_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Age" />
+
 
 
         <EditText
@@ -42,6 +55,20 @@
             android:layout_marginTop="20dp"
             android:hint="email" />
 
+        <Spinner
+            android:id="@+id/sp_type"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            />
+
+        <EditText
+            android:id="@+id/ET_motivation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Motivation (Optional)" />
+
         <Button
             android:id="@+id/BT_sign_in"
             android:layout_width="100dp"
@@ -52,5 +79,6 @@
 
 
     </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">easy c++</string>
+
+    ////////////////////////////////////////
+    <string-array name="userType">
+        <item>Student</item>
+        <item>Instructor</item>
+    </string-array>
+
+
 </resources>
+

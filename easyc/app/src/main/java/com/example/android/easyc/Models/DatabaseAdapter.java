@@ -31,10 +31,18 @@ public class DatabaseAdapter {
 
     public void selectEmployeeName(OnTaskListeners.Result listeners)
     {
-         query = "select name from employee";
+        query = "select name from employee";
         databaseLegacy.Select(query,listeners);
 
     }
+
+    public void insertNewUser(String userName,String Pass,int Type,String age,String eamil ,OnTaskListeners.Result listeners)
+    {
+        query = "insert into Users values()";
+        databaseLegacy.Select(query,listeners);
+
+    }
+
 
 
     public void insertEmployeeName(String Name,OnTaskListeners.Bool listener)
@@ -43,6 +51,7 @@ public class DatabaseAdapter {
         databaseLegacy.iud(query,listener);
 
     }
+
 
     public  void selectUserName(String username,String password,OnTaskListeners.Result listener)
     {

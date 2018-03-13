@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
 
-
     >
 
 
@@ -50,7 +49,7 @@
             android:layout_marginTop="15dp"
             android:background="@android:color/transparent"
             android:text="Sign in"
-            android:onClick="open_student_menu"
+            android:onClick="signIn"
             android:textColor="@color/black" />
 
 

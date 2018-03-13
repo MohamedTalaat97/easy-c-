@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/C_theme">
         <activity
-            android:name=".sign_in_activity"
+            android:name=".Views.sign_in_activity"
             android:label="Easy C++"
             android:theme="@style/C_theme">
             <intent-filter>
@@ -22,10 +22,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".sign_up"
+            android:name=".Views.sign_up"
             android:label="create an account" />
-        <activity android:name=".student_menu" />
-        <activity android:name=".categories"></activity>
+        <activity android:name=".Views.student_menu" />
+        <activity android:name=".Views.categories"></activity>
     </application>
 
 </manifest>

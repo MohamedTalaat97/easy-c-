@@ -36,10 +36,10 @@ public class DatabaseAdapter {
 
     }
 
-    public void insertNewUser(String userName,String Pass,int Type,String age,String eamil ,OnTaskListeners.Result listeners)
+    public void insertNewUser(String userName,String Pass,char Type,String age,String email ,OnTaskListeners.Bool listeners)
     {
-        query = "insert into Users values()";
-        databaseLegacy.Select(query,listeners);
+        query = "insert into user(username,password,type,age,email) values('"+userName+"','"+Pass+"','"+Type+"',"+age+",'"+email+"')";
+        databaseLegacy.iud(query,listeners);
 
     }
 

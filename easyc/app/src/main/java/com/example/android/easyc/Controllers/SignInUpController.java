@@ -14,11 +14,10 @@ import java.util.ArrayList;
 
 public class SignInUpController extends Controller {
 
-//be aware that it must be the return value to the view is void so you have to send the view with it
-    public void signIn(String name, String password, final ViewListener.Bool listener)
-    {
+    //be aware that it must be the return value to the view is void so you have to send the view with it
+    public void signIn(String name, String password, final ViewListener.Bool listener) {
 // this '@' to check if the user accessed by username or email
-        if(name.indexOf('@') == -1) {
+        if (name.indexOf('@') == -1) {
             databaseAdapter().selectUserName(name, password, new OnTaskListeners.Result() {
                 @Override
                 public void onSuccess(ResultSet data) {
@@ -28,20 +27,18 @@ public class SignInUpController extends Controller {
                     listener.OnSuccess(checkIfFound(data));
                 }
             });
-        }
-        else {
+        } else {
             databaseAdapter().selectEmail(name, password, new OnTaskListeners.Result() {
-                @Override
-                public void onSuccess(ResultSet data) {
-                    if (checkIfFound(data))
-                        dataModel().setUserId((Integer) getOneValue(data));
-                    //next here we take an action
+                        @Override
+                        public void onSuccess(ResultSet data) {
+                            if (checkIfFound(data))
+                                dataModel().setUserId((Integer) getOneValue(data));
+                            //next here we take an action
 
-                    listener.OnSuccess(checkIfFound(data));
+                            listener.OnSuccess(checkIfFound(data));
 
-                }
-            }
-
+                        }
+                    }
 
 
             );
@@ -49,22 +46,15 @@ public class SignInUpController extends Controller {
     }
 
     ///////////////////////////
-    public void signUp(String name, String password,int type, String age, String email ,final ViewListener.Bool listener)
-    {
+    public void signUp(String name, String password, String type, String age, String email, final ViewListener.Bool listener) {
 // this '@' to check if the user accessed by username or email
-
-            databaseAdapter().insertNewUser(name, password,type,age ,email, new OnTaskListeners.Result() {
-                @Override
-                public void onSuccess(ResultSet data) {
-                    if (checkIfFound(data))
-                        dataModel().setUserId((Integer) getOneValue(data));
-                    //next here we take an action
-                    listener.OnSuccess(checkIfFound(data));
-
-                }
-            });
-        }
+        databaseAdapter().insertNewUser(name, password, type.charAt(0), age, email, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean data) {
+                listener.OnSuccess(data);
+            }
+        });
 
 
-
+    }
 }

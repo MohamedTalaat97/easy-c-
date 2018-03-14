@@ -2,7 +2,9 @@ package com.example.android.easyc.Views;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -16,13 +18,21 @@ public class sign_up extends AppCompatActivity {
 
 
     SignInUpController signInUpController;
+    Button signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         signInUpController = new SignInUpController();
+signup = (Button) findViewById(R.id.BT_sign_up);
 
+signup.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        signUp();
+    }
+});
 
 
         Spinner spinner = (Spinner) findViewById(R.id.sp_type);
@@ -49,13 +59,13 @@ public class sign_up extends AppCompatActivity {
             return;
         }
         //from the controller call signup function that you made and after it finish the function will call back to this function
-        signInUpController.signUp(username.getText().toString(),pass.getText().toString(), type.getSelectedItemPosition(),age.getText().toString() ,email.getText().toString(),new ViewListener.Bool() {
+        signInUpController.signUp(username.getText().toString(),pass.getText().toString(), (String)type.getSelectedItem(),age.getText().toString() ,email.getText().toString(),new ViewListener.Bool() {
             @Override
             public void OnSuccess(boolean result) {
                 if(result)
                     Toast.makeText(sign_up.this,"True",Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(sign_up.this,"True",Toast.LENGTH_LONG).show();
+                    Toast.makeText(sign_up.this,"False",Toast.LENGTH_LONG).show();
             }
         });
     }

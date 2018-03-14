@@ -10,18 +10,22 @@ import android.widget.Toast;
 
 import com.example.android.easyc.Controllers.SignInUpController;
 import com.example.android.easyc.Interfaces.ViewListener;
+import com.example.android.easyc.Models.ConnectionDb;
 import com.example.android.easyc.R;
 
 public class sign_in_activity extends AppCompatActivity {
 
     //first identify the controller
     SignInUpController signInUpController;
+    ConnectionDb connectionDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_activity);
 
         signInUpController = new SignInUpController();
+        connectionDb = ConnectionDb.getInstance();
+        connectionDb.khaledDb();
     }
 
     // this is a function that relates to the button when the user click

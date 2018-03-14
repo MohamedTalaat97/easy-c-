@@ -70,7 +70,7 @@
             android:hint="Motivation (Optional)" />
 
         <Button
-            android:id="@+id/BT_sign_in"
+            android:id="@+id/BT_sign_up"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"

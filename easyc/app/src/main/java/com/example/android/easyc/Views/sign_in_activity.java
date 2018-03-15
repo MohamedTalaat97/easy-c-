@@ -22,10 +22,12 @@ public class sign_in_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_activity);
-
-        signInUpController = new SignInUpController();
         connectionDb = ConnectionDb.getInstance();
         connectionDb.khaledDb();
+        signInUpController = new SignInUpController();
+
+
+
     }
 
     // this is a function that relates to the button when the user click

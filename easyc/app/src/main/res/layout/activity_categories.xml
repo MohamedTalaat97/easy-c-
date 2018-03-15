@@ -9,11 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        android:src="@drawable/o2" />
+        android:src="@drawable/o10" />
 
 
     <ListView
-        android:id="@+id/categoriesListView"
+        android:id="@+id/categories_ListView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
@@ -23,3 +23,4 @@
 
 
 </RelativeLayout>
+

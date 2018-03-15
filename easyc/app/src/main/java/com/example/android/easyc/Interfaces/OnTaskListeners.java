@@ -13,11 +13,26 @@ public interface OnTaskListeners {
     {
         void onSuccess(Boolean result);
     }
+
     public interface Result {
         void onSuccess(ResultSet data);
     }
 
+    public interface Number
+    {
+        void OnSuccess(int result);
+    }
 
+
+    public interface Word
+    {
+        void OnSuccess(String result);
+    }
+
+    public interface List
+    {
+        void OnSuccess(ArrayList<Object> result);
+    }
 
     public  interface IdAndList
     {

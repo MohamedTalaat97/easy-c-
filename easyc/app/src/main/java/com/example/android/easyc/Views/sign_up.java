@@ -16,7 +16,6 @@ import com.example.android.easyc.R;
 public class sign_up extends AppCompatActivity {
 
 
-
     SignInUpController signInUpController;
     Button signup;
 
@@ -25,51 +24,49 @@ public class sign_up extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         signInUpController = new SignInUpController();
-signup = (Button) findViewById(R.id.BT_sign_up);
+        signup = (Button) findViewById(R.id.BT_sign_up);
 
-signup.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        signUp();
-    }
-});
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signUp();
+            }
+        });
 
 
         Spinner spinner = (Spinner) findViewById(R.id.sp_type);
-    // Create an ArrayAdapter using the string array and a default spinner layout
+        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.userType, android.R.layout.simple_spinner_item);
-    // Specify the layout to use when the list of choices appears
+        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    // Apply the adapter to the spinner
+        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
     }
 
 
-    public void signUp()
-    {
-        EditText username =(EditText) findViewById(R.id.ET_user_name) ;
-        EditText pass =(EditText) findViewById(R.id.ET_Password) ;
-        Spinner type = (Spinner)  findViewById(R.id.sp_type);
-        EditText age =(EditText) findViewById(R.id.ET_age) ;
-        EditText email =(EditText) findViewById(R.id.ET_email) ;
+    public void signUp() {
+        EditText username = (EditText) findViewById(R.id.ET_user_name);
+        EditText pass = (EditText) findViewById(R.id.ET_Password);
+        Spinner type = (Spinner) findViewById(R.id.sp_type);
+        EditText age = (EditText) findViewById(R.id.ET_age);
+        EditText email = (EditText) findViewById(R.id.ET_email);
 
-        if (username.getText().toString().matches("") || pass.getText().toString().matches("") ||age.getText().toString().matches("") || email.getText().toString().matches("")) {
+        if (username.getText().toString().matches("") || pass.getText().toString().matches("") || age.getText().toString().matches("") || email.getText().toString().matches("")) {
             Toast.makeText(this, "You did not enter a username or a password", Toast.LENGTH_SHORT).show();
             return;
         }
         //from the controller call signup function that you made and after it finish the function will call back to this function
-        signInUpController.signUp(username.getText().toString(),pass.getText().toString(), (String)type.getSelectedItem(),age.getText().toString() ,email.getText().toString(),new ViewListener.Bool() {
+        signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), new ViewListener.Bool() {
             @Override
             public void OnSuccess(boolean result) {
-                if(result)
-                    Toast.makeText(sign_up.this,"True",Toast.LENGTH_LONG).show();
+                if (result)
+                    Toast.makeText(sign_up.this, "True", Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(sign_up.this,"False",Toast.LENGTH_LONG).show();
+                    Toast.makeText(sign_up.this, "False", Toast.LENGTH_LONG).show();
             }
         });
     }
-
 
 
 }

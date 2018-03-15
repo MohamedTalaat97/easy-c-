@@ -75,5 +75,17 @@ public class OpinionController extends Controller {
     }
 
 
+    public  void putOpinion(String title, String description, final OnTaskListeners.Bool listener)
+    {
+        int user_id = dataModel().getUserId();
+        databaseAdapter().insertOpinion(user_id, title, description, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
+    }
+
+
 
 }

@@ -25,7 +25,6 @@ public class show_opinions extends AppCompatActivity {
     ArrayList<Integer> idArrayList;
     ArrayList<String> titleArrayList;
     ListView listView;
-
     public  static  final  String EXTRA_DATA_ID = "ID";
     public  static  final  String EXTRA_DATA_TITLE = "TITLE";
 

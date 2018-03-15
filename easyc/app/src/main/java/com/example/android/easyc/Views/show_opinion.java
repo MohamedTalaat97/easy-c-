@@ -29,25 +29,26 @@ public class show_opinion extends AppCompatActivity {
     Button read;
     Button back;
     Button favourite;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.show_opinion);
-            arrayList = new ArrayList<String>();
-            opinionController = new OpinionController();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.show_opinion);
+        arrayList = new ArrayList<String>();
+        opinionController = new OpinionController();
 
-            id = getIntent().getIntExtra(show_opinions.EXTRA_DATA_ID,0);
-            title = (TextView) findViewById(R.id.title);
-            description = (TextView) findViewById(R.id.description);
-            read = (Button) findViewById(R.id.read);
-            back = (Button) findViewById(R.id.backtoopinions);
-            favourite = findViewById(R.id.favourite);
+        id = getIntent().getIntExtra(show_opinions.EXTRA_DATA_ID, 0);
+        title = (TextView) findViewById(R.id.title);
+        description = (TextView) findViewById(R.id.description);
+        read = (Button) findViewById(R.id.read);
+        back = (Button) findViewById(R.id.backtoopinions);
+        favourite = findViewById(R.id.favourite);
 
-            read.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    markAsRead();
-                }
+        read.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                markAsRead();
+            }
         });
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -68,8 +69,7 @@ public class show_opinion extends AppCompatActivity {
     }
 
 
-    void refreshData()
-    {
+    void refreshData() {
         title.setText(getIntent().getStringExtra(show_opinions.EXTRA_DATA_TITLE));
         opinionController.returnDescription(id, new ViewListener.Word() {
             @Override
@@ -80,42 +80,37 @@ public class show_opinion extends AppCompatActivity {
     }
 
 
-    void backToOpinions()
-    {
-        Intent intent = new Intent(this,show_opinions.class);
+    void backToOpinions() {
+        Intent intent = new Intent(this, show_opinions.class);
         startActivity(intent);
     }
 
-    void markAsRead()
-    {
-        opinionController.updateRead(id,true, new OnTaskListeners.Bool() {
+    void markAsRead() {
+        opinionController.updateRead(id, true, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
-                if(result)
-                    Toast.makeText(show_opinion.this,"True",Toast.LENGTH_SHORT).show();
+                if (result)
+                    Toast.makeText(show_opinion.this, "True", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(show_opinion.this,"False",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(show_opinion.this, "False", Toast.LENGTH_SHORT).show();
 
             }
         });
     }
 
 
-    void markAsFavourite()
-    {
-    opinionController.updateFavourite(id,true, new OnTaskListeners.Bool() {
-    @Override
-    public void onSuccess(Boolean result) {
-        if(result)
-        Toast.makeText(show_opinion.this,"True",Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(show_opinion.this,"False",Toast.LENGTH_SHORT).show();
+    void markAsFavourite() {
+        opinionController.updateFavourite(id, true, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if (result)
+                    Toast.makeText(show_opinion.this, "True", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(show_opinion.this, "False", Toast.LENGTH_SHORT).show();
 
+            }
+        });
     }
-});
-    }
-
-
 
 
 }

@@ -15,7 +15,6 @@ import android.widget.ListView;
 
 import com.example.android.easyc.Controllers.OpinionController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
-import com.example.android.easyc.Interfaces.ViewListener;
 import com.example.android.easyc.R;
 
 import java.util.ArrayList;
@@ -52,14 +51,14 @@ public class show_opinions extends AppCompatActivity {
     void fillList()
     {
         opinionController.returnTitle(new OnTaskListeners.IdAndList() {
-            @Override
-            public void OnSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
-                idArrayList = id;
-                titleArrayList = (ArrayList<String>) (Object) result;
-            }
-        });
+                                          @Override
+                                          public void onSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
+                                              idArrayList = id;
+                                              titleArrayList = (ArrayList<String>) (Object) result;
+                                          }
+                                      });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,titleArrayList);
+                ArrayAdapter < String > adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titleArrayList);
         listView.setAdapter(adapter);
     }
 

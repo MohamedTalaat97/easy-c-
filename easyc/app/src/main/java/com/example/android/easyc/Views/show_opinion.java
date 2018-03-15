@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.android.easyc.Controllers.OpinionController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
-import com.example.android.easyc.Interfaces.ViewListener;
 import com.example.android.easyc.R;
 
 import java.util.ArrayList;
@@ -71,10 +70,11 @@ public class show_opinion extends AppCompatActivity {
 
     void refreshData() {
         title.setText(getIntent().getStringExtra(show_opinions.EXTRA_DATA_TITLE));
-        opinionController.returnDescription(id, new ViewListener.Word() {
+        opinionController.returnDescription(id, new OnTaskListeners.Word() {
             @Override
-            public void OnSuccess(String result) {
+            public void onSuccess(String result) {
                 description.setText(result);
+
             }
         });
     }

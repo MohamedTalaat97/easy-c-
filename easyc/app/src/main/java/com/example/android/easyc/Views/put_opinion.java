@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.android.easyc.Controllers.OpinionController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
-import com.example.android.easyc.Interfaces.ViewListener;
 import com.example.android.easyc.R;
 
 import java.util.ArrayList;

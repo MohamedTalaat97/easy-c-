@@ -10,7 +10,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.android.easyc.Controllers.SignInUpController;
-import com.example.android.easyc.Interfaces.ViewListener;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 public class sign_up extends AppCompatActivity {
@@ -57,9 +57,9 @@ public class sign_up extends AppCompatActivity {
             return;
         }
         //from the controller call signup function that you made and after it finish the function will call back to this function
-        signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), new ViewListener.Bool() {
+        signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), new OnTaskListeners.Bool() {
             @Override
-            public void OnSuccess(boolean result) {
+            public void onSuccess(Boolean result) {
                 if (result)
                     Toast.makeText(sign_up.this, "True", Toast.LENGTH_LONG).show();
                 else
@@ -67,6 +67,5 @@ public class sign_up extends AppCompatActivity {
             }
         });
     }
-
 
 }

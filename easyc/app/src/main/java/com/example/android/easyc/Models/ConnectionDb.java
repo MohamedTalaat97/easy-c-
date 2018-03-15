@@ -16,11 +16,10 @@ public class ConnectionDb {
     private String username;
     private String password;
 
-    private void Connect()
-    {
+    private void Connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c =  DriverManager.getConnection(url,username,password);
+            c = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -41,41 +40,37 @@ public class ConnectionDb {
 
         // Exists only to defeat instantiation.
     }
+
     public static ConnectionDb getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new ConnectionDb();
         }
         return instance;
     }
 
 
-
-    public void khaledDb()
-    {
-        url = "jdbc:mysql://localhost:3306/c++?autoReconnect=true&useSSL=false";
+    public void khaledDb() {
+        url = "jdbc:mysql://192.168.0.102:3306/c++?autoReconnect=true&useSSL=false";
         username = "khaled";
         password = "11121997K";
         registerInBackground();
     }
 
-    public void TalaatDb()
-    {
+    public void TalaatDb() {
         url = "jdbc:mysql://192.168.0.104:3306/run?autoReconnect=true&useSSL=false";
         username = "khaled";
         password = "11121997K";
         registerInBackground();
     }
 
-    public void AhmedDb()
-    {
+    public void AhmedDb() {
         url = "jdbc:mysql://192.168.0.104:3306/run?autoReconnect=true&useSSL=false";
         username = "khaled";
         password = "11121997K";
         registerInBackground();
     }
 
-    public void KareemDb()
-    {
+    public void KareemDb() {
         url = "jdbc:mysql://192.168.0.104:3306/run?autoReconnect=true&useSSL=false";
         username = "khaled";
         password = "11121997K";

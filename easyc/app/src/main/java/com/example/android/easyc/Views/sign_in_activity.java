@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.android.easyc.Controllers.SignInUpController;
-import com.example.android.easyc.Interfaces.ViewListener;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.Models.ConnectionDb;
 import com.example.android.easyc.R;
 
@@ -43,9 +43,9 @@ public void signIn(View view)
 
     }
     //from the controller call signin function that you made and after it finish the function will call back to this function
-    signInUpController.signIn(username.getText().toString(),pass.getText().toString(), new ViewListener.Bool() {
+    signInUpController.signIn(username.getText().toString(), pass.getText().toString(), new OnTaskListeners.Bool() {
         @Override
-        public void OnSuccess(boolean result) {
+        public void onSuccess(Boolean result) {
             if(result) {
                 Toast.makeText(sign_in_activity.this, "True", Toast.LENGTH_LONG).show();
                 Intent i = new Intent(sign_in_activity.this,student_menu.class);

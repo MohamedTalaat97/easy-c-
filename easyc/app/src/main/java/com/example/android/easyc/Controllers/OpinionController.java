@@ -3,7 +3,6 @@ package com.example.android.easyc.Controllers;
 import android.view.View;
 
 import com.example.android.easyc.Interfaces.OnTaskListeners;
-import com.example.android.easyc.Interfaces.ViewListener;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -22,18 +21,18 @@ public class OpinionController extends Controller {
             public void onSuccess(ResultSet data) {
                 ArrayList<Integer> ids = (ArrayList<Integer>)(Object) resultToArray(data,1);
                 ArrayList<Object>  title = resultToArray(data,2);
-                listener.OnSuccess(ids,title);
+                listener.onSuccess(ids,title);
             }
         });
     }
 
 //return description for a specific selected item in opinions
-    public  void returnDescription(int  id, final ViewListener.Word listener)
+    public  void returnDescription(int  id, final OnTaskListeners.Word listener)
     {
         databaseAdapter().selectOpinionDescription(id, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                listener.OnSuccess((String) getOneValue(data));
+                listener.onSuccess((String) getOneValue(data));
             }
         });
     }

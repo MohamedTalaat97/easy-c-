@@ -20,23 +20,23 @@ public interface OnTaskListeners {
 
     public interface Number
     {
-        void OnSuccess(int result);
+        void onSuccess(int result);
     }
 
 
     public interface Word
     {
-        void OnSuccess(String result);
+        void onSuccess(String result);
     }
 
     public interface List
     {
-        void OnSuccess(ArrayList<Object> result);
+        void onSuccess(ArrayList<Object> result);
     }
 
     public  interface IdAndList
     {
-        void OnSuccess(ArrayList<Integer> id, ArrayList<Object> result);
+        void onSuccess(ArrayList<Integer> id, ArrayList<Object> result);
     }
 
 }

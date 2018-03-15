@@ -3,8 +3,6 @@ package com.example.android.easyc.Controllers;
 import android.widget.Toast;
 
 import com.example.android.easyc.Interfaces.OnTaskListeners;
-import com.example.android.easyc.Interfaces.ViewListener;
-
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -15,7 +13,7 @@ import java.util.ArrayList;
 public class SignInUpController extends Controller {
 
     //be aware that it must be the return value to the view is void so you have to send the view with it
-    public void signIn(String name, String password, final ViewListener.Bool listener) {
+    public void signIn(String name, String password, final OnTaskListeners.Bool listener) {
 // this '@' to check if the user accessed by username or email
         if (name.indexOf('@') == -1) {
             databaseAdapter().selectUserName(name, password, new OnTaskListeners.Result() {
@@ -24,7 +22,7 @@ public class SignInUpController extends Controller {
                     if (checkIfFound(data))
                         dataModel().setUserId((Integer) getOneValue(data));
                     //next here we take an action
-                    listener.OnSuccess(checkIfFound(data));
+                    listener.onSuccess(checkIfFound(data));
                 }
             });
         } else {
@@ -35,7 +33,7 @@ public class SignInUpController extends Controller {
                                 dataModel().setUserId((Integer) getOneValue(data));
                             //next here we take an action
 
-                            listener.OnSuccess(checkIfFound(data));
+                            listener.onSuccess(checkIfFound(data));
 
                         }
                     }
@@ -46,12 +44,12 @@ public class SignInUpController extends Controller {
     }
 
     ///////////////////////////
-    public void signUp(String name, String password, String type, String age, String email, final ViewListener.Bool listener) {
+    public void signUp(String name, String password, String type, String age, String email, final OnTaskListeners.Bool listener) {
 // this '@' to check if the user accessed by username or email
         databaseAdapter().insertNewUser(name, password, type.charAt(0), age, email, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean data) {
-                listener.OnSuccess(data);
+                listener.onSuccess(data);
             }
         });
 

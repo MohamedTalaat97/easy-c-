@@ -16,7 +16,7 @@ public class DatabaseLegacy {
 
     private ConnectionDb conn = ConnectionDb.getInstance();
 
-    public void iud(final  String sql, final OnTaskListeners.Bool listener) {
+    public void iud(final  String query, final OnTaskListeners.Bool listener) {
 
         new AsyncTask<Void, Void, Boolean>() {
             public Integer updated = null;
@@ -26,7 +26,7 @@ public class DatabaseLegacy {
                 try {
                     Statement stmt;
                     stmt = conn.c.createStatement();
-                    updated = stmt.executeUpdate(sql);
+                    updated = stmt.executeUpdate(query);
                     if(updated == 1)
                         return true;
                     else
@@ -49,7 +49,7 @@ public class DatabaseLegacy {
         }.execute();
     }
 
-    public  void Select(final  String sql,final OnTaskListeners.Result listeners)
+    public  void Select(final  String query,final OnTaskListeners.Result listeners)
     {
         new AsyncTask<Void, Void, ResultSet>() {
             public ResultSet RS = null;
@@ -59,7 +59,7 @@ public class DatabaseLegacy {
                 try {
                     Statement stmt;
                     stmt = conn.c.createStatement();
-                    RS = stmt.executeQuery(sql);
+                    RS = stmt.executeQuery(query);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

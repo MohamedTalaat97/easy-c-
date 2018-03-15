@@ -26,6 +26,8 @@
             android:label="create an account" />
         <activity android:name=".Views.student_menu" />
         <activity android:name=".Views.categories"></activity>
+        <activity android:name=".Views.show_opinions"></activity>
+        <activity android:name=".Views.show_opinion"></activity>
     </application>
 
 </manifest>

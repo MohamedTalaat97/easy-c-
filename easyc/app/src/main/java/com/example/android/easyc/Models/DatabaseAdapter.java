@@ -65,4 +65,31 @@ public class DatabaseAdapter {
         databaseLegacy.Select(query,listener);
     }
 
+
+    public  void selectOpinionTitle(OnTaskListeners.Result listener)
+    {
+        //still waiting to make opinion table in database
+        query = "select id,title from opinion where read = false";
+        databaseLegacy.Select(query,listener);
+    }
+
+    public  void selectOpinionDescription(int id, OnTaskListeners.Result listener)
+    {
+        //still waiting to make opinion table in database
+        query = "select description from opinion where id = "+id;
+        databaseLegacy.Select(query,listener);
+    }
+    public void updateOpinionRead(int id ,char read,OnTaskListeners.Bool listener)
+    {
+        query = "update opinion set read = '"+read+"' where id = "+ id;
+        databaseLegacy.iud(query,listener);
+    }
+
+    public void updateOpinionFavourite(int id ,char favourite,OnTaskListeners.Bool listener)
+    {
+        query = "update opinion set favourite = '"+favourite+"' where id = "+ id;
+        databaseLegacy.iud(query,listener);
+    }
+
+
 }

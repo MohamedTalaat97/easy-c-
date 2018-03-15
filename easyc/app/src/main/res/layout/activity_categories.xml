@@ -12,11 +12,10 @@
         android:src="@drawable/o2" />
 
 
-
     <ListView
+        android:id="@+id/categoriesListView"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/categoriesListView">
+        android:layout_height="fill_parent">
 
     </ListView>
 

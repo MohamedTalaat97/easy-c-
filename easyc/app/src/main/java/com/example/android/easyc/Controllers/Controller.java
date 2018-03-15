@@ -24,16 +24,16 @@ public class Controller {
             dataModel = new Data();
     }
 
-    public DatabaseAdapter databaseAdapter() {
+    protected DatabaseAdapter databaseAdapter() {
         return databaseAdapter;
     }
 
-    public Data dataModel() {
+    protected Data dataModel() {
         return dataModel;
     }
 
     //get the data from database in array
-    public ArrayList<Object> resultToArray(ResultSet data, String Column_Name) {
+    protected ArrayList<Object> resultToArray(ResultSet data, String Column_Name) {
         ArrayList<Object> list = new ArrayList<Object>();
         try {
             if (data == null)
@@ -52,7 +52,7 @@ public class Controller {
     }
 
     //get the data from database in array
-    public ArrayList<Object> resultToArray(ResultSet data, int Column_Number) {
+    protected ArrayList<Object> resultToArray(ResultSet data, int Column_Number) {
         ArrayList<Object> list = new ArrayList<Object>();
         try {
             if (data == null)
@@ -69,7 +69,7 @@ public class Controller {
     }
 
     //get the data from database in array
-    public ArrayList<Object> resultToArray(ResultSet data) {
+    protected ArrayList<Object> resultToArray(ResultSet data) {
         ArrayList<Object> list = new ArrayList<Object>();
         try {
             if (data == null)
@@ -87,7 +87,7 @@ public class Controller {
 
 
     //get one value from the data
-    public Object getOneValue(ResultSet data, int Column_Number) {
+    protected Object getOneValue(ResultSet data, int Column_Number) {
         Object value = null;
         try {
             if (data == null)
@@ -103,7 +103,7 @@ public class Controller {
 
 
     //get one value from the data
-    public Object getOneValue(ResultSet data, String Column_Name) {
+    protected Object getOneValue(ResultSet data, String Column_Name) {
         Object value = null;
         try {
             if (data == null)
@@ -119,7 +119,7 @@ public class Controller {
 
 
     //get one value from the data
-    public Object getOneValue(ResultSet data) {
+    protected Object getOneValue(ResultSet data) {
         Object value = null;
         try {
             if (data == null)
@@ -134,7 +134,7 @@ public class Controller {
     }
 
     //check if the value found in database or not
-    public Boolean checkIfFound(ResultSet data) {
+    protected Boolean checkIfFound(ResultSet data) {
         if (data == null)
             return false;
         return true;

@@ -26,6 +26,12 @@ public class DatabaseAdapter {
 
     }
 
+    public void selectCategories(OnTaskListeners.Result listeners) {
+        query = "select name from categories";
+        databaseLegacy.Select(query, listeners);
+
+    }
+
     public void selectEmployeeName(OnTaskListeners.Result listeners) {
         query = "select name from employee";
         databaseLegacy.Select(query, listeners);

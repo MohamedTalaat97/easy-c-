@@ -51,14 +51,14 @@ public class show_opinions extends AppCompatActivity {
     void fillList()
     {
         opinionController.returnTitle(new OnTaskListeners.IdAndList() {
-            @Override
-            public void OnSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
-                idArrayList = id;
-                titleArrayList = (ArrayList<String>) (Object) result;
-            }
-        });
+                                          @Override
+                                          public void onSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
+                                              idArrayList = id;
+                                              titleArrayList = (ArrayList<String>) (Object) result;
+                                          }
+                                      });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,titleArrayList);
+                ArrayAdapter < String > adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titleArrayList);
         listView.setAdapter(adapter);
     }
 

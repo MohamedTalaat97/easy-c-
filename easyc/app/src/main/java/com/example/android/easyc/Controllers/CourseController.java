@@ -28,7 +28,7 @@ public class CourseController extends Controller {
         databaseAdapter().selectCatagoryIdByName(name, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                listener.onSuccess((int)getOneValue(data));
+                listener.onSuccess((int)resultToValue(data));
             }
         });
 

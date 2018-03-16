@@ -41,11 +41,11 @@ public class OpinionController extends Controller {
     public  void updateFavourite(int id,boolean favourite, final OnTaskListeners.Bool listener)
 
     {
-        char favour;
+        int favour;
         if(favourite)
-            favour = 'T';
+            favour = 1;
         else
-            favour = 'F';
+            favour = 0;
 
         databaseAdapter().updateOpinionFavourite(id, favour, new OnTaskListeners.Bool() {
             @Override
@@ -59,13 +59,13 @@ public class OpinionController extends Controller {
     public  void updateRead(int id,boolean read, final OnTaskListeners.Bool listener)
 
     {
-        char r;
+        int r;
         if(read)
-            r = 'T';
+            r = 1;
         else
-            r = 'F';
+            r = 0;
 
-        databaseAdapter().updateOpinionRead(id, r, new OnTaskListeners.Bool() {
+        databaseAdapter().updateOpinionReaded(id, r, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
                 listener.onSuccess(result);

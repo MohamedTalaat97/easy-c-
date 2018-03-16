@@ -27,11 +27,21 @@ public class DatabaseAdapter {
     }
 
     public void selectCategories(OnTaskListeners.Result listeners) {
-        query = "select name from categories";
+        query = "select title from category";
         databaseLegacy.Select(query, listeners);
 
     }
 
+    public void selectCatagoryIdByName(String name,OnTaskListeners.Result listeners) {
+        query = "select id from category where title = '"+name+"'";
+        databaseLegacy.Select(query, listeners);
+
+    }
+    public void selectTopics(int cat_id,OnTaskListeners.Result listeners) {
+        query = "select title from topic where cat_id = '"+cat_id+"'";
+        databaseLegacy.Select(query, listeners);
+
+    }
     public void selectEmployeeName(OnTaskListeners.Result listeners) {
         query = "select name from employee";
         databaseLegacy.Select(query, listeners);

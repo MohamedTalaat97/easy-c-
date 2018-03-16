@@ -1,11 +1,14 @@
 package com.example.android.easyc.Views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.android.easyc.Controllers.Student_Controller;
+import com.example.android.easyc.Controllers.CourseController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
@@ -13,16 +16,18 @@ import java.util.ArrayList;
 
 public class categories extends AppCompatActivity {
 
-    Student_Controller  student_controller;
-
+    CourseController course_controller;
+    ListView categoriesList;
     ArrayList<String>  categories;
+    int cat_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
         categories = new ArrayList<String>();
-        student_controller=new Student_Controller();
-        student_controller.getCategories(new OnTaskListeners.List() {
+        categoriesList = (ListView) findViewById(R.id.categories_ListView);
+        course_controller =new CourseController();
+        course_controller.getCategories(new OnTaskListeners.List() {
             @Override
             public void onSuccess(ArrayList<Object> result) {
 
@@ -30,11 +35,54 @@ public class categories extends AppCompatActivity {
             }
         });
 
-
         ArrayAdapter<String>  cat_adapter =new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,categories);
-
-        ListView categoriesList = (ListView) findViewById(R.id.categories_ListView);
         categoriesList.setAdapter(cat_adapter);
-    }}
+
+
+        categoriesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                openTopics(categories.get(i));
+            }}
+        );
+
+    }
+
+public void openTopics(String tilte)
+{
+    course_controller.getCatagoryId(tilte, new OnTaskListeners.Number() {
+    @Override
+    public void onSuccess(int result) {
+        cat_id=result;
+    }
+//  get cat id and send it to topic, make list view for topics and get it from database by the at id
+        //then display in topics which has arraylist<String>
+});
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 

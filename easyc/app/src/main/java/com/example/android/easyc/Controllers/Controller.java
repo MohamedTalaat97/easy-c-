@@ -90,7 +90,7 @@ public class Controller {
 
 
     //get one value from the data
-    protected Object getOneValue(ResultSet data, int Column_Number) {
+    protected Object resultToValue(ResultSet data, int Column_Number) {
         Object value = null;
         try {
             if (data == null)
@@ -107,7 +107,7 @@ public class Controller {
 
 
     //get one value from the data
-    protected Object getOneValue(ResultSet data, String Column_Name) {
+    protected Object resultToValue(ResultSet data, String Column_Name) {
         Object value = null;
         try {
             if (data == null)
@@ -124,7 +124,7 @@ public class Controller {
 
 
     //get one value from the data
-    protected Object getOneValue(ResultSet data) {
+    protected Object resultToValue(ResultSet data) {
         Object value = null;
         try {
             if (data == null)

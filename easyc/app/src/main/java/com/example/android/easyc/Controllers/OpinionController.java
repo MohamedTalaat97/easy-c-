@@ -32,7 +32,7 @@ public class OpinionController extends Controller {
         databaseAdapter().selectOpinionDescription(id, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                listener.onSuccess((String) getOneValue(data));
+                listener.onSuccess((String) resultToValue(data));
             }
         });
     }

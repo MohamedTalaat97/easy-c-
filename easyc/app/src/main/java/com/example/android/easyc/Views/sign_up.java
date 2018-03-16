@@ -1,5 +1,6 @@
 package com.example.android.easyc.Views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -60,12 +61,22 @@ public class sign_up extends AppCompatActivity {
         signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
-                if (result)
-                    Toast.makeText(sign_up.this, "True", Toast.LENGTH_LONG).show();
+                if (result) {
+                    makeToast("sign up successful");
+                    Intent i = new Intent(sign_up.this,sign_in_activity.class);
+                    startActivity(i);
+                }
                 else
                     Toast.makeText(sign_up.this, "False", Toast.LENGTH_LONG).show();
             }
         });
     }
+    private void makeToast(String toast)
+    {
+
+        Toast.makeText(sign_up.this, toast, Toast.LENGTH_LONG).show();
+
+    }
+
 
 }

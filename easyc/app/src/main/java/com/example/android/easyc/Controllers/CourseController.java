@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by MAN CENTER on 15-Mar-18.
  */
 
-public class Student_Controller extends Controller {
+public class CourseController extends Controller {
 
 
     public void getCategories(final OnTaskListeners.List listener) {
@@ -19,5 +19,23 @@ public class Student_Controller extends Controller {
                 listener.onSuccess(resultToArray(data));
             }
         });
+    }
+
+
+
+    public void getCatagoryId(String name,final OnTaskListeners.Number listener)
+    {
+        databaseAdapter().selectCatagoryIdByName(name, new OnTaskListeners.Result() {
+            @Override
+            public void onSuccess(ResultSet data) {
+                listener.onSuccess((int)getOneValue(data));
+            }
+        });
+
+
+
+
+
+
     }
 }

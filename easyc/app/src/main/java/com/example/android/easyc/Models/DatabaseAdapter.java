@@ -63,9 +63,15 @@ public class DatabaseAdapter {
     }
 
 
+    public void selectOpinionTitleUnSeen(OnTaskListeners.Result listener) {
+        //still waiting to make opinion table in database
+        query = "select id,title from opinion where seen = 'f'";
+        databaseLegacy.Select(query, listener);
+    }
+
     public void selectOpinionTitle(OnTaskListeners.Result listener) {
         //still waiting to make opinion table in database
-        query = "select id,title from opinion where read = false";
+        query = "select id,title from opinion";
         databaseLegacy.Select(query, listener);
     }
 
@@ -76,7 +82,7 @@ public class DatabaseAdapter {
     }
 
     public void updateOpinionRead(int id, char read, OnTaskListeners.Bool listener) {
-        query = "update opinion set read = '" + read + "' where id = " + id;
+        query = "update opinion set seen = '" + read + "' where id = " + id;
         databaseLegacy.iud(query, listener);
     }
 
@@ -89,7 +95,7 @@ public class DatabaseAdapter {
 
     public void insertOpinion(int user_id,String title,String description,OnTaskListeners.Bool listener)
     {
-        query = "insert into Opinion (user_id,title,description,read,favourite) values("+user_id+",'"+title+"','"+description+"','F','F')";
+        query = "insert into Opinion (user_id,title,description,seen,favourite) values("+user_id+",'"+title+"','"+description+"','F','F')";
         databaseLegacy.iud(query,listener);
     }
 

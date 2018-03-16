@@ -30,7 +30,7 @@ public class put_opinion extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.show_opinion);
+        setContentView(R.layout.activity_put_opinion_activity);
         opinionController = new OpinionController();
         title = findViewById(R.id.puttitle);
         description = findViewById(R.id.putdescription);

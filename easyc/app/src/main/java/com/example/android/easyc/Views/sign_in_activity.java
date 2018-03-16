@@ -18,6 +18,10 @@ public class sign_in_activity extends AppCompatActivity {
     //first identify the controller
     SignInUpController signInUpController;
     ConnectionDb connectionDb;
+    Button singInButton;
+    EditText username;
+    EditText pass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,17 +29,24 @@ public class sign_in_activity extends AppCompatActivity {
         connectionDb = ConnectionDb.getInstance();
         connectionDb.khaledDb();
         signInUpController = new SignInUpController();
+    singInButton  = findViewById(R.id.BT_sign_in);
+        username =(EditText) findViewById(R.id.ET_user_name) ;
+        pass =(EditText) findViewById(R.id.ET_Password) ;
+    singInButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            gotoputopinion();
 
-
+            //signIn();
+        }
+    });
 
     }
 
     // this is a function that relates to the button when the user click
-public void signIn(View view)
+public void signIn()
 {
 
-    EditText username =(EditText) findViewById(R.id.ET_user_name) ;
-    EditText pass =(EditText) findViewById(R.id.ET_Password) ;
 
     if (username.getText().toString().matches("") || pass.getText().toString().matches("")) {
         Toast.makeText(this, "You did not enter a username or a password", Toast.LENGTH_SHORT).show();
@@ -64,5 +75,12 @@ public void signIn(View view)
     {
         Intent i = new Intent(this,sign_up.class);
         startActivity(i);
+    }
+
+
+    public  void gotoputopinion()
+    {
+        Intent intent = new Intent(this,show_opinions.class);
+        startActivity(intent);
     }
 }

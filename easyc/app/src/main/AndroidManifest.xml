@@ -28,6 +28,10 @@
         <activity android:name=".Views.categories"></activity>
         <activity android:name=".Views.show_opinions"></activity>
         <activity android:name=".Views.show_opinion"></activity>
+        <activity android:name=".Views.put_opinion"></activity>
     </application>
 
 </manifest>
+
+
+

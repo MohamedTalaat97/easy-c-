@@ -44,6 +44,7 @@ public class Controller {
                 list.add((Object) data.getObject(Column_Name));
 
             }
+            data.beforeFirst();
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
@@ -61,6 +62,7 @@ public class Controller {
                 //Retrieve by column number
                 list.add((Object) data.getObject(Column_Number));
             }
+            data.beforeFirst();
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
@@ -78,6 +80,7 @@ public class Controller {
                 //Retrieve by column number
                 list.add((Object) data.getObject(1));
             }
+            data.beforeFirst();
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
@@ -94,6 +97,7 @@ public class Controller {
                 value = null;
             data.next();
             value = data.getObject(1);
+            data.beforeFirst();
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
@@ -110,6 +114,7 @@ public class Controller {
                 value = null;
             data.next();
             value = data.getObject(1);
+            data.beforeFirst();
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
@@ -126,6 +131,7 @@ public class Controller {
                 value = null;
             data.next();
             value = data.getObject(1);
+            data.beforeFirst();
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();

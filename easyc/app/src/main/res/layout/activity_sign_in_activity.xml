@@ -51,7 +51,6 @@
             android:layout_marginTop="15dp"
             android:background="@android:color/transparent"
             android:text="Sign in"
-            android:onClick="signIn"
             android:textColor="@color/black" />
 
 

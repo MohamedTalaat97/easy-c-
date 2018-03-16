@@ -32,7 +32,7 @@ public class show_opinion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.show_opinion);
+        setContentView(R.layout.activity_show_opinion);
         arrayList = new ArrayList<String>();
         opinionController = new OpinionController();
 

@@ -5,12 +5,15 @@ package com.example.android.easyc.Views;
  */
 
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.android.easyc.Controllers.OpinionController;
@@ -30,12 +33,14 @@ public class show_opinions extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.showopinions);
+        setContentView(R.layout.activity_showopinions);
         titleArrayList = new ArrayList<String>();
         idArrayList = new ArrayList<Integer>();
         opinionController = new OpinionController();
 
-        listView = (ListView) findViewById(R.id.listview);
+        listView = (ListView) findViewById(R.id.opinion_listview);
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -55,14 +60,35 @@ public class show_opinions extends AppCompatActivity {
                                           public void onSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
                                               idArrayList = id;
                                               titleArrayList = (ArrayList<String>) (Object) result;
+                                              ArrayAdapter < String > adapter = new ArrayAdapter<String>(show_opinions.this, android.R.layout.simple_selectable_list_item, titleArrayList);
+                                              listView.setAdapter(adapter);
                                           }
                                       });
 
-                ArrayAdapter < String > adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titleArrayList);
-        listView.setAdapter(adapter);
+
+
     }
 
+    public  void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
 
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ActionBar.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
 
     void openOpinion(int id,String title)
     {

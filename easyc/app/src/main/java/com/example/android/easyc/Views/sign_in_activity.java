@@ -35,9 +35,8 @@ public class sign_in_activity extends AppCompatActivity {
     singInButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            gotoputopinion();
 
-            //signIn();
+            signIn();
         }
     });
 

@@ -4,7 +4,7 @@ package com.example.android.easyc.Models;
 // this is the class that we will save all the data we need while he is using the program
 public class Data {
 
-    private static int userId;
+    private static int userId = 1;
     private static String userName;
     private static int userLevel;
 ////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ public class Data {
     {
         this.userName = userName;
     }
-    public void setUseLevel(int userLevel)
+    public void setUserLevel(int userLevel)
     {
         this.userLevel = userLevel;
     }

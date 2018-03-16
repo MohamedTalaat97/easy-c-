@@ -21,7 +21,6 @@ import java.util.ArrayList;
 
 public class show_opinion extends AppCompatActivity {
     OpinionController opinionController;
-    ArrayList<String> arrayList;
     int id;
     TextView title;
     TextView description;
@@ -33,15 +32,14 @@ public class show_opinion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_opinion);
-        arrayList = new ArrayList<String>();
         opinionController = new OpinionController();
 
-        id = getIntent().getIntExtra(show_opinions.EXTRA_DATA_ID, 0);
-        title = (TextView) findViewById(R.id.title);
-        description = (TextView) findViewById(R.id.description);
-        read = (Button) findViewById(R.id.read);
-        back = (Button) findViewById(R.id.backtoopinions);
+        title = findViewById(R.id.title);
+        description =  findViewById(R.id.description);
+        read = findViewById(R.id.read);
+        back = findViewById(R.id.backtoopinions);
         favourite = findViewById(R.id.favourite);
+        id = getIntent().getIntExtra(show_opinions.EXTRA_DATA_ID, 0);
 
         read.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,10 +78,6 @@ public class show_opinion extends AppCompatActivity {
     }
 
 
-    void backToOpinions() {
-        Intent intent = new Intent(this, show_opinions.class);
-        startActivity(intent);
-    }
 
     void markAsRead() {
         opinionController.updateRead(id, true, new OnTaskListeners.Bool() {
@@ -110,6 +104,13 @@ public class show_opinion extends AppCompatActivity {
 
             }
         });
+    }
+
+
+
+    void backToOpinions() {
+        Intent intent = new Intent(this, show_opinions.class);
+        startActivity(intent);
     }
 
 

@@ -35,8 +35,8 @@ public class sign_in_activity extends AppCompatActivity {
     singInButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-            signIn();
+            goTo();
+           // signIn();
         }
     });
 
@@ -77,7 +77,7 @@ public void signIn()
     }
 
 
-    public  void gotoputopinion()
+    public  void goTo()
     {
         Intent intent = new Intent(this,show_opinions.class);
         startActivity(intent);

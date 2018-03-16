@@ -1,8 +1,12 @@
 package com.example.android.easyc.Controllers;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import com.example.android.easyc.Models.Data;
 import com.example.android.easyc.Models.DatabaseAdapter;
 import com.example.android.easyc.Models.DatabaseLegacy;
+import com.example.android.easyc.Views.put_opinion;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -144,6 +148,12 @@ public class Controller {
         if (data == null)
             return false;
         return true;
+    }
+
+
+   public void toast(String msg, Context w) {
+       Toast.makeText(w.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+
     }
 
 }

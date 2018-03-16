@@ -61,12 +61,12 @@ public class put_opinion extends AppCompatActivity {
                 @Override
                 public void onSuccess(Boolean result) {
                     if (result) {
-                        toast("successfully added");
+                        opinionController.toast("successfully added",getApplicationContext());
                         title.setText("");
                         description.setText("");
 
                     } else
-                        toast("unsuccessfully added");
+                        opinionController.toast("unsuccessfully added",getApplicationContext());
                 }
             });
         }
@@ -75,21 +75,15 @@ public class put_opinion extends AppCompatActivity {
     }
 
     boolean check() {
-        if (title.getText().toString() == "") {
-            toast("there is no name for the title of Opinion");
+        if (title.getText().length() == 0) {
+            opinionController.toast("there is no name for the title of Opinion",getApplicationContext());
             return false;
         }
-        if (description.getText().toString() == "") {
-            toast("please add your opinion");
+        if (description.getText().length() == 0) {
+            opinionController.toast("please add your opinion",getApplicationContext());
             return false;
         }
         return true;
-    }
-
-
-    void toast(String msg) {
-        Toast.makeText(put_opinion.this, msg, Toast.LENGTH_SHORT).show();
-
     }
 
 

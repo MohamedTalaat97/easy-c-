@@ -84,9 +84,9 @@ public class show_opinion extends AppCompatActivity {
             @Override
             public void onSuccess(Boolean result) {
                 if (result)
-                    Toast.makeText(show_opinion.this, "True", Toast.LENGTH_SHORT).show();
+                    opinionController.toast("True",getApplicationContext());
                 else
-                    Toast.makeText(show_opinion.this, "False", Toast.LENGTH_SHORT).show();
+                    opinionController.toast("False",getApplicationContext());
 
             }
         });
@@ -98,9 +98,9 @@ public class show_opinion extends AppCompatActivity {
             @Override
             public void onSuccess(Boolean result) {
                 if (result)
-                    Toast.makeText(show_opinion.this, "True", Toast.LENGTH_SHORT).show();
+                    opinionController.toast("True",getApplicationContext());
                 else
-                    Toast.makeText(show_opinion.this, "False", Toast.LENGTH_SHORT).show();
+                    opinionController.toast("False",getApplicationContext());
 
             }
         });

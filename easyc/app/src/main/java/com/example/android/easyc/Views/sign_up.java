@@ -63,16 +63,15 @@ public class sign_up extends AppCompatActivity {
             public void onSuccess(Boolean result) {
                 if (result) {
                     makeToast("sign up successful");
-                    Intent i = new Intent(sign_up.this,sign_in_activity.class);
+                    Intent i = new Intent(sign_up.this, sign_in_activity.class);
                     startActivity(i);
-                }
-                else
+                } else
                     Toast.makeText(sign_up.this, "False", Toast.LENGTH_LONG).show();
             }
         });
     }
-    private void makeToast(String toast)
-    {
+
+    private void makeToast(String toast) {
 
         Toast.makeText(sign_up.this, toast, Toast.LENGTH_LONG).show();
 

@@ -3,7 +3,7 @@ package com.example.android.easyc.Controllers;
 import android.view.View;
 
 import com.example.android.easyc.Interfaces.OnTaskListeners;
-
+import com.example.android.easyc.Views.*;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 
 public class OpinionController extends Controller {
+
 
    //return all title of the opinions which are not read
    public void returnTitle(final OnTaskListeners.IdAndList listener)

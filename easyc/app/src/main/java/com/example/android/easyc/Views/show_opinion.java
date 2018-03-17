@@ -27,6 +27,7 @@ public class show_opinion extends AppCompatActivity {
     Button read;
     Button back;
     Button favourite;
+    boolean favouriteTopic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class show_opinion extends AppCompatActivity {
         opinionController = new OpinionController();
 
         title = findViewById(R.id.title);
-        description =  findViewById(R.id.description);
+        description = findViewById(R.id.description);
         read = findViewById(R.id.read);
         back = findViewById(R.id.backtoopinions);
         favourite = findViewById(R.id.favourite);
@@ -58,7 +59,7 @@ public class show_opinion extends AppCompatActivity {
         favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                markAsFavourite();
+                changeFavourite();
             }
         });
 
@@ -67,6 +68,7 @@ public class show_opinion extends AppCompatActivity {
 
 
     void refreshData() {
+        opinionController.makeItSeen(id);
         title.setText(getIntent().getStringExtra(show_opinions.EXTRA_DATA_TITLE));
         opinionController.returnDescription(id, new OnTaskListeners.Word() {
             @Override
@@ -75,8 +77,18 @@ public class show_opinion extends AppCompatActivity {
 
             }
         });
+        opinionController.checkFavourite(id, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if (result) {
+                    favouriteTopic = true;
+                } else {
+                    favouriteTopic = false;
+                }
+                updateButtonFavouriteText();
+            }
+        });
     }
-
 
 
     void markAsRead() {
@@ -84,28 +96,36 @@ public class show_opinion extends AppCompatActivity {
             @Override
             public void onSuccess(Boolean result) {
                 if (result)
-                    opinionController.toast("True",getApplicationContext());
+                    opinionController.toast("True", getApplicationContext());
                 else
-                    opinionController.toast("False",getApplicationContext());
+                    opinionController.toast("False", getApplicationContext());
 
             }
         });
     }
 
-
-    void markAsFavourite() {
-        opinionController.updateFavourite(id, true, new OnTaskListeners.Bool() {
+    void changeFavourite() {
+        opinionController.updateFavourite(id, favouriteTopic, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
-                if (result)
-                    opinionController.toast("True",getApplicationContext());
-                else
-                    opinionController.toast("False",getApplicationContext());
+                if (result) {
+                    opinionController.toast("True", getApplicationContext());
+                    favouriteTopic = !favouriteTopic;
+                    updateButtonFavouriteText();
+                } else
+                    opinionController.toast("False", getApplicationContext());
 
             }
         });
     }
 
+    void updateButtonFavouriteText() {
+        if (favouriteTopic)
+            favourite.setText("remove favourite");
+        else
+            favourite.setText("mark as favourite");
+
+    }
 
 
     void backToOpinions() {

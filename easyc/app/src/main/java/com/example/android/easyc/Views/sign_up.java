@@ -19,14 +19,25 @@ public class sign_up extends AppCompatActivity {
 
     SignInUpController signInUpController;
     Button signup;
+    EditText username;
+    EditText pass;
+    Spinner type;
+    EditText age;
+    EditText email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         signInUpController = new SignInUpController();
-        signup = (Button) findViewById(R.id.BT_sign_up);
 
+        signup = findViewById(R.id.BT_sign_up);
+        username = findViewById(R.id.ET_user_name);
+        pass = findViewById(R.id.ET_Password);
+        type = findViewById(R.id.sp_type);
+        age = findViewById(R.id.ET_age);
+        email = findViewById(R.id.ET_email);
+        Spinner spinner = findViewById(R.id.sp_type);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,11 +45,8 @@ public class sign_up extends AppCompatActivity {
             }
         });
 
-
-        Spinner spinner = (Spinner) findViewById(R.id.sp_type);
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.userType, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.userType, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
@@ -47,34 +55,33 @@ public class sign_up extends AppCompatActivity {
 
 
     public void signUp() {
-        EditText username = (EditText) findViewById(R.id.ET_user_name);
-        EditText pass = (EditText) findViewById(R.id.ET_Password);
-        Spinner type = (Spinner) findViewById(R.id.sp_type);
-        EditText age = (EditText) findViewById(R.id.ET_age);
-        EditText email = (EditText) findViewById(R.id.ET_email);
-
-        if (username.getText().toString().matches("") || pass.getText().toString().matches("") || age.getText().toString().matches("") || email.getText().toString().matches("")) {
-            Toast.makeText(this, "You did not enter a username or a password", Toast.LENGTH_SHORT).show();
-            return;
+        if (check()) {
+            //from the controller call signup function that you made and after it finish the function will call back to this function
+            signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), new OnTaskListeners.Bool() {
+                @Override
+                public void onSuccess(Boolean result) {
+                    if (result) {
+                        signInUpController.toast("sign up successful", getApplicationContext());
+                        goToSignInActivity();
+                    } else
+                        signInUpController.toast("False", getApplicationContext());
+                }
+            });
         }
-        //from the controller call signup function that you made and after it finish the function will call back to this function
-        signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), new OnTaskListeners.Bool() {
-            @Override
-            public void onSuccess(Boolean result) {
-                if (result) {
-                    makeToast("sign up successful");
-                    Intent i = new Intent(sign_up.this, sign_in_activity.class);
-                    startActivity(i);
-                } else
-                    Toast.makeText(sign_up.this, "False", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
-    private void makeToast(String toast) {
+    boolean check() {
+        if (username.getText().toString().matches("") || pass.getText().toString().matches("") || age.getText().toString().matches("") || email.getText().toString().matches("")) {
+            signInUpController.toast("You did not enter a username or a password", getApplicationContext());
+            return false;
+        }
+        return true;
+    }
 
-        Toast.makeText(sign_up.this, toast, Toast.LENGTH_LONG).show();
 
+    void goToSignInActivity() {
+        Intent i = new Intent(sign_up.this, sign_in_activity.class);
+        startActivity(i);
     }
 
 

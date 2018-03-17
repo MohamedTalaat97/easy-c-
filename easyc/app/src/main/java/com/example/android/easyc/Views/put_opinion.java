@@ -75,11 +75,11 @@ public class put_opinion extends AppCompatActivity {
     }
 
     boolean check() {
-        if (title.getText().length() == 0) {
+        if (title.getText().toString().matches("")) {
             opinionController.toast("there is no name for the title of Opinion",getApplicationContext());
             return false;
         }
-        if (description.getText().length() == 0) {
+        if (description.getText().toString().matches("")) {
             opinionController.toast("please add your opinion",getApplicationContext());
             return false;
         }

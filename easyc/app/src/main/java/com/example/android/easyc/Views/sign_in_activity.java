@@ -27,7 +27,7 @@ public class sign_in_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_activity);
         connectionDb = ConnectionDb.getInstance();
-        connectionDb.TalaatDb();
+        connectionDb.khaledDb();
         signInUpController = new SignInUpController();
         singInButton = findViewById(R.id.BT_sign_in);
         username = (EditText) findViewById(R.id.ET_user_name);
@@ -78,7 +78,7 @@ public class sign_in_activity extends AppCompatActivity {
 
 
     public void goTo() {
-        Intent intent = new Intent(this, show_opinions.class);
+        Intent intent = new Intent(this, categories.class);
         startActivity(intent);
     }
 

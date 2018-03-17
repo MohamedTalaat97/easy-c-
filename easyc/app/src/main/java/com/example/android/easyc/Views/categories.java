@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.example.android.easyc.Controllers.CourseController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
@@ -27,17 +28,6 @@ public class categories extends AppCompatActivity {
         categories = new ArrayList<String>();
         categoriesList = (ListView) findViewById(R.id.categories_ListView);
         course_controller =new CourseController();
-        course_controller.getCategories(new OnTaskListeners.List() {
-            @Override
-            public void onSuccess(ArrayList<Object> result) {
-
-                categories = (ArrayList<String>)(Object)result;
-            }
-        });
-
-        ArrayAdapter<String>  cat_adapter =new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,categories);
-        categoriesList.setAdapter(cat_adapter);
-
 
         categoriesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -46,8 +36,22 @@ public class categories extends AppCompatActivity {
                 openTopics(categories.get(i));
             }}
         );
-
+        fillList();
     }
+
+    void fillList()
+    {
+        course_controller.getCategories(new OnTaskListeners.List() {
+            @Override
+            public void onSuccess(ArrayList<Object> result) {
+
+                categories = (ArrayList<String>)(Object)result;
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(categories.this, android.R.layout.simple_selectable_list_item, categories);
+                categoriesList.setAdapter(adapter);
+            }
+        });
+    }
+
 
 public void openTopics(String tilte)
 {

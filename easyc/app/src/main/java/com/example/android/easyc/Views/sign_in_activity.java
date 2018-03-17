@@ -27,7 +27,7 @@ public class sign_in_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_activity);
         connectionDb = ConnectionDb.getInstance();
-        connectionDb.khaledDb();
+        connectionDb.TalaatDb();
         signInUpController = new SignInUpController();
     singInButton  = findViewById(R.id.BT_sign_in);
         username =(EditText) findViewById(R.id.ET_user_name) ;
@@ -56,7 +56,8 @@ public void signIn()
     signInUpController.signIn(username.getText().toString(), pass.getText().toString(), new OnTaskListeners.Bool() {
         @Override
         public void onSuccess(Boolean result) {
-            if(result) {
+            if(result)
+            {
                 Toast.makeText(sign_in_activity.this, "True", Toast.LENGTH_LONG).show();
                 Intent i = new Intent(sign_in_activity.this,student_menu.class);
                 startActivity(i);

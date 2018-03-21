@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 15/03/2018 16:19:14
+ Date: 20/03/2018 01:33:47
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,12 @@ CREATE TABLE `category`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `level`(`level_id`) USING BTREE,
   CONSTRAINT `level` FOREIGN KEY (`level_id`) REFERENCES `level` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of category
+-- ----------------------------
+INSERT INTO `category` VALUES (1, NULL, 'dsfsdf', NULL);
 
 -- ----------------------------
 -- Table structure for comment
@@ -89,13 +94,26 @@ CREATE TABLE `opinion`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `read` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `favourite` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` varchar(9999) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `readed` tinyint(1) NULL DEFAULT NULL,
+  `favourite` tinyint(1) NULL DEFAULT NULL,
+  `seen` tinyint(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id_opinion`(`user_id`) USING BTREE,
   CONSTRAINT `user_id_opinion` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of opinion
+-- ----------------------------
+INSERT INTO `opinion` VALUES (3, 1, 'why there is no content for c# ??', 'i am student and i want to know more about s#', 1, 0, 1);
+INSERT INTO `opinion` VALUES (4, 1, 'Title234234324', 'Title34wesdfdsfsdf', 1, 1, 1);
+INSERT INTO `opinion` VALUES (5, 1, 'werwerweTitle', 'Titlewerwerwerwer', NULL, 0, 1);
+INSERT INTO `opinion` VALUES (6, 1, 'sdfsdfsdfsdf', 'dsfsdfsdfsdfsdfsdf', NULL, 0, 1);
+INSERT INTO `opinion` VALUES (7, 1, 'sdfsdfsdfsdfsdfsdfhsdhfusdnfjonsdjfnsdnfosdnfsdnfksdnfksndkflnsdfnsdnfsdlnflsdnfklsndlfknsdlkfnsdlfnlskdnflksdnfldsnfnsdf', ' 15 down vote The most elegant and flexible solution I have found so far is here: http://android-er.blogspot.sg/2010/12/custom-arrayadapter-for-spinner-with.html  Basically, follow these steps:  Create custom layout xml file for your dropdown item, lets say I will call it spinner_item.xml Create custom view class, for your dropdown Adapter. In this custom class, you need to overwrite and set your custom dropdown item layout in getView() and getDropdownView() method. My code is as below:  public class CustomArrayAdapter extends ArrayAdapter<String>{  private List<String> objects; private Context context;  public CustomArrayAdapter(Context context, int resourceId,      List<String> objects) {      super(context, resourceId, objects);      this.objects = objects;      this.context = context; }  @Override public View getDropDownView(int position, View convertView,     ViewGroup parent) {     return getCustomView(position, convertView, parent); }  @Override public View getView(int position, View convertView, ViewGroup parent) {   return getCustomView(position, convertView, parent); }  public View getCustomView(int position, View convertView, ViewGroup parent) {  LayoutInflater inflater=(LayoutInflater) context.getSystemService(  Context.LAYOUT_INFLATER_SERVICE ); View row=inflater.inflate(R.layout.spinner_item, parent, false); TextView label=(TextView)row.findViewById(R.id.spItem);  label.setText(objects.get(position));  if (position == 0) {//Special style for dropdown header       label.setTextColor(context.getResources().getColor(R.color.text_hint_color)); }  return row; }  } In your activity or fragment, make use of the custom adapter for your spinner view. Something like this:  Spinner sp = (Spinner)findViewById(R.id.spMySpinner); ArrayAdapter<String> myAdapter = new CustomArrayAdapter(this, R.layout.spinner_item, options); sp.setAdapter(myAdapter);', NULL, NULL, 1);
+INSERT INTO `opinion` VALUES (8, 1, 'sdf', ' 15 down vote The most elegant and flexible solution I have found so far is here: http://android-er.blogspot.sg/2010/12/custom-arrayadapter-for-spinner-with.html  Basically, follow these steps:  Create custom layout xml file for your dropdown item, lets say I will call it spinner_item.xml Create custom view class, for your dropdown Adapter. In this custom class, you need to overwrite and set your custom dropdown item layout in getView() and getDropdownView() method. My code is as below:  public class CustomArrayAdapter extends ArrayAdapter<String>{  private List<String> objects; private Context context;  public CustomArrayAdapter(Context context, int resourceId,      List<String> objects) {      super(context, resourceId, objects);      this.objects = objects;      this.context = context; }  @Override public View getDropDownView(int position, View convertView,     ViewGroup parent) {     return getCustomView(position, convertView, parent); }  @Override public View getView(int position, View convertView, ViewGroup parent', NULL, NULL, 1);
+INSERT INTO `opinion` VALUES (9, 1, 'sdfsdf', ' 15 down vote The most elegant a', NULL, NULL, 1);
+INSERT INTO `opinion` VALUES (10, 1, 'sdfsdfsdfsdfsdfsdfhsdhfusdnfjonsdjfnsdnfosdnfsdnfksdnfksndkflnsdfnsdnfsdlnflsdnfklsndlfknsdlkfnsdlfnlskdnflksdnfldsnfnsdf', ' 15 down vote The most elegant and flexible solution I have found so far is here: http://android-er.blogspot.sg/2010/12/custom-arrayadapter-for-spinner-with.html  Basically, follow these steps:  Create custom layout xml file for your dropdown item, lets say I will call it spinner_item.xml Create custom view class, for your dropdown Adapter. In this custom class, you need to overwrite and set your custom dropdown item layout in getView() and getDropdownView() method. My code is as below:  public class CustomArrayAdapter extends ArrayAdapter<String>{  private List<String> objects; private Context context;  public CustomArrayAdapter(Context context, int resourceId,      List<String> objects) {      super(context, resourceId, objects);      this.objects = objects;      this.context = context; }  @Override public View getDropDownView(int position, View convertView,     ViewGroup parent) {     return getCustomView(position, convertView, parent); }  @Override public View getView(int position, View convertView, ViewGroup parent) {   return getCustomView(position, convertView, parent); }  public View getCustomView(int position, View convertView, ViewGroup parent) {  LayoutInflater inflater=(LayoutInflater) context.getSystemService(  Context.LAYOUT_INFLATER_SERVICE ); View row=inflater.inflate(R.layout.spinner_item, parent, false); TextView label=(TextView)row.findViewById(R.id.spItem);  label.setText(objects.get(position));  if (position == 0) {//Special style for dropdown header       label.setTextColor(context.getResources().getColor(R.color.text_hint_color)); }  return row; }  } In your activity or fragment, make use of the custom adapter for your spinner view. Something like this:  Spinner sp = (Spinner)findViewById(R.id.spMySpinner); ArrayAdapter<String> myAdapter = new CustomArrayAdapter(this, R.layout.spinner_item, options); sp.setAdapter(myAdapter);', NULL, 1, 1);
 
 -- ----------------------------
 -- Table structure for question
@@ -205,6 +223,13 @@ CREATE TABLE `user`  (
   `type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `age` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, 'sdfsedf', '243234', NULL, '234234', 'S', 234234);
+INSERT INTO `user` VALUES (2, 'khaled', '5151', NULL, 'uub', 'S', 14614);
+INSERT INTO `user` VALUES (3, 'khaled', '5151', NULL, 'uub', 'I', 14614);
 
 SET FOREIGN_KEY_CHECKS = 1;

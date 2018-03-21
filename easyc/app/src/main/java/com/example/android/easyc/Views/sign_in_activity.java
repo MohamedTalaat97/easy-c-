@@ -1,6 +1,8 @@
 package com.example.android.easyc.Views;
 
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,10 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.android.easyc.Controllers.GMailSender;
 import com.example.android.easyc.Controllers.SignInUpController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.Models.ConnectionDb;
 import com.example.android.easyc.R;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class sign_in_activity extends AppCompatActivity {
 
@@ -35,7 +43,8 @@ public class sign_in_activity extends AppCompatActivity {
         singInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goTo();
+                sendEmail();
+                //goTo();
                 // signIn();
             }
         });
@@ -78,7 +87,7 @@ public class sign_in_activity extends AppCompatActivity {
 
 
     public void goTo() {
-        Intent intent = new Intent(this, categories.class);
+        Intent intent = new Intent(this, show_opinions.class);
         startActivity(intent);
     }
 
@@ -87,4 +96,20 @@ public class sign_in_activity extends AppCompatActivity {
         Intent i = new Intent(sign_in_activity.this, student_menu.class);
         startActivity(i);
     }
+
+    void sendEmail()
+    {
+        GMailSender gmailSender = new GMailSender();
+        gmailSender.sendEmail("it is very kind of you", "i am not the person you think i am", "khaledsab1997@gmail.com", new OnTaskListeners.Word() {
+            @Override
+            public void onSuccess(String result) {
+                signInUpController.toast(result,getApplication());
+            }
+        });
+    }
+
+
+
+
+
 }

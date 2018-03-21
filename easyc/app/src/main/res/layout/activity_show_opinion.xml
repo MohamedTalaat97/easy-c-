@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/background" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -10,12 +19,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
-                android:layout_height="74dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="13dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -23,30 +32,40 @@
                 android:autoSizeMaxTextSize="70dp"
                 android:autoSizeMinTextSize="20dp"
                 android:autoSizeTextType="none"
-                android:background="@color/darkorange"
-                android:text="رأس الموضوع" />
+                android:background="@color/gray"
+                android:fontFamily="casual"
+                android:text="رأس الموضوع"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/description"
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="455dp"
-                android:layout_marginBottom="13dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/orange"
-                android:text="تفاصيل الموضوع" />
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="5"
+                    android:background="@color/colorPrimary"
+                    android:padding="3dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="10dp"
+                    android:text="تفاصيل الموضوع" />
+
+            </android.support.v4.widget.NestedScrollView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="bottom"
                 android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/favourite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="favourite" />
 
                 <Button
                     android:id="@+id/backtoopinions"
@@ -54,6 +73,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="return" />
+
+                <Button
+                    android:id="@+id/favourite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="favourite" />
 
                 <Button
                     android:id="@+id/read"

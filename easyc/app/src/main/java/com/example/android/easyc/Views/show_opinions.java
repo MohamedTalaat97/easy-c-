@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
 
 
 import com.example.android.easyc.Controllers.OpinionController;
@@ -93,6 +94,7 @@ public class show_opinions extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                opinionController.toast(spinner.getSelectedItem().toString(),getApplication());
                 setSpinner();
             }
 
@@ -103,8 +105,8 @@ public class show_opinions extends AppCompatActivity {
         });
 
         kind = spinner.getSelectedItem().toString();
-
     }
+
 
 
     public void setSpinner() {

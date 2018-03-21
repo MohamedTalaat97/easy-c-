@@ -9,8 +9,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/activation" />
+            <option value="$PROJECT_DIR$/add" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/com.mysql.jdbc_5.1.5" />
+            <option value="$PROJECT_DIR$/mails" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

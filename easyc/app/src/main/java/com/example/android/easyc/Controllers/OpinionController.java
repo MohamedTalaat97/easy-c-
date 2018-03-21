@@ -74,12 +74,6 @@ public class OpinionController extends Controller {
     public void updateFavourite(int id, boolean favourite, final OnTaskListeners.Bool listener)
 
     {
-        int favour;
-        if (!favourite)
-            favour = 1;
-        else
-            favour = 0;
-
         databaseAdapter().updateOpinionFavourite(id, !favourite, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {

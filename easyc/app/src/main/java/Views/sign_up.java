@@ -11,12 +11,13 @@ import android.widget.Spinner;
 
 import com.example.android.easyc.R;
 
+import Controllers.MailController;
 import Controllers.SignInUpController;
 import Interfaces.OnTaskListeners;
 
 public class sign_up extends AppCompatActivity {
 
-
+    MailController mailController;
     SignInUpController signInUpController;
     Button signup;
     EditText username;
@@ -34,7 +35,7 @@ public class sign_up extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         signInUpController = new SignInUpController();
-
+        mailController = new MailController();
         signup = findViewById(R.id.BT_sign_up);
         username = findViewById(R.id.ET_user_name);
         pass = findViewById(R.id.ET_Password);
@@ -89,11 +90,14 @@ public class sign_up extends AppCompatActivity {
     public void signUp() {
         if (check()) {
             //from the controller call signup function that you made and after it finish the function will call back to this function
-            signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), new OnTaskListeners.Word() {
+            signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), new OnTaskListeners.Bool() {
                 @Override
-                public void onSuccess(String result) {
-                    signInUpController.toast(result, getApplicationContext());
-                    goToSignInActivity();
+                public void onSuccess(Boolean result) {
+                    if (result) {
+                        signInUpController.toast("Successfully Finished", getApplicationContext());
+                        mailController.sendWelcomeMessage(email.getText().toString());
+                        goToSignInActivity();
+                    }
 
                 }
             });

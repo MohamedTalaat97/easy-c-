@@ -1,10 +1,9 @@
 package Controllers;
 
-import Interfaces.OnTaskListeners;
-
 import java.sql.ResultSet;
 
 import Connections.MailSender;
+import Interfaces.OnTaskListeners;
 
 /**
  * Created by KhALeD SaBrY on 22-Mar-18.
@@ -37,6 +36,20 @@ public class MailController extends Controller {
             }
         });
 
+    }
+
+
+    public void sendWelcomeMessage(String email)
+    {
+        sender.setRecipientEmail(email);
+        sender.setSubject("Welcome to our app");
+        sender.setBody("this app cost is 200.000$");
+        sender.sendEmail(new OnTaskListeners.Word() {
+            @Override
+            public void onSuccess(String result) {
+
+            }
+        });
     }
 
 }

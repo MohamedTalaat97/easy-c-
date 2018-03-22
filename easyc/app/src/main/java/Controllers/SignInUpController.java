@@ -42,15 +42,12 @@ public class SignInUpController extends Controller {
     }
 
     ///////////////////////////
-    public void signUp(final String username, String password, String type, String age, final String email, final OnTaskListeners.Word listener) {
+    public void signUp(final String username, String password, String type, String age, final String email, final OnTaskListeners.Bool listener) {
 
         databaseAdapter().insertNewUser(username, password, type.charAt(0), age, email, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean data) {
-                if (data)
-                    listener.onSuccess("Successfully Finished");
-                else
-                    listener.onSuccess("Failed");
+                listener.onSuccess(data);
             }
         });
 

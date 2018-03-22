@@ -1,8 +1,8 @@
-package com.example.android.easyc.Controllers;
+package Connections;
 
 import android.os.AsyncTask;
 
-import com.example.android.easyc.Interfaces.OnTaskListeners;
+import Interfaces.OnTaskListeners;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class MailSender extends javax.mail.Authenticator {
 
     private String resultStateText;
     static {
-        Security.addProvider(new com.example.android.easyc.Controllers.JSSEProvider());
+        Security.addProvider(new JSSEProvider());
     }
 
     public MailSender() {

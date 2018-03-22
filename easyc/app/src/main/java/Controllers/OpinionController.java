@@ -1,10 +1,6 @@
-package com.example.android.easyc.Controllers;
+package Controllers;
 
-import android.content.Context;
-import android.view.View;
-
-import com.example.android.easyc.Interfaces.OnTaskListeners;
-import com.example.android.easyc.Views.*;
+import Interfaces.OnTaskListeners;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;

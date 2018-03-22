@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package Views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.android.easyc.Controllers.SignInUpController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
-import com.example.android.easyc.Models.ConnectionDb;
+import Controllers.SignInUpController;
+import Interfaces.OnTaskListeners;
+import Connections.ConnectionDb;
 import com.example.android.easyc.R;
 
 public class sign_in_activity extends AppCompatActivity {

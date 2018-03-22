@@ -1,9 +1,8 @@
-package com.example.android.easyc.Controllers;
+package Controllers;
 
-import com.example.android.easyc.Interfaces.OnTaskListeners;
+import Interfaces.OnTaskListeners;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  * Created by MAN CENTER on 15-Mar-18.

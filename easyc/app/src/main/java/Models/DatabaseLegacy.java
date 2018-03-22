@@ -1,12 +1,13 @@
-package com.example.android.easyc.Models;
+package Models;
 
 import android.os.AsyncTask;
-
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import Connections.ConnectionDb;
+import Interfaces.OnTaskListeners;
 
 /**
  * Created by KhALeD SaBrY on 03-Mar-18.

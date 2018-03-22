@@ -1,8 +1,10 @@
-package com.example.android.easyc.Controllers;
+package Controllers;
 
-import com.example.android.easyc.Interfaces.OnTaskListeners;
+import Interfaces.OnTaskListeners;
 
 import java.sql.ResultSet;
+
+import Connections.MailSender;
 
 /**
  * Created by KhALeD SaBrY on 22-Mar-18.

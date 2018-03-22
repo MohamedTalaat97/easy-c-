@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package Views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.android.easyc.Controllers.MailController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
+import Controllers.MailController;
+import Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 public class forget_password_username extends AppCompatActivity {

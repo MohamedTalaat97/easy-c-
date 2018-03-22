@@ -1,4 +1,4 @@
-package com.example.android.easyc.Interfaces;
+package Interfaces;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;

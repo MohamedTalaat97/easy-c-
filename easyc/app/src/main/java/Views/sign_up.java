@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package Views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,10 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.example.android.easyc.Controllers.SignInUpController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
+import Controllers.SignInUpController;
+import Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 public class sign_up extends AppCompatActivity {

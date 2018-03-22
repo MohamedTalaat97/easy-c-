@@ -1,10 +1,10 @@
-package com.example.android.easyc.Controllers;
+package Controllers;
 
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.android.easyc.Models.Data;
-import com.example.android.easyc.Models.DatabaseAdapter;
+import Models.Data;
+import Models.DatabaseAdapter;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

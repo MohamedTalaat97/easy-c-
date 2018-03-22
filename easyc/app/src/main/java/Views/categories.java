@@ -1,6 +1,5 @@
-package com.example.android.easyc.Views;
+package Views;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,10 +7,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.android.easyc.Controllers.CourseController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
+import Controllers.CourseController;
+import Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
-import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 

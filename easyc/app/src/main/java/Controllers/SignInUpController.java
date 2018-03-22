@@ -1,10 +1,7 @@
-package com.example.android.easyc.Controllers;
+package Controllers;
 
-import android.widget.Toast;
-
-import com.example.android.easyc.Interfaces.OnTaskListeners;
+import Interfaces.OnTaskListeners;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  * Created by KhALeD SaBrY on 12-Mar-18.

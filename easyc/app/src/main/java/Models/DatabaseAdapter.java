@@ -1,6 +1,6 @@
-package com.example.android.easyc.Models;
+package Models;
 
-import com.example.android.easyc.Interfaces.OnTaskListeners;
+import Interfaces.OnTaskListeners;
 
 public class DatabaseAdapter {
 

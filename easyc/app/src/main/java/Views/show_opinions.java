@@ -1,30 +1,23 @@
-package com.example.android.easyc.Views;
+package Views;
 
 /**
  * Created by KhALeD SaBrY on 15-Mar-18.
  */
 
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.database.DataSetObserver;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.Toast;
 
 
-import com.example.android.easyc.Controllers.OpinionController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
+import Controllers.OpinionController;
+import Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 import java.util.ArrayList;

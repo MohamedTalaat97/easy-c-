@@ -1,4 +1,4 @@
-package com.example.android.easyc.Models;
+package Connections;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

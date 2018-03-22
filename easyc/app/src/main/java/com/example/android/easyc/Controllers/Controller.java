@@ -5,14 +5,10 @@ import android.widget.Toast;
 
 import com.example.android.easyc.Models.Data;
 import com.example.android.easyc.Models.DatabaseAdapter;
-import com.example.android.easyc.Models.DatabaseLegacy;
-import com.example.android.easyc.Views.put_opinion;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class Controller {
@@ -100,7 +96,7 @@ public class Controller {
             if (data == null)
                 value = null;
             data.next();
-            value = data.getObject(1);
+            value = data.getObject(Column_Number);
             data.beforeFirst();
         } catch (SQLException se) {
             //Handle errors for JDBC
@@ -117,7 +113,7 @@ public class Controller {
             if (data == null)
                 value = null;
             data.next();
-            value = data.getObject(1);
+            value = data.getObject(Column_Name);
             data.beforeFirst();
         } catch (SQLException se) {
             //Handle errors for JDBC

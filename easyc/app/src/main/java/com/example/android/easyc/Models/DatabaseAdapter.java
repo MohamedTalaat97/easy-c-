@@ -2,10 +2,6 @@ package com.example.android.easyc.Models;
 
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 public class DatabaseAdapter {
 
     private DatabaseLegacy databaseLegacy = null;
@@ -128,6 +124,14 @@ public class DatabaseAdapter {
     {
         query = "insert into Opinion (user_id,title,description,readed,seen,favourite) values("+user_id+",'"+title+"','"+description+"',false,false,false)";
         databaseLegacy.iud(query,listener);
+    }
+
+
+
+    public  void selectUserUsernamePassword(String email,OnTaskListeners.Result listener)
+    {
+        query = "select username,password from user where email = '"+email+"'";
+        databaseLegacy.Select(query,listener);
     }
 
 

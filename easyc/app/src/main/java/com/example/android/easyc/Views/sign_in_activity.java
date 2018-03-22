@@ -1,25 +1,16 @@
 package com.example.android.easyc.Views;
 
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.example.android.easyc.Controllers.GMailSender;
 import com.example.android.easyc.Controllers.SignInUpController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.Models.ConnectionDb;
 import com.example.android.easyc.R;
-
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class sign_in_activity extends AppCompatActivity {
 
@@ -27,6 +18,7 @@ public class sign_in_activity extends AppCompatActivity {
     SignInUpController signInUpController;
     ConnectionDb connectionDb;
     Button singInButton;
+    Button forgetButton;
     EditText username;
     EditText pass;
 
@@ -40,12 +32,19 @@ public class sign_in_activity extends AppCompatActivity {
         singInButton = findViewById(R.id.BT_sign_in);
         username = (EditText) findViewById(R.id.ET_user_name);
         pass = (EditText) findViewById(R.id.ET_Password);
+        forgetButton = findViewById(R.id.BT_forget);
         singInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendEmail();
                 //goTo();
                 // signIn();
+            }
+        });
+
+        forgetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToForgetView();
             }
         });
 
@@ -97,15 +96,10 @@ public class sign_in_activity extends AppCompatActivity {
         startActivity(i);
     }
 
-    void sendEmail()
+   void goToForgetView()
     {
-        GMailSender gmailSender = new GMailSender();
-        gmailSender.sendEmail("it is very kind of you", "i am not the person you think i am", "khaledsab1997@gmail.com", new OnTaskListeners.Word() {
-            @Override
-            public void onSuccess(String result) {
-                signInUpController.toast(result,getApplication());
-            }
-        });
+        Intent i = new Intent(getApplicationContext(), forget_password_username.class);
+        startActivity(i);
     }
 
 

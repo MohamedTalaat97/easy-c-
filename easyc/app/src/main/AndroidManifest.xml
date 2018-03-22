@@ -29,7 +29,8 @@
         <activity android:name=".Views.show_opinions" />
         <activity android:name=".Views.show_opinion" />
         <activity android:name=".Views.put_opinion" />
-        <activity android:name=".Views.topic"></activity>
+        <activity android:name=".Views.topic" />
+        <activity android:name=".Views.forget_password_username"></activity>
     </application>
 
 </manifest>

@@ -54,6 +54,15 @@
             android:textColor="@color/black" />
 
 
+        <Button
+            android:id="@+id/BT_forget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@android:color/transparent"
+            android:text="forget your password/username ?"
+            android:textColor="@color/black" />
+
         <TextView
             android:id="@+id/TV_no_account"
             android:layout_width="wrap_content"

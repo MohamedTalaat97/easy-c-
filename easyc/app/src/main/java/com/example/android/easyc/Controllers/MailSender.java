@@ -1,7 +1,15 @@
 package com.example.android.easyc.Controllers;
+
 import android.os.AsyncTask;
 
 import com.example.android.easyc.Interfaces.OnTaskListeners;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.security.Security;
+import java.util.Properties;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -11,24 +19,22 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.security.Security;
-import java.util.Properties;
 
-public class GMailSender extends javax.mail.Authenticator {
+public class MailSender extends javax.mail.Authenticator {
     private String mailhost = "smtp.gmail.com";
     private String sender;
     private String password;
     private Session session;
+    private String subject;
+    private String body;
+    private String recipientEmail;
 
+    private String resultStateText;
     static {
         Security.addProvider(new com.example.android.easyc.Controllers.JSSEProvider());
     }
 
-    public GMailSender() {
+    public MailSender() {
         this.sender = "CairoAvengers@gmail.com";
         this.password = "CairoAvengers2020";
 
@@ -46,44 +52,57 @@ public class GMailSender extends javax.mail.Authenticator {
         session = Session.getDefaultInstance(props, this);
     }
 
+
     protected PasswordAuthentication getPasswordAuthentication() {
         return new PasswordAuthentication(sender, password);
     }
 
-   public void sendEmail(final String subject, final String body, final String recipient, final OnTaskListeners.Word listener) {
+    private Boolean checkBeforeSend() {
+        if (subject.matches("") || body.matches("") || recipientEmail.matches("")) {
+            return false;
+        }
 
-        new AsyncTask<Void, Void, String>() {
-            public String state = null;
+        return true;
 
-            @Override
-            protected String doInBackground(Void... params) {
-                try {
-                    state = sendMail(subject,
-                            body,
-                            recipient,listener);
-                } catch (Exception e) {
-                    e.printStackTrace();
+    }
+
+    public void sendEmail(final OnTaskListeners.Word listener) {
+        if (!checkBeforeSend())
+        {
+            listener.onSuccess("there is some error in your code");
+            return;
+        }
+
+            new AsyncTask<Void, Void, String>() {
+                public String state = "hellp";
+
+                @Override
+                protected String doInBackground(Void... params) {
+                    try {
+                        sendMail(subject,
+                                body,
+                                recipientEmail, listener);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return state;
                 }
-                return state;
-            }
 
-            @Override
-            protected void onPostExecute(String data) {
-                listener.onSuccess(data);
-            }
+                @Override
+                protected void onPostExecute(String data) {
+                    listener.onSuccess(resultStateText);
+                }
 
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-            }
-        }.execute();
+                @Override
+                protected void onPreExecute() {
+                    super.onPreExecute();
+                }
+            }.execute();
     }
 
 
-
-
-    protected synchronized String sendMail(String subject, String body, String recipients,OnTaskListeners.Word listener) throws Exception {
-        try{
+    private  void sendMail(String subject, String body, String recipients, OnTaskListeners.Word listener) throws Exception {
+        try {
             MimeMessage message = new MimeMessage(session);
             DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
             message.setSender(new InternetAddress(sender));
@@ -95,10 +114,23 @@ public class GMailSender extends javax.mail.Authenticator {
             else
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
             Transport.send(message);
-        }catch(Exception e){
-            return "Failed to send the email";
+        } catch (Exception e) {
+           resultStateText = "Failed to send the email";
+            return;
         }
-        return "please check your email inbox";
+        resultStateText = "check your email inbox";
+    }
+
+    public void setRecipientEmail(String recipientEmail) {
+        this.recipientEmail = recipientEmail;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     protected class ByteArrayDataSource implements DataSource {

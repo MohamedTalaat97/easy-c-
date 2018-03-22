@@ -26,8 +26,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile project(':com.mysql.jdbc_5.1.5')
-    compile project(':mails')
-    compile project(':add')
     compile project(':activation')
+    compile project(':add')
+    compile project(':mails')
+
 
 }

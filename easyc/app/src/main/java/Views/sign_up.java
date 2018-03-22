@@ -1,17 +1,18 @@
 package Views;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.android.easyc.R;
+
 import Controllers.SignInUpController;
 import Interfaces.OnTaskListeners;
-import com.example.android.easyc.R;
 
 public class sign_up extends AppCompatActivity {
 
@@ -23,6 +24,10 @@ public class sign_up extends AppCompatActivity {
     Spinner type;
     EditText age;
     EditText email;
+    boolean usernameChecked;
+    boolean emailChecked;
+    boolean uniqueUsername;
+    boolean uniqueEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +45,37 @@ public class sign_up extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pass.requestFocus();
                 signUp();
             }
         });
+
+        usernameChecked = false;
+        emailChecked = false;
+        uniqueEmail = false;
+        uniqueUsername = false;
+
+        username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus)
+                    usernameChecked = false;
+                else
+                    checkUserName();
+
+            }
+        });
+
+        pass.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus)
+                    emailChecked = false;
+                else
+                    checkEmail();
+            }
+        });
+
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.userType, android.R.layout.simple_spinner_item);
@@ -56,14 +89,12 @@ public class sign_up extends AppCompatActivity {
     public void signUp() {
         if (check()) {
             //from the controller call signup function that you made and after it finish the function will call back to this function
-            signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), new OnTaskListeners.Bool() {
+            signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), new OnTaskListeners.Word() {
                 @Override
-                public void onSuccess(Boolean result) {
-                    if (result) {
-                        signInUpController.toast("sign up successful", getApplicationContext());
-                        goToSignInActivity();
-                    } else
-                        signInUpController.toast("False", getApplicationContext());
+                public void onSuccess(String result) {
+                    signInUpController.toast(result, getApplicationContext());
+                    goToSignInActivity();
+
                 }
             });
         }
@@ -71,10 +102,83 @@ public class sign_up extends AppCompatActivity {
 
     boolean check() {
         if (username.getText().toString().matches("") || pass.getText().toString().matches("") || age.getText().toString().matches("") || email.getText().toString().matches("")) {
-            signInUpController.toast("You did not enter a username or a password", getApplicationContext());
+            signInUpController.toast("Please fill the required fields", getApplicationContext());
             return false;
         }
+
+
+        if (email.getText().toString().indexOf('@') < 0) {
+            signInUpController.toast("please enter real email", getApplicationContext());
+            return false;
+        }
+
+        if(pass.getText().length() <4)
+        {
+            signInUpController.toast("please add more secure password",getApplicationContext());
+            return  false;
+        }
+
+        if (!usernameChecked) {
+            signInUpController.toast("wait until we check username", getApplicationContext());
+            return false;
+        }
+
+        if (!emailChecked) {
+            signInUpController.toast("wait until we check email", getApplicationContext());
+            return false;
+        }
+
+        if (!uniqueUsername) {
+            signInUpController.toast("there is another account have the same username please change your username", getApplicationContext());
+            return false;
+        }
+
+        if (!uniqueEmail) {
+            signInUpController.toast("there is another account have the same email please change your email", getApplicationContext());
+            return false;
+        }
+
+
+        try {
+            int a = Integer.parseInt(age.getText().toString());
+        } catch (NumberFormatException e) {
+            signInUpController.toast("please enter real age", getApplicationContext());
+            return false;
+        }
+
+
         return true;
+    }
+
+
+    void checkUserName() {
+        signInUpController.checkUserName(username.getText().toString(), new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                usernameChecked = true;
+                if (result)
+                    uniqueUsername = false;
+                else
+                    uniqueUsername = true;
+
+
+            }
+        });
+    }
+
+    void checkEmail() {
+        signInUpController.checkEmail(email.getText().toString(), new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                emailChecked = true;
+                if (result)
+                    uniqueEmail = false;
+                else
+                    uniqueEmail = true;
+
+
+            }
+        });
     }
 
 

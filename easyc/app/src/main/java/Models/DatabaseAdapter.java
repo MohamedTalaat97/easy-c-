@@ -28,16 +28,18 @@ public class DatabaseAdapter {
 
     }
 
-    public void selectCatagoryIdByName(String name,OnTaskListeners.Result listeners) {
-        query = "select id from category where title = '"+name+"'";
+    public void selectCatagoryIdByName(String name, OnTaskListeners.Result listeners) {
+        query = "select id from category where title = '" + name + "'";
         databaseLegacy.Select(query, listeners);
 
     }
-    public void selectTopics(int cat_id,OnTaskListeners.Result listeners) {
-        query = "select title from topic where cat_id = '"+cat_id+"'";
+
+    public void selectTopics(int cat_id, OnTaskListeners.Result listeners) {
+        query = "select title from topic where cat_id = '" + cat_id + "'";
         databaseLegacy.Select(query, listeners);
 
     }
+
     public void selectEmployeeName(OnTaskListeners.Result listeners) {
         query = "select name from employee";
         databaseLegacy.Select(query, listeners);
@@ -57,12 +59,6 @@ public class DatabaseAdapter {
 
     }
 
-
-    public void selectUserName(String username, String password, OnTaskListeners.Result listener) {
-        query = "select id from Log where username = '" + username + "' and password = '" + password + "'";
-        databaseLegacy.Select(query, listener);
-    }
-
     public void selectEmail(String Email, String password, OnTaskListeners.Result listener) {
         query = "select id from Log where Email = '" + Email + "' and password = '" + password + "'";
         databaseLegacy.Select(query, listener);
@@ -73,6 +69,7 @@ public class DatabaseAdapter {
         query = "select id,title from opinion";
         databaseLegacy.Select(query, listener);
     }
+
     public void selectOpinionTitleUnSeen(OnTaskListeners.Result listener) {
         //still waiting to make opinion table in database
         query = "select id,title from opinion where seen = false";
@@ -85,9 +82,9 @@ public class DatabaseAdapter {
         databaseLegacy.Select(query, listener);
     }
 
-    public void selectOpinionFavourite(int id,OnTaskListeners.Result listener) {
+    public void selectOpinionFavourite(int id, OnTaskListeners.Result listener) {
         //still waiting to make opinion table in database
-        query = "select favourite from opinion where id = "+id;
+        query = "select favourite from opinion where id = " + id;
         databaseLegacy.Select(query, listener);
     }
 
@@ -96,7 +93,6 @@ public class DatabaseAdapter {
         query = "select id,title from opinion where favourite = true";
         databaseLegacy.Select(query, listener);
     }
-
 
 
     public void selectOpinionDescription(int id, OnTaskListeners.Result listener) {
@@ -120,18 +116,35 @@ public class DatabaseAdapter {
         databaseLegacy.iud(query, listener);
     }
 
-    public void insertOpinion(int user_id,String title,String description,OnTaskListeners.Bool listener)
-    {
-        query = "insert into Opinion (user_id,title,description,readed,seen,favourite) values("+user_id+",'"+title+"','"+description+"',false,false,false)";
-        databaseLegacy.iud(query,listener);
+    public void insertOpinion(int user_id, String title, String description, OnTaskListeners.Bool listener) {
+        query = "insert into Opinion (user_id,title,description,readed,seen,favourite) values(" + user_id + ",'" + title + "','" + description + "',false,false,false)";
+        databaseLegacy.iud(query, listener);
     }
 
 
+    public void selectUserUsernamePassword(String email, OnTaskListeners.Result listener) {
+        query = "select username,password from user where email = '" + email + "'";
+        databaseLegacy.Select(query, listener);
+    }
 
-    public  void selectUserUsernamePassword(String email,OnTaskListeners.Result listener)
-    {
-        query = "select username,password from user where email = '"+email+"'";
-        databaseLegacy.Select(query,listener);
+    public void selectUserUsername(String userName, OnTaskListeners.Result listener) {
+        query = "select username from user where userName = '" + userName + "'";
+        databaseLegacy.Select(query, listener);
+    }
+
+    public void selectUserEmail(String email, OnTaskListeners.Result listener) {
+        query = "select email from user where email = '" + email + "'";
+        databaseLegacy.Select(query, listener);
+    }
+
+    public void selectUserIdByUserName(String userName,String password, OnTaskListeners.Result listener) {
+        query = "select id from user where userName = '" + userName + "' and password = '"+ password+"'";
+        databaseLegacy.Select(query, listener);
+    }
+
+    public void selectUserIdByEmail(String email,String password, OnTaskListeners.Result listener) {
+        query = "select id from user where email = '" + email + "' and password = '"+ password+"'";
+        databaseLegacy.Select(query, listener);
     }
 
 

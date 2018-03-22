@@ -3,12 +3,12 @@ package Controllers;
 import android.content.Context;
 import android.widget.Toast;
 
-import Models.Data;
-import Models.DatabaseAdapter;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import Models.Data;
+import Models.DatabaseAdapter;
 
 
 public class Controller {
@@ -141,9 +141,10 @@ public class Controller {
 
     //check if the value found in database or not
     protected Boolean checkIfFound(ResultSet data) {
-        if (data == null)
-            return false;
-        return true;
+        String sv = (String) resultToValue(data);
+        if(sv ==null)
+            return  false;
+        return  true;
     }
 
 

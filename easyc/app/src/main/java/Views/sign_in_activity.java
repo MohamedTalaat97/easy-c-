@@ -7,10 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.android.easyc.R;
+
+import Connections.ConnectionDb;
 import Controllers.SignInUpController;
 import Interfaces.OnTaskListeners;
-import Connections.ConnectionDb;
-import com.example.android.easyc.R;
 
 public class sign_in_activity extends AppCompatActivity {
 
@@ -36,8 +37,7 @@ public class sign_in_activity extends AppCompatActivity {
         singInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //goTo();
-                // signIn();
+                signIn();
             }
         });
 
@@ -61,10 +61,10 @@ public class sign_in_activity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Boolean result) {
                     if (result) {
-                        signInUpController.toast("True", getApplicationContext());
-                        goToStudentMenu();
+                        signInUpController.toast("entered", getApplicationContext());
+                        goTo();
                     } else
-                        signInUpController.toast("False", getApplicationContext());
+                        signInUpController.toast("check your username/password", getApplicationContext());
                 }
             });
         }
@@ -86,7 +86,7 @@ public class sign_in_activity extends AppCompatActivity {
 
 
     public void goTo() {
-        Intent intent = new Intent(this, show_opinions.class);
+        Intent intent = new Intent(this, put_opinion.class);
         startActivity(intent);
     }
 
@@ -96,14 +96,10 @@ public class sign_in_activity extends AppCompatActivity {
         startActivity(i);
     }
 
-   void goToForgetView()
-    {
+    void goToForgetView() {
         Intent i = new Intent(getApplicationContext(), forget_password_username.class);
         startActivity(i);
     }
-
-
-
 
 
 }

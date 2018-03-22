@@ -13,7 +13,7 @@ public class SignInUpController extends Controller {
     //be aware that it must be the return value to the view is void so you have to send the view with it
     public void signIn(String name, String password, final OnTaskListeners.Bool listener) {
 // this '@' to check if the user accessed by username or email
-        if (name.indexOf('@') < -1) {
+        if (name.indexOf('@') < 0) {
             databaseAdapter().selectUserIdByUserName(name, password, new OnTaskListeners.Result() {
                 @Override
                 public void onSuccess(ResultSet data) {
@@ -24,7 +24,7 @@ public class SignInUpController extends Controller {
                 }
             });
         } else {
-            databaseAdapter().selectEmail(name, password, new OnTaskListeners.Result() {
+            databaseAdapter().selectUserIdByEmail(name, password, new OnTaskListeners.Result() {
                         @Override
                         public void onSuccess(ResultSet data) {
                             if (checkIfFound(data))
@@ -61,7 +61,6 @@ public class SignInUpController extends Controller {
         databaseAdapter().selectUserUsername(username, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                String sv = (String) resultToValue(data);
                 listener.onSuccess(checkIfFound(data));
             }
         });

@@ -95,9 +95,11 @@ public class Controller {
         try {
             if (data == null)
                 value = null;
-            data.next();
-            value = data.getObject(Column_Number);
-            data.beforeFirst();
+            else {
+                data.next();
+                value = data.getObject(Column_Number);
+                data.beforeFirst();
+            }
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
@@ -112,9 +114,11 @@ public class Controller {
         try {
             if (data == null)
                 value = null;
-            data.next();
-            value = data.getObject(Column_Name);
-            data.beforeFirst();
+            else {
+                data.next();
+                value = data.getObject(Column_Name);
+                data.beforeFirst();
+            }
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
@@ -129,9 +133,11 @@ public class Controller {
         try {
             if (data == null)
                 value = null;
-            data.next();
-            value = data.getObject(1);
-            data.beforeFirst();
+            else {
+                data.next();
+                value = data.getObject(1);
+                data.beforeFirst();
+            }
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
@@ -141,15 +147,23 @@ public class Controller {
 
     //check if the value found in database or not
     protected Boolean checkIfFound(ResultSet data) {
-        String sv = (String) resultToValue(data);
-        if(sv ==null)
-            return  false;
-        return  true;
+        try {
+            boolean found = data.next();
+            data.beforeFirst();
+            if (found)
+                return true;
+            else
+                return false;
+
+        } catch (SQLException e) {
+            return false;
+        }
+
     }
 
 
-   public void toast(String msg, Context w) {
-       Toast.makeText(w.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+    public void toast(String msg, Context w) {
+        Toast.makeText(w.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 
     }
 

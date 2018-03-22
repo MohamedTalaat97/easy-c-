@@ -66,7 +66,7 @@ public class sign_up extends AppCompatActivity {
             }
         });
 
-        pass.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus)
@@ -112,10 +112,9 @@ public class sign_up extends AppCompatActivity {
             return false;
         }
 
-        if(pass.getText().length() <4)
-        {
-            signInUpController.toast("please add more secure password",getApplicationContext());
-            return  false;
+        if (pass.getText().length() < 4) {
+            signInUpController.toast("please add more secure password", getApplicationContext());
+            return false;
         }
 
         if (!usernameChecked) {

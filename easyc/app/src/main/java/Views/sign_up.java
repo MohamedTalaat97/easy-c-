@@ -3,7 +3,10 @@ package Views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +28,8 @@ public class sign_up extends AppCompatActivity {
     Spinner type;
     EditText age;
     EditText email;
+    EditText reasonForSignText;
+
     boolean usernameChecked;
     boolean emailChecked;
     boolean uniqueUsername;
@@ -42,40 +47,20 @@ public class sign_up extends AppCompatActivity {
         type = findViewById(R.id.sp_type);
         age = findViewById(R.id.ET_age);
         email = findViewById(R.id.ET_email);
-        Spinner spinner = findViewById(R.id.sp_type);
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pass.requestFocus();
-                signUp();
-            }
-        });
+        reasonForSignText = findViewById(R.id.ET_motivation);
+
+
+        intializtion();
+
+    }
+
+
+    void intializtion() {
 
         usernameChecked = false;
         emailChecked = false;
         uniqueEmail = false;
         uniqueUsername = false;
-
-        username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus)
-                    usernameChecked = false;
-                else
-                    checkUserName();
-
-            }
-        });
-
-        email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus)
-                    emailChecked = false;
-                else
-                    checkEmail();
-            }
-        });
 
 
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -83,7 +68,68 @@ public class sign_up extends AppCompatActivity {
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        type.setAdapter(adapter);
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signUp();
+            }
+        });
+
+        username.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                checkUserName();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+            }
+        });
+
+        email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                checkEmail();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+            }
+        });
+
+
+        type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (type.getSelectedItem().toString()
+                        .matches("Student"))
+                    reasonForSignText.setVisibility(View.INVISIBLE);
+                else
+                    reasonForSignText.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 
@@ -141,6 +187,11 @@ public class sign_up extends AppCompatActivity {
             return false;
         }
 
+        if (email.getText().toString().matches(mailController.getCompanyEmail())) {
+            signInUpController.toast("this is the email of the company \n please put real email", getApplicationContext());
+            return false;
+        }
+
 
         try {
             int a = Integer.parseInt(age.getText().toString());
@@ -155,6 +206,7 @@ public class sign_up extends AppCompatActivity {
 
 
     void checkUserName() {
+        usernameChecked = false;
         signInUpController.checkUserName(username.getText().toString(), new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
@@ -170,6 +222,7 @@ public class sign_up extends AppCompatActivity {
     }
 
     void checkEmail() {
+        emailChecked = false;
         signInUpController.checkEmail(email.getText().toString(), new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {

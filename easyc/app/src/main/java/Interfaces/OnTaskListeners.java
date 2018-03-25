@@ -39,5 +39,10 @@ public interface OnTaskListeners {
         void onSuccess(ArrayList<Integer> id, ArrayList<Object> result);
     }
 
+    public  interface classes
+    {
+        void onSuccess(Class classe);
+    }
+
 
 }

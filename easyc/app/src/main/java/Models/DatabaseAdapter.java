@@ -46,8 +46,9 @@ public class DatabaseAdapter {
 
     }
 
-    public void insertNewUser(String userName, String Pass, char Type, String age, String email, OnTaskListeners.Bool listeners) {
-        query = "insert into user(username,password,type,age,email) values('" + userName + "','" + Pass + "','" + Type + "'," + age + ",'" + email + "')";
+    public void insertUser(String userName, String Pass, char Type, String age, String email,boolean suspended, OnTaskListeners.Bool listeners) {
+        query = "insert into user(username,password,type,age,email,suspended)" +
+                " values('" + userName + "','" + Pass + "','" + Type + "'," + age + ",'" + email + "',"+suspended+")";
         databaseLegacy.iud(query, listeners);
 
     }
@@ -137,15 +138,11 @@ public class DatabaseAdapter {
         databaseLegacy.Select(query, listener);
     }
 
-    public void selectUserIdByUserName(String userName,String password, OnTaskListeners.Result listener) {
-        query = "select id from user where userName = '" + userName + "' and password = '"+ password+"'";
+    public void selectUserIdTypeSuspendedLevelName(String name,String password, OnTaskListeners.Result listener) {
+        query = "select id,type,suspended,level,Name from user where (userName = '" + name + "' OR email = '" + name + "' )  and password = '"+ password+"'";
         databaseLegacy.Select(query, listener);
     }
 
-    public void selectUserIdByEmail(String email,String password, OnTaskListeners.Result listener) {
-        query = "select id from user where email = '" + email + "' and password = '"+ password+"'";
-        databaseLegacy.Select(query, listener);
-    }
 
 
 }

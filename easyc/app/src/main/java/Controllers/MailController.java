@@ -10,27 +10,31 @@ import Interfaces.OnTaskListeners;
  */
 
 public class MailController extends Controller {
-    MailSender sender;
+   private MailSender sender;
 
-
-    public MailController()
+    public String getCompanyEmail()
     {
+      return   sender.getCompanyEmail();
+    }
+
+
+    public MailController() {
         sender = new MailSender();
     }
 
 
-    public void forgetUserNameOrPassword(final String email, final OnTaskListeners.Word listener)
-    {
+    //message if you forgot your password
+    public void forgetUserNameOrPassword(final String email, final OnTaskListeners.Word listener) {
 
         databaseAdapter().selectUserUsernamePassword(email, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                String username = (String) resultToValue(data,1);
-                String password = (String) resultToValue(data,2);
+                String username = (String) resultToValue(data, 1);
+                String password = (String) resultToValue(data, 2);
 
                 sender.setRecipientEmail(email);
                 sender.setSubject("Retore your username/password");
-                sender.setBody("thanks for using our app we are hoping that you have a great time while using our app \n our app cost is 200.000$ talaat said that so be careful next time you forget your password or username \n \n username :" + username +"\n password : "+password);
+                sender.setBody("thanks for using our app we are hoping that you have a great time while using our app \n our app cost is 200.000$ talaat said that so be careful next time you forget your password or username \n \n username :" + username + "\n password : " + password);
                 sender.sendEmail(listener);
 
             }
@@ -38,9 +42,8 @@ public class MailController extends Controller {
 
     }
 
-
-    public void sendWelcomeMessage(String email)
-    {
+// when you sign up this message sent for you
+    public void sendWelcomeMessage(String email) {
         sender.setRecipientEmail(email);
         sender.setSubject("Welcome to our app");
         sender.setBody("this app cost is 200.000$");

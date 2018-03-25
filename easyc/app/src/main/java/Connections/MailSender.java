@@ -2,8 +2,6 @@ package Connections;
 
 import android.os.AsyncTask;
 
-import Interfaces.OnTaskListeners;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +18,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import Interfaces.OnTaskListeners;
+
 public class MailSender extends javax.mail.Authenticator {
     private String mailhost = "smtp.gmail.com";
     private String sender;
@@ -28,6 +28,10 @@ public class MailSender extends javax.mail.Authenticator {
     private String subject;
     private String body;
     private String recipientEmail;
+    public String getCompanyEmail()
+    {
+        return sender;
+    }
 
     private String resultStateText;
     static {
@@ -74,7 +78,7 @@ public class MailSender extends javax.mail.Authenticator {
         }
 
             new AsyncTask<Void, Void, String>() {
-                public String state = "hellp";
+                public String state = "";
 
                 @Override
                 protected String doInBackground(Void... params) {

@@ -15,5 +15,6 @@
         <item>All</item>
     </string-array>
     <string name="title_activity_show__requests__for__teaching">show_Requests_For_Teaching</string>
+    <string name="title_activity_topic_description">topic_description</string>
 </resources>
 

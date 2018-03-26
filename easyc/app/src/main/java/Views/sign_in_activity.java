@@ -60,14 +60,14 @@ public class sign_in_activity extends AppCompatActivity {
             signInUpController.signIn(username.getText().toString(), pass.getText().toString(), new OnTaskListeners.Word() {
                 @Override
                 public void onSuccess(String result) {
-                    signInUpController.toast(result,getApplicationContext());
-                    if(result.matches("true"))
-signInUpController.goTo(new OnTaskListeners.classes() {
-    @Override
-    public void onSuccess(Class classe) {
-        goTo(classe);
-    }
-});
+                    signInUpController.toast(result, getApplicationContext());
+                    if (result.matches("true"))
+                        signInUpController.goTo(new OnTaskListeners.classes() {
+                            @Override
+                            public void onSuccess(Class classe) {
+                                goTo(classe);
+                            }
+                        });
                 }
             });
         }

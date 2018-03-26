@@ -1,5 +1,6 @@
 package Views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -57,9 +58,11 @@ public void openTopics(String tilte)
     @Override
     public void onSuccess(int result) {
         cat_id=result;
+        Intent i = new Intent(categories.this,topic.class);
+        i.putExtra("catId",cat_id);
+        startActivity(i);
     }
-//  get cat id and send it to topic, make list view for topics and get it from database by the at id
-        //then display in topics which has arraylist<String>
+
 });
 
 

@@ -33,7 +33,11 @@ public class DatabaseAdapter {
         databaseLegacy.Select(query, listeners);
 
     }
+    public void selectTopicIdByName(String name, OnTaskListeners.Result listeners) {
+        query = "select id from topic where title = '" + name + "'";
+        databaseLegacy.Select(query, listeners);
 
+    }
     public void selectTopics(int cat_id, OnTaskListeners.Result listeners) {
         query = "select title from topic where cat_id = '" + cat_id + "'";
         databaseLegacy.Select(query, listeners);

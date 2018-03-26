@@ -3,11 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/activation/activation.iml" filepath="$PROJECT_DIR$/activation/activation.iml" />
+      <module fileurl="file://C:\Users\MAN CENTER\Desktop\easy-c-\easyc\activation\activation.iml" filepath="C:\Users\MAN CENTER\Desktop\easy-c-\easyc\activation\activation.iml" />
       <module fileurl="file://$PROJECT_DIR$/add/add.iml" filepath="$PROJECT_DIR$/add/add.iml" />
+      <module fileurl="file://C:\Users\MAN CENTER\Desktop\easy-c-\easyc\add\add.iml" filepath="C:\Users\MAN CENTER\Desktop\easy-c-\easyc\add\add.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/com.mysql.jdbc_5.1.5/com.mysql.jdbc_5.1.5.iml" filepath="$PROJECT_DIR$/com.mysql.jdbc_5.1.5/com.mysql.jdbc_5.1.5.iml" />
       <module fileurl="file://$PROJECT_DIR$/easyc.iml" filepath="$PROJECT_DIR$/easyc.iml" />
+      <module fileurl="file://C:\Users\MAN CENTER\Desktop\easy-c-\easyc\easyc.iml" filepath="C:\Users\MAN CENTER\Desktop\easy-c-\easyc\easyc.iml" />
       <module fileurl="file://$PROJECT_DIR$/mails/mails.iml" filepath="$PROJECT_DIR$/mails/mails.iml" />
+      <module fileurl="file://C:\Users\MAN CENTER\Desktop\easy-c-\easyc\mails\mails.iml" filepath="C:\Users\MAN CENTER\Desktop\easy-c-\easyc\mails\mails.iml" />
     </modules>
   </component>
 </project>

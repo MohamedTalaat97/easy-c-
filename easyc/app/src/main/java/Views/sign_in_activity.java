@@ -28,7 +28,7 @@ public class sign_in_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_activity);
         connectionDb = ConnectionDb.getInstance();
-        connectionDb.khaledDb();
+        connectionDb.TalaatDb();
         signInUpController = new SignInUpController();
         singInButton = findViewById(R.id.BT_sign_in);
         username = (EditText) findViewById(R.id.ET_user_name);

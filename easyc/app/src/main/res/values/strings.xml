@@ -14,5 +14,6 @@
         <item>Favourite</item>
         <item>All</item>
     </string-array>
+    <string name="title_activity_show__requests__for__teaching">show_Requests_For_Teaching</string>
 </resources>
 

@@ -1,6 +1,7 @@
 package Controllers;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import Interfaces.OnTaskListeners;
 import Views.put_opinion;
@@ -53,14 +54,14 @@ public class SignInUpController extends Controller {
     }
 
     ///////////////////////////
-    public void signUp(final String username, String password, String type, String age, final String email, final OnTaskListeners.Bool listener) {
+    public void signUp(final String username, String password, String type, String age, final String email,String requestText, final OnTaskListeners.Bool listener) {
 
         boolean suspended;
         if (type.charAt(0) == 'S')
             suspended = false;
         else
             suspended = true;
-        databaseAdapter().insertUser(username, password, type.charAt(0), age, email, suspended, new OnTaskListeners.Bool() {
+        databaseAdapter().insertUser(username, password, type.charAt(0), age, email, suspended,requestText, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean data) {
                 listener.onSuccess(data);
@@ -101,5 +102,50 @@ public class SignInUpController extends Controller {
         }
         else
             listener.onSuccess(put_opinion.class);
+    }
+
+
+
+
+
+
+    //Admin
+
+    public void getRequests(final OnTaskListeners.IdAndList listener)
+    {
+        databaseAdapter().selectUserIdUserName(new OnTaskListeners.Result() {
+            @Override
+            public void onSuccess(ResultSet data) {
+                ArrayList<Integer> ids = (ArrayList<Integer>)(Object) resultToArray(data,1);
+                ArrayList<Object> usernames = resultToArray(data,2);
+                listener.onSuccess(ids,usernames);
+
+
+            }
+        });
+    }
+
+
+
+
+    public void getOneRequest(Integer id, final OnTaskListeners.Word listener)
+    {
+        databaseAdapter().selectUserRequest(id, new OnTaskListeners.Result() {
+            @Override
+            public void onSuccess(ResultSet data) {
+                listener.onSuccess((String) resultToValue(data));
+            }
+        });
+    }
+
+    public  void handleRequest(Integer id, boolean state, final OnTaskListeners.Bool listener)
+    {
+        databaseAdapter().updateUserSuspendedRequest(id, state, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
+
     }
 }

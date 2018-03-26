@@ -30,7 +30,9 @@
         <activity android:name="Views.show_opinion" />
         <activity android:name="Views.put_opinion" />
         <activity android:name="Views.topic" />
-        <activity android:name="Views.forget_password_username"></activity>
+        <activity android:name="Views.forget_password_username" />
+        <activity android:name="Views.show_Requests" />
+        <activity android:name="Views.showRequest"></activity>
     </application>
 
 </manifest>

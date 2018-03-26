@@ -17,5 +17,9 @@
 
     </style>
 
+    <style name="C_theme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="C_theme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
 </resources>

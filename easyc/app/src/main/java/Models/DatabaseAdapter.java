@@ -46,9 +46,9 @@ public class DatabaseAdapter {
 
     }
 
-    public void insertUser(String userName, String Pass, char Type, String age, String email,boolean suspended, OnTaskListeners.Bool listeners) {
-        query = "insert into user(username,password,type,age,email,suspended)" +
-                " values('" + userName + "','" + Pass + "','" + Type + "'," + age + ",'" + email + "',"+suspended+")";
+    public void insertUser(String userName, String Pass, char Type, String age, String email,boolean suspended,String requestText, OnTaskListeners.Bool listeners) {
+        query = "insert into user(username,password,type,age,email,suspended,request)" +
+                " values('" + userName + "','" + Pass + "','" + Type + "'," + age + ",'" + email + "',"+suspended+",'"+requestText+"')";
         databaseLegacy.iud(query, listeners);
 
     }
@@ -142,6 +142,26 @@ public class DatabaseAdapter {
         query = "select id,type,suspended,level,Name from user where (userName = '" + name + "' OR email = '" + name + "' )  and password = '"+ password+"'";
         databaseLegacy.Select(query, listener);
     }
+
+
+    public void selectUserIdUserName(OnTaskListeners.Result listener) {
+        query = "select id,username from user where suspended = true and type = 'I'";
+        databaseLegacy.Select(query, listener);
+    }
+
+    public void selectUserRequest(Integer id,OnTaskListeners.Result listener) {
+        query = "select request from user where id = "+id;
+        databaseLegacy.Select(query, listener);
+    }
+
+    public void updateUserSuspendedRequest(Integer id , boolean state,OnTaskListeners.Bool listener) {
+        query = "update User set suspended = "+state+", request = "+""+" where id = "+id;
+        databaseLegacy.iud(query, listener);
+    }
+
+
+
+
 
 
 

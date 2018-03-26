@@ -28,7 +28,7 @@ public class sign_up extends AppCompatActivity {
     Spinner type;
     EditText age;
     EditText email;
-    EditText reasonForSignText;
+    EditText requestText;
 
     boolean usernameChecked;
     boolean emailChecked;
@@ -47,7 +47,7 @@ public class sign_up extends AppCompatActivity {
         type = findViewById(R.id.sp_type);
         age = findViewById(R.id.ET_age);
         email = findViewById(R.id.ET_email);
-        reasonForSignText = findViewById(R.id.ET_motivation);
+        requestText = findViewById(R.id.ET_motivation);
 
 
         intializtion();
@@ -120,9 +120,9 @@ public class sign_up extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (type.getSelectedItem().toString()
                         .matches("Student"))
-                    reasonForSignText.setVisibility(View.INVISIBLE);
+                    requestText.setVisibility(View.INVISIBLE);
                 else
-                    reasonForSignText.setVisibility(View.VISIBLE);
+                    requestText.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -136,7 +136,7 @@ public class sign_up extends AppCompatActivity {
     public void signUp() {
         if (check()) {
             //from the controller call signup function that you made and after it finish the function will call back to this function
-            signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), new OnTaskListeners.Bool() {
+            signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(),requestText.getText().toString(), new OnTaskListeners.Bool() {
                 @Override
                 public void onSuccess(Boolean result) {
                     if (result) {

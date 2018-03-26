@@ -46,8 +46,9 @@ public class DatabaseAdapter {
 
     }
 
-    public void insertNewUser(String userName, String Pass, char Type, String age, String email, OnTaskListeners.Bool listeners) {
-        query = "insert into user(username,password,type,age,email) values('" + userName + "','" + Pass + "','" + Type + "'," + age + ",'" + email + "')";
+    public void insertUser(String userName, String Pass, char Type, String age, String email,boolean suspended,String requestText, OnTaskListeners.Bool listeners) {
+        query = "insert into user(username,password,type,age,email,suspended,request)" +
+                " values('" + userName + "','" + Pass + "','" + Type + "'," + age + ",'" + email + "',"+suspended+",'"+requestText+"')";
         databaseLegacy.iud(query, listeners);
 
     }
@@ -137,15 +138,31 @@ public class DatabaseAdapter {
         databaseLegacy.Select(query, listener);
     }
 
-    public void selectUserIdByUserName(String userName,String password, OnTaskListeners.Result listener) {
-        query = "select id from user where userName = '" + userName + "' and password = '"+ password+"'";
+    public void selectUserIdTypeSuspendedLevelName(String name,String password, OnTaskListeners.Result listener) {
+        query = "select id,type,suspended,level,Name from user where (userName = '" + name + "' OR email = '" + name + "' )  and password = '"+ password+"'";
         databaseLegacy.Select(query, listener);
     }
 
-    public void selectUserIdByEmail(String email,String password, OnTaskListeners.Result listener) {
-        query = "select id from user where email = '" + email + "' and password = '"+ password+"'";
+
+    public void selectUserIdUserName(OnTaskListeners.Result listener) {
+        query = "select id,username from user where suspended = true and type = 'I'";
         databaseLegacy.Select(query, listener);
     }
+
+    public void selectUserRequest(Integer id,OnTaskListeners.Result listener) {
+        query = "select request from user where id = "+id;
+        databaseLegacy.Select(query, listener);
+    }
+
+    public void updateUserSuspendedRequest(Integer id , boolean state,OnTaskListeners.Bool listener) {
+        query = "update User set suspended = "+state+", request = "+""+" where id = "+id;
+        databaseLegacy.iud(query, listener);
+    }
+
+
+
+
+
 
 
 }

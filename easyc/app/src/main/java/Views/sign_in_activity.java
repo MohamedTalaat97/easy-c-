@@ -57,14 +57,17 @@ public class sign_in_activity extends AppCompatActivity {
         if (check()) {
 
             //from the controller call signin function that you made and after it finish the function will call back to this function
-            signInUpController.signIn(username.getText().toString(), pass.getText().toString(), new OnTaskListeners.Bool() {
+            signInUpController.signIn(username.getText().toString(), pass.getText().toString(), new OnTaskListeners.Word() {
                 @Override
-                public void onSuccess(Boolean result) {
-                    if (result) {
-                        signInUpController.toast("entered", getApplicationContext());
-                        goTo();
-                    } else
-                        signInUpController.toast("check your username/password", getApplicationContext());
+                public void onSuccess(String result) {
+                    signInUpController.toast(result,getApplicationContext());
+                    if(result.matches("true"))
+signInUpController.goTo(new OnTaskListeners.classes() {
+    @Override
+    public void onSuccess(Class classe) {
+        goTo(classe);
+    }
+});
                 }
             });
         }
@@ -85,8 +88,9 @@ public class sign_in_activity extends AppCompatActivity {
     }
 
 
-    public void goTo() {
-        Intent intent = new Intent(this, put_opinion.class);
+    public void goTo(Class s) {
+
+        Intent intent = new Intent(this, s);
         startActivity(intent);
     }
 

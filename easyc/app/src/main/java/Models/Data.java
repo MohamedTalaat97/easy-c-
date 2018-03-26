@@ -7,6 +7,8 @@ public class Data {
     private static int userId = 1;
     private static String userName;
     private static int userLevel;
+    private  static char userType;
+
 ////////////////////////////////////////////////////////////
 
     public void setUserId(int userid)
@@ -21,6 +23,10 @@ public class Data {
     {
         this.userLevel = userLevel;
     }
+    public void setUserType(char usertype)
+    {
+       userType= usertype;
+    }
 ////////////////////////////////////////////////////////////
     public int getUserId()
     {
@@ -34,4 +40,11 @@ public class Data {
     {
         return userLevel;
     }
+
+    public char getUserType()
+    {
+        return userType;
+    }
+
+
 }

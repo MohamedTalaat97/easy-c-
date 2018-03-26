@@ -5,7 +5,7 @@ import Interfaces.OnTaskListeners;
 import java.sql.ResultSet;
 
 /**
- * Created by MAN CENTER on 15-Mar-18.
+ * Created by medotalaat on 15-Mar-18.
  */
 
 public class CourseController extends Controller {
@@ -30,9 +30,24 @@ public class CourseController extends Controller {
                 listener.onSuccess((int)resultToValue(data));
             }
         });
-
-
-
+    }
+    public void getTopicId(String name,final OnTaskListeners.Number listener)
+    {
+        databaseAdapter().selectTopicIdByName(name, new OnTaskListeners.Result() {
+            @Override
+            public void onSuccess(ResultSet data) {
+                listener.onSuccess((int)resultToValue(data));
+            }
+        });
+    }
+    public void getTopics(int catId,final OnTaskListeners.List listener)
+    {
+        databaseAdapter().selectTopics(catId, new OnTaskListeners.Result() {
+            @Override
+            public void onSuccess(ResultSet data) {
+                listener.onSuccess(resultToArray(data));
+            }
+        });
 
 
 

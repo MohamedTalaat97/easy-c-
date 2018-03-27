@@ -56,6 +56,7 @@ public class sign_in_activity extends AppCompatActivity {
 <<<<<<< HEAD
         goTo(show_Requests.class);
 =======
+        goTo(categories.class);
 >>>>>>> 0c54c9791fc4f39508efad388825098b1aea3e80
 
         if (check()) {

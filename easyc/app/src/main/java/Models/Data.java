@@ -4,7 +4,7 @@ package Models;
 // this is the class that we will save all the data we need while he is using the program
 public class Data {
 
-    private static int userId = 2;
+    private static int userId = 1;
     private static String userName;
     private static int userLevel;
     private  static char userType;

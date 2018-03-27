@@ -1,5 +1,6 @@
 package Views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,9 +23,9 @@ public class showRequest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_request);
-        //accept  = findViewById(R.id.);
-        //deny  = findViewById(R.id.);
-        //requestText  = findViewById(R.id.);
+        accept  = findViewById(R.id.acceptid);
+        deny  = findViewById(R.id.denyid);
+        requestText  = findViewById(R.id.requestid);
         id = getIntent().getIntExtra(show_Requests.ID, 0);
         signInUpController = new SignInUpController();
 
@@ -35,7 +36,12 @@ public class showRequest extends AppCompatActivity {
                 signInUpController.handleRequest(id, false, new OnTaskListeners.Bool() {
                     @Override
                     public void onSuccess(Boolean result) {
-
+                        if(result) {
+                            signInUpController.toast("Accepted", getApplicationContext());
+                            goTo();
+                        }
+                        else
+                            signInUpController.toast("False",getApplicationContext());
                     }
                 });
 
@@ -48,12 +54,24 @@ public class showRequest extends AppCompatActivity {
                 signInUpController.handleRequest(id, true, new OnTaskListeners.Bool() {
                     @Override
                     public void onSuccess(Boolean result) {
-
+                        if(result) {
+                            signInUpController.toast("Denied", getApplicationContext());
+                            goTo();
+                        }
+                        else
+                            signInUpController.toast("False",getApplicationContext());
                     }
                 });
             }
         });
 
 
+    }
+
+
+    void goTo()
+    {
+        Intent intent = new Intent(getApplicationContext(),show_Requests.class);
+        startActivity(intent);
     }
 }

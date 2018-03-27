@@ -149,7 +149,7 @@ public class DatabaseAdapter {
 
 
     public void selectUserIdUserName(OnTaskListeners.Result listener) {
-        query = "select id,username from user where suspended = true and type = 'I'";
+        query = "select id,username from user where suspended = true and type = 'I'  and request is not null";
         databaseLegacy.Select(query, listener);
     }
 
@@ -159,7 +159,7 @@ public class DatabaseAdapter {
     }
 
     public void updateUserSuspendedRequest(Integer id , boolean state,OnTaskListeners.Bool listener) {
-        query = "update User set suspended = "+state+", request = "+""+" where id = "+id;
+        query = "update User set suspended = "+state+", request = null  where id = "+id;
         databaseLegacy.iud(query, listener);
     }
 

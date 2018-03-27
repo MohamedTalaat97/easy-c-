@@ -33,15 +33,27 @@ public class show_Requests extends AppCompatActivity {
         names = new ArrayList<String>();
         ids = new ArrayList<Integer>();
         signInUpController = new SignInUpController();
-        //listview = fi
+        listView = findViewById(R.id.requestsId);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showRequest(position);
 
-                showRequest(listView.getSelectedItemPosition());
             }
         });
+        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         fillListView();
     }
 
@@ -63,21 +75,22 @@ public class show_Requests extends AppCompatActivity {
         });
     }
 
-    void showRequest(final Integer id) {
+    void showRequest(final Integer position) {
+        final int id = ids.get(position);
 
-        signInUpController.getOneRequest(ids.get(id), new OnTaskListeners.Word() {
+        signInUpController.getOneRequest(id, new OnTaskListeners.Word() {
             @Override
             public void onSuccess(String result) {
-                goToRequestView(result, ids.get(id));
+                goToRequestView(result, id);
             }
         });
 
     }
 
     void goToRequestView(String request, int id) {
-        Intent intent = new Intent(getApplicationContext(), put_opinion.class);
+        Intent intent = new Intent(getApplicationContext(), showRequest.class);
         intent.putExtra(REQUEST, request);
-        intent.putExtra(ID, ids.get(id));
+        intent.putExtra(ID, id);
         startActivity(intent);
     }
 

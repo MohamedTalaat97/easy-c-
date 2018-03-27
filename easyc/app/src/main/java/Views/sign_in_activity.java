@@ -28,11 +28,11 @@ public class sign_in_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_activity);
         connectionDb = ConnectionDb.getInstance();
-        connectionDb.TalaatDb();
+        connectionDb.khaledDb();
         signInUpController = new SignInUpController();
         singInButton = findViewById(R.id.BT_sign_in);
-        username = (EditText) findViewById(R.id.ET_user_name);
-        pass = (EditText) findViewById(R.id.ET_Password);
+        username = findViewById(R.id.ET_user_name);
+        pass = findViewById(R.id.ET_Password);
         forgetButton = findViewById(R.id.BT_forget);
         singInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +53,7 @@ public class sign_in_activity extends AppCompatActivity {
     // this is a function that relates to the button when the user click
 
     public void signIn() {
+        goTo(show_Requests.class);
 
         if (check()) {
 

@@ -53,6 +53,7 @@ public class sign_in_activity extends AppCompatActivity {
     // this is a function that relates to the button when the user click
 
     public void signIn() {
+        goTo(categories.class);
 
         if (check()) {
 

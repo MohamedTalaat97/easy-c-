@@ -44,22 +44,6 @@ public class DatabaseAdapter {
 
     }
 
-
-    public void selectCode(int topic_id, OnTaskListeners.Result listeners) {
-        query = "select code from topic where id = '" + topic_id + "'";
-        databaseLegacy.Select(query, listeners);
-
-    }
-    public void selectDescription(int topic_id, OnTaskListeners.Result listeners) {
-        query = "select description from topic where id = '" + topic_id + "'";
-        databaseLegacy.Select(query, listeners);
-
-    }
-    public void selectOutput(int topic_id, OnTaskListeners.Result listeners) {
-        query = "select output from topic where id = '" + topic_id + "'";
-        databaseLegacy.Select(query, listeners);
-
-    }
     public void selectEmployeeName(OnTaskListeners.Result listeners) {
         query = "select name from employee";
         databaseLegacy.Select(query, listeners);

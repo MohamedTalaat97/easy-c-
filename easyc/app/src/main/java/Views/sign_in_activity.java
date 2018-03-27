@@ -55,9 +55,12 @@ public class sign_in_activity extends AppCompatActivity {
     public void signIn() {
 <<<<<<< HEAD
         goTo(show_Requests.class);
+<<<<<<< HEAD
 =======
         goTo(categories.class);
 >>>>>>> 0c54c9791fc4f39508efad388825098b1aea3e80
+=======
+>>>>>>> parent of c723406... Merge branch 'master' of https://github.com/mohameDMEDO97/easy-c-
 
         if (check()) {
 

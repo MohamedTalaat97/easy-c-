@@ -4,8 +4,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import Interfaces.OnTaskListeners;
+import Views.categories;
 import Views.put_opinion;
 import Views.show_opinions;
+import Views.topic;
 
 /**
  * Created by KhALeD SaBrY on 12-Mar-18.
@@ -92,7 +94,7 @@ public class SignInUpController extends Controller {
 
     public  void goTo(OnTaskListeners.classes listener)
     {
-        if(dataModel().getUserType() == 'A')
+       /* if(dataModel().getUserType() == 'A')
         {
             listener.onSuccess(show_opinions.class);
         }
@@ -101,7 +103,8 @@ public class SignInUpController extends Controller {
             listener.onSuccess(show_opinions.class);
         }
         else
-            listener.onSuccess(put_opinion.class);
+            listener.onSuccess(put_opinion.class);*/
+        listener.onSuccess(categories.class);
     }
 
 

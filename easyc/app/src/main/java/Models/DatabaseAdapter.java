@@ -182,4 +182,41 @@ public class DatabaseAdapter {
     }
 
 
+
+
+    public void selectCommentIdTitleOrderByName(int user_id,boolean isMyQuestions,boolean isAnswered,boolean isAsec,String limitNumber, OnTaskListeners.Result listener) {
+        query = "select id,title from comment where user_id ";
+        if(isMyQuestions)
+            query += "= ";
+        else
+            query += "!= ";
+        query += user_id +" and solved = "+isAnswered +" order by title ";
+        if(isAsec)
+            query += "Asec";
+        else
+            query +="Desc";
+
+        query += " limit = "+limitNumber;
+        databaseLegacy.Select(query, listener);
+    }
+
+
+    public void selectCommentIdTitleOrderByDate(int user_id,boolean isMyQuestions,boolean isAnswered,boolean isAsec,String limitNumber, OnTaskListeners.Result listener) {
+        query = "select id,title from comment where user_id ";
+        if(isMyQuestions)
+            query += "= ";
+        else
+            query += "!= ";
+        query += user_id +" and solved = "+isAnswered +" order by Date ";
+        if(isAsec)
+            query += "Asec";
+        else
+            query +="Desc";
+
+        query += " limit = "+limitNumber;
+        databaseLegacy.Select(query, listener);
+    }
+
+
+
 }

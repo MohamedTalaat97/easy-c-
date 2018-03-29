@@ -10,21 +10,23 @@ import com.example.android.easyc.R;
 
 public class student_menu extends AppCompatActivity {
 
+    ImageView view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_menu);
 
-      ImageView view = (ImageView) findViewById(R.id.go_to_categories);
+        view = findViewById(R.id.go_to_categories);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(student_menu.this,categories.class);
+                Intent i = new Intent(student_menu.this, categories.class);
                 startActivity(i);
+            }
+        });
 
-            }});
 
-
-}
+    }
 }

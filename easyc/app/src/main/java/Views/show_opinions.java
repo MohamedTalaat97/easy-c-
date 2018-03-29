@@ -48,24 +48,37 @@ public class show_opinions extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openOpinion(idArrayList.get(position), titleArrayList.get(position));
+                goToOpinion(idArrayList.get(position), titleArrayList.get(position));
             }
         });
 
         initiateSpinner();
-        fillList();
+        setSpinner();
 
     }
 
+    //when you come back fron the opinion make sure to update the list
     @Override
-    protected void  onResume()
-    {
+    protected void onResume() {
         super.onResume();
         setSpinner();
     }
 
+    //fill the opinion list
     void fillList() {
-        opinionController.returnTitle(kind, new OnTaskListeners.IdAndList() {
+        if (kind.matches("UnSeen"))
+            getUnSeen();
+        else if (kind.matches("UnRead"))
+            getUnRead();
+        else if (kind.matches("Favourite"))
+            getFavourite();
+        else
+            getAll();
+    }
+
+    //get unreaded opinions
+    void getUnRead() {
+        opinionController.getUnReadOpinions(new OnTaskListeners.IdAndList() {
             @Override
             public void onSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
                 idArrayList = id;
@@ -75,10 +88,53 @@ public class show_opinions extends AppCompatActivity {
             }
         });
 
+    }
+
+    //get unseen opinions
+    void getUnSeen() {
+        opinionController.getUnSeenOpinions(new OnTaskListeners.IdAndList() {
+            @Override
+            public void onSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
+                idArrayList = id;
+                titleArrayList = (ArrayList<String>) (Object) result;
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(show_opinions.this, android.R.layout.simple_selectable_list_item, titleArrayList);
+                listView.setAdapter(adapter);
+            }
+        });
+
+    }
+
+    //get favourite opinions
+    void getFavourite() {
+        opinionController.getFavouriteOpinions(new OnTaskListeners.IdAndList() {
+            @Override
+            public void onSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
+                idArrayList = id;
+                titleArrayList = (ArrayList<String>) (Object) result;
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(show_opinions.this, android.R.layout.simple_selectable_list_item, titleArrayList);
+                listView.setAdapter(adapter);
+            }
+        });
+
+    }
+
+    //get All opinions
+    void getAll() {
+
+        opinionController.getAllOpinions(new OnTaskListeners.IdAndList() {
+            @Override
+            public void onSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
+                idArrayList = id;
+                titleArrayList = (ArrayList<String>) (Object) result;
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(show_opinions.this, android.R.layout.simple_selectable_list_item, titleArrayList);
+                listView.setAdapter(adapter);
+            }
+        });
 
     }
 
 
+    //setup the spinner
     void initiateSpinner() {
         arrayAdapter = ArrayAdapter.createFromResource(this, R.array.kindOfOpinions, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -87,7 +143,7 @@ public class show_opinions extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                opinionController.toast(spinner.getSelectedItem().toString(),getApplication());
+                opinionController.toast(spinner.getSelectedItem().toString(), getApplication());
                 setSpinner();
             }
 
@@ -96,20 +152,18 @@ public class show_opinions extends AppCompatActivity {
 
             }
         });
-
-        kind = spinner.getSelectedItem().toString();
     }
 
 
-
+    //update the list according to the spinner state
     public void setSpinner() {
         kind = spinner.getSelectedItem().toString();
         fillList();
     }
 
-    void openOpinion(int id, String title) {
-        Intent i;
-        i = new Intent(this, show_opinion.class);
+    //open the opinion
+    void goToOpinion(int id, String title) {
+        Intent i = new Intent(getApplicationContext(), show_opinion.class);
         i.putExtra(show_opinions.EXTRA_DATA_TITLE, title);
         i.putExtra(show_opinions.EXTRA_DATA_ID, id);
         startActivity(i);

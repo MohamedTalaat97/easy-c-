@@ -19,6 +19,8 @@ public class DatabaseLegacy {
 
     public void iud(final  String query, final OnTaskListeners.Bool listener) {
 
+
+
         new AsyncTask<Void, Void, Boolean>() {
             public Integer updated = null;
 
@@ -26,6 +28,8 @@ public class DatabaseLegacy {
             protected Boolean doInBackground(Void... params) {
                 try {
                     Statement stmt;
+                    if(!conn.checkConnection())
+                        return false;
                     stmt = conn.c.createStatement();
                     updated = stmt.executeUpdate(query);
                     if(updated == 1)
@@ -40,6 +44,8 @@ public class DatabaseLegacy {
 
             @Override
             protected void onPostExecute(Boolean data) {
+                if(!conn.checkConnection())
+                    return;
                 listener.onSuccess(data);
             }
 
@@ -58,6 +64,8 @@ public class DatabaseLegacy {
             @Override
             protected ResultSet doInBackground(Void... params) {
                 try {
+                    if(!conn.checkConnection())
+                        return null;
                     Statement stmt;
                     stmt = conn.c.createStatement();
                     RS = stmt.executeQuery(query);
@@ -69,6 +77,8 @@ public class DatabaseLegacy {
 
             @Override
             protected void onPostExecute(ResultSet data) {
+                if(!conn.checkConnection())
+                    return;
                 listeners.onSuccess(data);
             }
 

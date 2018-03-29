@@ -23,55 +23,73 @@ public class showRequest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_request);
-        accept  = findViewById(R.id.acceptid);
-        deny  = findViewById(R.id.denyid);
-        requestText  = findViewById(R.id.requestid);
+        accept = findViewById(R.id.acceptid);
+        deny = findViewById(R.id.denyid);
+        requestText = findViewById(R.id.requestid);
         id = getIntent().getIntExtra(show_Requests.ID, 0);
         signInUpController = new SignInUpController();
 
-        requestText.setText(getIntent().getStringExtra(show_Requests.REQUEST));
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signInUpController.handleRequest(id, false, new OnTaskListeners.Bool() {
-                    @Override
-                    public void onSuccess(Boolean result) {
-                        if(result) {
-                            signInUpController.toast("Accepted", getApplicationContext());
-                            goTo();
-                        }
-                        else
-                            signInUpController.toast("False",getApplicationContext());
-                    }
-                });
-
+                setAccept();
             }
         });
 
         deny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signInUpController.handleRequest(id, true, new OnTaskListeners.Bool() {
-                    @Override
-                    public void onSuccess(Boolean result) {
-                        if(result) {
-                            signInUpController.toast("Denied", getApplicationContext());
-                            goTo();
-                        }
-                        else
-                            signInUpController.toast("False",getApplicationContext());
-                    }
-                });
+                setDeny();
             }
         });
 
+        fillData();
 
     }
 
 
-    void goTo()
-    {
-        Intent intent = new Intent(getApplicationContext(),show_Requests.class);
+    //accept the request for signing up
+    void setAccept() {
+        signInUpController.acceptRequest(id, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if (result) {
+                    signInUpController.toast("Accepted", getApplicationContext());
+                    goToRequests();
+                } else
+                    signInUpController.toast("False", getApplicationContext());
+            }
+        });
+    }
+
+    //deny the request for signing up
+    void setDeny() {
+        signInUpController.denyRequest(id, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if (result) {
+                    signInUpController.toast("Denied", getApplicationContext());
+                    goToRequests();
+                } else
+                    signInUpController.toast("False", getApplicationContext());
+            }
+        });
+    }
+
+    //fill the text view to show the request
+    void fillData() {
+        signInUpController.getOneRequest(id, new OnTaskListeners.Word() {
+            @Override
+            public void onSuccess(String result) {
+                requestText.setText(result);
+            }
+        });
+    }
+
+
+    //get back to requests
+    void goToRequests() {
+        Intent intent = new Intent(getApplicationContext(), show_Requests.class);
         startActivity(intent);
     }
 }

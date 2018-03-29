@@ -7,15 +7,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Connections.ConnectionDb;
 import Models.Data;
 import Models.DatabaseAdapter;
 
 
 public class Controller {
 
-    //static so the data don't delete every time the controller made by object
     private static DatabaseAdapter databaseAdapter = null;
+    //static so the data don't be deleted every time the controller made by object
     private static Data dataModel = null;
+    //private static Context context;
 
     public Controller() {
         if (databaseAdapter == null)
@@ -31,6 +33,15 @@ public class Controller {
     protected Data dataModel() {
         return dataModel;
     }
+
+
+    //check if the app is connected to the internet
+    public boolean checkConnection(Context context) {
+        if (!ConnectionDb.getInstance().checkConnection())
+            toast("check your internet connection", context);
+        return ConnectionDb.getInstance().checkConnection();
+    }
+
 
     //get the data from database in array
     protected ArrayList<Object> resultToArray(ResultSet data, String Column_Name) {
@@ -161,7 +172,7 @@ public class Controller {
 
     }
 
-
+    //make a toast
     public void toast(String msg, Context w) {
         Toast.makeText(w.getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 

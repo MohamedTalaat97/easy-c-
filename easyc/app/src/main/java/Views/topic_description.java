@@ -26,22 +26,23 @@ public class topic_description extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic_description);
         courseController = new CourseController();
+        description_textView = findViewById(R.id.TV_description);
+        code_textView = findViewById(R.id.TV_code);
+        output_textView = findViewById(R.id.TV_output);
 
-        initData();
+        topicId = getIntent().getIntExtra(topic.TOPIC_ID, 1);
+
+        fillData();
 
     }
 
-    public void initData ()
-    {
-        description_textView=findViewById(R.id.TV_description);
-        code_textView=findViewById(R.id.TV_code);
-        output_textView=findViewById(R.id.TV_output);
+    //fill the topic data on the screen
+    public void fillData() {
 
-        topicId= getIntent().getIntExtra("topicId", 1);
         courseController.getDescription(topicId, new OnTaskListeners.Word() {
             @Override
             public void onSuccess(String result) {
-                description =result;
+                description = result;
                 description_textView.setText(description);
             }
         });
@@ -49,14 +50,14 @@ public class topic_description extends AppCompatActivity {
         courseController.getCode(topicId, new OnTaskListeners.Word() {
             @Override
             public void onSuccess(String result) {
-                code =result;
+                code = result;
                 code_textView.setText(code);
             }
         });
         courseController.getOutput(topicId, new OnTaskListeners.Word() {
             @Override
             public void onSuccess(String result) {
-                output =result;
+                output = result;
                 output_textView.setText(output);
             }
         });

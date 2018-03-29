@@ -4,13 +4,14 @@ package Models;
 // this is the class that we will save all the data we need while he is using the program
 public class Data {
 
-    private static int userId = 2;
+    private static int userId = 17;
     private static String userName;
     private static int userLevel;
     private  static char userType;
 
 ////////////////////////////////////////////////////////////
 
+    //setters
     public void setUserId(int userid)
     {
         this.userId = userid;
@@ -28,6 +29,7 @@ public class Data {
        userType= usertype;
     }
 ////////////////////////////////////////////////////////////
+    //getters
     public int getUserId()
     {
         return userId;

@@ -2,25 +2,28 @@ package Models;
 
 import Interfaces.OnTaskListeners;
 
+
+//evey function have the same way of identification
+//first part is the method : select, insert,delete or update
+//second par is the name of table
+//third part is the names of the attributes we want to get it : only with select
+//fourth part is the condition : it's optional and only exists if there is two functions do the same thing but different conditions
+
 public class DatabaseAdapter {
 
-    private DatabaseLegacy databaseLegacy = null;
+    private static DatabaseLegacy databaseLegacy = null;
     private String query;
 
     public DatabaseAdapter() {
-        databaseLegacy = new DatabaseLegacy();
+
+        if (databaseLegacy == null)
+            databaseLegacy = new DatabaseLegacy();
     }
 
     public DatabaseLegacy getDatabaseLegacy() {
         return databaseLegacy;
     }
 
-
-    public void selectEmployeeId(OnTaskListeners.Result listeners) {
-        query = "select * from employee";
-        databaseLegacy.Select(query, listeners);
-
-    }
 
     public void selectCategories(OnTaskListeners.Result listeners) {
         query = "select title from category";
@@ -33,11 +36,13 @@ public class DatabaseAdapter {
         databaseLegacy.Select(query, listeners);
 
     }
+
     public void selectTopicIdByName(String name, OnTaskListeners.Result listeners) {
         query = "select id from topic where title = '" + name + "'";
         databaseLegacy.Select(query, listeners);
 
     }
+
     public void selectTopics(int cat_id, OnTaskListeners.Result listeners) {
         query = "select title from topic where cat_id = '" + cat_id + "'";
         databaseLegacy.Select(query, listeners);
@@ -50,25 +55,28 @@ public class DatabaseAdapter {
         databaseLegacy.Select(query, listeners);
 
     }
+
     public void selectDescription(int topic_id, OnTaskListeners.Result listeners) {
         query = "select description from topic where id = '" + topic_id + "'";
         databaseLegacy.Select(query, listeners);
 
     }
+
     public void selectOutput(int topic_id, OnTaskListeners.Result listeners) {
         query = "select output from topic where id = '" + topic_id + "'";
         databaseLegacy.Select(query, listeners);
 
     }
+
     public void selectEmployeeName(OnTaskListeners.Result listeners) {
         query = "select name from employee";
         databaseLegacy.Select(query, listeners);
 
     }
 
-    public void insertUser(String userName, String Pass, char Type, String age, String email,boolean suspended,String requestText, OnTaskListeners.Bool listeners) {
+    public void insertUser(String userName, String Pass, char Type, String age, String email, boolean suspended, String requestText, OnTaskListeners.Bool listeners) {
         query = "insert into user(username,password,type,age,email,suspended,request)" +
-                " values('" + userName + "','" + Pass + "','" + Type + "'," + age + ",'" + email + "',"+suspended+",'"+requestText+"')";
+                " values('" + userName + "','" + Pass + "','" + Type + "'," + age + ",'" + email + "'," + suspended + ",'" + requestText + "')";
         databaseLegacy.iud(query, listeners);
 
     }
@@ -86,38 +94,32 @@ public class DatabaseAdapter {
     }
 
     public void selectOpinionTitle(OnTaskListeners.Result listener) {
-        //still waiting to make opinion table in database
         query = "select id,title from opinion";
         databaseLegacy.Select(query, listener);
     }
 
     public void selectOpinionTitleUnSeen(OnTaskListeners.Result listener) {
-        //still waiting to make opinion table in database
         query = "select id,title from opinion where seen = false";
         databaseLegacy.Select(query, listener);
     }
 
     public void selectOpinionTitleUnReaded(OnTaskListeners.Result listener) {
-        //still waiting to make opinion table in database
         query = "select id,title from opinion where readed = false";
         databaseLegacy.Select(query, listener);
     }
 
     public void selectOpinionFavourite(int id, OnTaskListeners.Result listener) {
-        //still waiting to make opinion table in database
         query = "select favourite from opinion where id = " + id;
         databaseLegacy.Select(query, listener);
     }
 
     public void selectOpinionTitleFavourite(OnTaskListeners.Result listener) {
-        //still waiting to make opinion table in database
         query = "select id,title from opinion where favourite = true";
         databaseLegacy.Select(query, listener);
     }
 
 
     public void selectOpinionDescription(int id, OnTaskListeners.Result listener) {
-        //still waiting to make opinion table in database
         query = "select description from opinion where id = " + id;
         databaseLegacy.Select(query, listener);
     }
@@ -158,8 +160,8 @@ public class DatabaseAdapter {
         databaseLegacy.Select(query, listener);
     }
 
-    public void selectUserIdTypeSuspendedLevelName(String name,String password, OnTaskListeners.Result listener) {
-        query = "select id,type,suspended,level,Name from user where (userName = '" + name + "' OR email = '" + name + "' )  and password = '"+ password+"'";
+    public void selectUserIdTypeSuspendedLevelName(String name, String password, OnTaskListeners.Result listener) {
+        query = "select id,type,suspended,level,Name from user where (userName = '" + name + "' OR email = '" + name + "' )  and password = '" + password + "'";
         databaseLegacy.Select(query, listener);
     }
 
@@ -169,20 +171,15 @@ public class DatabaseAdapter {
         databaseLegacy.Select(query, listener);
     }
 
-    public void selectUserRequest(Integer id,OnTaskListeners.Result listener) {
-        query = "select request from user where id = "+id;
+    public void selectUserRequest(Integer id, OnTaskListeners.Result listener) {
+        query = "select request from user where id = " + id;
         databaseLegacy.Select(query, listener);
     }
 
-    public void updateUserSuspendedRequest(Integer id , boolean state,OnTaskListeners.Bool listener) {
-        query = "update User set suspended = "+state+", request = null  where id = "+id;
+    public void updateUserSuspendedRequest(Integer id, boolean suspended, OnTaskListeners.Bool listener) {
+        query = "update User set suspended = " + suspended + ", request = null  where id = " + id;
         databaseLegacy.iud(query, listener);
     }
-
-
-
-
-
 
 
 }

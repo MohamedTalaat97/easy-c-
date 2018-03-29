@@ -6,15 +6,16 @@ package Views;
 
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.android.easyc.R;
+
 import Controllers.OpinionController;
 import Interfaces.OnTaskListeners;
-import com.example.android.easyc.R;
 
 public class put_opinion extends AppCompatActivity {
     OpinionController opinionController;
@@ -36,7 +37,7 @@ public class put_opinion extends AppCompatActivity {
         backToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backToMenu();
+                goToMenu();
             }
         });
 
@@ -50,19 +51,19 @@ public class put_opinion extends AppCompatActivity {
 
     }
 
-
-  public   void insertOpinion() {
+    //put the opinion
+    public void insertOpinion() {
         if (check()) {
             opinionController.putOpinion(title.getText().toString(), description.getText().toString(), new OnTaskListeners.Bool() {
                 @Override
                 public void onSuccess(Boolean result) {
                     if (result) {
-                        opinionController.toast("successfully added",getApplicationContext());
+                        opinionController.toast("successfully added", getApplicationContext());
                         title.setText("");
                         description.setText("");
-
+                        goToMenu();
                     } else
-                        opinionController.toast("unsuccessfully added",getApplicationContext());
+                        opinionController.toast("unsuccessfully added", getApplicationContext());
                 }
             });
         }
@@ -72,19 +73,19 @@ public class put_opinion extends AppCompatActivity {
 
     boolean check() {
         if (title.getText().toString().matches("")) {
-            opinionController.toast("there is no name for the title of Opinion",getApplicationContext());
+            opinionController.toast("there is no name for the title of Opinion", getApplicationContext());
             return false;
         }
         if (description.getText().toString().matches("")) {
-            opinionController.toast("please add your opinion",getApplicationContext());
+            opinionController.toast("please add your opinion", getApplicationContext());
             return false;
         }
         return true;
     }
 
 
-    void backToMenu() {
-        Intent intent = new Intent(this, student_menu.class);
+    void goToMenu() {
+        Intent intent = new Intent(getApplicationContext(), student_menu.class);
         startActivity(intent);
     }
 }

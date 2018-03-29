@@ -38,21 +38,11 @@ public class show_Requests extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showRequest(position);
+                goToRequestView(ids.get(position));
 
             }
         });
-        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         fillListView();
     }
@@ -75,21 +65,9 @@ public class show_Requests extends AppCompatActivity {
         });
     }
 
-    void showRequest(final Integer position) {
-        final int id = ids.get(position);
-
-        signInUpController.getOneRequest(id, new OnTaskListeners.Word() {
-            @Override
-            public void onSuccess(String result) {
-                goToRequestView(result, id);
-            }
-        });
-
-    }
-
-    void goToRequestView(String request, int id) {
+    //open the selected request
+    void goToRequestView(int id) {
         Intent intent = new Intent(getApplicationContext(), showRequest.class);
-        intent.putExtra(REQUEST, request);
         intent.putExtra(ID, id);
         startActivity(intent);
     }

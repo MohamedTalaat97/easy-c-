@@ -22,20 +22,21 @@ public class topic extends AppCompatActivity {
     CourseController courseController;
     ListView topicsListView;
     ArrayList<String> topicsList;
+    public static String TOPIC_ID = "TOPICID";
 
 
+    //initialization
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic);
-        CatId = getIntent().getIntExtra("catId", 1);
+        CatId = getIntent().getIntExtra(categories.CAT_ID, 1);
         courseController = new CourseController();
         topicsListView = findViewById(R.id.topics_ListView);
         topicsList = new ArrayList<String>();
         topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                 openTopicDescription(topicsList.get(i));
             }}
         );
@@ -43,6 +44,7 @@ public class topic extends AppCompatActivity {
         fillList();
     }
 
+    //fill the list of topics related to the category specified
     void fillList() {
         courseController.getTopics(CatId, new OnTaskListeners.List() {
             @Override
@@ -56,13 +58,14 @@ public class topic extends AppCompatActivity {
     }
 
 
+    //open the selected topic
     public void openTopicDescription(String tilte) {
         courseController.getTopicId(tilte, new OnTaskListeners.Number() {
             @Override
             public void onSuccess(int result) {
                 topicId = result;
-                Intent i = new Intent(topic.this, topic_description.class);
-                i.putExtra("topicId", topicId);
+                Intent i = new Intent(getApplicationContext(), topic_description.class);
+                i.putExtra(TOPIC_ID, topicId);
                 startActivity(i);
             }
 

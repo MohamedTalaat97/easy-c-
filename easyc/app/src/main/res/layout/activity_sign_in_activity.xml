@@ -63,11 +63,10 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/TV_no_account"
+            android:id="@+id/dont_have_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
-            android:onClick="open_sign_up"
             android:text="Don't Have An Account?"
             android:textColor="@color/black" />
 

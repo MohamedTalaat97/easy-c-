@@ -41,6 +41,7 @@ public class sign_up extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         signInUpController = new SignInUpController();
         mailController = new MailController();
+
         signup = findViewById(R.id.BT_sign_up);
         username = findViewById(R.id.ET_user_name);
         pass = findViewById(R.id.ET_Password);
@@ -48,14 +49,6 @@ public class sign_up extends AppCompatActivity {
         age = findViewById(R.id.ET_age);
         email = findViewById(R.id.ET_email);
         requestText = findViewById(R.id.ET_motivation);
-
-
-        intializtion();
-
-    }
-
-
-    void intializtion() {
 
         usernameChecked = false;
         emailChecked = false;
@@ -77,6 +70,7 @@ public class sign_up extends AppCompatActivity {
             }
         });
 
+        //check the database if username is available
         username.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -95,7 +89,7 @@ public class sign_up extends AppCompatActivity {
 
             }
         });
-
+        //check the database if the email is available
         email.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -114,7 +108,6 @@ public class sign_up extends AppCompatActivity {
             }
         });
 
-
         type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -130,13 +123,15 @@ public class sign_up extends AppCompatActivity {
 
             }
         });
+
+
     }
 
-
+    //sign up button
     public void signUp() {
         if (check()) {
             //from the controller call signup function that you made and after it finish the function will call back to this function
-            signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(),requestText.getText().toString(), new OnTaskListeners.Bool() {
+            signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), requestText.getText().toString(), new OnTaskListeners.Bool() {
                 @Override
                 public void onSuccess(Boolean result) {
                     if (result) {
@@ -150,6 +145,7 @@ public class sign_up extends AppCompatActivity {
         }
     }
 
+    //check before sign Up
     boolean check() {
         if (username.getText().toString().matches("") || pass.getText().toString().matches("") || age.getText().toString().matches("") || email.getText().toString().matches("")) {
             signInUpController.toast("Please fill the required fields", getApplicationContext());
@@ -192,7 +188,6 @@ public class sign_up extends AppCompatActivity {
             return false;
         }
 
-
         try {
             int a = Integer.parseInt(age.getText().toString());
         } catch (NumberFormatException e) {
@@ -204,7 +199,7 @@ public class sign_up extends AppCompatActivity {
         return true;
     }
 
-
+    //check from the database if the username  is available
     void checkUserName() {
         usernameChecked = false;
         signInUpController.checkUserName(username.getText().toString(), new OnTaskListeners.Bool() {
@@ -221,6 +216,7 @@ public class sign_up extends AppCompatActivity {
         });
     }
 
+    //check from the database if the email is available
     void checkEmail() {
         emailChecked = false;
         signInUpController.checkEmail(email.getText().toString(), new OnTaskListeners.Bool() {
@@ -237,7 +233,7 @@ public class sign_up extends AppCompatActivity {
         });
     }
 
-
+    //return back to sign In activity
     void goToSignInActivity() {
         Intent i = new Intent(sign_up.this, sign_in_activity.class);
         startActivity(i);

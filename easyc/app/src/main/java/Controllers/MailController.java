@@ -10,16 +10,16 @@ import Interfaces.OnTaskListeners;
  */
 
 public class MailController extends Controller {
-   private MailSender sender;
-
-    public String getCompanyEmail()
-    {
-      return   sender.getCompanyEmail();
-    }
-
+    private MailSender sender;
 
     public MailController() {
         sender = new MailSender();
+    }
+
+
+    //get the company email
+    public String getCompanyEmail() {
+        return sender.getCompanyEmail();
     }
 
 
@@ -29,6 +29,8 @@ public class MailController extends Controller {
         databaseAdapter().selectUserUsernamePassword(email, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
                 String username = (String) resultToValue(data, 1);
                 String password = (String) resultToValue(data, 2);
 
@@ -42,7 +44,7 @@ public class MailController extends Controller {
 
     }
 
-// when you sign up this message sent for you
+    // when you sign up this message sent for you
     public void sendWelcomeMessage(String email) {
         sender.setRecipientEmail(email);
         sender.setSubject("Welcome to our app");

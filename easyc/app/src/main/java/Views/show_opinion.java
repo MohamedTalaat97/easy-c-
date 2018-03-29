@@ -26,18 +26,19 @@ public class show_opinion extends AppCompatActivity {
     Button back;
     Button favourite;
     boolean favouriteTopic;
+    String titleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_opinion);
         opinionController = new OpinionController();
-
         title = findViewById(R.id.title);
         description = findViewById(R.id.description);
         read = findViewById(R.id.read);
         back = findViewById(R.id.backtoopinions);
         favourite = findViewById(R.id.favourite);
+        titleText = getIntent().getStringExtra(show_opinions.EXTRA_DATA_TITLE);
         id = getIntent().getIntExtra(show_opinions.EXTRA_DATA_ID, 0);
 
         read.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +51,7 @@ public class show_opinion extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backToOpinions();
+                goToOpinions();
             }
         });
 
@@ -66,15 +67,20 @@ public class show_opinion extends AppCompatActivity {
 
 
     void refreshData() {
+        //update the state and make this opinion seen
         opinionController.makeItSeen(id);
-        title.setText(getIntent().getStringExtra(show_opinions.EXTRA_DATA_TITLE));
-        opinionController.returnDescription(id, new OnTaskListeners.Word() {
+        //fill the title text
+        title.setText(titleText);
+        //fill the description
+        opinionController.getDescription(id, new OnTaskListeners.Word() {
             @Override
             public void onSuccess(String result) {
                 description.setText(result);
 
             }
         });
+
+        //check if the opinion is favourite to update the button favourite text
         opinionController.checkFavourite(id, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
@@ -89,6 +95,7 @@ public class show_opinion extends AppCompatActivity {
     }
 
 
+    //mark the topic as readed
     void markAsRead() {
         opinionController.updateRead(id, true, new OnTaskListeners.Bool() {
             @Override
@@ -102,6 +109,7 @@ public class show_opinion extends AppCompatActivity {
         });
     }
 
+    //update the favourite if it's favourite and the button clicked then make it unfavourite
     void changeFavourite() {
         opinionController.updateFavourite(id, favouriteTopic, new OnTaskListeners.Bool() {
             @Override
@@ -112,22 +120,20 @@ public class show_opinion extends AppCompatActivity {
                     updateButtonFavouriteText();
                 } else
                     opinionController.toast("False", getApplicationContext());
-
             }
         });
     }
 
+    //update the favourite button text
     void updateButtonFavouriteText() {
         if (favouriteTopic)
             favourite.setText("remove favourite");
         else
             favourite.setText("mark as favourite");
-
     }
 
-
-    void backToOpinions() {
-        Intent intent = new Intent(this, show_opinions.class);
+    void goToOpinions() {
+        Intent intent = new Intent(getApplicationContext(), show_opinions.class);
         startActivity(intent);
     }
 

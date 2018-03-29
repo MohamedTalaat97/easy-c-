@@ -33,7 +33,8 @@
         <activity android:name="Views.forget_password_username" />
         <activity android:name="Views.show_Requests" />
         <activity android:name="Views.showRequest" />
-        <activity android:name="Views.topic_description"></activity>
+        <activity android:name="Views.topic_description" />
+        <activity android:name="Views.Discussion_Room_Questions"></activity>
     </application>
 
 </manifest>

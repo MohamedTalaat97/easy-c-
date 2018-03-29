@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 26/03/2018 22:06:06
+ Date: 29/03/2018 13:24:10
 */
 
 SET NAMES utf8mb4;
@@ -43,14 +43,11 @@ DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `cat_id` int(11) NULL DEFAULT NULL,
-  `comment` varchar(999) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `title` varchar(999) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `date` datetime(0) NULL DEFAULT NULL,
   `solved` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `userid`(`user_id`) USING BTREE,
-  INDEX `cat_id`(`cat_id`) USING BTREE,
-  CONSTRAINT `cat_id` FOREIGN KEY (`cat_id`) REFERENCES `category` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `userid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -101,7 +98,12 @@ CREATE TABLE `opinion`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id_opinion`(`user_id`) USING BTREE,
   CONSTRAINT `user_id_opinion` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of opinion
+-- ----------------------------
+INSERT INTO `opinion` VALUES (1, 17, 'dfdsfsdfTitle', 'Titledsfsdfsdfsdfsdnfoasdnoiasnmvlksnvlksnlkvmsdkmvsdkmvkasdmv;sdml;vasmdv;lmasd;lvma;dslmv;lsamv;samv;lsdmofsdofoasjffl;asdmf;kmscv;mcvzxcv', 0, 0, 1);
 
 -- ----------------------------
 -- Table structure for question
@@ -214,14 +216,11 @@ CREATE TABLE `user`  (
   `level` int(255) NULL DEFAULT 0,
   `request` varchar(999) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (13, 'sdfdf', '1292', NULL, 'khaledsab1997@gmail.com', 'I', 20, 0, 0, NULL);
-INSERT INTO `user` VALUES (14, 'sdfdf', 'ssdfsdf', NULL, 'khaledsab97@gmail.com', 'S', 20, 0, 0, NULL);
-INSERT INTO `user` VALUES (15, 'sdfdf', '234324', NULL, 'khaledsab1997+1@gmail.com', 'S', 323, 0, 0, NULL);
-INSERT INTO `user` VALUES (16, 'sdfdf', '1111', NULL, 's@', 'S', 12, 0, 0, NULL);
+INSERT INTO `user` VALUES (17, 'khaled', '2625', NULL, 'khaledsab1997@gmail.com', 'I', 12, 1, 0, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

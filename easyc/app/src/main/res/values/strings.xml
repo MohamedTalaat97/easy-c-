@@ -14,6 +14,21 @@
         <item>Favourite</item>
         <item>All</item>
     </string-array>
+
+
+    <string-array name="sort">
+        <item>Date</item>
+        <item>Name</item>
+    </string-array>
+
+    <string-array name="LIMIT_ITEMS">
+        <item>10</item>
+        <item>20</item>
+        <item>0</item>
+        <item>40</item>
+        <item>70</item>
+        <item>100</item>
+    </string-array>
     <string name="title_activity_show__requests__for__teaching">show_Requests_For_Teaching</string>
     <string name="title_activity_topic_description">topic_description</string>
 </resources>

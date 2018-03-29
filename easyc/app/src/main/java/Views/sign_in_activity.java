@@ -14,6 +14,8 @@ import Connections.ConnectionDb;
 import Controllers.SignInUpController;
 import Interfaces.OnTaskListeners;
 
+import static com.example.android.easyc.R.anim.godown;
+
 public class sign_in_activity extends AppCompatActivity {
 
     //first identify the controller
@@ -31,7 +33,7 @@ public class sign_in_activity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in_activity);
         //connect with the database
         connectionDb = ConnectionDb.getInstance();
-        connectionDb.khaledDb();
+        connectionDb.TalaatDb();
         signInUpController = new SignInUpController();
         singInButton = findViewById(R.id.BT_sign_in);
         username = findViewById(R.id.ET_user_name);
@@ -77,7 +79,7 @@ public class sign_in_activity extends AppCompatActivity {
     public void signIn() {
 
         //for testing
-        goTo(student_menu.class);
+        goTo(categories.class);
 
         if (check()) {
             //from the controller call signin function that you made and after it finish the function will call back to this function
@@ -107,8 +109,10 @@ public class sign_in_activity extends AppCompatActivity {
     //go to any class
     public void goTo(Class s) {
 
+
         Intent intent = new Intent(this, s);
         startActivity(intent);
+       overridePendingTransition(R.anim.goup,R.anim.godown);
     }
 
     //go to restore your account class

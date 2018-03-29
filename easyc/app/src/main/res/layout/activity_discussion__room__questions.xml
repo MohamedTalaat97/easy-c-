@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context="Views.Discussion_Room_Questions">
 
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/o21" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,23 +46,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                style="@style/text"
                 android:text="my question" />
 
             <Spinner
                 android:id="@+id/sortid"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                style="@style/text"/>
 
             <Spinner
                 android:id="@+id/limitId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                style="@style/text"/>
 
             <Button
                 android:id="@+id/answerid"
-                style="@style/Widget.AppCompat.Button"
+                style="@style/text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -61,7 +73,7 @@
 
             <Button
                 android:id="@+id/asecid"
-                style="@style/Widget.AppCompat.Button"
+                style="@style/text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

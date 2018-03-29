@@ -64,6 +64,7 @@
             <Button
                 style="@android:style/Widget.DeviceDefault.Light.Button.Borderless.Small"
                 android:layout_width="170dp"
+                android:id="@+id/BT_sign_in"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:paddingBottom="70dp"

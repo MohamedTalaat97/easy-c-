@@ -168,5 +168,12 @@ public class show_opinions extends AppCompatActivity {
         i.putExtra(show_opinions.EXTRA_DATA_ID, id);
         startActivity(i);
     }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        //Add the OnBackPressed into Other activity when the BackPressed
+        overridePendingTransition(R.anim.godown, R.anim.godown);
+    }
 }
 

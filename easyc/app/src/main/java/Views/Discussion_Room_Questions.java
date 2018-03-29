@@ -191,6 +191,13 @@ public class Discussion_Room_Questions extends AppCompatActivity {
 
 
     @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        //Add the OnBackPressed into Other activity when the BackPressed
+        overridePendingTransition(R.anim.godown, R.anim.godown);
+    }
+
+    @Override
     protected void onResume()
     {
         super.onResume();

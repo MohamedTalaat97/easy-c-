@@ -49,6 +49,13 @@ public class forget_password_username extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        //Add the OnBackPressed into Other activity when the BackPressed
+        overridePendingTransition(R.anim.godown, R.anim.godown);
+    }
+
     boolean check() {
         if (forgetText.getText().toString().matches("")) {
             mailController.toast("please write your email", getApplicationContext());

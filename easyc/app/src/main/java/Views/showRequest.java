@@ -48,6 +48,13 @@ public class showRequest extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        //Add the OnBackPressed into Other activity when the BackPressed
+        overridePendingTransition(R.anim.godown, R.anim.godown);
+    }
+
     //accept the request for signing up
     void setAccept() {
         signInUpController.acceptRequest(id, new OnTaskListeners.Bool() {

@@ -6,9 +6,39 @@
     android:layout_height="match_parent"
     tools:context="Views.show_Requests">
 
-    <ListView
-        android:id="@+id/requestsId"
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/o24" />
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="6dp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="7dp"
+            android:text="Requests"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_info"
+            android:src="@drawable/menu" />
+
+        <ListView
+            android:id="@+id/requestsId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="6dp" />
+
+    </LinearLayout>
 </RelativeLayout>

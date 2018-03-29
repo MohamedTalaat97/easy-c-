@@ -14,7 +14,8 @@
         <activity
             android:name="Views.sign_in_activity"
             android:label="Easy C++"
-            android:theme="@style/C_theme">
+            android:theme="@style/C_theme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -63,4 +63,11 @@ public class topic_description extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        //Add the OnBackPressed into Other activity when the BackPressed
+        overridePendingTransition(R.anim.godown, R.anim.godown);
+    }
 }

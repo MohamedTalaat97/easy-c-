@@ -9,5 +9,8 @@
     <color name="gray">#0da6a6</color>
     <color name="darkorange">#75ff9a36</color>
     <color name="sky">#75ee7670</color>
+    <color name="red">	#680000</color>
+    <color name="trans">#11000000</color>
+    <color name="darkred">	#480000 </color>
 
 </resources>

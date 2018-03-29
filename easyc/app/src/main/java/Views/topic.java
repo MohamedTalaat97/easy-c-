@@ -59,8 +59,8 @@ public class topic extends AppCompatActivity {
 
 
     //open the selected topic
-    public void openTopicDescription(String tilte) {
-        courseController.getTopicId(tilte, new OnTaskListeners.Number() {
+    public void openTopicDescription(String title) {
+        courseController.getTopicId(title, new OnTaskListeners.Number() {
             @Override
             public void onSuccess(int result) {
                 topicId = result;

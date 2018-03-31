@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 29/03/2018 13:24:10
+ Date: 31/03/2018 22:51:49
 */
 
 SET NAMES utf8mb4;
@@ -44,12 +44,36 @@ CREATE TABLE `comment`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `title` varchar(999) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` varchar(999) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `date` datetime(0) NULL DEFAULT NULL,
-  `solved` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `solved` tinyint(1) NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `userid`(`user_id`) USING BTREE,
   CONSTRAINT `userid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of comment
+-- ----------------------------
+INSERT INTO `comment` VALUES (1, 17, 'dv', 'asdsdasdasdsad', NULL, 0);
+INSERT INTO `comment` VALUES (2, 17, 'dv', 'asdsdasdasdsad', NULL, 0);
+INSERT INTO `comment` VALUES (3, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
+INSERT INTO `comment` VALUES (4, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
+INSERT INTO `comment` VALUES (5, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
+INSERT INTO `comment` VALUES (6, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
+INSERT INTO `comment` VALUES (7, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
+INSERT INTO `comment` VALUES (8, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
+INSERT INTO `comment` VALUES (9, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
+INSERT INTO `comment` VALUES (10, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
+INSERT INTO `comment` VALUES (11, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
+INSERT INTO `comment` VALUES (12, 17, 'dsfdsfdsf', 'sdfdsfsdfsdfsdf', '2018-03-31 00:00:00', 0);
+INSERT INTO `comment` VALUES (13, 17, 'sfsdfsdfdsfds', 'sdfdfsdf', '2018-03-31 00:00:00', 0);
+INSERT INTO `comment` VALUES (14, 17, 'ds', 'sdfdsfdsf', '2018-03-31 00:00:00', 0);
+INSERT INTO `comment` VALUES (15, 17, 'how to change the world ?', 'sadfdsfsdf', '2018-03-31 00:00:00', 0);
+INSERT INTO `comment` VALUES (16, 17, 'what the hell is that ?', 'sdfdsfdf', '2018-03-31 00:00:00', 0);
+INSERT INTO `comment` VALUES (17, 17, 'wrfs  dfsdf  sf ?', 'werw  e fdsfsdf', '2018-03-31 08:43:53', 0);
+INSERT INTO `comment` VALUES (18, 17, 'ersgfdg', 'hjjfgjfgj', '2018-03-31 08:45:54', 0);
+INSERT INTO `comment` VALUES (19, 17, 'dfgfgfdgf', 'cvbvcbvbcvbvc', '2018-03-31 08:46:08', 0);
 
 -- ----------------------------
 -- Table structure for exam

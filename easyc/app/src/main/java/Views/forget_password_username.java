@@ -7,9 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.android.easyc.R;
+
 import Controllers.MailController;
 import Interfaces.OnTaskListeners;
-import com.example.android.easyc.R;
 
 public class forget_password_username extends AppCompatActivity {
     Button forget;
@@ -41,7 +42,6 @@ public class forget_password_username extends AppCompatActivity {
             @Override
             public void onSuccess(String result) {
                 mailController.toast(result, getApplicationContext());
-                if(result.indexOf("inbox")>-1)
                     goToSignIn();
             }
         });

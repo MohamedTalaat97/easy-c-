@@ -14,8 +14,7 @@
         <activity
             android:name="Views.sign_in_activity"
             android:label="Easy C++"
-            android:theme="@style/C_theme"
-            >
+            android:theme="@style/C_theme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +34,9 @@
         <activity android:name="Views.show_Requests" />
         <activity android:name="Views.showRequest" />
         <activity android:name="Views.topic_description" />
-        <activity android:name="Views.Discussion_Room_Questions"></activity>
+        <activity android:name="Views.discussion_room_questions" />
+        <activity android:name="Views.put_question_discussion" />
+        <activity android:name="Views.replies_on_questions"></activity>
     </application>
 
 </manifest>

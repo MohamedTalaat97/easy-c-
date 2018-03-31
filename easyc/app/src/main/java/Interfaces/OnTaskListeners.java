@@ -39,9 +39,9 @@ public interface OnTaskListeners {
         void onSuccess(ArrayList<Integer> id, ArrayList<Object> result);
     }
 
-    public  interface classes
+    public  interface ListAndList
     {
-        void onSuccess(Class classe);
+        void onSuccess(ArrayList<Object> list1,ArrayList<Object> list2);
     }
 
 

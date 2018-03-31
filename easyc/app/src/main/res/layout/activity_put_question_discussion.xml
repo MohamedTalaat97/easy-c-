@@ -11,13 +11,14 @@
         android:src="@drawable/o21" />
 
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/puttitle"
+            android:id="@+id/titlequestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -26,7 +27,7 @@
             android:inputType="textMultiLine" />
 
         <EditText
-            android:id="@+id/putdescription"
+            android:id="@+id/descriptionquestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -41,20 +42,12 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/backwithoutsave"
+                android:id="@+id/insertquestion"
                 style="@style/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="return" />
-
-            <Button
-                android:id="@+id/insertOpinion"
-                style="@style/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="send opinion" />
+                android:text="insert Question" />
         </LinearLayout>
     </LinearLayout>
 

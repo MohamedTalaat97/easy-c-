@@ -14,8 +14,6 @@ import Connections.ConnectionDb;
 import Controllers.SignInUpController;
 import Interfaces.OnTaskListeners;
 
-import static com.example.android.easyc.R.anim.godown;
-
 public class sign_in_activity extends AppCompatActivity {
 
     //first identify the controller
@@ -33,13 +31,14 @@ public class sign_in_activity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in_activity);
         //connect with the database
         connectionDb = ConnectionDb.getInstance();
-        connectionDb.TalaatDb();
+        connectionDb.khaledDb();
         signInUpController = new SignInUpController();
         singInButton = findViewById(R.id.BT_sign_in);
         username = findViewById(R.id.ET_user_name);
         pass = findViewById(R.id.ET_Password);
         forgetButton = findViewById(R.id.BT_forget);
         signUpButton = findViewById(R.id.dont_have_account);
+
 
 
         singInButton.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +78,7 @@ public class sign_in_activity extends AppCompatActivity {
     public void signIn() {
 
         //for testing
-        goTo(categories.class);
+        goTo(put_question_discussion.class);
 
         if (check()) {
             //from the controller call signin function that you made and after it finish the function will call back to this function

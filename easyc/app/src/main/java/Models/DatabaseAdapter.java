@@ -1,5 +1,9 @@
 package Models;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import Interfaces.OnTaskListeners;
 
 
@@ -184,7 +188,7 @@ public class DatabaseAdapter {
 
 
 
-    public void selectCommentIdTitleOrderByName(int user_id,boolean isMyQuestions,boolean isAnswered,boolean isAsec,String limitNumber, OnTaskListeners.Result listener) {
+    public void selectCommentIdTitleOrderByTitle(int user_id,boolean isMyQuestions,boolean isAnswered,boolean isAsec,String limitNumber, OnTaskListeners.Result listener) {
         query = "select id,title from comment where user_id ";
         if(isMyQuestions)
             query += "= ";
@@ -192,11 +196,11 @@ public class DatabaseAdapter {
             query += "!= ";
         query += user_id +" and solved = "+isAnswered +" order by title ";
         if(isAsec)
-            query += "Asec";
+            query += "Asc";
         else
             query +="Desc";
 
-        query += " limit = "+limitNumber;
+        query += " limit "+limitNumber;
         databaseLegacy.Select(query, listener);
     }
 
@@ -209,12 +213,56 @@ public class DatabaseAdapter {
             query += "!= ";
         query += user_id +" and solved = "+isAnswered +" order by Date ";
         if(isAsec)
-            query += "Asec";
+            query += "Asc";
         else
             query +="Desc";
 
-        query += " limit = "+limitNumber;
+        query += " limit "+limitNumber;
         databaseLegacy.Select(query, listener);
+    }
+
+
+
+    public void selectCommentIdTitleByTitleOrderByTitle(int user_id,String searchtitle,boolean isMyQuestions,boolean isAnswered,boolean isAsec,String limitNumber, OnTaskListeners.Result listener) {
+        query = "select id,title from comment where user_id ";
+        if(isMyQuestions)
+            query += "= ";
+        else
+            query += "!= ";
+        query += user_id +" and solved = "+isAnswered +" and title like '%"+searchtitle+"%' order by title ";
+        if(isAsec)
+            query += "Asc";
+        else
+            query +="Desc";
+
+        query += " limit "+limitNumber;
+        databaseLegacy.Select(query, listener);
+    }
+
+
+    public void selectCommentIdTitleByTitleOrderByDate(int user_id,String searchtitle,boolean isMyQuestions,boolean isAnswered,boolean isAsec,String limitNumber, OnTaskListeners.Result listener) {
+        query = "select id,title from comment where user_id ";
+        if(isMyQuestions)
+            query += "= ";
+        else
+            query += "!= ";
+        query += user_id +" and solved = "+isAnswered +" and title like '%"+searchtitle+"%' order by Date ";
+        if(isAsec)
+            query += "Asc";
+        else
+            query +="Desc";
+
+        query += " limit "+limitNumber;
+        databaseLegacy.Select(query, listener);
+    }
+
+    public void insertComment(int user_id,String title,String description,OnTaskListeners.Bool listener)
+    {
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
+        String formattedDate = df.format(c);
+        query = "insert into comment(user_id,title,description,date) values("+user_id+",'"+title+"','"+description+"','"+formattedDate+"')";
+        databaseLegacy.iud(query,listener);
     }
 
 

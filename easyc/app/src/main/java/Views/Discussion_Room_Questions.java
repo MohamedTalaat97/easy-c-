@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import Controllers.DiscussionController;
 import Interfaces.OnTaskListeners;
 
-public class Discussion_Room_Questions extends AppCompatActivity {
+public class discussion_room_questions extends AppCompatActivity {
     public static String QUESTION_ID ="QUESTION_ID";
     ListView listView;
     Spinner sortSpinner;
@@ -51,7 +51,7 @@ public class Discussion_Room_Questions extends AppCompatActivity {
         discussionController = new DiscussionController();
         myQuestions = false;
         isAnswered = false;
-        isAsec = true;
+        isAsec = false;
 
         mineButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +91,21 @@ public class Discussion_Room_Questions extends AppCompatActivity {
             }
         });
 
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchInDatabase(newText);
+
+                return false;
+            }
+        });
+        initiateSpinners();
     }
 
 
@@ -117,7 +132,7 @@ public class Discussion_Room_Questions extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> arrayAdapter2 = ArrayAdapter.createFromResource(this, R.array.LIMIT_ITEMS, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        limitSpinner.setAdapter(arrayAdapter);
+        limitSpinner.setAdapter(arrayAdapter2);
 
         limitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -131,6 +146,10 @@ public class Discussion_Room_Questions extends AppCompatActivity {
 
             }
         });
+       // sortSpinner.setSelection(1);
+     sortKind =   sortSpinner.getSelectedItem().toString();
+     limitItems = limitSpinner.getSelectedItem().toString();
+
     }
 
     void refreshView() {
@@ -154,10 +173,8 @@ public class Discussion_Room_Questions extends AppCompatActivity {
             discussionController.getQuestionsOrderByName(myQuestions, isAnswered, isAsec, limitItems, new OnTaskListeners.IdAndList() {
                 @Override
                 public void onSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
-                    questionsId = id;
-                    ArrayList<String> titles = (ArrayList<String>) (Object) result;
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,titles);
-                    listView.setAdapter(adapter);
+                    updateListView(id,result);
+
 
                 }
             });
@@ -168,10 +185,8 @@ public class Discussion_Room_Questions extends AppCompatActivity {
             discussionController.getQuestionsOrderByDate(myQuestions, isAnswered, isAsec, limitItems, new OnTaskListeners.IdAndList() {
                 @Override
                 public void onSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
-                    questionsId = id;
-                    ArrayList<String> titles = (ArrayList<String>) (Object) result;
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,titles);
-                    listView.setAdapter(adapter);
+                    updateListView(id,result);
+
 
                 }
             });
@@ -185,6 +200,33 @@ public class Discussion_Room_Questions extends AppCompatActivity {
         intent.putExtra(QUESTION_ID,id);
         startActivity(intent);
 
+    }
+
+
+    void searchInDatabase(String searchTitle)
+    {
+        if(sortKind.matches("Name"))
+        {
+            discussionController.searchTitleOrderByName(searchTitle,myQuestions, isAnswered, isAsec, limitItems, new OnTaskListeners.IdAndList() {
+                @Override
+                public void onSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
+                    updateListView(id,result);
+
+
+                }
+            });
+
+        }
+        else if (sortKind.matches("Date"))
+        {
+            discussionController.searchTitleOrderByDate(searchTitle,myQuestions, isAnswered, isAsec, limitItems, new OnTaskListeners.IdAndList() {
+                @Override
+                public void onSuccess(ArrayList<Integer> id, ArrayList<Object> result) {
+                    updateListView(id,result);
+
+                }
+            });
+        }
     }
 
 
@@ -202,5 +244,16 @@ public class Discussion_Room_Questions extends AppCompatActivity {
     {
         super.onResume();
         refreshView();
+    }
+
+    void updateListView(ArrayList<Integer> ids,ArrayList<Object> result)
+    {
+        if(ids == null || result == null)
+            listView.setAdapter(null);
+        else
+        questionsId = ids;
+        ArrayList<String> titles = (ArrayList<String>) (Object) result;
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,titles);
+        listView.setAdapter(adapter);
     }
 }

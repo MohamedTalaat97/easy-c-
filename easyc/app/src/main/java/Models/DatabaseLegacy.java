@@ -39,7 +39,7 @@ public class DatabaseLegacy {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                return null;
+                return false;
             }
 
             @Override

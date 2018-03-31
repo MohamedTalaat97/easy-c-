@@ -70,7 +70,7 @@ public class ConnectionDb {
     }
 
     public void khaledDb() {
-        url = "jdbc:mysql://192.168.0.101:3306/" + dbName + "?autoReconnect=true&useSSL=false";
+        url = "jdbc:mysql://192.168.0.106:3306/" + dbName + "?autoReconnect=true&useSSL=false";
         username = "khaled";
         password = "11121997K";
         registerInBackground();

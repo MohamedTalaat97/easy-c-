@@ -17,7 +17,6 @@ public class Controller {
     private static DatabaseAdapter databaseAdapter = null;
     //static so the data don't be deleted every time the controller made by object
     private static Data dataModel = null;
-    //private static Context context;
 
     public Controller() {
         if (databaseAdapter == null)

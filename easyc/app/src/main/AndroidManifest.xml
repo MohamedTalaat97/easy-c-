@@ -36,7 +36,7 @@
         <activity android:name="Views.topic_description" />
         <activity android:name="Views.discussion_room_questions" />
         <activity android:name="Views.put_question_discussion" />
-        <activity android:name="Views.replies_on_questions"></activity>
+        <activity android:name="Views.replies_on_questions" />
     </application>
 
 </manifest>

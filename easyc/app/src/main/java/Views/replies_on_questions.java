@@ -10,7 +10,16 @@ import com.example.android.easyc.R;
 
 import java.util.ArrayList;
 
+import Controllers.DiscussionController;
+import Interfaces.OnTaskListeners;
+
 public class replies_on_questions extends AppCompatActivity {
+
+    int question_id;
+    int user_id;
+    ArrayList<Integer> replyIds;
+    ArrayList<String> replies;
+
 
 
     ListView listView;
@@ -18,15 +27,18 @@ public class replies_on_questions extends AppCompatActivity {
     RelativeLayout.LayoutParams replyLayout;
     ListView.LayoutParams viewLayout;
     ArrayList<String> userNames;
-    ArrayList<String> replys;
+
+    DiscussionController discussionController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_replies_on_questions);
+        discussionController = new DiscussionController();
+        question_id = getIntent().getIntExtra(discussion_room_questions.QUESTION_ID,0);
 
          userNameLayout = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
          replyLayout= new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-        viewLayout = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, ListView.LayoutParams.WRAP_CONTENT);
+         viewLayout = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, ListView.LayoutParams.WRAP_CONTENT);
 
 
 
@@ -37,6 +49,17 @@ public class replies_on_questions extends AppCompatActivity {
 
     void fillList()
     {
+        discussionController.getRepliesIdUserNameContent(question_id, new OnTaskListeners.ThreeList() {
+            @Override
+            public void onSuccess(ArrayList<Object> list1, ArrayList<Object> list2, ArrayList<Object> list3) {
+                if(list1.isEmpty())
+                    return;
+                replyIds = (ArrayList<Integer>) (Object) list1;
+                userNames = (ArrayList<String>)(Object) list2;
+                replies = (ArrayList<String>) (Object) list3;
+                addReplies();
+            }
+        });
 
     }
 
@@ -53,7 +76,7 @@ public class replies_on_questions extends AppCompatActivity {
 
     void addReplies()
     {
-        for(int i = 0; i < userNames.size();i++)
+        for(int i = 0; i < replyIds.size();i++)
         {
             RelativeLayout relativeLayout = new RelativeLayout(getApplicationContext());
             TextView textView1 = new TextView(getApplicationContext());
@@ -63,7 +86,7 @@ public class replies_on_questions extends AppCompatActivity {
             relativeLayout.setLayoutParams(viewLayout);
 
             textView1.setText(userNames.get(i).toString());
-            textView2.setText(replys.get(i).toString());
+            textView2.setText(replies.get(i).toString());
 
             relativeLayout.addView(textView1);
             relativeLayout.addView(textView2);

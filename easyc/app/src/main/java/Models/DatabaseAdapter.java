@@ -265,6 +265,26 @@ public class DatabaseAdapter {
         databaseLegacy.iud(query,listener);
     }
 
+    public void selectCommentTitleUserName(int question_id,OnTaskListeners.Result listeners)
+    {
+        query = "select title,username from user,comment where user.id = user_id and comment.id = "+question_id;
+        databaseLegacy.Select(query,listeners);
+    }
+
+    public void selectReplyIdUserNameContent(int question_id,OnTaskListeners.Result listeners)
+    {
+        query = "select id,username,content from user,reply where user.id = user_id and comment_id = "+question_id;
+        databaseLegacy.Select(query,listeners);
+    }
+
+    public void selectReplyIdByBestAnswer(int question_id,OnTaskListeners.Result listeners)
+    {
+        query = "select id from reply where best_answer = true and comment_id = "+question_id;
+        databaseLegacy.Select(query,listeners);
+    }
+
+
+
 
 
 }

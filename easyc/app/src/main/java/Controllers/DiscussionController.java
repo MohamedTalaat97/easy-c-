@@ -92,4 +92,20 @@ public class DiscussionController extends Controller {
             }
         });
     }
+
+
+    public  void getRepliesIdUserNameContent(int question_id, final OnTaskListeners.ThreeList listener)
+    {
+        databaseAdapter().selectReplyIdUserNameContent(question_id, new OnTaskListeners.Result() {
+            @Override
+            public void onSuccess(ResultSet data) {
+                if(checkIfFound(data))
+                {
+                    listener.onSuccess(resultToArray((data),1),resultToArray((data),2),resultToArray((data),3));
+                }
+                else
+                    listener.onSuccess(new ArrayList<Object>(),new ArrayList<Object>(),new ArrayList<Object>());
+            }
+        });
+    }
 }

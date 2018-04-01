@@ -44,5 +44,10 @@ public interface OnTaskListeners {
         void onSuccess(ArrayList<Object> list1,ArrayList<Object> list2);
     }
 
+    public  interface ThreeList
+    {
+        void onSuccess(ArrayList<Object> list1,ArrayList<Object> list2,ArrayList<Object> list3);
+    }
+
 
 }

@@ -14,7 +14,7 @@ public class OpinionController extends Controller {
 
 
 
-    //get unreaded opinions
+    //get unread opinions
    public void getUnReadOpinions(final OnTaskListeners.IdAndList listener)
     {
         databaseAdapter().selectOpinionTitleUnReaded(new OnTaskListeners.Result() {

@@ -16,6 +16,8 @@ public class student_menu extends AppCompatActivity {
 
     ImageView categories;
     TextView name;
+    String user_name;
+    int user_Level;
 
 
     @Override

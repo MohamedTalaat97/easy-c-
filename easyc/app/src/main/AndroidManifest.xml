@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/C_theme">
         <activity
-            android:name="Views.sign_in_activity"
+            android:name=".Views.sign_in_activity"
             android:label="Easy C++"
             android:theme="@style/C_theme">
             <intent-filter>
@@ -22,21 +22,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="Views.sign_up"
+            android:name=".Views.sign_up"
             android:label="create an account" />
-        <activity android:name="Views.student_menu" />
-        <activity android:name="Views.categories" />
-        <activity android:name="Views.show_opinions" />
-        <activity android:name="Views.show_opinion" />
-        <activity android:name="Views.put_opinion" />
-        <activity android:name="Views.topic" />
-        <activity android:name="Views.forget_password_username" />
-        <activity android:name="Views.show_Requests" />
-        <activity android:name="Views.showRequest" />
-        <activity android:name="Views.topic_description" />
-        <activity android:name="Views.discussion_room_questions" />
-        <activity android:name="Views.put_question_discussion" />
-        <activity android:name="Views.replies_on_questions" />
+        <activity android:name=".Views.student_menu" />
+        <activity android:name=".Views.categories" />
+        <activity android:name=".Views.show_opinions" />
+        <activity android:name=".Views.show_opinion" />
+        <activity android:name=".Views.put_opinion" />
+        <activity android:name=".Views.topic" />
+        <activity android:name=".Views.forget_password_username" />
+        <activity android:name=".Views.show_Requests" />
+        <activity android:name=".Views.showRequest" />
+        <activity android:name=".Views.topic_description" />
+        <activity android:name=".Views.discussion_room_questions" />
+        <activity android:name=".Views.put_question_discussion" />
+        <activity android:name=".Views.replies_on_questions" />
     </application>
 
 </manifest>

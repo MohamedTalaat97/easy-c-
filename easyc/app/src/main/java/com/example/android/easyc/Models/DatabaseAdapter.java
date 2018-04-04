@@ -1,15 +1,15 @@
 package com.example.android.easyc.Models;
 
+import com.example.android.easyc.Interfaces.OnTaskListeners;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 
-
-//evey function have the same way of identification
+//every function have the same way of identification
 //first part is the method : select, insert,delete or update
-//second par is the name of table
+//second par is the name of table or tables
 //third part is the names of the attributes we want to get it : only with select
 //fourth part is the condition : it's optional and only exists if there is two functions do the same thing but different conditions
 

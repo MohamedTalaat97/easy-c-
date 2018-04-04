@@ -105,6 +105,7 @@ public class MailSender extends javax.mail.Authenticator {
     }
 
 
+    //send the email
     private  void sendMail(String subject, String body, String recipients, OnTaskListeners.Word listener) throws Exception {
         try {
             MimeMessage message = new MimeMessage(session);
@@ -129,10 +130,12 @@ public class MailSender extends javax.mail.Authenticator {
         this.recipientEmail = recipientEmail;
     }
 
+    //set the content of email
     public void setBody(String body) {
         this.body = body;
     }
 
+    //set the subject of email
     public void setSubject(String subject) {
         this.subject = subject;
     }

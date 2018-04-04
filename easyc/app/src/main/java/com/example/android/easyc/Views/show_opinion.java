@@ -139,6 +139,7 @@ public class show_opinion extends AppCompatActivity {
             favourite.setText("mark as favourite");
     }
 
+    //go back to see all opinions
     void goToOpinions() {
         Intent intent = new Intent(getApplicationContext(), show_opinions.class);
         startActivity(intent);

@@ -10,6 +10,7 @@ import java.sql.SQLException;
  * Created by KhALeD SaBrY on 03-Mar-18.
  */
 
+
 public class ConnectionDb {
     //Variables
     private static ConnectionDb instance = null;

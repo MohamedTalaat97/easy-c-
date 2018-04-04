@@ -1,18 +1,15 @@
 package com.example.android.easyc.Controllers;
 
+import com.example.android.easyc.Interfaces.OnTaskListeners;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 
 /**
  * Created by KhALeD SaBrY on 15-Mar-18.
  */
 
 public class OpinionController extends Controller {
-
-
-
 
     //get unread opinions
    public void getUnReadOpinions(final OnTaskListeners.IdAndList listener)
@@ -41,6 +38,7 @@ public class OpinionController extends Controller {
         });
 
     }
+
     //get favourite opinions
     public void getFavouriteOpinions(final OnTaskListeners.IdAndList listener)
     {

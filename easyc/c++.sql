@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 31/03/2018 22:51:49
+ Date: 03/04/2018 21:06:48
 */
 
 SET NAMES utf8mb4;
@@ -50,7 +50,7 @@ CREATE TABLE `comment`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `userid`(`user_id`) USING BTREE,
   CONSTRAINT `userid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of comment
@@ -74,6 +74,7 @@ INSERT INTO `comment` VALUES (16, 17, 'what the hell is that ?', 'sdfdsfdf', '20
 INSERT INTO `comment` VALUES (17, 17, 'wrfs  dfsdf  sf ?', 'werw  e fdsfsdf', '2018-03-31 08:43:53', 0);
 INSERT INTO `comment` VALUES (18, 17, 'ersgfdg', 'hjjfgjfgj', '2018-03-31 08:45:54', 0);
 INSERT INTO `comment` VALUES (19, 17, 'dfgfgfdgf', 'cvbvcbvbcvbvc', '2018-03-31 08:46:08', 0);
+INSERT INTO `comment` VALUES (20, 17, 'what is your ID ?', 'sdfsdfsdfsdfsdf', '2018-04-01 10:21:18', 0);
 
 -- ----------------------------
 -- Table structure for exam
@@ -159,7 +160,7 @@ CREATE TABLE `reply`  (
   `user_id` int(11) NOT NULL,
   `content` varchar(999) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `date` datetime(0) NULL DEFAULT NULL,
-  `best_answer` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `best_answer` tinyint(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `comment_id`(`comment_id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,

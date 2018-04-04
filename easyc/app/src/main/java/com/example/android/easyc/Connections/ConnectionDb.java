@@ -78,7 +78,7 @@ public class ConnectionDb {
     }
 
     public void TalaatDb() {
-        url = "jdbc:mysql://192.168.1.7:3306/c++?autoReconnect=true&useSSL=false";
+        url = "jdbc:mysql://192.168.1.8:3306/c++?autoReconnect=true&useSSL=false";
         username = "medo";
         password = "01115598525";
         registerInBackground();

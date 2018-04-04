@@ -24,13 +24,13 @@ public class student_menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_menu);
-        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
-        anim.setInterpolator(new LinearInterpolator());
-        anim.setRepeatCount(Animation.INFINITE);
-        anim.setDuration(700);
+//        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
+//        anim.setInterpolator(new LinearInterpolator());
+//        anim.setRepeatCount(Animation.INFINITE);
+//        anim.setDuration(700);
         categories = findViewById(R.id.categories);
         name = findViewById(R.id.username);
-        categories.startAnimation(anim);
+//        categories.startAnimation(anim);
         categories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

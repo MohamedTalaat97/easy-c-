@@ -44,7 +44,7 @@ public class put_opinion extends AppCompatActivity {
         putOpinion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertOpinion();
+                putOpinion();
             }
         });
 
@@ -59,7 +59,7 @@ public class put_opinion extends AppCompatActivity {
     }
 
     //put the opinion
-    public void insertOpinion() {
+    public void putOpinion() {
         if (check()) {
             opinionController.putOpinion(title.getText().toString(), description.getText().toString(), new OnTaskListeners.Bool() {
                 @Override

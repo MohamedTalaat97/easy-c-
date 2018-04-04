@@ -10,17 +10,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.example.android.easyc.Controllers.OpinionController;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 import java.util.ArrayList;
-
-import com.example.android.easyc.Controllers.OpinionController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 
 public class show_opinions extends AppCompatActivity {
     OpinionController opinionController;
@@ -49,6 +47,19 @@ public class show_opinions extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 goToOpinion(idArrayList.get(position), titleArrayList.get(position));
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                opinionController.toast(spinner.getSelectedItem().toString(), getApplication());
+                setSpinner();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -139,19 +150,6 @@ public class show_opinions extends AppCompatActivity {
         arrayAdapter = ArrayAdapter.createFromResource(this, R.array.kindOfOpinions, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
-
-        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                opinionController.toast(spinner.getSelectedItem().toString(), getApplication());
-                setSpinner();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
 

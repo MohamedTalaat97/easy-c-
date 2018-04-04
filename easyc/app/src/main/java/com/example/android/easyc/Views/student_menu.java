@@ -1,12 +1,9 @@
 package com.example.android.easyc.Views;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,11 +31,19 @@ public class student_menu extends AppCompatActivity {
         categories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(student_menu.this, categories.class);
-                startActivity(i);
+                goTo(categories.class);
+
             }
         });
 
+    }
+
+
+    //go to any class
+  void  goTo(Class c)
+    {
+        Intent i = new Intent(getApplicationContext(), c);
+        startActivity(i);
     }
 
     @Override

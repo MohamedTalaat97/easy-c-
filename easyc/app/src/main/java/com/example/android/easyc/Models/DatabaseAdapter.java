@@ -72,29 +72,11 @@ public class DatabaseAdapter {
 
     }
 
-    public void selectEmployeeName(OnTaskListeners.Result listeners) {
-        query = "select name from employee";
-        databaseLegacy.Select(query, listeners);
-
-    }
-
     public void insertUser(String userName, String Pass, char Type, String age, String email, boolean suspended, String requestText, OnTaskListeners.Bool listeners) {
         query = "insert into user(username,password,type,age,email,suspended,request)" +
                 " values('" + userName + "','" + Pass + "','" + Type + "'," + age + ",'" + email + "'," + suspended + ",'" + requestText + "')";
         databaseLegacy.iud(query, listeners);
 
-    }
-
-
-    public void insertEmployeeName(String Name, OnTaskListeners.Bool listener) {
-        query = "insert into employee (Name) values('" + Name + "')";
-        databaseLegacy.iud(query, listener);
-
-    }
-
-    public void selectEmail(String Email, String password, OnTaskListeners.Result listener) {
-        query = "select id from Log where Email = '" + Email + "' and password = '" + password + "'";
-        databaseLegacy.Select(query, listener);
     }
 
     public void selectOpinionTitle(OnTaskListeners.Result listener) {
@@ -138,8 +120,8 @@ public class DatabaseAdapter {
         databaseLegacy.iud(query, listener);
     }
 
-    public void updateOpinionSeen(int id, boolean seen, OnTaskListeners.Bool listener) {
-        query = "update opinion set seen = " + seen + " where id = " + id;
+    public void updateOpinionSeen(int id, boolean isSeen, OnTaskListeners.Bool listener) {
+        query = "update opinion set seen = " + isSeen + " where id = " + id;
         databaseLegacy.iud(query, listener);
     }
 
@@ -186,105 +168,95 @@ public class DatabaseAdapter {
     }
 
 
-
-
-    public void selectCommentIdTitleOrderByTitle(int user_id,boolean isMyQuestions,boolean isAnswered,boolean isAsec,String limitNumber, OnTaskListeners.Result listener) {
+    public void selectCommentIdTitleOrderByTitle(int user_id, boolean isMyQuestions, boolean isAnswered, boolean isAsec, String limitNumber, OnTaskListeners.Result listener) {
         query = "select id,title from comment where user_id ";
-        if(isMyQuestions)
+        if (isMyQuestions)
             query += "= ";
         else
             query += "!= ";
-        query += user_id +" and solved = "+isAnswered +" order by title ";
-        if(isAsec)
+        query += user_id + " and solved = " + isAnswered + " order by title ";
+        if (isAsec)
             query += "Asc";
         else
-            query +="Desc";
+            query += "Desc";
 
-        query += " limit "+limitNumber;
+        query += " limit " + limitNumber;
         databaseLegacy.Select(query, listener);
     }
 
 
-    public void selectCommentIdTitleOrderByDate(int user_id,boolean isMyQuestions,boolean isAnswered,boolean isAsec,String limitNumber, OnTaskListeners.Result listener) {
+    public void selectCommentIdTitleOrderByDate(int user_id, boolean isMyQuestions, boolean isAnswered, boolean isAsec, String limitNumber, OnTaskListeners.Result listener) {
         query = "select id,title from comment where user_id ";
-        if(isMyQuestions)
+        if (isMyQuestions)
             query += "= ";
         else
             query += "!= ";
-        query += user_id +" and solved = "+isAnswered +" order by Date ";
-        if(isAsec)
+        query += user_id + " and solved = " + isAnswered + " order by Date ";
+        if (isAsec)
             query += "Asc";
         else
-            query +="Desc";
+            query += "Desc";
 
-        query += " limit "+limitNumber;
+        query += " limit " + limitNumber;
         databaseLegacy.Select(query, listener);
     }
 
 
-
-    public void selectCommentIdTitleByTitleOrderByTitle(int user_id,String searchtitle,boolean isMyQuestions,boolean isAnswered,boolean isAsec,String limitNumber, OnTaskListeners.Result listener) {
+    public void selectCommentIdTitleByTitleOrderByTitle(int user_id, String searchtitle, boolean isMyQuestions, boolean isAnswered, boolean isAsec, String limitNumber, OnTaskListeners.Result listener) {
         query = "select id,title from comment where user_id ";
-        if(isMyQuestions)
+        if (isMyQuestions)
             query += "= ";
         else
             query += "!= ";
-        query += user_id +" and solved = "+isAnswered +" and title like '%"+searchtitle+"%' order by title ";
-        if(isAsec)
+        query += user_id + " and solved = " + isAnswered + " and title like '%" + searchtitle + "%' order by title ";
+        if (isAsec)
             query += "Asc";
         else
-            query +="Desc";
+            query += "Desc";
 
-        query += " limit "+limitNumber;
+        query += " limit " + limitNumber;
         databaseLegacy.Select(query, listener);
     }
 
 
-    public void selectCommentIdTitleByTitleOrderByDate(int user_id,String searchtitle,boolean isMyQuestions,boolean isAnswered,boolean isAsec,String limitNumber, OnTaskListeners.Result listener) {
+    public void selectCommentIdTitleByTitleOrderByDate(int user_id, String searchtitle, boolean isMyQuestions, boolean isAnswered, boolean isAsec, String limitNumber, OnTaskListeners.Result listener) {
         query = "select id,title from comment where user_id ";
-        if(isMyQuestions)
+        if (isMyQuestions)
             query += "= ";
         else
             query += "!= ";
-        query += user_id +" and solved = "+isAnswered +" and title like '%"+searchtitle+"%' order by Date ";
-        if(isAsec)
+        query += user_id + " and solved = " + isAnswered + " and title like '%" + searchtitle + "%' order by Date ";
+        if (isAsec)
             query += "Asc";
         else
-            query +="Desc";
+            query += "Desc";
 
-        query += " limit "+limitNumber;
+        query += " limit " + limitNumber;
         databaseLegacy.Select(query, listener);
     }
 
-    public void insertComment(int user_id,String title,String description,OnTaskListeners.Bool listener)
-    {
+    public void insertComment(int user_id, String title, String description, OnTaskListeners.Bool listener) {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
         String formattedDate = df.format(c);
-        query = "insert into comment(user_id,title,description,date) values("+user_id+",'"+title+"','"+description+"','"+formattedDate+"')";
-        databaseLegacy.iud(query,listener);
+        query = "insert into comment(user_id,title,description,date) values(" + user_id + ",'" + title + "','" + description + "','" + formattedDate + "')";
+        databaseLegacy.iud(query, listener);
     }
 
-    public void selectCommentTitleUserName(int question_id,OnTaskListeners.Result listeners)
-    {
-        query = "select title,username from user,comment where user.id = user_id and comment.id = "+question_id;
-        databaseLegacy.Select(query,listeners);
+    public void selectCommentTitleUserName(int question_id, OnTaskListeners.Result listeners) {
+        query = "select title,username from user,comment where user.id = user_id and comment.id = " + question_id;
+        databaseLegacy.Select(query, listeners);
     }
 
-    public void selectReplyIdUserNameContent(int question_id,OnTaskListeners.Result listeners)
-    {
-        query = "select id,username,content from user,reply where user.id = user_id and comment_id = "+question_id;
-        databaseLegacy.Select(query,listeners);
+    public void selectReplyIdUserNameContent(int question_id, OnTaskListeners.Result listeners) {
+        query = "select id,username,content from user,reply where user.id = user_id and comment_id = " + question_id;
+        databaseLegacy.Select(query, listeners);
     }
 
-    public void selectReplyIdByBestAnswer(int question_id,OnTaskListeners.Result listeners)
-    {
-        query = "select id from reply where best_answer = true and comment_id = "+question_id;
-        databaseLegacy.Select(query,listeners);
+    public void selectReplyIdByBestAnswer(int question_id, OnTaskListeners.Result listeners) {
+        query = "select id from reply where best_answer = true and comment_id = " + question_id;
+        databaseLegacy.Select(query, listeners);
     }
-
-
-
 
 
 }

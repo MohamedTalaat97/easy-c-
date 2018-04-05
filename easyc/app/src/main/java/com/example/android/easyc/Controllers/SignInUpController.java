@@ -1,9 +1,9 @@
 package com.example.android.easyc.Controllers;
 
+import com.example.android.easyc.Interfaces.OnTaskListeners;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 
 /**
  * Created by KhALeD SaBrY on 12-Mar-18.
@@ -13,13 +13,13 @@ public class SignInUpController extends Controller {
 
     //get user Type
     public char getType() {
-        return dataModel().getUserType();
+        return userData().getUserType();
     }
 
     //be aware that it must be the return value to the view is void so you have to send the view with it
     public void signIn(String name, String password, final OnTaskListeners.Word listener) {
 
-        databaseAdapter().selectUserIdTypeSuspendedLevelName(name, password, new OnTaskListeners.Result() {
+        databaseAdapter().selectUserIdTypeSuspended(name, password, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 if (checkIfFound(data)) {
@@ -28,20 +28,38 @@ public class SignInUpController extends Controller {
                             listener.onSuccess("wait untill the admin approve on your request");
                             return;
                         }
-                        dataModel().setUserType('I');
+                        userData().setUserType('I');
                     } else if (resultToValue(data, 2).toString().matches("S")) {
                         if ((boolean) resultToValue(data, 3) == true) {
                             listener.onSuccess("you have been suspended for something you did and it was wrong");
                             return;
                         }
-                        dataModel().setUserType('S');
-                        dataModel().setUserLevel((Integer) resultToValue(data, 4));
+                        userData().setUserType('S');
                     } else {
-                        dataModel().setUserType('A');
+                        userData().setUserType('A');
 
                     }
-                    dataModel().setUserId((Integer) resultToValue(data));
-                    listener.onSuccess("true");
+                    userData().setUserId((Integer) resultToValue(data,1));
+                    databaseAdapter().selectUserLevel(userData().getUserId(), new OnTaskListeners.Result() {
+                        @Override
+                        public void onSuccess(ResultSet data) {
+                            userData().setUserLevel((Integer) resultToValue(data));
+
+                            databaseAdapter().selectUserUsername(userData().getUserId(), new OnTaskListeners.Result() {
+                                @Override
+                                public void onSuccess(ResultSet data) {
+                                    userData().setUserName((String) resultToValue(data));
+                                    listener.onSuccess("true");
+                                }
+                            });
+
+
+                        }
+                    });
+
+
+
+
                 } else
                     //next here we take an action
                     listener.onSuccess("check your username/password");

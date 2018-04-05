@@ -8,12 +8,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.android.easyc.Controllers.SignInUpController;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 import java.util.ArrayList;
-
-import com.example.android.easyc.Controllers.SignInUpController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 
 public class show_Requests extends AppCompatActivity {
 
@@ -53,6 +52,7 @@ public class show_Requests extends AppCompatActivity {
         fillListView();
     }
 
+    //fill the list from the database with all instructors requests
     void fillListView() {
         signInUpController.getRequests(new OnTaskListeners.IdAndList() {
             @Override

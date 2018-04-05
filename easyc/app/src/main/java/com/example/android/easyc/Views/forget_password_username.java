@@ -34,6 +34,7 @@ public class forget_password_username extends AppCompatActivity {
     }
 
 
+    //send email to get back the password/username
     void sendMail() {
         if (!check())
             return;
@@ -56,6 +57,7 @@ public class forget_password_username extends AppCompatActivity {
         overridePendingTransition(R.anim.godown, R.anim.godown);
     }
 
+    //check if there is email
     boolean check() {
         if (forgetText.getText().toString().matches("")) {
             mailController.toast("please write your email", getApplicationContext());
@@ -71,9 +73,10 @@ public class forget_password_username extends AppCompatActivity {
     }
 
 
+    //go back to signIn menu
     void goToSignIn()
     {
-        Intent i = new Intent(getApplicationContext(), sign_in_activity.class);
+        Intent i = new Intent(getApplicationContext(), sign_in.class);
         startActivity(i);
     }
 }

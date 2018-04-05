@@ -3,36 +3,34 @@ package com.example.android.easyc.Controllers;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.android.easyc.Connections.ConnectionDb;
-import com.example.android.easyc.Models.UserData;
-import com.example.android.easyc.Models.DatabaseAdapter;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import com.example.android.easyc.Connections.ConnectionDb;
+import com.example.android.easyc.Models.Data;
+import com.example.android.easyc.Models.DatabaseAdapter;
 
 
 public class Controller {
 
     private static DatabaseAdapter databaseAdapter = null;
     //static so the data don't be deleted every time the controller made by object
-
-   private  UserData userData = null;
+    private static Data dataModel = null;
 
     public Controller() {
         if (databaseAdapter == null)
             databaseAdapter = new DatabaseAdapter();
-
-            userData = UserData.getInstance();
-
+        if (dataModel == null)
+            dataModel = new Data();
     }
 
     protected DatabaseAdapter databaseAdapter() {
         return databaseAdapter;
     }
 
-    protected UserData userData() {
-        return userData;
+    protected Data dataModel() {
+        return dataModel;
     }
 
 
@@ -168,10 +166,6 @@ public class Controller {
                 return false;
 
         } catch (SQLException e) {
-            return false;
-        }
-        catch (Exception e)
-        {
             return false;
         }
 

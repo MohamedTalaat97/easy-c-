@@ -1,18 +1,19 @@
 package com.example.android.easyc.Views;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.android.easyc.Controllers.CourseController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 import java.util.ArrayList;
+
+import com.example.android.easyc.Controllers.CourseController;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 
 public class topic extends AppCompatActivity {
 
@@ -34,11 +35,10 @@ public class topic extends AppCompatActivity {
         topicsListView = findViewById(R.id.topics_ListView);
         topicsList = new ArrayList<String>();
         topicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                                  @Override
-                                                  public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                                      openTopic(topicsList.get(i));
-                                                  }
-                                              }
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                openTopicDescription(topicsList.get(i));
+            }}
         );
 
         fillList();
@@ -59,27 +59,22 @@ public class topic extends AppCompatActivity {
 
 
     //open the selected topic
-    void openTopic(String title) {
+    public void openTopicDescription(String title) {
         courseController.getTopicId(title, new OnTaskListeners.Number() {
             @Override
             public void onSuccess(int result) {
                 topicId = result;
-                goToTopic();
+                Intent i = new Intent(getApplicationContext(), topic_description.class);
+                i.putExtra(TOPIC_ID, topicId);
+                startActivity(i);
             }
 
         });
 
     }
 
-    //open specific topic
-    void goToTopic() {
-        Intent i = new Intent(getApplicationContext(), topic_description.class);
-        i.putExtra(TOPIC_ID, topicId);
-        startActivity(i);
-    }
-
     @Override
-    public void onBackPressed() {
+    public void onBackPressed(){
         super.onBackPressed();
         //Add the OnBackPressed into Other activity when the BackPressed
         overridePendingTransition(R.anim.godown, R.anim.godown);

@@ -38,11 +38,13 @@ public class put_question_discussion extends AppCompatActivity {
         });
 
 
+
+
+
     }
 
 
-    //put question in discussion room
-    void insertQuestion() {
+    public void insertQuestion() {
         if (check()) {
             discussionController.insertQuestion(title.getText().toString(), description.getText().toString(), new OnTaskListeners.Bool() {
                 @Override
@@ -61,7 +63,6 @@ public class put_question_discussion extends AppCompatActivity {
 
     }
 
-    //before you enter a question first check if the data is alright
     boolean check() {
         if (title.getText().toString().matches("")) {
             discussionController.toast("there is no name for the title of question", getApplicationContext());
@@ -75,10 +76,10 @@ public class put_question_discussion extends AppCompatActivity {
     }
 
 
-    //go back to menu after you put the question successfully
-    void goToMenu() {
+    void goToMenu()
+    {
 
-        Intent intent = new Intent(getApplicationContext(), student_menu.class);
+        Intent intent = new Intent(getApplicationContext(),student_menu.class);
         startActivity(intent);
     }
 }

@@ -11,11 +11,12 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
-import com.example.android.easyc.Controllers.DiscussionController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 import java.util.ArrayList;
+
+import com.example.android.easyc.Controllers.DiscussionController;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 
 public class discussion_room_questions extends AppCompatActivity {
     public static String QUESTION_ID ="QUESTION_ID";
@@ -151,7 +152,6 @@ public class discussion_room_questions extends AppCompatActivity {
 
     }
 
-    //refresh the view every time you change the parameters
     void refreshView() {
         if (myQuestions)
             mineButton.setText("My Questions");
@@ -194,7 +194,6 @@ public class discussion_room_questions extends AppCompatActivity {
     }
 
 
-    //go to see specific question
    void goToQuestion(int id)
     {
         Intent intent  = new Intent(getApplicationContext(),put_opinion.class);
@@ -204,7 +203,6 @@ public class discussion_room_questions extends AppCompatActivity {
     }
 
 
-    //search in database about specific topic questions
     void searchInDatabase(String searchTitle)
     {
         if(sortKind.matches("Name"))
@@ -248,7 +246,6 @@ public class discussion_room_questions extends AppCompatActivity {
         refreshView();
     }
 
-    //update the list view every time you change one of the parameters
     void updateListView(ArrayList<Integer> ids,ArrayList<Object> result)
     {
         if(ids == null || result == null)

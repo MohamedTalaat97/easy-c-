@@ -6,12 +6,12 @@
 
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
         android:src="@drawable/o24" />
 
 
@@ -47,23 +47,54 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_info"
+        android:src="@drawable/menu" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/user_info">
 
-        <GridView
-            android:id="@+id/gridview"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:horizontalSpacing="20dp"
-            android:numColumns="2"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="20dp" />
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@id/user_info"
+                android:layout_marginTop="1dp"
+                android:orientation="vertical"
+                android:padding="50dp">
+
+
+                <ImageView
+                    android:id="@+id/categories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/l1" />
+
+                <ImageView
+                    android:id="@+id/discusion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/l2" />
+
+                <ImageView
+                    android:id="@+id/quiz"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/l3" />
+
+            </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 
 
 </RelativeLayout>
-
-
-

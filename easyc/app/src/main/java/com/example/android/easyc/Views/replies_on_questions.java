@@ -6,11 +6,12 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.android.easyc.Controllers.DiscussionController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 import java.util.ArrayList;
+
+import com.example.android.easyc.Controllers.DiscussionController;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 
 public class replies_on_questions extends AppCompatActivity {
 
@@ -45,7 +46,6 @@ public class replies_on_questions extends AppCompatActivity {
         adjustView();
         fillList();
     }
-
 
     void fillList()
     {

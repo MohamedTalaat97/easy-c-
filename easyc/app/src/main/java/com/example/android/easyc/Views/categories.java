@@ -8,11 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.android.easyc.Controllers.CourseController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 import java.util.ArrayList;
+
+import com.example.android.easyc.Controllers.CourseController;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 
 public class categories extends AppCompatActivity {
 
@@ -56,12 +57,14 @@ public class categories extends AppCompatActivity {
     }
 
     //open one topic
-     void openTopics(String tilte) {
+    public void openTopics(String tilte) {
         courseController.getCatagoryId(tilte, new OnTaskListeners.Number() {
             @Override
             public void onSuccess(int result) {
                 cat_id = result;
-                goToTopics();
+                Intent i = new Intent(getApplicationContext(), topic.class);
+                i.putExtra(CAT_ID, cat_id);
+                startActivity(i);
             }
 
         });
@@ -69,16 +72,8 @@ public class categories extends AppCompatActivity {
 
     }
 
-
-    //open topics for this category list
-     void goToTopics() {
-        Intent i = new Intent(getApplicationContext(), topic.class);
-        i.putExtra(CAT_ID, cat_id);
-        startActivity(i);
-    }
-
     @Override
-    public void onBackPressed() {
+    public void onBackPressed(){
         super.onBackPressed();
         //Add the OnBackPressed into Other activity when the BackPressed
         overridePendingTransition(R.anim.godown, R.anim.godown);

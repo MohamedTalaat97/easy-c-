@@ -8,12 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.android.easyc.R;
+
 import com.example.android.easyc.Connections.ConnectionDb;
 import com.example.android.easyc.Controllers.SignInUpController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
-import com.example.android.easyc.R;
 
-public class sign_in extends AppCompatActivity {
+public class sign_in_activity extends AppCompatActivity {
 
     //first identify the controller
     SignInUpController signInUpController;
@@ -29,15 +30,16 @@ public class sign_in extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_activity);
         //connect with the database
-        connectionDb = ConnectionDb.getInstance(this, ConnectionDb.connection.khaled);
-
-
+        connectionDb = ConnectionDb.getInstance();
+        connectionDb.khaledDb();
         signInUpController = new SignInUpController();
         singInButton = findViewById(R.id.BT_sign_in);
         username = findViewById(R.id.ET_user_name);
         pass = findViewById(R.id.ET_Password);
         forgetButton = findViewById(R.id.BT_forget);
         signUpButton = findViewById(R.id.dont_have_account);
+
+
 
         singInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,10 +75,10 @@ public class sign_in extends AppCompatActivity {
     }
 
     //sign in
-    void signIn() {
+    public void signIn() {
 
         //for testing
-      //  goTo(student_menu.class);
+        goTo(discussion_room_questions.class);
 
         if (check()) {
             //from the controller call signin function that you made and after it finish the function will call back to this function
@@ -98,18 +100,18 @@ public class sign_in extends AppCompatActivity {
     }
 
     //if you don't have an account
-    void signUp() {
+    public void signUp() {
         Intent i = new Intent(this, sign_up.class);
         startActivity(i);
     }
 
     //go to any class
-    void goTo(Class s) {
+    public void goTo(Class s) {
 
 
         Intent intent = new Intent(this, s);
         startActivity(intent);
-        overridePendingTransition(R.anim.goup, R.anim.godown);
+       overridePendingTransition(R.anim.goup,R.anim.godown);
     }
 
     //go to restore your account class

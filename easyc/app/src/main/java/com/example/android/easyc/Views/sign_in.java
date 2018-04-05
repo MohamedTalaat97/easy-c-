@@ -8,11 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.android.easyc.Interfaces.OnTaskListeners;
-import com.example.android.easyc.R;
-
 import com.example.android.easyc.Connections.ConnectionDb;
 import com.example.android.easyc.Controllers.SignInUpController;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
+import com.example.android.easyc.R;
 
 public class sign_in extends AppCompatActivity {
 
@@ -30,8 +29,9 @@ public class sign_in extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_activity);
         //connect with the database
-        connectionDb = ConnectionDb.getInstance();
-        connectionDb.khaledDb();
+        connectionDb = ConnectionDb.getInstance(this, ConnectionDb.connection.khaled);
+
+
         signInUpController = new SignInUpController();
         singInButton = findViewById(R.id.BT_sign_in);
         username = findViewById(R.id.ET_user_name);

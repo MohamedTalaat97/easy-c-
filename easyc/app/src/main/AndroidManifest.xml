@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/C_theme">
         <activity
-            android:name=".Views.sign_in_activity"
+            android:name=".Views.sign_in"
             android:label="Easy C++"
             android:theme="@style/C_theme">
             <intent-filter>

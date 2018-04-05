@@ -8,13 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 import com.example.android.easyc.Connections.ConnectionDb;
 import com.example.android.easyc.Controllers.SignInUpController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 
-public class sign_in_activity extends AppCompatActivity {
+public class sign_in extends AppCompatActivity {
 
     //first identify the controller
     SignInUpController signInUpController;
@@ -39,7 +39,10 @@ public class sign_in_activity extends AppCompatActivity {
         forgetButton = findViewById(R.id.BT_forget);
         signUpButton = findViewById(R.id.dont_have_account);
 
+<<<<<<< HEAD:easyc/app/src/main/java/com/example/android/easyc/Views/sign_in_activity.java
 
+=======
+>>>>>>> 34698dfb9ae71db7e915f42b06a798f3ffb30845:easyc/app/src/main/java/com/example/android/easyc/Views/sign_in.java
         singInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

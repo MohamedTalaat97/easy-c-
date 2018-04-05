@@ -4,44 +4,82 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.animation.RotateAnimation;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.android.easyc.Controllers.StudentController;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 public class student_menu extends AppCompatActivity {
 
-    ImageView categories;
+    GridView menu;
     TextView name;
+    ProgressBar level;
+    int user_id;
     String user_name;
     int user_Level;
+    StudentController studentController;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_menu);
-//        RotateAnimation anim = new RotateAnimation(0f, 350f, 15f, 15f);
-//        anim.setInterpolator(new LinearInterpolator());
-//        anim.setRepeatCount(Animation.INFINITE);
-//        anim.setDuration(700);
-        categories = findViewById(R.id.categories);
         name = findViewById(R.id.username);
-//        categories.startAnimation(anim);
-        categories.setOnClickListener(new View.OnClickListener() {
+        user_id=studentController.getUserId();
+        studentController.getUserName(user_id, new OnTaskListeners.Word() {
             @Override
-            public void onClick(View v) {
-                goTo(categories.class);
-
+            public void onSuccess(String result) {
+                user_name=result;
             }
         });
 
+        initMenu();
+        initProgress();
     }
 
 
-    //go to any class
-  void  goTo(Class c)
+    void initMenu() {
+
+        menu = (GridView) findViewById(R.id.gridview);
+        menu.setAdapter(new student_menu_adapter(this));
+        menu.setNumColumns(2);
+        menu.setVerticalSpacing(20);
+        menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+
+                switch(position)
+                {
+                    case(0):goTo(categories.class);
+                    break;
+
+                }
+
+            }
+        });
+    }
+
+
+    void initProgress()
     {
+
+        level = findViewById(R.id.level_Bar);
+        level.setMax(100);
+        studentController.getUserLevel(user_id, new OnTaskListeners.Number() {
+            @Override
+            public void onSuccess(int result) {
+                user_Level=result;
+            }
+        });
+        level.setProgress(user_Level*10);
+    }
+    //go to any class
+    void goTo(Class c) {
         Intent i = new Intent(getApplicationContext(), c);
         startActivity(i);
     }

@@ -141,6 +141,17 @@ public class DatabaseAdapter {
         databaseLegacy.Select(query, listener);
     }
 
+
+    public void selectUsername(int userID, OnTaskListeners.Result listener) {
+        query = "select username from user where id = '" + userID + "'";
+        databaseLegacy.Select(query, listener);
+    }
+    public void selectUserLevel(int userID, OnTaskListeners.Result listener) {
+        query = "select level from user where id = '" + userID + "'";
+        databaseLegacy.Select(query, listener);
+    }
+
+
     public void selectUserEmail(String email, OnTaskListeners.Result listener) {
         query = "select email from user where email = '" + email + "'";
         databaseLegacy.Select(query, listener);

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.android.easyc.Connections.ConnectionDb;
-import com.example.android.easyc.Models.Data;
+import com.example.android.easyc.Models.UserData;
 import com.example.android.easyc.Models.DatabaseAdapter;
 
 import java.sql.ResultSet;
@@ -16,21 +16,31 @@ public class Controller {
 
     private static DatabaseAdapter databaseAdapter = null;
     //static so the data don't be deleted every time the controller made by object
+<<<<<<< HEAD
     private Data dataModel = null;
+=======
+   private static UserData userData = null;
+>>>>>>> 34698dfb9ae71db7e915f42b06a798f3ffb30845
 
     public Controller() {
         if (databaseAdapter == null)
             databaseAdapter = new DatabaseAdapter();
+<<<<<<< HEAD
 
             dataModel = Data.getInstance();
+=======
+        if (userData == null)
+            userData = new UserData();
+
+>>>>>>> 34698dfb9ae71db7e915f42b06a798f3ffb30845
     }
 
     protected DatabaseAdapter databaseAdapter() {
         return databaseAdapter;
     }
 
-    protected Data dataModel() {
-        return dataModel;
+    protected UserData userData() {
+        return userData;
     }
 
 

@@ -2,8 +2,12 @@ package com.example.android.easyc.Models;
 
 
 // this is the class that we will save all the data we need while he is using the program
+<<<<<<< HEAD:easyc/app/src/main/java/com/example/android/easyc/Models/Data.java
 public class Data {
     private  static Data instance = null;
+=======
+public class UserData {
+>>>>>>> 34698dfb9ae71db7e915f42b06a798f3ffb30845:easyc/app/src/main/java/com/example/android/easyc/Models/UserData.java
 
     private  int userId = 17;
     private  String userName;

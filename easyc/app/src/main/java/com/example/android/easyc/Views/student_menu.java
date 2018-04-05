@@ -4,14 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.android.easyc.Controllers.StudentController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 public class student_menu extends AppCompatActivity {
@@ -19,9 +17,9 @@ public class student_menu extends AppCompatActivity {
     GridView menu;
     TextView name;
     ProgressBar level;
-    int user_id;
-    String user_name;
-    int user_Level;
+    int userId;
+    String username;
+    int userLevel;
     StudentController studentController;
 
 
@@ -29,8 +27,19 @@ public class student_menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_menu);
+        studentController = new StudentController();
         name = findViewById(R.id.username);
-        user_id=studentController.getUserId();
+        level = findViewById(R.id.level_Bar);
+        menu = (GridView) findViewById(R.id.gridview);
+
+        userId =studentController.getUserId();
+        username = studentController.getUsername();
+        userLevel = studentController.getUserLevel();
+        name.setText(username);
+
+
+        //you can't put anything after the listener
+        /*
         studentController.getUserName(user_id, new OnTaskListeners.Word() {
             @Override
             public void onSuccess(String result) {
@@ -38,6 +47,7 @@ public class student_menu extends AppCompatActivity {
             }
         });
 
+*/
         initMenu();
         initProgress();
     }
@@ -45,7 +55,6 @@ public class student_menu extends AppCompatActivity {
 
     void initMenu() {
 
-        menu = (GridView) findViewById(R.id.gridview);
         menu.setAdapter(new student_menu_adapter(this));
         menu.setNumColumns(2);
         menu.setVerticalSpacing(20);
@@ -68,15 +77,8 @@ public class student_menu extends AppCompatActivity {
     void initProgress()
     {
 
-        level = findViewById(R.id.level_Bar);
         level.setMax(100);
-        studentController.getUserLevel(user_id, new OnTaskListeners.Number() {
-            @Override
-            public void onSuccess(int result) {
-                user_Level=result;
-            }
-        });
-        level.setProgress(user_Level*10);
+        level.setProgress(userLevel*10);
     }
     //go to any class
     void goTo(Class c) {

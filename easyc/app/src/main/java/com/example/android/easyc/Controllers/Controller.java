@@ -16,23 +16,15 @@ public class Controller {
 
     private static DatabaseAdapter databaseAdapter = null;
     //static so the data don't be deleted every time the controller made by object
-<<<<<<< HEAD
-    private Data dataModel = null;
-=======
-   private static UserData userData = null;
->>>>>>> 34698dfb9ae71db7e915f42b06a798f3ffb30845
+
+   private  UserData userData = null;
 
     public Controller() {
         if (databaseAdapter == null)
             databaseAdapter = new DatabaseAdapter();
-<<<<<<< HEAD
 
-            dataModel = Data.getInstance();
-=======
-        if (userData == null)
-            userData = new UserData();
+            userData = UserData.getInstance();
 
->>>>>>> 34698dfb9ae71db7e915f42b06a798f3ffb30845
     }
 
     protected DatabaseAdapter databaseAdapter() {
@@ -176,6 +168,10 @@ public class Controller {
                 return false;
 
         } catch (SQLException e) {
+            return false;
+        }
+        catch (Exception e)
+        {
             return false;
         }
 

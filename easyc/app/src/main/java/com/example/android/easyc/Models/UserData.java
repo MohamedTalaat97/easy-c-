@@ -6,7 +6,7 @@ package com.example.android.easyc.Models;
 public class UserData {
 
     private  static UserData instance = null;
-    private  int userId = 17;
+    private  int userId;
     private  String userName;
     private  int userLevel;
     private  char userType;

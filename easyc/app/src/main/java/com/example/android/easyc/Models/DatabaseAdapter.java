@@ -142,7 +142,7 @@ public class DatabaseAdapter {
     }
 
 
-    public void selectUsername(int userID, OnTaskListeners.Result listener) {
+    public void selectUserUsername(int userID, OnTaskListeners.Result listener) {
         query = "select username from user where id = '" + userID + "'";
         databaseLegacy.Select(query, listener);
     }
@@ -157,8 +157,8 @@ public class DatabaseAdapter {
         databaseLegacy.Select(query, listener);
     }
 
-    public void selectUserIdTypeSuspendedLevelName(String name, String password, OnTaskListeners.Result listener) {
-        query = "select id,type,suspended,level,Name from user where (userName = '" + name + "' OR email = '" + name + "' )  and password = '" + password + "'";
+    public void selectUserIdTypeSuspended(String name, String password, OnTaskListeners.Result listener) {
+        query = "select id,type,suspended from user where (userName = '" + name + "' OR email = '" + name + "' )  and password = '" + password + "'";
         databaseLegacy.Select(query, listener);
     }
 

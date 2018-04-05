@@ -31,7 +31,7 @@ public class sign_in extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in_activity);
         //connect with the database
         connectionDb = ConnectionDb.getInstance();
-        connectionDb.TalaatDb();
+        connectionDb.khaledDb();
         signInUpController = new SignInUpController();
         singInButton = findViewById(R.id.BT_sign_in);
         username = findViewById(R.id.ET_user_name);
@@ -76,7 +76,7 @@ public class sign_in extends AppCompatActivity {
     void signIn() {
 
         //for testing
-        goTo(student_menu.class);
+      //  goTo(student_menu.class);
 
         if (check()) {
             //from the controller call signin function that you made and after it finish the function will call back to this function

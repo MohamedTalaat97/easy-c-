@@ -39,10 +39,6 @@ public class sign_in extends AppCompatActivity {
         forgetButton = findViewById(R.id.BT_forget);
         signUpButton = findViewById(R.id.dont_have_account);
 
-<<<<<<< HEAD:easyc/app/src/main/java/com/example/android/easyc/Views/sign_in_activity.java
-
-=======
->>>>>>> 34698dfb9ae71db7e915f42b06a798f3ffb30845:easyc/app/src/main/java/com/example/android/easyc/Views/sign_in.java
         singInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

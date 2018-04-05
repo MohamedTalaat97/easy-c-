@@ -2,12 +2,12 @@ package com.example.android.easyc.Models;
 
 import android.os.AsyncTask;
 
+import com.example.android.easyc.Connections.ConnectionDb;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import com.example.android.easyc.Connections.ConnectionDb;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
 
 /**
  * Created by KhALeD SaBrY on 03-Mar-18.
@@ -17,6 +17,7 @@ public class DatabaseLegacy {
 
     private ConnectionDb conn = ConnectionDb.getInstance();
 
+    //iud stand for : insert,update and delete
     public void iud(final  String query, final OnTaskListeners.Bool listener) {
 
 

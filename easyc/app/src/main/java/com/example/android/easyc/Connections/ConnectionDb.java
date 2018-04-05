@@ -1,5 +1,6 @@
 package com.example.android.easyc.Connections;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
 import java.sql.Connection;
@@ -10,7 +11,12 @@ import java.sql.SQLException;
  * Created by KhALeD SaBrY on 03-Mar-18.
  */
 
+
 public class ConnectionDb {
+
+    public enum connection {
+        khaled,talaat,ahmed,kareem
+    }
     //Variables
     private static ConnectionDb instance = null;
     public Connection c = null;
@@ -18,27 +24,33 @@ public class ConnectionDb {
     private String username;
     private String password;
     private String dbName = "c++";
+    private String host;
+    private static boolean dynamic = false;
+    private static connection server;
 
+    //to set host ip
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    //to make the connection dynamic
+    public static void setConnectionDynamic(Context context)
+    {
+        dynamic = true;
+        NetworkWifiConnection connection = new NetworkWifiConnection(context);
+        connection.execute();
+    }
     //connect with th database
     private void registerInBackground() {
-        new AsyncTask<Void, Void, Boolean>() {
+        new AsyncTask<Void, Void, Void>() {
             @Override
-            protected Boolean doInBackground(Void... params) {
-                try {
-                    Class.forName("com.mysql.jdbc.Driver");
-                    c = DriverManager.getConnection(url, username, password);
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                    return false;
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    return false;
-                }
-                return true;
+            protected Void doInBackground(Void... params) {
+                connect();
+                return null;
             }
 
             @Override
-            protected void onPostExecute(Boolean data) {
+            protected void onPostExecute(Void data) {
             }
 
             @Override
@@ -54,9 +66,21 @@ public class ConnectionDb {
     }
 
     //to instantiate a coonectiondb
+    //for static Connection
     public static ConnectionDb getInstance() {
         if (instance == null) {
             instance = new ConnectionDb();
+        }
+        return instance;
+    }
+
+    //for dynamic Connection
+    public static ConnectionDb getInstance(Context contextId,connection serverId)
+    {
+        if (instance == null) {
+            instance = new ConnectionDb();
+            server = serverId;
+            setConnectionDynamic(contextId);
         }
         return instance;
     }
@@ -70,30 +94,76 @@ public class ConnectionDb {
     }
 
     public void khaledDb() {
-        url = "jdbc:mysql://10.0.2.240:3306/" + dbName + "?autoReconnect=true&useSSL=false";
+        url = "jdbc:mysql://" + host + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
         username = "khaled";
         password = "11121997K";
-        registerInBackground();
+        if(dynamic)
+        connect();
+        else
+            registerInBackground();
+
+        // registerInBackground();
     }
 
-    public void TalaatDb() {
-        url = "jdbc:mysql://192.168.1.7:3306/c++?autoReconnect=true&useSSL=false";
+
+
+
+    public void talaatDb() {
+        url = "jdbc:mysql://" + host + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
         username = "medo";
         password = "01115598525";
-        registerInBackground();
+        if(dynamic)
+            connect();
+        else
+            registerInBackground();
     }
 
-    public void AhmedDb() {
-        url = "jdbc:mysql://192.168.0.104:3306/run?autoReconnect=true&useSSL=false";
+    public void ahmedDb() {
+        url = "jdbc:mysql://" + host + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
         username = "khaled";
         password = "11121997K";
-        registerInBackground();
+        if(dynamic)
+            connect();
+        else
+            registerInBackground();
     }
 
-    public void KareemDb() {
-        url = "jdbc:mysql://192.168.0.104:3306/run?autoReconnect=true&useSSL=false";
+    public void kareemDb() {
+        url = "jdbc:mysql://" + host + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
         username = "khaled";
         password = "11121997K";
-        registerInBackground();
+        if(dynamic)
+            connect();
+        else
+            registerInBackground();
+    }
+
+
+
+
+
+    void connect() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            c = DriverManager.getConnection(url, username, password);
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void ServerConnect()
+    {
+        if(server.equals(connection.khaled))
+            khaledDb();
+        else if(server.equals(connection.ahmed))
+            ahmedDb();
+        else if(server.equals(connection.kareem))
+            kareemDb();
+        else if(server.equals(connection.talaat))
+            talaatDb();
     }
 }

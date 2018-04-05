@@ -44,7 +44,7 @@ public class put_opinion extends AppCompatActivity {
         putOpinion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertOpinion();
+                putOpinion();
             }
         });
 
@@ -59,7 +59,7 @@ public class put_opinion extends AppCompatActivity {
     }
 
     //put the opinion
-    public void insertOpinion() {
+     void putOpinion() {
         if (check()) {
             opinionController.putOpinion(title.getText().toString(), description.getText().toString(), new OnTaskListeners.Bool() {
                 @Override
@@ -78,6 +78,7 @@ public class put_opinion extends AppCompatActivity {
 
     }
 
+    //check before send opinion
     boolean check() {
         if (title.getText().toString().matches("")) {
             opinionController.toast("there is no name for the title of Opinion", getApplicationContext());
@@ -91,6 +92,7 @@ public class put_opinion extends AppCompatActivity {
     }
 
 
+    //go back to menu
     void goToMenu() {
         Intent intent = new Intent(getApplicationContext(), student_menu.class);
         startActivity(intent);

@@ -3,6 +3,11 @@
     package="com.example.android.easyc">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+
 
     <application
         android:allowBackup="true"
@@ -12,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/C_theme">
         <activity
-            android:name=".Views.sign_in_activity"
+            android:name=".Views.sign_in"
             android:label="Easy C++"
             android:theme="@style/C_theme">
             <intent-filter>

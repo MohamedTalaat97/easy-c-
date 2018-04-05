@@ -37,7 +37,7 @@ public class topic_description extends AppCompatActivity {
     }
 
     //fill the topic data on the screen
-    public void fillData() {
+    void fillData() {
 
         courseController.getDescription(topicId, new OnTaskListeners.Word() {
             @Override
@@ -65,7 +65,7 @@ public class topic_description extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
         //Add the OnBackPressed into Other activity when the BackPressed
         overridePendingTransition(R.anim.godown, R.anim.godown);

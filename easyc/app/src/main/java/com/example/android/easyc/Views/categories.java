@@ -56,7 +56,7 @@ public class categories extends AppCompatActivity {
     }
 
     //open one topic
-    public void openTopics(String tilte) {
+     void openTopics(String tilte) {
         courseController.getCatagoryId(tilte, new OnTaskListeners.Number() {
             @Override
             public void onSuccess(int result) {
@@ -71,7 +71,7 @@ public class categories extends AppCompatActivity {
 
 
     //open topics for this category list
-    public void goToTopics() {
+     void goToTopics() {
         Intent i = new Intent(getApplicationContext(), topic.class);
         i.putExtra(CAT_ID, cat_id);
         startActivity(i);

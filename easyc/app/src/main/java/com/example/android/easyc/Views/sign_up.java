@@ -128,7 +128,7 @@ public class sign_up extends AppCompatActivity {
     }
 
     //sign up button
-    public void signUp() {
+    void signUp() {
         if (check()) {
             //from the controller call signup function that you made and after it finish the function will call back to this function
             signInUpController.signUp(username.getText().toString(), pass.getText().toString(), (String) type.getSelectedItem(), age.getText().toString(), email.getText().toString(), requestText.getText().toString(), new OnTaskListeners.Bool() {

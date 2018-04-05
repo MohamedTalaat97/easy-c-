@@ -59,7 +59,7 @@ public class put_opinion extends AppCompatActivity {
     }
 
     //put the opinion
-    public void putOpinion() {
+     void putOpinion() {
         if (check()) {
             opinionController.putOpinion(title.getText().toString(), description.getText().toString(), new OnTaskListeners.Bool() {
                 @Override

@@ -154,7 +154,7 @@ public class show_opinions extends AppCompatActivity {
 
 
     //update the list according to the spinner state
-    public void setSpinner() {
+    void setSpinner() {
         kind = spinner.getSelectedItem().toString();
         fillList();
     }
@@ -168,7 +168,7 @@ public class show_opinions extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
         //Add the OnBackPressed into Other activity when the BackPressed
         overridePendingTransition(R.anim.godown, R.anim.godown);

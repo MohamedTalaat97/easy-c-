@@ -3,13 +3,28 @@ package com.example.android.easyc.Models;
 
 // this is the class that we will save all the data we need while he is using the program
 public class Data {
+    private  static Data instance = null;
 
-    private static int userId = 17;
-    private static String userName;
-    private static int userLevel;
-    private  static char userType;
+    private  int userId = 17;
+    private  String userName;
+    private  int userLevel;
+    private  char userType;
 
 ////////////////////////////////////////////////////////////
+
+    /// private constuctor for singleton pattern
+    private Data()
+    {
+
+    }
+
+    public static Data getInstance()
+    {
+        if(instance == null)
+            instance = new Data();
+        return instance;
+    }
+
 
     //setters
     public void setUserId(int userid)

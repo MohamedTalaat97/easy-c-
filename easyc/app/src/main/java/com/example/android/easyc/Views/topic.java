@@ -59,7 +59,7 @@ public class topic extends AppCompatActivity {
 
 
     //open the selected topic
-    public void openTopic(String title) {
+    void openTopic(String title) {
         courseController.getTopicId(title, new OnTaskListeners.Number() {
             @Override
             public void onSuccess(int result) {
@@ -72,7 +72,7 @@ public class topic extends AppCompatActivity {
     }
 
     //open specific topic
-    public void goToTopic() {
+    void goToTopic() {
         Intent i = new Intent(getApplicationContext(), topic_description.class);
         i.putExtra(TOPIC_ID, topicId);
         startActivity(i);

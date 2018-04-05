@@ -40,7 +40,6 @@ public class sign_in_activity extends AppCompatActivity {
         signUpButton = findViewById(R.id.dont_have_account);
 
 
-
         singInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +74,7 @@ public class sign_in_activity extends AppCompatActivity {
     }
 
     //sign in
-    public void signIn() {
+    void signIn() {
 
         //for testing
         goTo(student_menu.class);
@@ -100,18 +99,18 @@ public class sign_in_activity extends AppCompatActivity {
     }
 
     //if you don't have an account
-    public void signUp() {
+    void signUp() {
         Intent i = new Intent(this, sign_up.class);
         startActivity(i);
     }
 
     //go to any class
-    public void goTo(Class s) {
+    void goTo(Class s) {
 
 
         Intent intent = new Intent(this, s);
         startActivity(intent);
-       overridePendingTransition(R.anim.goup,R.anim.godown);
+        overridePendingTransition(R.anim.goup, R.anim.godown);
     }
 
     //go to restore your account class

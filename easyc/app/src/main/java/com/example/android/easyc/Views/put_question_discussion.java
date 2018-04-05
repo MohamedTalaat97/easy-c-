@@ -38,14 +38,11 @@ public class put_question_discussion extends AppCompatActivity {
         });
 
 
-
-
-
     }
 
 
     //put question in discussion room
-    public void insertQuestion() {
+    void insertQuestion() {
         if (check()) {
             discussionController.insertQuestion(title.getText().toString(), description.getText().toString(), new OnTaskListeners.Bool() {
                 @Override
@@ -79,10 +76,9 @@ public class put_question_discussion extends AppCompatActivity {
 
 
     //go back to menu after you put the question successfully
-    void goToMenu()
-    {
+    void goToMenu() {
 
-        Intent intent = new Intent(getApplicationContext(),student_menu.class);
+        Intent intent = new Intent(getApplicationContext(), student_menu.class);
         startActivity(intent);
     }
 }

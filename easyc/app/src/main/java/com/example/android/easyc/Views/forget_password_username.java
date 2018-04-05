@@ -76,7 +76,7 @@ public class forget_password_username extends AppCompatActivity {
     //go back to signIn menu
     void goToSignIn()
     {
-        Intent i = new Intent(getApplicationContext(), sign_in_activity.class);
+        Intent i = new Intent(getApplicationContext(), sign_in.class);
         startActivity(i);
     }
 }

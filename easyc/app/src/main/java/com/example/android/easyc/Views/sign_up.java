@@ -235,7 +235,7 @@ public class sign_up extends AppCompatActivity {
 
     //return back to sign In activity
     void goToSignInActivity() {
-        Intent i = new Intent(sign_up.this, sign_in_activity.class);
+        Intent i = new Intent(sign_up.this, sign_in.class);
         startActivity(i);
     }
 

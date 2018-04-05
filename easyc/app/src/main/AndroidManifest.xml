@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/C_theme">
         <activity
-            android:name=".Views.sign_in_activity"
+            android:name=".Views.sign_in"
             android:label="Easy C++"
             android:theme="@style/C_theme">
             <intent-filter>
@@ -37,6 +37,7 @@
         <activity android:name=".Views.discussion_room_questions" />
         <activity android:name=".Views.put_question_discussion" />
         <activity android:name=".Views.replies_on_questions" />
+        <activity android:name=".grid"></activity>
     </application>
 
 </manifest>

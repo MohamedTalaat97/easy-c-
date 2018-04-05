@@ -2,7 +2,7 @@ package com.example.android.easyc.Models;
 
 
 // this is the class that we will save all the data we need while he is using the program
-public class Data {
+public class UserData {
 
     private static int userId = 17;
     private static String userName;

@@ -16,7 +16,7 @@ public class DiscussionController extends Controller {
     //get back the questions with order by name
     public void getQuestionsOrderByName(boolean isMyQuestions, boolean isAnswered, boolean isAsec, String limitNumber, final OnTaskListeners.IdAndList listener)
     {
-        databaseAdapter().selectCommentIdTitleOrderByTitle(dataModel().getUserId(), isMyQuestions, isAnswered, isAsec, limitNumber, new OnTaskListeners.Result() {
+        databaseAdapter().selectCommentIdTitleOrderByTitle(userData().getUserId(), isMyQuestions, isAnswered, isAsec, limitNumber, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 if(checkIfFound(data))
@@ -34,7 +34,7 @@ public class DiscussionController extends Controller {
     //get back the questions with order by date
     public void getQuestionsOrderByDate(boolean isMyQuestions, boolean isAnswered, boolean isAsec, String limitNumber, final OnTaskListeners.IdAndList listener)
     {
-        databaseAdapter().selectCommentIdTitleOrderByDate(dataModel().getUserId(), isMyQuestions, isAnswered, isAsec, limitNumber, new OnTaskListeners.Result() {
+        databaseAdapter().selectCommentIdTitleOrderByDate(userData().getUserId(), isMyQuestions, isAnswered, isAsec, limitNumber, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 if(checkIfFound(data))
@@ -54,7 +54,7 @@ public class DiscussionController extends Controller {
     //put question in discussion room
     public  void insertQuestion(String title, String description, final OnTaskListeners.Bool listener)
     {
-        databaseAdapter().insertComment(dataModel().getUserId(), title, description, new OnTaskListeners.Bool() {
+        databaseAdapter().insertComment(userData().getUserId(), title, description, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
                 listener.onSuccess(result);
@@ -66,7 +66,7 @@ public class DiscussionController extends Controller {
     public  void searchTitleOrderByDate(String searchtitle,boolean isMyQuestions, boolean isAnswered, boolean isAsec, String limitNumber, final OnTaskListeners.IdAndList listener)
     {
         databaseAdapter().selectCommentIdTitleByTitleOrderByDate(
-                dataModel().getUserId(), searchtitle, isMyQuestions, isAnswered, isAsec, limitNumber, new OnTaskListeners.Result() {
+                userData().getUserId(), searchtitle, isMyQuestions, isAnswered, isAsec, limitNumber, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 if(checkIfFound(data))
@@ -84,7 +84,7 @@ public class DiscussionController extends Controller {
     //search about a specific topic in questions and order them by name
     public  void searchTitleOrderByName(String searchtitle,boolean isMyQuestions, boolean isAnswered, boolean isAsec, String limitNumber, final OnTaskListeners.IdAndList listener)
     {
-        databaseAdapter().selectCommentIdTitleByTitleOrderByTitle(dataModel().getUserId(), searchtitle, isMyQuestions, isAnswered, isAsec, limitNumber, new OnTaskListeners.Result() {
+        databaseAdapter().selectCommentIdTitleByTitleOrderByTitle(userData().getUserId(), searchtitle, isMyQuestions, isAnswered, isAsec, limitNumber, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 if(checkIfFound(data))

@@ -13,7 +13,7 @@ public class SignInUpController extends Controller {
 
     //get user Type
     public char getType() {
-        return dataModel().getUserType();
+        return userData().getUserType();
     }
 
     //be aware that it must be the return value to the view is void so you have to send the view with it
@@ -28,19 +28,19 @@ public class SignInUpController extends Controller {
                             listener.onSuccess("wait untill the admin approve on your request");
                             return;
                         }
-                        dataModel().setUserType('I');
+                        userData().setUserType('I');
                     } else if (resultToValue(data, 2).toString().matches("S")) {
                         if ((boolean) resultToValue(data, 3) == true) {
                             listener.onSuccess("you have been suspended for something you did and it was wrong");
                             return;
                         }
-                        dataModel().setUserType('S');
-                        dataModel().setUserLevel((Integer) resultToValue(data, 4));
+                        userData().setUserType('S');
+                        userData().setUserLevel((Integer) resultToValue(data, 4));
                     } else {
-                        dataModel().setUserType('A');
+                        userData().setUserType('A');
 
                     }
-                    dataModel().setUserId((Integer) resultToValue(data));
+                    userData().setUserId((Integer) resultToValue(data));
                     listener.onSuccess("true");
                 } else
                     //next here we take an action

@@ -1,4 +1,4 @@
-package com.example.android.easyc;
+package com.example.android.easyc.Views;
 
 import android.content.Context;
 import android.view.View;
@@ -6,13 +6,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.example.android.easyc.R;
+
 /**
  * Created by MAN CENTER on 05-Apr-18.
  */
-public class ImageAdapter extends BaseAdapter {
+public class student_menu_adapter extends BaseAdapter {
     private Context mContext;
 
-    public ImageAdapter(Context c) {
+    public student_menu_adapter(Context c) {
         mContext = c;
     }
 
@@ -45,7 +47,7 @@ public class ImageAdapter extends BaseAdapter {
         return imageView;
     }
 
-    // references to our images
+    // references to menu images
     private Integer[] mThumbIds = {
             R.drawable.l1, R.drawable.l2,
             R.drawable.l3, R.drawable.opinion,

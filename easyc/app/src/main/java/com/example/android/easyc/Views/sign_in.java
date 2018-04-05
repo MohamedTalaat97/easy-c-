@@ -8,12 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 import com.example.android.easyc.Connections.ConnectionDb;
 import com.example.android.easyc.Controllers.SignInUpController;
-import com.example.android.easyc.Interfaces.OnTaskListeners;
-import com.example.android.easyc.grid;
 
 public class sign_in extends AppCompatActivity {
 
@@ -32,15 +31,13 @@ public class sign_in extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in_activity);
         //connect with the database
         connectionDb = ConnectionDb.getInstance();
-       // connectionDb.TalaatDb();
+        connectionDb.TalaatDb();
         signInUpController = new SignInUpController();
         singInButton = findViewById(R.id.BT_sign_in);
         username = findViewById(R.id.ET_user_name);
         pass = findViewById(R.id.ET_Password);
         forgetButton = findViewById(R.id.BT_forget);
         signUpButton = findViewById(R.id.dont_have_account);
-
-
 
         singInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,25 +76,25 @@ public class sign_in extends AppCompatActivity {
     public void signIn() {
 
         //for testing
-        goTo(grid.class);
+        goTo(student_menu.class);
 
-//        if (check()) {
-//            //from the controller call signin function that you made and after it finish the function will call back to this function
-//            signInUpController.signIn(username.getText().toString(), pass.getText().toString(), new OnTaskListeners.Word() {
-//                @Override
-//                public void onSuccess(String result) {
-//                    signInUpController.toast(result, getApplicationContext());
-//                    if (result.matches("true"))
-//                        if (signInUpController.getType() == 'I') {
-//                            goTo(student_menu.class);
-//                        } else if (signInUpController.getType() == 'S') {
-//                            goTo(student_menu.class);
-//                        } else {
-//                            goTo(student_menu.class);
-//                        }
-//                }
-//            });
-//        }
+        if (check()) {
+            //from the controller call signin function that you made and after it finish the function will call back to this function
+            signInUpController.signIn(username.getText().toString(), pass.getText().toString(), new OnTaskListeners.Word() {
+                @Override
+                public void onSuccess(String result) {
+                    signInUpController.toast(result, getApplicationContext());
+                    if (result.matches("true"))
+                        if (signInUpController.getType() == 'I') {
+                            goTo(student_menu.class);
+                        } else if (signInUpController.getType() == 'S') {
+                            goTo(student_menu.class);
+                        } else {
+                            goTo(student_menu.class);
+                        }
+                }
+            });
+        }
     }
 
     //if you don't have an account
@@ -112,7 +109,7 @@ public class sign_in extends AppCompatActivity {
 
         Intent intent = new Intent(this, s);
         startActivity(intent);
-       overridePendingTransition(R.anim.goup,R.anim.godown);
+        overridePendingTransition(R.anim.goup, R.anim.godown);
     }
 
     //go to restore your account class

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.example.android.easyc.Connections.ConnectionDb;
-import com.example.android.easyc.Models.Data;
+import com.example.android.easyc.Models.UserData;
 import com.example.android.easyc.Models.DatabaseAdapter;
 
 
@@ -16,21 +16,22 @@ public class Controller {
 
     private static DatabaseAdapter databaseAdapter = null;
     //static so the data don't be deleted every time the controller made by object
-    private static Data dataModel = null;
+   private static UserData userData = null;
 
     public Controller() {
         if (databaseAdapter == null)
             databaseAdapter = new DatabaseAdapter();
-        if (dataModel == null)
-            dataModel = new Data();
+        if (userData == null)
+            userData = new UserData();
+
     }
 
     protected DatabaseAdapter databaseAdapter() {
         return databaseAdapter;
     }
 
-    protected Data dataModel() {
-        return dataModel;
+    protected UserData userData() {
+        return userData;
     }
 
 

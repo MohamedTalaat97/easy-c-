@@ -44,26 +44,29 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
                 String ipString = Formatter.formatIpAddress(ipAddress);
 
 
-                String prefix = ipString.substring(0,ipString.lastIndexOf(".")+1);
+                String prefix = ipString.substring(0, ipString.lastIndexOf(".") + 1);
 
-                for (int i = 103; i < 255; i++) {
-                    if(connectionDb.checkConnection())
+                for (int i = 0; i < 255; i++) {
+                    if (connectionDb.checkConnection())
                         return null;
                     String testIp = prefix + String.valueOf(i);
 
                     InetAddress address = InetAddress.getByName(testIp);
                     boolean reachable = address.isReachable(50);
                     String hostName = address.getCanonicalHostName();
-                    System.out.print("host" + testIp);
 
                     if (reachable) {
                         connectionDb.setHost(testIp);
-                        connectionDb.ServerConnect();
+                        connectionDb.serverConnect();
                     }
+                    /*
+                    if (i == 254)
+                        if (!connectionDb.checkConnection())
+                            i = 0;
+                            */
                 }
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
 
         } catch (Throwable t) {
         }

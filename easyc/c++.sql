@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 03/04/2018 21:06:48
+ Date: 06/04/2018 22:09:14
 */
 
 SET NAMES utf8mb4;
@@ -128,7 +128,7 @@ CREATE TABLE `opinion`  (
 -- ----------------------------
 -- Records of opinion
 -- ----------------------------
-INSERT INTO `opinion` VALUES (1, 17, 'dfdsfsdfTitle', 'Titledsfsdfsdfsdfsdnfoasdnoiasnmvlksnvlksnlkvmsdkmvsdkmvkasdmv;sdml;vasmdv;lmasd;lvma;dslmv;lsamv;samv;lsdmofsdofoasjffl;asdmf;kmscv;mcvzxcv', 0, 0, 1);
+INSERT INTO `opinion` VALUES (1, 17, 'dfdsfsdfTitle', 'Titledsfsdfsdfsdfsdnfoasdnoiasnmvlksnvlksnlkvmsdkmvsdkmvkasdmv;sdml;vasmdv;lmasd;lvma;dslmv;lsamv;samv;lsdmofsdofoasjffl;asdmf;kmscv;mcvzxcv', 1, 1, 1);
 
 -- ----------------------------
 -- Table structure for question
@@ -233,7 +233,6 @@ CREATE TABLE `user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `age` int(11) NULL DEFAULT NULL,
@@ -241,11 +240,12 @@ CREATE TABLE `user`  (
   `level` int(255) NULL DEFAULT 0,
   `request` varchar(999) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (17, 'khaled', '2625', NULL, 'khaledsab1997@gmail.com', 'I', 12, 1, 0, NULL);
+INSERT INTO `user` VALUES (17, 'khaled', '2625', 'khaledsab1997@gmail.com', 'I', 12, 1, 0, NULL);
+INSERT INTO `user` VALUES (18, 'khaleds', '1112', 'khaledsab1997+1@gmail.com', 'S', 12, 0, 0, '');
 
 SET FOREIGN_KEY_CHECKS = 1;

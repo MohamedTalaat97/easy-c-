@@ -40,6 +40,9 @@ public class DatabaseLegacy {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                catch (Exception e)
+                {
+                }
                 return false;
             }
 
@@ -57,30 +60,32 @@ public class DatabaseLegacy {
         }.execute();
     }
 
-    public  void Select(final  String query,final OnTaskListeners.Result listeners)
+    public  void select(final  String query,final OnTaskListeners.Result listeners)
     {
         new AsyncTask<Void, Void, ResultSet>() {
-            public ResultSet RS = null;
+            public ResultSet RS;
 
             @Override
             protected ResultSet doInBackground(Void... params) {
                 try {
                     if(!conn.checkConnection())
                         return null;
-                    Statement stmt;
-                    stmt = conn.c.createStatement();
-                    RS = stmt.executeQuery(query);
+                        Statement stmt;
+                        stmt = conn.c.createStatement();
+                        RS = stmt.executeQuery(query);
                 } catch (SQLException e) {
                     e.printStackTrace();
+                }
+                catch (Exception e)
+                {
+
                 }
                 return RS;
             }
 
             @Override
             protected void onPostExecute(ResultSet data) {
-                if(!conn.checkConnection())
-                    return;
-                listeners.onSuccess(data);
+                listeners.onSuccess(RS);
             }
 
             @Override

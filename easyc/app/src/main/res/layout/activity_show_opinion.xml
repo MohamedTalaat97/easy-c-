@@ -39,7 +39,7 @@
                 android:autoSizeTextType="none"
                 android:background="@color/gray"
                 android:fontFamily="casual"
-                android:text="رأس الموضوع"
+                android:text="Title"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
@@ -61,8 +61,7 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:paddingTop="10dp"
-                    android:text="تفاصيل الموضوع" />
+                    android:paddingTop="10dp" />
 
             </android.support.v4.widget.NestedScrollView>
 

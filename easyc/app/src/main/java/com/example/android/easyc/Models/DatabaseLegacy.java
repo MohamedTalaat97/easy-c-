@@ -29,8 +29,11 @@ public class DatabaseLegacy {
             protected Boolean doInBackground(Void... params) {
                 try {
                     Statement stmt;
-                    if(!conn.checkConnection())
-                        return false;
+                    if(!conn.checkConnection()) {
+                        conn.reconnect();
+                        if(!conn.checkConnection())
+                            return false;
+                    }
                     stmt = conn.c.createStatement();
                     updated = stmt.executeUpdate(query);
                     if(updated == 1)
@@ -39,6 +42,7 @@ public class DatabaseLegacy {
                         return false;
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    conn.reconnect();
                 }
                 catch (Exception e)
                 {
@@ -68,13 +72,17 @@ public class DatabaseLegacy {
             @Override
             protected ResultSet doInBackground(Void... params) {
                 try {
-                    if(!conn.checkConnection())
+                    if(!conn.checkConnection()) {
+                        conn.reconnect();
+                        if(!conn.checkConnection())
                         return null;
+                    }
                         Statement stmt;
                         stmt = conn.c.createStatement();
                         RS = stmt.executeQuery(query);
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    conn.reconnect();
                 }
                 catch (Exception e)
                 {

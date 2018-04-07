@@ -20,6 +20,7 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
 
     private static final String TAG = SyncStateContract.Constants.DATA + "nstask";
     private ConnectionDb connectionDb = ConnectionDb.getInstance();
+    private  int i = 0;
 
     private WeakReference<Context> mContextRef;
 
@@ -27,9 +28,19 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
         mContextRef = new WeakReference<Context>(context);
     }
 
+
+
     @Override
     protected Void doInBackground(Void... voids) {
 
+wifiConnect();
+return null;
+    }
+
+
+
+    public void wifiConnect()
+    {
         try {
             Context context = mContextRef.get();
 
@@ -46,9 +57,9 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
 
                 String prefix = ipString.substring(0, ipString.lastIndexOf(".") + 1);
 
-                for (int i = 0; i < 255; i++) {
+                for (; i < 255; i++) {
                     if (connectionDb.checkConnection())
-                        return null;
+                        return;
                     String testIp = prefix + String.valueOf(i);
 
                     InetAddress address = InetAddress.getByName(testIp);
@@ -59,11 +70,7 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
                         connectionDb.setHost(testIp);
                         connectionDb.serverConnect();
                     }
-                    /*
-                    if (i == 254)
-                        if (!connectionDb.checkConnection())
-                            i = 0;
-                            */
+
                 }
             }
         } catch (Exception e) {
@@ -71,6 +78,8 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
         } catch (Throwable t) {
         }
 
-        return null;
+        if(i >=255)
+            i=0;
+        return;
     }
 }

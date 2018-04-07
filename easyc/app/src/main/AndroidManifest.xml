@@ -6,9 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/clogo"
@@ -42,6 +39,9 @@
         <activity android:name=".Views.discussion_room_questions" />
         <activity android:name=".Views.put_question_discussion" />
         <activity android:name=".Views.replies_on_questions" />
+        <activity android:name=".Views.options" />
+        <activity android:name=".Views.change_password" />
+        <activity android:name=".Views.change_username"></activity>
     </application>
 
 </manifest>

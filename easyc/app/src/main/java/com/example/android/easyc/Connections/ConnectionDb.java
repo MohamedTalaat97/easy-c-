@@ -13,10 +13,10 @@ import java.sql.SQLException;
 
 public class ConnectionDb {
 
-   /* public enum connection {
-        khaled,talaat,ahmed,kareem
-    }
-    */
+    /* public enum connection {
+         khaled,talaat,ahmed,kareem
+     }
+     */
     //Variables
     private static ConnectionDb instance = null;
     public Connection c = null;
@@ -25,7 +25,9 @@ public class ConnectionDb {
     private String password = "Team";
     private String dbName = "c++";
     private String host;
-   // private static connection server;
+    private Context context;
+    private NetworkWifiConnection connection;
+    // private static connection server;
 
     //to set host ip
     public void setHost(String host) {
@@ -49,10 +51,9 @@ public class ConnectionDb {
     //to check if there is a connection
     public boolean checkConnection() {
         try {
-            if(instance.c != null)
-            if (instance.c.isValid(50))
+            if (instance.c != null)
                 return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -62,16 +63,16 @@ public class ConnectionDb {
 
     //use this function if you want to connect to database
     public void connect(Context context) {
-        NetworkWifiConnection connection = new NetworkWifiConnection(context);
+        this.context = context;
+        connection = new NetworkWifiConnection(context);
         connection.execute();
 
     }
 
 
-    public void serverConnect()
-    {
+    public void serverConnect() {
         //if you want to put the host static for AVD uncomment the next line
-      //  host = "192.168.0.103";
+        //host = "192.168.0.103";
         url = "jdbc:mysql://" + host + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -82,6 +83,15 @@ public class ConnectionDb {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        catch (Exception e)
+        {
+
+        }
     }
 
+    public void reconnect() {
+
+        instance.c = null;
+        connection.wifiConnect();
+    }
 }

@@ -52,6 +52,8 @@ return null;
 
                 WifiInfo connectionInfo = wm.getConnectionInfo();
                 int ipAddress = connectionInfo.getIpAddress();
+                if(ipAddress == 0)
+                    return;
                 String ipString = Formatter.formatIpAddress(ipAddress);
 
 
@@ -69,6 +71,8 @@ return null;
                     if (reachable) {
                         connectionDb.setHost(testIp);
                         connectionDb.serverConnect();
+                        if(connectionDb.checkConnection())
+                            break;
                     }
 
                 }

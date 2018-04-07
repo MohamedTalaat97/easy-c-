@@ -43,11 +43,15 @@ public class SignInUpController extends Controller {
                     databaseAdapter().selectUserLevel(userData().getUserId(), new OnTaskListeners.Result() {
                         @Override
                         public void onSuccess(ResultSet data) {
+                            if (!checkIfFound(data))
+                                return;
                             userData().setUserLevel((Integer) resultToValue(data));
 
                             databaseAdapter().selectUserUsername(userData().getUserId(), new OnTaskListeners.Result() {
                                 @Override
                                 public void onSuccess(ResultSet data) {
+                                    if (!checkIfFound(data))
+                                        return;
                                     userData().setUserName((String) resultToValue(data));
                                     listener.onSuccess("true");
                                 }
@@ -60,7 +64,7 @@ public class SignInUpController extends Controller {
 
 
 
-                } else
+                }
                     //next here we take an action
                     listener.onSuccess("check your username/password");
             }
@@ -105,6 +109,27 @@ public class SignInUpController extends Controller {
     }
 
 
+    public void updateUsername(String username, final OnTaskListeners.Bool listener)
+    {
+        databaseAdapter().updateUserUsername(userData().getUserId(), username, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
+    }
+
+    public void updatePassword(String password, final OnTaskListeners.Bool listener)
+    {
+        databaseAdapter().updateUserPassword(userData().getUserId(), password, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
+    }
+
+
     //Admin
 
     //get all requests
@@ -112,6 +137,8 @@ public class SignInUpController extends Controller {
         databaseAdapter().selectUserIdUserName(new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
                 ArrayList<Integer> ids = (ArrayList<Integer>) (Object) resultToArray(data, 1);
                 ArrayList<Object> usernames = resultToArray(data, 2);
                 listener.onSuccess(ids, usernames);
@@ -127,6 +154,8 @@ public class SignInUpController extends Controller {
         databaseAdapter().selectUserRequest(id, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
                 listener.onSuccess((String) resultToValue(data));
             }
         });

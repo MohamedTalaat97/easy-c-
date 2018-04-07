@@ -1,13 +1,12 @@
 package com.example.android.easyc.Controllers;
 
-import java.sql.ResultSet;
-
 import com.example.android.easyc.Interfaces.OnTaskListeners;
+
+import java.sql.ResultSet;
 
 /**
  * Created by medotalaat on 15-Mar-18.
  */
-
 
 
 public class CourseController extends Controller {
@@ -17,6 +16,8 @@ public class CourseController extends Controller {
         databaseAdapter().selectCategories(new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
                 listener.onSuccess(resultToArray(data));
             }
         });
@@ -27,6 +28,9 @@ public class CourseController extends Controller {
         databaseAdapter().selectCatagoryIdByName(name, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                return;
+
                 listener.onSuccess((int) resultToValue(data));
             }
         });
@@ -37,6 +41,8 @@ public class CourseController extends Controller {
         databaseAdapter().selectTopicIdByName(name, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
                 listener.onSuccess((int) resultToValue(data));
             }
         });
@@ -47,6 +53,8 @@ public class CourseController extends Controller {
         databaseAdapter().selectTopics(catId, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
                 listener.onSuccess(resultToArray(data));
             }
         });
@@ -59,6 +67,8 @@ public class CourseController extends Controller {
         databaseAdapter().selectCode(topicId, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
                 listener.onSuccess((String) resultToValue(data));
             }
         });
@@ -69,6 +79,8 @@ public class CourseController extends Controller {
         databaseAdapter().selectDescription(topicId, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
                 listener.onSuccess((String) resultToValue(data));
             }
         });
@@ -79,6 +91,8 @@ public class CourseController extends Controller {
         databaseAdapter().selectOutput(topicId, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
                 listener.onSuccess((String) resultToValue(data));
             }
         });

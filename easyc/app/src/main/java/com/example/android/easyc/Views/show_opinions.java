@@ -21,6 +21,8 @@ import com.example.android.easyc.R;
 import java.util.ArrayList;
 
 public class show_opinions extends AppCompatActivity {
+    public static final String EXTRA_DATA_ID = "ID";
+    public static final String EXTRA_DATA_TITLE = "TITLE";
     OpinionController opinionController;
     ArrayList<Integer> idArrayList;
     ArrayList<String> titleArrayList;
@@ -28,9 +30,6 @@ public class show_opinions extends AppCompatActivity {
     String kind;
     ListView listView;
     Spinner spinner;
-    public static final String EXTRA_DATA_ID = "ID";
-    public static final String EXTRA_DATA_TITLE = "TITLE";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +76,7 @@ public class show_opinions extends AppCompatActivity {
 
     //fill the opinion list
     void fillList() {
+        listView.setAdapter(null);
         if (kind.matches("UnSeen"))
             getUnSeen();
         else if (kind.matches("UnRead"))
@@ -150,6 +150,7 @@ public class show_opinions extends AppCompatActivity {
         arrayAdapter = ArrayAdapter.createFromResource(this, R.array.kindOfOpinions, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+
     }
 
 

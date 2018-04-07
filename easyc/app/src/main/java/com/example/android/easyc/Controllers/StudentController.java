@@ -12,6 +12,8 @@ public class StudentController extends Controller {
         databaseAdapter().selectUsername(id, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                            if (!checkIfFound(data))
+                return;
                 listener.onSuccess((String) resultToValue(data));
             }
         });
@@ -21,6 +23,8 @@ public class StudentController extends Controller {
         databaseAdapter().selectUserLevel(id, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                            if (!checkIfFound(data))
+                return;
                 listener.onSuccess((int) resultToValue(data));
             }
         });

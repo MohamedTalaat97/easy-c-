@@ -146,6 +146,7 @@ public class DatabaseAdapter {
         query = "select username from user where id = '" + userID + "'";
         databaseLegacy.select(query, listener);
     }
+
     public void selectUserLevel(int userID, OnTaskListeners.Result listener) {
         query = "select level from user where id = '" + userID + "'";
         databaseLegacy.select(query, listener);
@@ -269,5 +270,15 @@ public class DatabaseAdapter {
         databaseLegacy.select(query, listeners);
     }
 
+
+    public void updateUserUsername(int userId, String username, OnTaskListeners.Bool listener) {
+        query = "update User set username = '" + username + "' where id = " + userId;
+        databaseLegacy.iud(query, listener);
+    }
+
+    public void updateUserPassword(int userId, String password, OnTaskListeners.Bool listener) {
+        query = "update User set password = '" + password + "' where id = " + userId;
+        databaseLegacy.iud(query, listener);
+    }
 
 }

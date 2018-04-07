@@ -20,6 +20,8 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
 
     private static final String TAG = SyncStateContract.Constants.DATA + "nstask";
     private ConnectionDb connectionDb = ConnectionDb.getInstance();
+    private  int i = 0;
+    private int lastHost = 0;
 
     private WeakReference<Context> mContextRef;
 
@@ -27,9 +29,19 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
         mContextRef = new WeakReference<Context>(context);
     }
 
+
+
     @Override
     protected Void doInBackground(Void... voids) {
 
+wifiConnect();
+return null;
+    }
+
+
+
+    public void wifiConnect()
+    {
         try {
             Context context = mContextRef.get();
 
@@ -41,14 +53,18 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
 
                 WifiInfo connectionInfo = wm.getConnectionInfo();
                 int ipAddress = connectionInfo.getIpAddress();
+                if(ipAddress == 0) {
+                    return;
+                }
+
                 String ipString = Formatter.formatIpAddress(ipAddress);
 
 
                 String prefix = ipString.substring(0, ipString.lastIndexOf(".") + 1);
 
-                for (int i = 0; i < 255; i++) {
+                for (int i = lastHost; i < 255; i++) {
                     if (connectionDb.checkConnection())
-                        return null;
+                        break;
                     String testIp = prefix + String.valueOf(i);
 
                     InetAddress address = InetAddress.getByName(testIp);
@@ -58,12 +74,12 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
                     if (reachable) {
                         connectionDb.setHost(testIp);
                         connectionDb.serverConnect();
+                        if(connectionDb.checkConnection()) {
+                            lastHost = i;
+                            break;
+                        }
                     }
-                    /*
-                    if (i == 254)
-                        if (!connectionDb.checkConnection())
-                            i = 0;
-                            */
+
                 }
             }
         } catch (Exception e) {
@@ -71,6 +87,8 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
         } catch (Throwable t) {
         }
 
-        return null;
+        if(i >=255)
+            i=0;
+        return;
     }
 }

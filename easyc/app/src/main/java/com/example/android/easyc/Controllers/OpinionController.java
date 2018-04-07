@@ -12,55 +12,63 @@ import java.util.ArrayList;
 public class OpinionController extends Controller {
 
     //get unread opinions
-   public void getUnReadOpinions(final OnTaskListeners.IdAndList listener)
-    {
+    public void getUnReadOpinions(final OnTaskListeners.IdAndList listener) {
         databaseAdapter().selectOpinionTitleUnReaded(new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                ArrayList<Integer> ids = (ArrayList<Integer>) (Object) resultToArray(data, 1);
-                ArrayList<Object> title = resultToArray(data, 2);
-                listener.onSuccess(ids, title);
+                if (!checkIfFound(data))
+                    return;
+                    ArrayList<Integer> ids = (ArrayList<Integer>) (Object) resultToArray(data, 1);
+                    ArrayList<Object> title = resultToArray(data, 2);
+                    listener.onSuccess(ids, title);
+
             }
         });
 
     }
 
     //get unseen opinions
-    public void getUnSeenOpinions(final OnTaskListeners.IdAndList listener)
-    {
+    public void getUnSeenOpinions(final OnTaskListeners.IdAndList listener) {
         databaseAdapter().selectOpinionTitleUnSeen(new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                ArrayList<Integer> ids = (ArrayList<Integer>) (Object) resultToArray(data, 1);
-                ArrayList<Object> title = resultToArray(data, 2);
-                listener.onSuccess(ids, title);
+                if (!checkIfFound(data))
+                    return;
+                    ArrayList<Integer> ids = (ArrayList<Integer>) (Object) resultToArray(data, 1);
+                    ArrayList<Object> title = resultToArray(data, 2);
+                    listener.onSuccess(ids, title);
+
             }
         });
 
     }
 
     //get favourite opinions
-    public void getFavouriteOpinions(final OnTaskListeners.IdAndList listener)
-    {
+    public void getFavouriteOpinions(final OnTaskListeners.IdAndList listener) {
         databaseAdapter().selectOpinionTitleFavourite(new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                ArrayList<Integer> ids = (ArrayList<Integer>) (Object) resultToArray(data, 1);
-                ArrayList<Object> title = resultToArray(data, 2);
-                listener.onSuccess(ids, title);
+                if (!checkIfFound(data))
+                    return;
+                    ArrayList<Integer> ids = (ArrayList<Integer>) (Object) resultToArray(data, 1);
+                    ArrayList<Object> title = resultToArray(data, 2);
+                    listener.onSuccess(ids, title);
+
             }
         });
     }
 
     //get all opinions
-    public void getAllOpinions(final OnTaskListeners.IdAndList listener)
-    {
+    public void getAllOpinions(final OnTaskListeners.IdAndList listener) {
         databaseAdapter().selectOpinionTitle(new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                ArrayList<Integer> ids = (ArrayList<Integer>) (Object) resultToArray(data, 1);
-                ArrayList<Object> title = resultToArray(data, 2);
-                listener.onSuccess(ids, title);
+                if (!checkIfFound(data))
+                    return;
+                    ArrayList<Integer> ids = (ArrayList<Integer>) (Object) resultToArray(data, 1);
+                    ArrayList<Object> title = resultToArray(data, 2);
+                    listener.onSuccess(ids, title);
+
             }
         });
 
@@ -71,6 +79,8 @@ public class OpinionController extends Controller {
         databaseAdapter().selectOpinionDescription(id, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
+                if(!checkIfFound(data))
+                    return;
                 listener.onSuccess((String) resultToValue(data));
             }
         });
@@ -91,10 +101,13 @@ public class OpinionController extends Controller {
         databaseAdapter().selectOpinionFavourite(id, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                if ((boolean) resultToValue(data)) {
-                    listener.onSuccess(true);
-                } else
-                    listener.onSuccess(false);
+                if (!checkIfFound(data))
+                    return;
+
+                    if ((boolean) resultToValue(data)) {
+                        listener.onSuccess(true);
+                    } else
+                        listener.onSuccess(false);
             }
         });
     }

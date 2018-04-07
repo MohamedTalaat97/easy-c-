@@ -29,8 +29,11 @@ public class DatabaseLegacy {
             protected Boolean doInBackground(Void... params) {
                 try {
                     Statement stmt;
-                    if(!conn.checkConnection())
-                        return false;
+                    if(!conn.checkConnection()) {
+                        conn.reconnect();
+                        if(!conn.checkConnection())
+                            return false;
+                    }
                     stmt = conn.c.createStatement();
                     updated = stmt.executeUpdate(query);
                     if(updated == 1)
@@ -39,6 +42,10 @@ public class DatabaseLegacy {
                         return false;
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    conn.reconnect();
+                }
+                catch (Exception e)
+                {
                 }
                 return false;
             }
@@ -57,30 +64,36 @@ public class DatabaseLegacy {
         }.execute();
     }
 
-    public  void Select(final  String query,final OnTaskListeners.Result listeners)
+    public  void select(final  String query,final OnTaskListeners.Result listeners)
     {
         new AsyncTask<Void, Void, ResultSet>() {
-            public ResultSet RS = null;
+            public ResultSet RS;
 
             @Override
             protected ResultSet doInBackground(Void... params) {
                 try {
-                    if(!conn.checkConnection())
+                    if(!conn.checkConnection()) {
+                        conn.reconnect();
+                        if(!conn.checkConnection())
                         return null;
-                    Statement stmt;
-                    stmt = conn.c.createStatement();
-                    RS = stmt.executeQuery(query);
+                    }
+                        Statement stmt;
+                        stmt = conn.c.createStatement();
+                        RS = stmt.executeQuery(query);
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    conn.reconnect();
+                }
+                catch (Exception e)
+                {
+
                 }
                 return RS;
             }
 
             @Override
             protected void onPostExecute(ResultSet data) {
-                if(!conn.checkConnection())
-                    return;
-                listeners.onSuccess(data);
+                listeners.onSuccess(RS);
             }
 
             @Override

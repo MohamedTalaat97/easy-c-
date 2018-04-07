@@ -1,7 +1,6 @@
 package com.example.android.easyc.Connections;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,50 +13,25 @@ import java.sql.SQLException;
 
 public class ConnectionDb {
 
-    public enum connection {
-        khaled,talaat,ahmed,kareem
-    }
+    /* public enum connection {
+         khaled,talaat,ahmed,kareem
+     }
+     */
     //Variables
     private static ConnectionDb instance = null;
     public Connection c = null;
     private String url;
-    private String username;
-    private String password;
+    private String username = "Team";
+    private String password = "Team";
     private String dbName = "c++";
     private String host;
-    private static boolean dynamic = false;
-    private static connection server;
+    private Context context;
+    private NetworkWifiConnection connection;
+    // private static connection server;
 
     //to set host ip
     public void setHost(String host) {
         this.host = host;
-    }
-
-    //to make the connection dynamic
-    public static void setConnectionDynamic(Context context)
-    {
-        dynamic = true;
-        NetworkWifiConnection connection = new NetworkWifiConnection(context);
-        connection.execute();
-    }
-    //connect with th database
-    private void registerInBackground() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                connect();
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void data) {
-            }
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-            }
-        }.execute();
     }
 
     // Exists only to defeat instantiation.
@@ -65,8 +39,7 @@ public class ConnectionDb {
 
     }
 
-    //to instantiate a coonectiondb
-    //for static Connection
+    //this is singletom pattern
     public static ConnectionDb getInstance() {
         if (instance == null) {
             instance = new ConnectionDb();
@@ -74,75 +47,33 @@ public class ConnectionDb {
         return instance;
     }
 
-    //for dynamic Connection
-    public static ConnectionDb getInstance(Context contextId,connection serverId)
-    {
-        if (instance == null) {
-            instance = new ConnectionDb();
-            server = serverId;
-            setConnectionDynamic(contextId);
-        }
-        return instance;
-    }
-
 
     //to check if there is a connection
     public boolean checkConnection() {
-        if (c != null)
-            return true;
+        try {
+            if (instance.c != null)
+                return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         return false;
     }
 
-    public void khaledDb() {
-        url = "jdbc:mysql://" + host + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
-        username = "khaled";
-        password = "11121997K";
-        if(dynamic)
-        connect();
-        else
-            registerInBackground();
+    //use this function if you want to connect to database
+    public void connect(Context context) {
+        this.context = context;
+        connection = new NetworkWifiConnection(context);
+        connection.execute();
 
-        // registerInBackground();
     }
 
 
-
-
-    public void talaatDb() {
+    public void serverConnect() {
+        //if you want to put the host static for AVD uncomment the next line
+        //host = "192.168.0.103";
         url = "jdbc:mysql://" + host + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
-        username = "medo";
-        password = "01115598525";
-        if(dynamic)
-            connect();
-        else
-            registerInBackground();
-    }
-
-    public void ahmedDb() {
-        url = "jdbc:mysql://" + host + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
-        username = "khaled";
-        password = "11121997K";
-        if(dynamic)
-            connect();
-        else
-            registerInBackground();
-    }
-
-    public void kareemDb() {
-        url = "jdbc:mysql://" + host + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
-        username = "khaled";
-        password = "11121997K";
-        if(dynamic)
-            connect();
-        else
-            registerInBackground();
-    }
-
-
-
-
-
-    void connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             c = DriverManager.getConnection(url, username, password);
@@ -152,18 +83,15 @@ public class ConnectionDb {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        catch (Exception e)
+        {
+
+        }
     }
 
+    public void reconnect() {
 
-    public void ServerConnect()
-    {
-        if(server.equals(connection.khaled))
-            khaledDb();
-        else if(server.equals(connection.ahmed))
-            ahmedDb();
-        else if(server.equals(connection.kareem))
-            kareemDb();
-        else if(server.equals(connection.talaat))
-            talaatDb();
+        instance.c = null;
+        connection.wifiConnect();
     }
 }

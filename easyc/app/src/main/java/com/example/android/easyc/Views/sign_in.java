@@ -29,7 +29,8 @@ public class sign_in extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_activity);
         //connect with the database
-        connectionDb = ConnectionDb.getInstance(this, ConnectionDb.connection.khaled);
+        connectionDb = ConnectionDb.getInstance();
+        connectionDb.connect(this);
 
 
         signInUpController = new SignInUpController();
@@ -76,7 +77,7 @@ public class sign_in extends AppCompatActivity {
     void signIn() {
 
         //for testing
-      //  goTo(student_menu.class);
+        //goTo(show_opinions.class);
 
         if (check()) {
             //from the controller call signin function that you made and after it finish the function will call back to this function
@@ -86,11 +87,11 @@ public class sign_in extends AppCompatActivity {
                     signInUpController.toast(result, getApplicationContext());
                     if (result.matches("true"))
                         if (signInUpController.getType() == 'I') {
-                            goTo(student_menu.class);
+                            goTo(show_opinions.class);
                         } else if (signInUpController.getType() == 'S') {
-                            goTo(student_menu.class);
+                            goTo(show_opinions.class);
                         } else {
-                            goTo(student_menu.class);
+                            goTo(show_opinions.class);
                         }
                 }
             });

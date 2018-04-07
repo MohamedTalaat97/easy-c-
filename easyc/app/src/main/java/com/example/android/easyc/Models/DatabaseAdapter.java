@@ -31,44 +31,44 @@ public class DatabaseAdapter {
 
     public void selectCategories(OnTaskListeners.Result listeners) {
         query = "select title from category";
-        databaseLegacy.Select(query, listeners);
+        databaseLegacy.select(query, listeners);
 
     }
 
     public void selectCatagoryIdByName(String name, OnTaskListeners.Result listeners) {
         query = "select id from category where title = '" + name + "'";
-        databaseLegacy.Select(query, listeners);
+        databaseLegacy.select(query, listeners);
 
     }
 
     public void selectTopicIdByName(String name, OnTaskListeners.Result listeners) {
         query = "select id from topic where title = '" + name + "'";
-        databaseLegacy.Select(query, listeners);
+        databaseLegacy.select(query, listeners);
 
     }
 
     public void selectTopics(int cat_id, OnTaskListeners.Result listeners) {
         query = "select title from topic where cat_id = '" + cat_id + "'";
-        databaseLegacy.Select(query, listeners);
+        databaseLegacy.select(query, listeners);
 
     }
 
 
     public void selectCode(int topic_id, OnTaskListeners.Result listeners) {
         query = "select code from topic where id = '" + topic_id + "'";
-        databaseLegacy.Select(query, listeners);
+        databaseLegacy.select(query, listeners);
 
     }
 
     public void selectDescription(int topic_id, OnTaskListeners.Result listeners) {
         query = "select description from topic where id = '" + topic_id + "'";
-        databaseLegacy.Select(query, listeners);
+        databaseLegacy.select(query, listeners);
 
     }
 
     public void selectOutput(int topic_id, OnTaskListeners.Result listeners) {
         query = "select output from topic where id = '" + topic_id + "'";
-        databaseLegacy.Select(query, listeners);
+        databaseLegacy.select(query, listeners);
 
     }
 
@@ -81,33 +81,33 @@ public class DatabaseAdapter {
 
     public void selectOpinionTitle(OnTaskListeners.Result listener) {
         query = "select id,title from opinion";
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
     public void selectOpinionTitleUnSeen(OnTaskListeners.Result listener) {
         query = "select id,title from opinion where seen = false";
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
     public void selectOpinionTitleUnReaded(OnTaskListeners.Result listener) {
         query = "select id,title from opinion where readed = false";
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
     public void selectOpinionFavourite(int id, OnTaskListeners.Result listener) {
         query = "select favourite from opinion where id = " + id;
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
     public void selectOpinionTitleFavourite(OnTaskListeners.Result listener) {
         query = "select id,title from opinion where favourite = true";
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
 
     public void selectOpinionDescription(int id, OnTaskListeners.Result listener) {
         query = "select description from opinion where id = " + id;
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
     public void updateOpinionReaded(int id, boolean read, OnTaskListeners.Bool listener) {
@@ -133,44 +133,45 @@ public class DatabaseAdapter {
 
     public void selectUserUsernamePassword(String email, OnTaskListeners.Result listener) {
         query = "select username,password from user where email = '" + email + "'";
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
     public void selectUserUsername(String userName, OnTaskListeners.Result listener) {
         query = "select username from user where userName = '" + userName + "'";
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
 
     public void selectUserUsername(int userID, OnTaskListeners.Result listener) {
         query = "select username from user where id = '" + userID + "'";
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
+
     public void selectUserLevel(int userID, OnTaskListeners.Result listener) {
         query = "select level from user where id = '" + userID + "'";
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
 
     public void selectUserEmail(String email, OnTaskListeners.Result listener) {
         query = "select email from user where email = '" + email + "'";
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
     public void selectUserIdTypeSuspended(String name, String password, OnTaskListeners.Result listener) {
         query = "select id,type,suspended from user where (userName = '" + name + "' OR email = '" + name + "' )  and password = '" + password + "'";
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
 
     public void selectUserIdUserName(OnTaskListeners.Result listener) {
         query = "select id,username from user where suspended = true and type = 'I'  and request is not null";
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
     public void selectUserRequest(Integer id, OnTaskListeners.Result listener) {
         query = "select request from user where id = " + id;
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
     public void updateUserSuspendedRequest(Integer id, boolean suspended, OnTaskListeners.Bool listener) {
@@ -192,7 +193,7 @@ public class DatabaseAdapter {
             query += "Desc";
 
         query += " limit " + limitNumber;
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
 
@@ -209,7 +210,7 @@ public class DatabaseAdapter {
             query += "Desc";
 
         query += " limit " + limitNumber;
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
 
@@ -226,7 +227,7 @@ public class DatabaseAdapter {
             query += "Desc";
 
         query += " limit " + limitNumber;
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
 
@@ -243,7 +244,7 @@ public class DatabaseAdapter {
             query += "Desc";
 
         query += " limit " + limitNumber;
-        databaseLegacy.Select(query, listener);
+        databaseLegacy.select(query, listener);
     }
 
     public void insertComment(int user_id, String title, String description, OnTaskListeners.Bool listener) {
@@ -256,18 +257,28 @@ public class DatabaseAdapter {
 
     public void selectCommentTitleUserName(int question_id, OnTaskListeners.Result listeners) {
         query = "select title,username from user,comment where user.id = user_id and comment.id = " + question_id;
-        databaseLegacy.Select(query, listeners);
+        databaseLegacy.select(query, listeners);
     }
 
     public void selectReplyIdUserNameContent(int question_id, OnTaskListeners.Result listeners) {
         query = "select id,username,content from user,reply where user.id = user_id and comment_id = " + question_id;
-        databaseLegacy.Select(query, listeners);
+        databaseLegacy.select(query, listeners);
     }
 
     public void selectReplyIdByBestAnswer(int question_id, OnTaskListeners.Result listeners) {
         query = "select id from reply where best_answer = true and comment_id = " + question_id;
-        databaseLegacy.Select(query, listeners);
+        databaseLegacy.select(query, listeners);
     }
 
+
+    public void updateUserUsername(int userId, String username, OnTaskListeners.Bool listener) {
+        query = "update User set username = '" + username + "' where id = " + userId;
+        databaseLegacy.iud(query, listener);
+    }
+
+    public void updateUserPassword(int userId, String password, OnTaskListeners.Bool listener) {
+        query = "update User set password = '" + password + "' where id = " + userId;
+        databaseLegacy.iud(query, listener);
+    }
 
 }

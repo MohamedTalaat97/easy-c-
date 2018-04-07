@@ -21,6 +21,7 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
     private static final String TAG = SyncStateContract.Constants.DATA + "nstask";
     private ConnectionDb connectionDb = ConnectionDb.getInstance();
     private  int i = 0;
+    private int lastHost = 0;
 
     private WeakReference<Context> mContextRef;
 
@@ -52,16 +53,18 @@ return null;
 
                 WifiInfo connectionInfo = wm.getConnectionInfo();
                 int ipAddress = connectionInfo.getIpAddress();
-                if(ipAddress == 0)
+                if(ipAddress == 0) {
                     return;
+                }
+
                 String ipString = Formatter.formatIpAddress(ipAddress);
 
 
                 String prefix = ipString.substring(0, ipString.lastIndexOf(".") + 1);
 
-                for (; i < 255; i++) {
+                for (int i = lastHost; i < 255; i++) {
                     if (connectionDb.checkConnection())
-                        return;
+                        break;
                     String testIp = prefix + String.valueOf(i);
 
                     InetAddress address = InetAddress.getByName(testIp);
@@ -71,8 +74,10 @@ return null;
                     if (reachable) {
                         connectionDb.setHost(testIp);
                         connectionDb.serverConnect();
-                        if(connectionDb.checkConnection())
+                        if(connectionDb.checkConnection()) {
+                            lastHost = i;
                             break;
+                        }
                     }
 
                 }

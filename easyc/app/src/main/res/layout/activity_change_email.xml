@@ -7,34 +7,34 @@
     tools:context="com.example.android.easyc.Views.options">
 
     <EditText
-        android:id="@+id/passwordchangetext"
+        android:id="@+id/emailchangetext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword" />
+        android:hint="Email"
+        android:inputType="textWebEmailAddress" />
 
     <TextView
         android:id="@+id/textviewchangeemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/passwordchangetext"
-        android:layout_alignBottom="@+id/passwordchangetext"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="New Password*"
+        android:layout_alignBaseline="@+id/emailchangetext"
+        android:layout_alignBottom="@+id/emailchangetext"
+        android:layout_toLeftOf="@+id/emailchangetext"
+        android:layout_toStartOf="@+id/emailchangetext"
+        android:text="New Email*"
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/changepasswordbutton"
+        android:id="@+id/changeemailbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="117dp"
         android:layout_toEndOf="@+id/textviewchangeemail"
         android:layout_toRightOf="@+id/textviewchangeemail"
-        android:text="Change Password" />
+        android:text="Change Email" />
 </RelativeLayout>

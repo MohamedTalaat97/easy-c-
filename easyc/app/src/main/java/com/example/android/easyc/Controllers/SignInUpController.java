@@ -22,51 +22,54 @@ public class SignInUpController extends Controller {
         databaseAdapter().selectUserIdTypeSuspended(name, password, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                if (checkIfFound(data)) {
-                    if (resultToValue(data, 2).toString().matches("I")) {
-                        if ((boolean) resultToValue(data, 3) == true) {
-                            listener.onSuccess("wait untill the admin approve on your request");
-                            return;
-                        }
-                        userData().setUserType('I');
-                    } else if (resultToValue(data, 2).toString().matches("S")) {
-                        if ((boolean) resultToValue(data, 3) == true) {
-                            listener.onSuccess("you have been suspended for something you did and it was wrong");
-                            return;
-                        }
-                        userData().setUserType('S');
-                    } else {
-                        userData().setUserType('A');
+                if (!checkIfFound(data)) {
+                    if (!checkConnection())
+                        //next here we take an action
+                        listener.onSuccess("check your username/password");
+                    else
+                        listener.onSuccess("check your connection");
+                    return;
+                }
 
+                if (resultToValue(data, 2).toString().matches("I")) {
+                    if ((boolean) resultToValue(data, 3) == true) {
+                        listener.onSuccess("wait untill the admin approve on your request");
+                        return;
                     }
-                    userData().setUserId((Integer) resultToValue(data,1));
-                    databaseAdapter().selectUserLevel(userData().getUserId(), new OnTaskListeners.Result() {
-                        @Override
-                        public void onSuccess(ResultSet data) {
-                            if (!checkIfFound(data))
-                                return;
-                            userData().setUserLevel((Integer) resultToValue(data));
-
-                            databaseAdapter().selectUserUsername(userData().getUserId(), new OnTaskListeners.Result() {
-                                @Override
-                                public void onSuccess(ResultSet data) {
-                                    if (!checkIfFound(data))
-                                        return;
-                                    userData().setUserName((String) resultToValue(data));
-                                    listener.onSuccess("true");
-                                }
-                            });
-
-
-                        }
-                    });
-
-
-
+                    userData().setUserType('I');
+                } else if (resultToValue(data, 2).toString().matches("S")) {
+                    if ((boolean) resultToValue(data, 3) == true) {
+                        listener.onSuccess("you have been suspended for something you did and it was wrong");
+                        return;
+                    }
+                    userData().setUserType('S');
+                } else {
+                    userData().setUserType('A');
 
                 }
-                    //next here we take an action
-                    listener.onSuccess("check your username/password");
+                userData().setUserId((Integer) resultToValue(data, 1));
+                databaseAdapter().selectUserLevel(userData().getUserId(), new OnTaskListeners.Result() {
+                    @Override
+                    public void onSuccess(ResultSet data) {
+                        if (!checkIfFound(data))
+                            return;
+                        userData().setUserLevel((Integer) resultToValue(data));
+
+                        databaseAdapter().selectUserUsername(userData().getUserId(), new OnTaskListeners.Result() {
+                            @Override
+                            public void onSuccess(ResultSet data) {
+                                if (!checkIfFound(data))
+                                    return;
+                                userData().setUserName((String) resultToValue(data));
+                                listener.onSuccess("true");
+                            }
+                        });
+
+
+                    }
+                });
+
+
             }
         });
     }
@@ -109,8 +112,7 @@ public class SignInUpController extends Controller {
     }
 
 
-    public void updateUsername(String username, final OnTaskListeners.Bool listener)
-    {
+    public void updateUsername(String username, final OnTaskListeners.Bool listener) {
         databaseAdapter().updateUserUsername(userData().getUserId(), username, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
@@ -119,8 +121,17 @@ public class SignInUpController extends Controller {
         });
     }
 
-    public void updatePassword(String password, final OnTaskListeners.Bool listener)
-    {
+    public void updateEmail(String email, final OnTaskListeners.Bool listener) {
+        databaseAdapter().updateUserPassword(userData().getUserId(), email, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
+    }
+
+
+    public void updatePassword(String password, final OnTaskListeners.Bool listener) {
         databaseAdapter().updateUserPassword(userData().getUserId(), password, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {

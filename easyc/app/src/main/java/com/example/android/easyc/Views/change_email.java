@@ -110,10 +110,7 @@ void changeEmail()
             @Override
             public void onSuccess(Boolean result) {
                 emailChecked = true;
-                if (result)
-                    uniqueEmail = false;
-                else
-                    uniqueEmail = true;
+                uniqueEmail = !result;
 
 
             }

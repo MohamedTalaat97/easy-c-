@@ -1,9 +1,9 @@
 package com.example.android.easyc.Controllers;
 
-import java.sql.ResultSet;
-
 import com.example.android.easyc.Connections.MailSender;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
+
+import java.sql.ResultSet;
 
 /**
  * Created by KhALeD SaBrY on 22-Mar-18.
@@ -36,7 +36,7 @@ public class MailController extends Controller {
 
                 sender.setRecipientEmail(email);
                 sender.setSubject("Retore your username/password");
-                sender.setBody("thanks for using our app we are hoping that you have a great time while using our app \n our app cost is 200.000$ talaat said that so be careful next time you forget your password or username \n \n username :" + username + "\n password : " + password);
+                sender.setBody("thanks for using our app we are hoping that you have a great time while using our app \n be careful next time you forget your password or username \n \n username :" + username + "\n password : " + password);
                 sender.sendEmail(listener);
 
             }

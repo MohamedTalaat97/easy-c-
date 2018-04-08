@@ -8,9 +8,7 @@ import android.widget.ImageView;
 
 import com.example.android.easyc.R;
 
-/**
- * Created by MAN CENTER on 05-Apr-18.
- */
+
 public class student_menu_adapter extends BaseAdapter {
     private Context mContext;
 
@@ -49,8 +47,9 @@ public class student_menu_adapter extends BaseAdapter {
 
     // references to menu images
     private Integer[] mThumbIds = {
-            R.drawable.l1, R.drawable.l2,
+            R.drawable.course, R.drawable.question,
             R.drawable.l3, R.drawable.opinion,
+            R.drawable.setting
 
     };
 }

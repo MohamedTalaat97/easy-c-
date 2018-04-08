@@ -47,7 +47,7 @@ public class SignInUpController extends Controller {
                                 return;
                             userData().setUserLevel((Integer) resultToValue(data));
 
-                            databaseAdapter().selectUserUsername(userData().getUserId(), new OnTaskListeners.Result() {
+                            databaseAdapter().selectUsername(userData().getUserId(), new OnTaskListeners.Result() {
                                 @Override
                                 public void onSuccess(ResultSet data) {
                                     if (!checkIfFound(data))
@@ -90,7 +90,7 @@ public class SignInUpController extends Controller {
 
     //check if the username is in database
     public void checkUserName(String username, final OnTaskListeners.Bool listener) {
-        databaseAdapter().selectUserUsername(username, new OnTaskListeners.Result() {
+        databaseAdapter().selectUsername(username, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 listener.onSuccess(checkIfFound(data));

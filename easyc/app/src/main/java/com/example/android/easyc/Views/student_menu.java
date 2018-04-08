@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.android.easyc.Controllers.StudentController;
+import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 
 public class student_menu extends AppCompatActivity {
@@ -37,19 +38,19 @@ public class student_menu extends AppCompatActivity {
         userLevel = studentController.getUserLevel();
         name.setText(username);
 
+        initMenu();
+        initProgress();
 
-        //you can't put anything after the listener
-        /*
-        studentController.getUserName(user_id, new OnTaskListeners.Word() {
+
+        studentController.getUserName(userId, new OnTaskListeners.Word() {
             @Override
             public void onSuccess(String result) {
-                user_name=result;
+                username=result;
             }
         });
 
-*/
-        initMenu();
-        initProgress();
+
+
     }
 
 

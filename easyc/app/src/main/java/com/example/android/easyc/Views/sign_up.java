@@ -138,6 +138,15 @@ public class sign_up extends AppCompatActivity {
                         signInUpController.toast("Successfully Finished", getApplicationContext());
                         mailController.sendWelcomeMessage(email.getText().toString());
                         goToSignInActivity();
+                    } else {
+                        if (!signInUpController.checkConnection(getApplicationContext()))
+                            return;
+
+                        checkUserName();
+                        checkEmail();
+                        if (check())
+                            signInUpController.toast("unsuccessfull operation", getApplicationContext());
+
                     }
 
                 }
@@ -206,11 +215,7 @@ public class sign_up extends AppCompatActivity {
             @Override
             public void onSuccess(Boolean result) {
                 usernameChecked = true;
-                if (result)
-                    uniqueUsername = false;
-                else
-                    uniqueUsername = true;
-
+                uniqueUsername = !result;
 
             }
         });
@@ -223,10 +228,7 @@ public class sign_up extends AppCompatActivity {
             @Override
             public void onSuccess(Boolean result) {
                 emailChecked = true;
-                if (result)
-                    uniqueEmail = false;
-                else
-                    uniqueEmail = true;
+                uniqueEmail = !result;
 
 
             }

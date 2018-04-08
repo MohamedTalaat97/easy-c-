@@ -27,7 +27,7 @@ public class change_username extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_username);
         signInUpController = new SignInUpController();
-        userNameText = findViewById(R.id.usernamechangetext);
+        userNameText = findViewById(R.id.emailchangetext);
         changeButton = findViewById(R.id.changeusernamebutton);
 
         usernameChecked = false;

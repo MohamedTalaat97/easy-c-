@@ -19,6 +19,7 @@ public class options extends AppCompatActivity {
     ArrayList<String> list;
     private String changeUsername = "change Username";
     private String changePassword = "change Password";
+    private String changeEmail = "change Email";
 
 
     @Override
@@ -30,6 +31,7 @@ public class options extends AppCompatActivity {
         list = new ArrayList<String>();
         list.add(changeUsername);
         list.add(changePassword);
+        list.add(changeEmail);
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_selectable_list_item, list);
@@ -42,6 +44,10 @@ public class options extends AppCompatActivity {
                     goTo(change_username.class);
                 } else if (listView.getItemAtPosition(position).toString().matches(changePassword)) {
                     goTo(change_password.class);
+                }
+                else if(listView.getItemAtPosition(position).toString().matches(changeEmail))
+                {
+                    goTo(change_email.class);
                 }
             }
         });

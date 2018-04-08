@@ -136,13 +136,13 @@ public class DatabaseAdapter {
         databaseLegacy.select(query, listener);
     }
 
-    public void selectUsername(String userName, OnTaskListeners.Result listener) {
+    public void selectUserUsername(String userName, OnTaskListeners.Result listener) {
         query = "select username from user where userName = '" + userName + "'";
         databaseLegacy.select(query, listener);
     }
 
 
-    public void selectUsername(int userID, OnTaskListeners.Result listener) {
+    public void selectUserUsername(int userID, OnTaskListeners.Result listener) {
         query = "select username from user where id = '" + userID + "'";
         databaseLegacy.select(query, listener);
     }

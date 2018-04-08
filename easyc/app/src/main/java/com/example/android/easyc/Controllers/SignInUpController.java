@@ -23,7 +23,7 @@ public class SignInUpController extends Controller {
             @Override
             public void onSuccess(ResultSet data) {
                 if (!checkIfFound(data)) {
-                    if (!checkConnection())
+                    if (checkConnection())
                         //next here we take an action
                         listener.onSuccess("check your username/password");
                     else
@@ -36,8 +36,8 @@ public class SignInUpController extends Controller {
                         listener.onSuccess("wait untill the admin approve on your request");
                         return;
                     }
-<<<<<<< HEAD
-                    userData().setUserId((Integer) resultToValue(data,1));
+
+                   /* userData().setUserId((Integer) resultToValue(data,1));
                     databaseAdapter().selectUserLevel(userData().getUserId(), new OnTaskListeners.Result() {
                         @Override
                         public void onSuccess(ResultSet data) {
@@ -54,8 +54,8 @@ public class SignInUpController extends Controller {
                                     listener.onSuccess("true");
                                 }
                             });
-=======
-                    userData().setUserType('I');
+
+                    userData().setUserType('I');*/
                 } else if (resultToValue(data, 2).toString().matches("S")) {
                     if ((boolean) resultToValue(data, 3) == true) {
                         listener.onSuccess("you have been suspended for something you did and it was wrong");
@@ -64,7 +64,6 @@ public class SignInUpController extends Controller {
                     userData().setUserType('S');
                 } else {
                     userData().setUserType('A');
->>>>>>> 9a71217275da1f9238f29968a81e27d938a31a6a
 
                 }
                 userData().setUserId((Integer) resultToValue(data, 1));
@@ -113,7 +112,7 @@ public class SignInUpController extends Controller {
 
     //check if the username is in database
     public void checkUserName(String username, final OnTaskListeners.Bool listener) {
-        databaseAdapter().selectUsername(username, new OnTaskListeners.Result() {
+        databaseAdapter().selectUserUsername(username, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 listener.onSuccess(checkIfFound(data));
@@ -142,7 +141,7 @@ public class SignInUpController extends Controller {
     }
 
     public void updateEmail(String email, final OnTaskListeners.Bool listener) {
-        databaseAdapter().updateUserPassword(userData().getUserId(), email, new OnTaskListeners.Bool() {
+        databaseAdapter().updateUserEmail(userData().getUserId(), email, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
                 listener.onSuccess(result);

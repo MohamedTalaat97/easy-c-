@@ -13,7 +13,7 @@ public class StudentController extends Controller {
 
 
     public void getUserName(int id, final OnTaskListeners.Word listener) {
-        databaseAdapter().selectUsername(id, new OnTaskListeners.Result() {
+        databaseAdapter().selectUserUsername(id, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                             if (!checkIfFound(data))

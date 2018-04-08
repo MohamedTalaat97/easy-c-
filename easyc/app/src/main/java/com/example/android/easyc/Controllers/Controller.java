@@ -43,6 +43,11 @@ public class Controller {
         return ConnectionDb.getInstance().checkConnection();
     }
 
+    //check if the app is connected to the internet
+    public boolean checkConnection() {
+        return ConnectionDb.getInstance().checkConnection();
+    }
+
 
     //get the data from database in array
     protected ArrayList<Object> resultToArray(ResultSet data, String Column_Name) {

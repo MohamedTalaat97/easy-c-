@@ -281,4 +281,9 @@ public class DatabaseAdapter {
         databaseLegacy.iud(query, listener);
     }
 
+    public void updateUserEmail(int userId, String email, OnTaskListeners.Bool listener) {
+        query = "update User set email = '" + email + "' where id = " + userId;
+        databaseLegacy.iud(query, listener);
+    }
+
 }

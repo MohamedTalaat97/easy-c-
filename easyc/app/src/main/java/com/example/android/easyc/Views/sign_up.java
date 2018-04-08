@@ -139,6 +139,17 @@ public class sign_up extends AppCompatActivity {
                         mailController.sendWelcomeMessage(email.getText().toString());
                         goToSignInActivity();
                     }
+                    else
+                    {
+                        if(!signInUpController.checkConnection(getApplicationContext()))
+                            return;
+
+                        checkUserName();
+                        checkEmail();
+                        if(check())
+                            signInUpController.toast("unsuccessfull operation",getApplicationContext());
+
+                    }
 
                 }
             });

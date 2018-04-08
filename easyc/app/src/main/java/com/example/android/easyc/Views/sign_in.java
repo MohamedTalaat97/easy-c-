@@ -87,11 +87,11 @@ public class sign_in extends AppCompatActivity {
                     signInUpController.toast(result, getApplicationContext());
                     if (result.matches("true"))
                         if (signInUpController.getType() == 'I') {
-                            goTo(show_opinions.class);
+                            goTo(options.class);
                         } else if (signInUpController.getType() == 'S') {
-                            goTo(show_opinions.class);
+                            goTo(options.class);
                         } else {
-                            goTo(show_opinions.class);
+                            goTo(options.class);
                         }
                 }
             });
@@ -111,6 +111,7 @@ public class sign_in extends AppCompatActivity {
         Intent intent = new Intent(this, s);
         startActivity(intent);
         overridePendingTransition(R.anim.goup, R.anim.godown);
+        finish();
     }
 
     //go to restore your account class
@@ -118,6 +119,7 @@ public class sign_in extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), forget_password_username.class);
         startActivity(i);
     }
+
 
 
 }

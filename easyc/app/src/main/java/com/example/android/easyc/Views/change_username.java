@@ -1,5 +1,6 @@
 package com.example.android.easyc.Views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.android.easyc.Controllers.MailController;
 import com.example.android.easyc.Controllers.SignInUpController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
@@ -16,6 +18,7 @@ public class change_username extends AppCompatActivity {
     EditText userNameText;
     Button changeButton;
     SignInUpController signInUpController;
+    MailController mailController;
 
 
     boolean usernameChecked;
@@ -27,6 +30,7 @@ public class change_username extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_username);
         signInUpController = new SignInUpController();
+        mailController = new MailController();
         userNameText = findViewById(R.id.emailchangetext);
         changeButton = findViewById(R.id.changeusernamebutton);
 
@@ -71,7 +75,11 @@ public class change_username extends AppCompatActivity {
             @Override
             public void onSuccess(Boolean result) {
                 if(result)
-                    signInUpController.toast("successfully changed",getApplicationContext());
+                {
+                    signInUpController.toast("successfully changed", getApplicationContext());
+                    mailController.sendWarningChangeInUsername();
+                    goToOptions();
+                }
                 else
                     signInUpController.toast("unsuccessful operation",getApplicationContext());
             }
@@ -119,4 +127,10 @@ public class change_username extends AppCompatActivity {
         });
     }
 
+
+    void  goToOptions()
+    {
+        Intent intent = new Intent(getApplicationContext(),options.class);
+        startActivity(intent);
+    }
 }

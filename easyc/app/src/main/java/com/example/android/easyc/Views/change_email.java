@@ -1,5 +1,6 @@
 package com.example.android.easyc.Views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -60,21 +61,22 @@ public class change_email extends AppCompatActivity {
         });
     }
 
-void changeEmail()
-{
-    if(!check())
-        return;
+    void changeEmail() {
+        if (!check())
+            return;
 
-    signInUpController.updateEmail(emailText.getText().toString(), new OnTaskListeners.Bool() {
-        @Override
-        public void onSuccess(Boolean result) {
-            if(result)
-                signInUpController.toast("successfully changed",getApplicationContext());
-            else
-                signInUpController.toast("unsuccessful operation",getApplicationContext());
-        }
-    });
-}
+        signInUpController.updateEmail(emailText.getText().toString(), new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if (result) {
+                    signInUpController.toast("successfully changed", getApplicationContext());
+                    goToOptions();
+                } else
+                    signInUpController.toast("unsuccessful operation", getApplicationContext());
+            }
+        });
+    }
+
 
 
     //check before change
@@ -103,6 +105,7 @@ void changeEmail()
         return true;
 
     }
+
     //check from the database if the email is available
     void checkEmail() {
         emailChecked = false;
@@ -117,4 +120,8 @@ void changeEmail()
         });
     }
 
+    void goToOptions() {
+        Intent intent = new Intent(getApplicationContext(), options.class);
+        startActivity(intent);
+    }
 }

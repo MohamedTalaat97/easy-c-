@@ -131,10 +131,12 @@ public class SignInUpController extends Controller {
     }
 
 
-    public void updateUsername(String username, final OnTaskListeners.Bool listener) {
+    public void updateUsername(final String username, final OnTaskListeners.Bool listener) {
         databaseAdapter().updateUserUsername(userData().getUserId(), username, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
+                if(result)
+                    userData().setUserName(username);
                 listener.onSuccess(result);
             }
         });

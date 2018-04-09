@@ -1,0 +1,12 @@
+Team 15
+Easy C++
+Version 1.0
+
+New Features
+
+- added sign in and sign up features (students only)
+- added ability to change password/username
+- added categories (and sub-categories)
+- added opinions activity
+- added admin functionality and privilege
+

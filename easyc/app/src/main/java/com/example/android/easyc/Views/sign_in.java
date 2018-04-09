@@ -29,6 +29,7 @@ public class sign_in extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_activity);
         //connect with the database
+
         connectionDb = ConnectionDb.getInstance();
         connectionDb.connect(this);
 
@@ -77,7 +78,7 @@ public class sign_in extends AppCompatActivity {
     void signIn() {
 
         //for testing
-        //goTo(show_opinions.class);
+        //goTo(student_menu.class);
 
         if (check()) {
             //from the controller call signin function that you made and after it finish the function will call back to this function

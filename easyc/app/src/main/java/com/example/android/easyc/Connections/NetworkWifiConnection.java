@@ -62,7 +62,7 @@ return null;
 
                 String prefix = ipString.substring(0, ipString.lastIndexOf(".") + 1);
 
-                for (int i = lastHost; i < 255; i++) {
+                for (int i =lastHost; i < 255; i++) {
                     if (connectionDb.checkConnection())
                         break;
                     String testIp = prefix + String.valueOf(i);

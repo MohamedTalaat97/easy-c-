@@ -1,6 +1,9 @@
 package com.example.android.easyc.Connections;
 
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds;
+import android.provider.ContactsContract.CommonDataKinds.Email;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

@@ -286,4 +286,10 @@ public class DatabaseAdapter {
         databaseLegacy.iud(query, listener);
     }
 
+    public void selectUserEmail(int userId,OnTaskListeners.Result listener)
+    {
+        query = "select email from user where id = "+userId;
+        databaseLegacy.select(query,listener);
+    }
+
 }

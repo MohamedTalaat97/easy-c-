@@ -11,13 +11,12 @@ import java.sql.ResultSet;
 public class StudentController extends Controller {
 
 
-
     public void getUserName(int id, final OnTaskListeners.Word listener) {
         databaseAdapter().selectUserUsername(id, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                            if (!checkIfFound(data))
-                return;
+                if (!checkIfFound(data))
+                    return;
                 listener.onSuccess((String) resultToValue(data));
             }
         });
@@ -27,8 +26,8 @@ public class StudentController extends Controller {
         databaseAdapter().selectUserLevel(id, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                            if (!checkIfFound(data))
-                return;
+                if (!checkIfFound(data))
+                    return;
                 listener.onSuccess((int) resultToValue(data));
             }
         });
@@ -40,13 +39,11 @@ public class StudentController extends Controller {
         return userData().getUserId();
     }
 
-    public String getUsername()
-    {
-        return  userData().getUserName();
+    public String getUsername() {
+        return userData().getUserName();
     }
 
-    public int getUserLevel()
-    {
+    public int getUserLevel() {
         return userData().getUserLevel();
     }
 

@@ -37,7 +37,7 @@ public class MailController extends Controller {
                 String password = (String) resultToValue(data, 2);
 
                 sender.setRecipientEmail(email);
-                sender.setSubject("Retore your username/password");
+                sender.setSubject("Restore your username/password");
                 sender.setBody("thanks for using our app we are hoping that you have a great time while using our app \n be careful next time you forget your password or username \n \n username :" + username + "\n password : " + password);
                 sender.sendEmail(listener);
 

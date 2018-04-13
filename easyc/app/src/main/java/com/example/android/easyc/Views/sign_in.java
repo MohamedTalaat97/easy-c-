@@ -90,7 +90,7 @@ public class sign_in extends AppCompatActivity {
                         if (signInUpController.getType() == 'I') {
                             goTo(options.class);
                         } else if (signInUpController.getType() == 'S') {
-                            goTo(options.class);
+                            goTo(student_menu.class);
                         } else {
                             goTo(options.class);
                         }

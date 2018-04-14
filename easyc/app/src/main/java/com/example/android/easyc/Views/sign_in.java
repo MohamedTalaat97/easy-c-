@@ -88,11 +88,11 @@ public class sign_in extends AppCompatActivity {
                     signInUpController.toast(result, getApplicationContext());
                     if (result.matches("true"))
                         if (signInUpController.getType() == 'I') {
-                            goTo(options.class);
+                            goTo(student_menu.class);
                         } else if (signInUpController.getType() == 'S') {
                             goTo(student_menu.class);
                         } else {
-                            goTo(options.class);
+                            goTo(student_menu.class);
                         }
                 }
             });

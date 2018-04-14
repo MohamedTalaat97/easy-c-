@@ -43,7 +43,9 @@
         <activity android:name=".Views.change_password" />
         <activity android:name=".Views.change_username" />
         <activity android:name=".Views.change_email" />
-        <activity android:name=".Views.cardViewAdapter"></activity>
+        <activity android:name=".Views.cardViewAdapter" />
+        <activity android:name=".Views.instructor_menu" />
+        <activity android:name=".Views.admin_menu"></activity>
     </application>
 
 </manifest>

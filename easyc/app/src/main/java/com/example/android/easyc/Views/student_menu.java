@@ -49,7 +49,7 @@ public class student_menu extends AppCompatActivity {
         opinion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goTo(show_opinions.class);
+                goTo(put_opinion.class);
             }
         });
         options.setOnClickListener(new View.OnClickListener() {

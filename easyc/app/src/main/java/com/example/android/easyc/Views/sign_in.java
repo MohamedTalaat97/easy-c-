@@ -88,7 +88,7 @@ public class sign_in extends AppCompatActivity {
                     signInUpController.toast(result, getApplicationContext());
                     if (result.matches("true"))
                         if (signInUpController.getType() == 'I') {
-                            goTo(student_menu.class);
+                            goTo(instructor_menu.class);
                         } else if (signInUpController.getType() == 'S') {
                             goTo(student_menu.class);
                         } else {

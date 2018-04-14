@@ -51,11 +51,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/user_info"
-        android:layout_margin="20dp">
+        android:layout_margin="20dp"
+        android:gravity="center">
 
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,13 +69,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:src="@drawable/course"/>
+                    android:src="@drawable/course" />
+
                 <ImageView
                     android:id="@+id/to_put_opinion"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:src="@drawable/opinion"/>
+                    android:src="@drawable/opinion" />
 
                 <ImageView
                     android:id="@+id/to_options1"
@@ -81,12 +84,13 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:src="@drawable/setting" />
+
                 <ImageView
                     android:id="@+id/to_add_quiz"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
                     android:layout_height="0dp"
-                    android:src="@drawable/question"/>
+                    android:layout_weight="1"
+                    android:src="@drawable/question" />
 
 
             </LinearLayout>

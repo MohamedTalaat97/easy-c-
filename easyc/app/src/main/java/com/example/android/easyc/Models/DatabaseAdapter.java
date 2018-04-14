@@ -158,8 +158,8 @@ public class DatabaseAdapter {
         databaseLegacy.select(query, listener);
     }
 
-    public void selectUserIdTypeSuspended(String name, String password, OnTaskListeners.Result listener) {
-        query = "select id,type,suspended from user where (userName = '" + name + "' OR email = '" + name + "' )  and password = '" + password + "'";
+    public void selectUserIdTypeSuspendedRequest(String name, String password, OnTaskListeners.Result listener) {
+        query = "select id,type,suspended,request from user where (userName = '" + name + "' OR email = '" + name + "' )  and password = '" + password + "'";
         databaseLegacy.select(query, listener);
     }
 

@@ -161,7 +161,7 @@ public class sign_up extends AppCompatActivity {
             return false;
         }
 
-        if(username.getText().toString().indexOf('@')<0)
+        if(username.getText().toString().indexOf('@')>=0)
         {
             signInUpController.toast("please remove the @ sign",getApplicationContext());
             return false;
@@ -202,6 +202,8 @@ public class sign_up extends AppCompatActivity {
             signInUpController.toast("this is the email of the company \n please put real email", getApplicationContext());
             return false;
         }
+        if(!signInUpController.checkConnection(getApplicationContext()))
+            return false;
 
         try {
             int a = Integer.parseInt(age.getText().toString());
@@ -245,6 +247,7 @@ public class sign_up extends AppCompatActivity {
     void goToSignInActivity() {
         Intent i = new Intent(sign_up.this, sign_in.class);
         startActivity(i);
+        finish();
     }
 
 

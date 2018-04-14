@@ -34,6 +34,7 @@ public class sign_in extends AppCompatActivity {
         connectionDb.connect(this);
 
 
+
         signInUpController = new SignInUpController();
         singInButton = findViewById(R.id.BT_sign_in);
         username = findViewById(R.id.ET_user_name);
@@ -71,6 +72,9 @@ public class sign_in extends AppCompatActivity {
             signInUpController.toast("You did not enter a username or a password", getApplicationContext());
             return false;
         }
+
+        if(!signInUpController.checkConnection(getApplicationContext()))
+            return false;
         return true;
     }
 

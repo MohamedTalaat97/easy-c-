@@ -72,7 +72,11 @@ public class ConnectionDb {
 
     public void serverConnect() {
         //if you want to put the host static for AVD uncomment the next line
+<<<<<<< HEAD
        // host = "khaled.xp3.biz";
+=======
+       // host = "192.168.1.5";
+>>>>>>> 9d8d0317d045379ab94f7e965f650f1f3b6d1a20
         url = "jdbc:mysql://" + host + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
         try {
             Class.forName("com.mysql.jdbc.Driver");

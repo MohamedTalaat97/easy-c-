@@ -63,6 +63,7 @@ public class ConnectionDb {
 
     //use this function if you want to connect to database
     public void connect(Context context) {
+
         this.context = context;
         connection = new NetworkWifiConnection(context);
         connection.execute();

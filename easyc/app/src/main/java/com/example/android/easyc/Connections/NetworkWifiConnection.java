@@ -34,6 +34,7 @@ public class NetworkWifiConnection extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
 
+      //  connectionDb.serverConnect();
 wifiConnect();
 return null;
     }

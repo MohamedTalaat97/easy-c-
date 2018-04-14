@@ -8,11 +8,11 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/o24" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/o20" />
 
 
     <LinearLayout
@@ -49,18 +49,48 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/user_info">
+        android:layout_height="400dp"
+        android:layout_below="@id/user_info"
+        android:layout_margin="20dp">
 
-       <GridView
-            android:id="@+id/gridview"
+        <ScrollView
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-           android:numColumns="auto_fit"
-            android:stretchMode="columnWidth"
-           android:columnWidth="150dp"
-            />
+
+            <ImageView
+                android:id="@+id/to_course"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/course"/>
+            <ImageView
+                android:id="@+id/to_opinion"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/opinion"/>
+
+            <ImageView
+                android:id="@+id/to_options"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/setting" />
+            <ImageView
+                android:id="@+id/to_quiz"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:src="@drawable/question"/>
+
+
+        </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 
 

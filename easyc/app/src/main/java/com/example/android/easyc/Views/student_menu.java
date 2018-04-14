@@ -123,8 +123,9 @@ public class student_menu extends AppCompatActivity {
 
     //go to any class
     void goTo(Class c) {
-        Intent i = new Intent(getApplicationContext(), c);
-        startActivity(i);
+        Intent intent = new Intent(getApplicationContext(), c);
+        startActivity(intent);
+       // overridePendingTransition(R.anim.goup, R.anim.godown);
     }
 
     @Override

@@ -23,6 +23,13 @@ public class student_menu extends AppCompatActivity {
     int userLevel;
     StudentController studentController;
 
+    private Integer[] menu_icons = {
+            R.drawable.course,
+
+
+
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,24 +38,24 @@ public class student_menu extends AppCompatActivity {
         studentController = new StudentController();
         name = findViewById(R.id.username);
         level = findViewById(R.id.level_Bar);
-        menu = (GridView) findViewById(R.id.gridview);
 
-        userId =studentController.getUserId();
+
+        userId = studentController.getUserId();
         username = studentController.getUsername();
-        userLevel = studentController.getUserLevel();
-        name.setText(username);
-
-        initMenu();
-        initProgress();
-
-
         studentController.getUserName(userId, new OnTaskListeners.Word() {
             @Override
             public void onSuccess(String result) {
-                username=result;
+                username = result;
             }
         });
+        userLevel = studentController.getUserLevel();
+        name.setText(username);
+        menu =  findViewById(R.id.gridview);
+        GridAdapter gridAdapter = new GridAdapter(this, menu_icons);
+        menu.setAdapter(gridAdapter);
 
+        // initMenu();
+        //initProgress();
 
 
     }
@@ -56,10 +63,10 @@ public class student_menu extends AppCompatActivity {
 
     void initMenu() {
 
-        menu.setAdapter(new student_menu_adapter(this));
-        menu.setNumColumns(2);
-        menu.setVerticalSpacing(20);
-        menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        // menu.setNumColumns(2);
+        // menu.setVerticalSpacing(20);
+      /*  menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
 
@@ -71,16 +78,16 @@ public class student_menu extends AppCompatActivity {
                 }
 
             }
-        });
+        });*/
     }
 
 
-    void initProgress()
-    {
+    void initProgress() {
 
         level.setMax(100);
-        level.setProgress(userLevel*10);
+        level.setProgress(userLevel * 10);
     }
+
     //go to any class
     void goTo(Class c) {
         Intent i = new Intent(getApplicationContext(), c);

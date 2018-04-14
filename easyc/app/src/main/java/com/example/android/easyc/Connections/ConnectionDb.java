@@ -72,7 +72,7 @@ public class ConnectionDb {
 
     public void serverConnect() {
         //if you want to put the host static for AVD uncomment the next line
-        host = "192.168.1.5";
+       // host = "khaled.xp3.biz";
         url = "jdbc:mysql://" + host + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -89,7 +89,15 @@ public class ConnectionDb {
         }
     }
 
+    //reconnect the connection if
     public void reconnect() {
+        if(instance.c != null)
+            try {
+                if(instance.c.isValid(50))
+                    return;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         instance.c = null;
         connection.wifiConnect();

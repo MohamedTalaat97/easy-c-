@@ -2,9 +2,8 @@ package com.example.android.easyc.Views;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.example.android.easyc.Controllers.DiscussionController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
@@ -15,84 +14,133 @@ import java.util.ArrayList;
 public class replies_on_questions extends AppCompatActivity {
 
     int question_id;
-    int user_id;
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager manager;
+
+
     ArrayList<Integer> replyIds;
-    ArrayList<String> replies;
-
-
-
-    ListView listView;
-    RelativeLayout.LayoutParams userNameLayout ;
-    RelativeLayout.LayoutParams replyLayout;
-    ListView.LayoutParams viewLayout;
     ArrayList<String> userNames;
+    ArrayList<String> contents;
+    ArrayList<Integer> userIds;
+    ArrayList<Boolean> bestAnswer;
+
+
+  //  String content;
+    String title;
+
+
+    boolean isMyQuestion;
+
+    ArrayList<ListItems> listItems;
 
     DiscussionController discussionController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_replies_on_questions);
         discussionController = new DiscussionController();
-        question_id = getIntent().getIntExtra(discussion_room_questions.QUESTION_ID,0);
-
-         userNameLayout = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-         replyLayout= new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-         viewLayout = new ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT, ListView.LayoutParams.WRAP_CONTENT);
-
-
+        question_id = getIntent().getIntExtra(discussion_room_questions.QUESTION_ID, 0);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        manager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
 
 
-        adjustView();
-        fillList();
+        listItems = new ArrayList<ListItems>();
+
+        replyIds = new ArrayList<Integer>();
+        userIds = new ArrayList<Integer>();
+        userNames = new ArrayList<String>();
+        contents = new ArrayList<String>();
+
+
+fillList();
     }
 
 
-    void fillList()
-    {
-        discussionController.getRepliesIdUserNameContent(question_id, new OnTaskListeners.ThreeList() {
+    void fillList() {
+        replyIds.clear();
+        userIds.clear();
+        userNames.clear();
+        contents.clear();
+        bestAnswer.clear();
+
+        discussionController.getQuestion(question_id, new OnTaskListeners.Map() {
             @Override
-            public void onSuccess(ArrayList<Object> list1, ArrayList<Object> list2, ArrayList<Object> list3) {
-                if(list1.isEmpty())
-                    return;
-                replyIds = (ArrayList<Integer>) (Object) list1;
-                userNames = (ArrayList<String>)(Object) list2;
-                replies = (ArrayList<String>) (Object) list3;
-                addReplies();
+            public void onSuccess(String key, ArrayList<Object> list) {
+                if (key.matches(DiscussionController.USERID))
+                    userIds.addAll((ArrayList<Integer>) (Object) list);
+                else if (key.matches(DiscussionController.TITLE))
+                    title = (String) list.get(0);
+                else if (key.matches(DiscussionController.USERNAME))
+                    userNames.addAll((ArrayList<String>) (Object) list);
+                else if (key.matches(DiscussionController.CONTENT))
+                    contents.addAll((ArrayList<String>) (Object) list);
+                else if (key.matches(DiscussionController.BEST_ANSWER))
+                    bestAnswer.addAll((ArrayList<Boolean>) (Object) list);
+                else if (key.matches(DiscussionController.FINISHED)) {
+                    replyIds.add(question_id);
+                    discussionController.getReplies(question_id, new OnTaskListeners.Map() {
+                        @Override
+                        public void onSuccess(String key, ArrayList<Object> list) {
+                            if (key.matches(DiscussionController.REPLYID))
+                                replyIds.addAll((ArrayList<Integer>) (Object) list);
+                            else if (key.matches(DiscussionController.USERID))
+                                userIds.addAll((ArrayList<Integer>) (Object) list);
+                            else if (key.matches(DiscussionController.USERNAME))
+                                userNames.addAll((ArrayList<String>) (Object) list);
+                            else if (key.matches(DiscussionController.CONTENT))
+                                contents.addAll((ArrayList<String>) (Object) list);
+                            else if (key.matches(DiscussionController.BEST_ANSWER))
+                                bestAnswer.addAll((ArrayList<Boolean>) (Object) list);
+                            else if (key.matches(DiscussionController.FINISHED))
+                                loadAdapter();
+
+
+                        }
+                    });
+                }
+
+
             }
         });
 
     }
 
-    void adjustView()
-    {
-        userNameLayout.addRule(RelativeLayout.ALIGN_LEFT);
-        replyLayout.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
-        replyLayout.setMargins(66,200,66,0);
-
-
-    }
-
-
-    void addReplies()
-    {
-        for(int i = 0; i < replyIds.size();i++)
-        {
-            RelativeLayout relativeLayout = new RelativeLayout(getApplicationContext());
-            TextView textView1 = new TextView(getApplicationContext());
-            TextView textView2 = new TextView(getApplicationContext());
-            textView1.setLayoutParams(userNameLayout);
-            textView2.setLayoutParams(replyLayout);
-            relativeLayout.setLayoutParams(viewLayout);
-
-            textView1.setText(userNames.get(i).toString());
-            textView2.setText(replies.get(i).toString());
-
-            relativeLayout.addView(textView1);
-            relativeLayout.addView(textView2);
-            listView.addView(relativeLayout,i+1);
+    void loadAdapter() {
+        for (int i = 0; i < replyIds.size(); i++) {
+            ListItems listItem = new ListItems(userNames.get(i), contents.get(i), userIds.get(i), replyIds.get(i),bestAnswer.get(i));
+            listItems.add(listItem);
         }
+
+        adapter = new cardViewAdapter(listItems, getApplicationContext(), this, title);
+        recyclerView.setAdapter(adapter);
     }
 
 
+
+    public void putBestAnswer(int replyId)
+    {
+        discussionController.updateReplyBestAnswer(replyId, true, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if(result)
+                {
+                    discussionController.toast("successfully updated",getApplicationContext());
+                    fillList();
+                }
+                else
+                {
+                    if(discussionController.checkConnection(getApplicationContext()))
+                        return;
+
+                    discussionController.toast("unsuccessfully updated",getApplicationContext());
+
+                }
+            }
+        });
+    }
 }

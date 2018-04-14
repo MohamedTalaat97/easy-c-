@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!-- A CardView that contains a TextView -->
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/replayCardViewID"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:id="@+id/cardLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:layoutDirection="ltr">
+
+            <TextView
+                android:id="@+id/userNameID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text="USERNAME" />
+
+            <RelativeLayout
+                android:id="@+id/titleContentid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bestAnswerID"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:id="@+id/titlequestionid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/Description"
+                    android:layout_alignStart="@+id/Description"
+                    android:layout_below="@+id/userNameID"
+                    android:text="TITLE"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/Description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/userNameID"
+                    android:layout_alignStart="@+id/userNameID"
+                    android:layout_below="@+id/userNameID"
+                    android:layout_marginLeft="33dp"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="13dp"
+                    android:text="WHAT ARE YOU DOING"
+                    android:textAlignment="viewStart"
+                    android:textSize="24sp"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/bestAnswerID"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/userNameID"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/button_1"
+                android:padding="0dp"
+                android:text="Best Answer"
+                android:textSize="10sp" />
+        </RelativeLayout>
+        <![CDATA[
+
+        ]
+            android:text="username"
+            android:textSize="18sp" />
+
+    ]]>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

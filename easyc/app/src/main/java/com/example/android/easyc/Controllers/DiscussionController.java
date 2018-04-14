@@ -11,6 +11,15 @@ import java.util.ArrayList;
 
 public class DiscussionController extends Controller {
 
+    public static String REPLYID = "REPLTID";
+    public static String USERNAME = "USERNAME";
+    public static String USERID = "USERID";
+    public static String CONTENT = "CONTENT";
+    public static String NOTFOUND = "NOTFOUND";
+    public static String FINISHED = "FINISHED";
+    public static String TITLE = "TITLE";
+    public static String BEST_ANSWER = "BEST_ANSWER";
+
 
 
     //get back the questions with order by name
@@ -101,17 +110,84 @@ public class DiscussionController extends Controller {
 
 
     //return the replies for a specific question identified by id
-    public  void getRepliesIdUserNameContent(int question_id, final OnTaskListeners.ThreeList listener)
+    public void getReplies(final int questionId, final OnTaskListeners.Map listener)
     {
-        databaseAdapter().selectReplyIdUserNameContent(question_id, new OnTaskListeners.Result() {
+        databaseAdapter().selectReplyIdUserNameUserIdContentBest_answer(questionId,true, new OnTaskListeners.Result() {
+                    @Override
+                    public void onSuccess(ResultSet data) {
+                        if(checkIfFound(data)) {
+                            listener.onSuccess(REPLYID, resultToArray(data, 1));
+                            listener.onSuccess(USERNAME, resultToArray(data, 2));
+                            listener.onSuccess(USERID, resultToArray(data, 3));
+                            listener.onSuccess(CONTENT, resultToArray(data, 4));
+                            listener.onSuccess(BEST_ANSWER,resultToArray(data,5));
+
+                        }
+                  //      else
+                       //     listener.onSuccess(NOTFOUND,new ArrayList<Object>());
+
+
+                        databaseAdapter().selectReplyIdUserNameUserIdContentBest_answer(questionId, false, new OnTaskListeners.Result() {
+                            @Override
+                            public void onSuccess(ResultSet data) {
+
+                                if(checkIfFound(data)) {
+                                    listener.onSuccess(REPLYID, resultToArray(data, 1));
+                                    listener.onSuccess(USERNAME, resultToArray(data, 2));
+                                    listener.onSuccess(USERID, resultToArray(data, 3));
+                                    listener.onSuccess(CONTENT, resultToArray(data, 4));
+                                    listener.onSuccess(BEST_ANSWER,resultToArray(data,5));
+
+
+                                }
+                             //   else
+                                  //  listener.onSuccess(NOTFOUND,new ArrayList<Object>());
+                                listener.onSuccess(FINISHED,new ArrayList<Object>());
+
+                            }
+                        });
+                    }
+                }
+        );
+    }
+
+
+
+    public void getQuestion(int questionId, final OnTaskListeners.Map listener)
+    {
+        databaseAdapter().selectCommentUserIdUsernameTitleDescription(questionId, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 if(checkIfFound(data))
                 {
-                    listener.onSuccess(resultToArray((data),1),resultToArray((data),2),resultToArray((data),3));
+                    listener.onSuccess(USERID,resultToArray(data,1));
+                    listener.onSuccess(USERNAME,resultToArray(data,2));
+                    listener.onSuccess(TITLE,resultToArray(data,3));
+                    listener.onSuccess(CONTENT,resultToArray(data,4));
+                    listener.onSuccess(FINISHED,new ArrayList<Object>());
+
                 }
                 else
-                    listener.onSuccess(new ArrayList<Object>(),new ArrayList<Object>(),new ArrayList<Object>());
+                    listener.onSuccess(NOTFOUND,new ArrayList<Object>());
+
+            }
+        });
+
+    }
+
+
+    public void updateReplyBestAnswer(final int replyid, final boolean isBestAnswer, final OnTaskListeners.Bool listener)
+    {
+        databaseAdapter().updateReplyBestAnswerByAll(false, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if(result)
+                    databaseAdapter().updateReplyBestAnswer(replyid, isBestAnswer, new OnTaskListeners.Bool() {
+                        @Override
+                        public void onSuccess(Boolean result) {
+                            listener.onSuccess(result);
+                        }
+                    });
             }
         });
     }

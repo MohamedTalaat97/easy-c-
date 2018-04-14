@@ -260,13 +260,8 @@ public class DatabaseAdapter {
         databaseLegacy.select(query, listeners);
     }
 
-    public void selectReplyIdUserNameContent(int question_id, OnTaskListeners.Result listeners) {
-        query = "select id,username,content from user,reply where user.id = user_id and comment_id = " + question_id;
-        databaseLegacy.select(query, listeners);
-    }
-
-    public void selectReplyIdByBestAnswer(int question_id, OnTaskListeners.Result listeners) {
-        query = "select id from reply where best_answer = true and comment_id = " + question_id;
+    public void selectReplyIdUserNameUserIdContentBest_answer(int question_id,boolean isBestAnswer, OnTaskListeners.Result listeners) {
+        query = "select id,username,user_id,content,best_answer from user,reply where user.id = user_id and comment_id = " + question_id + " best_answer = "+isBestAnswer+" order by date";
         databaseLegacy.select(query, listeners);
     }
 
@@ -290,6 +285,43 @@ public class DatabaseAdapter {
     {
         query = "select email from user where id = "+userId;
         databaseLegacy.select(query,listener);
+    }
+
+
+/*
+    public void selectReplyId(int question_id, OnTaskListeners.Result listeners) {
+        query = "select id from reply where comment_id = " + question_id + "order by date";
+        databaseLegacy.select(query, listeners);
+    }
+
+    public void selectReplyUsernameByQuestion(int question_id, OnTaskListeners.Result listeners) {
+        query = "select username from reply r,username u where r.user_id = u.id comment_id = " + question_id+ "order by date";
+        databaseLegacy.select(query, listeners);
+    }
+
+    public void selectReplyContent(int question_id, OnTaskListeners.Result listeners) {
+        query = "select content from reply where comment_id = " + question_id+ "order by date";
+        databaseLegacy.select(query, listeners);
+    }*/
+
+
+public void selectCommentUserIdUsernameTitleDescription(int questionID, OnTaskListeners.Result listener)
+{
+    query = "select user_id,username,title,description from comment c, user u where u.id = c.user_id id = "+questionID;
+    databaseLegacy.select(query,listener);
+}
+
+
+public  void updateReplyBestAnswer(int replyId,boolean isBest,OnTaskListeners.Bool listener)
+{
+    query = "update reply set best_Answer = "+ isBest +" where id = "+replyId;
+    databaseLegacy.iud(query,listener);
+}
+
+    public  void updateReplyBestAnswerByAll(boolean isBest,OnTaskListeners.Bool listener)
+    {
+        query = "update reply set best_Answer = "+ isBest ;
+        databaseLegacy.iud(query,listener);
     }
 
 }

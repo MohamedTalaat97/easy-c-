@@ -78,7 +78,7 @@ public class sign_in extends AppCompatActivity {
     void signIn() {
 
         //for testing
-        goTo(replies_on_questions.class);
+       // goTo(replies_on_questions.class);
 
         if (check()) {
             //from the controller call signin function that you made and after it finish the function will call back to this function
@@ -88,11 +88,11 @@ public class sign_in extends AppCompatActivity {
                     signInUpController.toast(result, getApplicationContext());
                     if (result.matches("true"))
                         if (signInUpController.getType() == 'I') {
-                            goTo(options.class);
+                            goTo(student_menu.class);
                         } else if (signInUpController.getType() == 'S') {
                             goTo(student_menu.class);
                         } else {
-                            goTo(options.class);
+                            goTo(student_menu.class);
                         }
                 }
             });

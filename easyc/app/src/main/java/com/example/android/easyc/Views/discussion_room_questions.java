@@ -19,6 +19,9 @@ import java.util.ArrayList;
 
 public class discussion_room_questions extends AppCompatActivity {
     public static String QUESTION_ID ="QUESTION_ID";
+    public static String MY_QUESTION ="MY_QUESTION";
+
+
     ListView listView;
     Spinner sortSpinner;
     Spinner limitSpinner;
@@ -199,6 +202,7 @@ public class discussion_room_questions extends AppCompatActivity {
     {
         Intent intent  = new Intent(getApplicationContext(),put_opinion.class);
         intent.putExtra(QUESTION_ID,id);
+        intent.putExtra(MY_QUESTION,myQuestions);
         startActivity(intent);
 
     }

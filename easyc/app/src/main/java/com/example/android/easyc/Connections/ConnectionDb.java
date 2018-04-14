@@ -90,7 +90,15 @@ public class ConnectionDb {
         }
     }
 
+    //reconnect the connection if
     public void reconnect() {
+        if(instance.c != null)
+            try {
+                if(instance.c.isValid(50))
+                    return;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         instance.c = null;
         connection.wifiConnect();

@@ -161,11 +161,17 @@ public class sign_up extends AppCompatActivity {
             return false;
         }
 
+        if(username.getText().toString().indexOf('@')<0)
+        {
+            signInUpController.toast("please remove the @ sign",getApplicationContext());
+            return false;
+        }
 
         if (email.getText().toString().indexOf('@') < 0) {
             signInUpController.toast("please enter real email", getApplicationContext());
             return false;
         }
+
 
         if (pass.getText().length() < 4) {
             signInUpController.toast("please add more secure password", getApplicationContext());

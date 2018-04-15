@@ -14,7 +14,8 @@ import com.example.android.easyc.R;
 
 import java.util.ArrayList;
 
-public class show_Requests extends AppCompatActivity {
+public class
+show_Requests extends AppCompatActivity {
 
     ArrayList<String> names;
     ArrayList<Integer> ids;

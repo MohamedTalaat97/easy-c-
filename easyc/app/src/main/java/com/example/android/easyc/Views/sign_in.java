@@ -96,7 +96,7 @@ public class sign_in extends AppCompatActivity {
                         } else if (signInUpController.getType() == 'S') {
                             goTo(student_menu.class);
                         } else {
-                            goTo(student_menu.class);
+                            goTo(admin_menu.class);
                         }
                 }
             });

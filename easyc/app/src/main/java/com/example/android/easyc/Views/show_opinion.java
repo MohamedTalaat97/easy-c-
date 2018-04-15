@@ -143,6 +143,7 @@ public class show_opinion extends AppCompatActivity {
     void goToOpinions() {
         Intent intent = new Intent(getApplicationContext(), show_opinions.class);
         startActivity(intent);
+        finish();
     }
 
 

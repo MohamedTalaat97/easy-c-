@@ -98,5 +98,6 @@ public class showRequest extends AppCompatActivity {
     void goToRequests() {
         Intent intent = new Intent(getApplicationContext(), show_Requests.class);
         startActivity(intent);
+        finish();
     }
 }

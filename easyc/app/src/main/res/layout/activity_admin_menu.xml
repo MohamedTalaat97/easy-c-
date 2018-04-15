@@ -36,7 +36,7 @@
             android:src="@drawable/line" />
 
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/usernameAdmin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -51,16 +51,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/user_info"
-        android:layout_margin="20dp">
+        android:layout_margin="20dp"
+        android:gravity="center">
 
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
 
 
                 <ImageView
@@ -68,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:src="@drawable/opinion"/>
+                    android:src="@drawable/opinion" />
 
                 <ImageView
                     android:id="@+id/to_options2"
@@ -78,6 +79,12 @@
                     android:src="@drawable/setting" />
 
 
+                <ImageView
+                    android:id="@+id/to_request"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/course" />
 
             </LinearLayout>
         </ScrollView>

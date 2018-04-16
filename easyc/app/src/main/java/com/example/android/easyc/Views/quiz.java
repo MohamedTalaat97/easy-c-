@@ -1,11 +1,10 @@
 package com.example.android.easyc.Views;
 
-public class Quiz
+public class quiz
 {
     String Question;
     Boolean Answer;
-    public
-    Quiz() {};
+    public quiz() {};
     void setQuestion(String Q)
     {
         Question = Q;

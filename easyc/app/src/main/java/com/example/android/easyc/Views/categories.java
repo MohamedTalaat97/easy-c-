@@ -70,6 +70,11 @@ public class categories extends AppCompatActivity {
     }
 
 
+    ArrayList<String>   getCategories()
+    {
+        return categories;
+    }
+
     //open topics for this category list
      void goToTopics() {
         Intent i = new Intent(getApplicationContext(), topic.class);

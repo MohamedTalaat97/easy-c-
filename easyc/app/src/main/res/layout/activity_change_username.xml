@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.example.android.easyc.Views.options">
 
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/o25" />
+
     <EditText
         android:id="@+id/emailchangetext"
         android:layout_width="wrap_content"
@@ -31,6 +40,7 @@
     <Button
         android:id="@+id/changeusernamebutton"
         android:layout_width="wrap_content"
+        style="@style/text"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="117dp"

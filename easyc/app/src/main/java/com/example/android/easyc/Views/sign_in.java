@@ -34,6 +34,7 @@ public class sign_in extends AppCompatActivity {
         connectionDb.connect(this);
 
 
+
         signInUpController = new SignInUpController();
         singInButton = findViewById(R.id.BT_sign_in);
         username = findViewById(R.id.ET_user_name);
@@ -71,6 +72,9 @@ public class sign_in extends AppCompatActivity {
             signInUpController.toast("You did not enter a username or a password", getApplicationContext());
             return false;
         }
+
+        if(!signInUpController.checkConnection(getApplicationContext()))
+            return false;
         return true;
     }
 
@@ -78,7 +82,7 @@ public class sign_in extends AppCompatActivity {
     void signIn() {
 
         //for testing
-        //goTo(student_menu.class);
+       // goTo(replies_on_questions.class);
 
         if (check()) {
             //from the controller call signin function that you made and after it finish the function will call back to this function
@@ -88,11 +92,11 @@ public class sign_in extends AppCompatActivity {
                     signInUpController.toast(result, getApplicationContext());
                     if (result.matches("true"))
                         if (signInUpController.getType() == 'I') {
-                            goTo(options.class);
+                            goTo(instructor_menu.class);
                         } else if (signInUpController.getType() == 'S') {
-                            goTo(options.class);
+                            goTo(student_menu.class);
                         } else {
-                            goTo(options.class);
+                            goTo(admin_menu.class);
                         }
                 }
             });

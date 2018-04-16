@@ -19,7 +19,7 @@ public class SignInUpController extends Controller {
     //be aware that it must be the return value to the view is void so you have to send the view with it
     public void signIn(String name, String password, final OnTaskListeners.Word listener) {
 
-        databaseAdapter().selectUserIdTypeSuspended(name, password, new OnTaskListeners.Result() {
+        databaseAdapter().selectUserIdTypeSuspendedRequest(name, password, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 if (!checkIfFound(data)) {
@@ -31,31 +31,19 @@ public class SignInUpController extends Controller {
                     return;
                 }
 
+
                 if (resultToValue(data, 2).toString().matches("I")) {
                     if ((boolean) resultToValue(data, 3) == true) {
-                        listener.onSuccess("wait untill the admin approve on your request");
-                        return;
+                        if (resultToValue(data, 4) == null) {
+                            listener.onSuccess("admin didn't accept your request to become instructor");
+                            return;
+                        } else {
+                            listener.onSuccess("wait untill the admin approve on your request");
+                            return;
+                        }
                     }
+                    userData().setUserType('I');
 
-                   /* userData().setUserId((Integer) resultToValue(data,1));
-                    databaseAdapter().selectUserLevel(userData().getUserId(), new OnTaskListeners.Result() {
-                        @Override
-                        public void onSuccess(ResultSet data) {
-                            if (!checkIfFound(data))
-                                return;
-                            userData().setUserLevel((Integer) resultToValue(data));
-
-                            databaseAdapter().selectUsername(userData().getUserId(), new OnTaskListeners.Result() {
-                                @Override
-                                public void onSuccess(ResultSet data) {
-                                    if (!checkIfFound(data))
-                                        return;
-                                    userData().setUserName((String) resultToValue(data));
-                                    listener.onSuccess("true");
-                                }
-                            });
-
-                    userData().setUserType('I');*/
                 } else if (resultToValue(data, 2).toString().matches("S")) {
                     if ((boolean) resultToValue(data, 3) == true) {
                         listener.onSuccess("you have been suspended for something you did and it was wrong");

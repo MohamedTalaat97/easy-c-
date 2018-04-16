@@ -52,10 +52,13 @@ public interface OnTaskListeners {
     }
 
     //return three object arraylist
-    public  interface ThreeList
+    public  interface Map
     {
-        void onSuccess(ArrayList<Object> list1,ArrayList<Object> list2,ArrayList<Object> list3);
+        void onSuccess(String key,ArrayList<Object> list);
     }
+
+
+
 
 
 }

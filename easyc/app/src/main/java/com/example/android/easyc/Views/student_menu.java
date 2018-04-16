@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -15,6 +16,10 @@ import com.example.android.easyc.R;
 
 public class student_menu extends AppCompatActivity {
 
+    ImageView course;
+    ImageView options;
+    ImageView quiz;
+    ImageView opinion;
     GridView menu;
     TextView name;
     ProgressBar level;
@@ -31,24 +36,39 @@ public class student_menu extends AppCompatActivity {
         studentController = new StudentController();
         name = findViewById(R.id.username);
         level = findViewById(R.id.level_Bar);
-        menu = (GridView) findViewById(R.id.gridview);
+        course = findViewById(R.id.to_course);
+        opinion = findViewById(R.id.to_opinion);
+        options = findViewById(R.id.to_options);
 
-        userId =studentController.getUserId();
-        username = studentController.getUsername();
-        userLevel = studentController.getUserLevel();
-        name.setText(username);
-
-        initMenu();
-        initProgress();
-
-
-        studentController.getUserName(userId, new OnTaskListeners.Word() {
+        course.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(String result) {
-                username=result;
+            public void onClick(View v) {
+                goTo(categories.class);
+            }
+        });
+        opinion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(put_opinion.class);
+            }
+        });
+        options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(options.class);
             }
         });
 
+        userId = studentController.getUserId();
+        username = studentController.getUsername();
+        studentController.getUserName(userId, new OnTaskListeners.Word() {
+            @Override
+            public void onSuccess(String result) {
+                username = result;
+            }
+        });
+        userLevel = studentController.getUserLevel();
+        name.setText(username);
 
 
     }
@@ -56,10 +76,14 @@ public class student_menu extends AppCompatActivity {
 
     void initMenu() {
 
-        menu.setAdapter(new student_menu_adapter(this));
-        menu.setNumColumns(2);
-        menu.setVerticalSpacing(20);
-        menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+/*
+        menu = findViewById(R.id.gridview);
+        GridAdapter gridAdapter = new GridAdapter(this, menu_icons);
+        menu.setAdapter(gridAdapter);
+        // menu.setNumColumns(2);*/
+        // menu.setVerticalSpacing(20);
+      /*  menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
 
@@ -71,20 +95,37 @@ public class student_menu extends AppCompatActivity {
                 }
 
             }
-        });
+        });*/
+
+/*
+        private Integer[] menu_icons = {
+                R.drawable.opinion,
+                R.drawable.opinion,
+                R.drawable.setting,
+                R.drawable.opinion
+
+
+
+
+
+        };
+
+
+*/
     }
 
 
-    void initProgress()
-    {
+    void initProgress() {
 
         level.setMax(100);
-        level.setProgress(userLevel*10);
+        level.setProgress(userLevel * 10);
     }
+
     //go to any class
     void goTo(Class c) {
-        Intent i = new Intent(getApplicationContext(), c);
-        startActivity(i);
+        Intent intent = new Intent(getApplicationContext(), c);
+        startActivity(intent);
+       // overridePendingTransition(R.anim.goup, R.anim.godown);
     }
 
     @Override

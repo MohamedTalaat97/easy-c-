@@ -31,6 +31,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_corner"
                 android:backgroundTint="@color/usernameColor"
+                android:gravity="left"
                 android:text="USERNAME" />
 
             <RelativeLayout
@@ -40,8 +41,8 @@
                 android:layout_below="@+id/bestAnswerID"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/rounded_corner"
-                android:backgroundTint="@color/colorAccent">
+                android:background="@color/colorAccent"
+                android:backgroundTint="@drawable/rounded_corner">
 
                 <TextView
                     android:id="@+id/titlequestionid"
@@ -52,6 +53,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="40dp"
                     android:layout_marginStart="40dp"
+                    android:background="@drawable/rounded_corner"
                     android:text="TITLE"
                     android:visibility="visible" />
 
@@ -72,19 +74,18 @@
 
             <Button
                 android:id="@+id/bestAnswerID"
-                style="@style/Widget.AppCompat.Button.Colored"
+                style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="210dp"
-                android:layout_marginStart="210dp"
-                android:layout_toEndOf="@+id/userNameID"
-                android:layout_toRightOf="@+id/userNameID"
-                android:background="@drawable/rounded_corner"
                 android:backgroundTint="@color/darkorange"
+                android:elevation="0dp"
+                android:gravity="right"
                 android:padding="0dp"
                 android:text="Best Answer"
-                android:textSize="6sp" />
+                android:textSize="12sp" />
         </RelativeLayout>
         <![CDATA[
 

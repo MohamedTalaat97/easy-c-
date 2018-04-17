@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.android.easyc.Models.UserData;
 import com.example.android.easyc.R;
 
@@ -58,7 +60,6 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         ListItems listItem = listItems.get(position);
-
         //if this item is the question
         if (position == 0) {
             //remove best answer button from it
@@ -78,7 +79,6 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
             if (userData.getUserId() == listItem.getUserId()) {
                 viewHolder.userName.setBackgroundColor(R.color.sky);
                 viewHolder.bestAnswer.setVisibility(View.INVISIBLE);
-               // viewHolder.cardView.setRadius(500);
 
             }
 
@@ -102,7 +102,7 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
 
 
 
-
+        YoYo.with(Techniques.FadeIn).playOn(viewHolder.cardView);
         viewHolder.userName.setText(listItem.getUsername());
         viewHolder.content.setText(listItem.getContent());
         viewHolder.bestAnswer.setOnClickListener(new View.OnClickListener() {

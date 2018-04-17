@@ -26,13 +26,21 @@ public class quizzes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizzes);
+        QuizList = new ArrayList<quiz>();
         quizController = new QuizController();
         catId = getIntent().getIntExtra(quiz_categories.CATID, 1);
         quizListView = (ListView) findViewById(R.id.quiz_ListView);
-        initQuestions();
-        initAnswers();
-        initIds();
-        initQuiz();
+    //    initQuestions();
+       // initAnswers();
+      //  initIds();
+      //  initQuiz();
+        quiz q= new quiz();
+        q.setId(1);
+        q.setQuestion("what the fuck");
+        q.setAnswer(1);
+
+
+        QuizList.add(q);
         qadapter = new quiz_adapter(quizzes.this, QuizList);
 
 
@@ -71,14 +79,17 @@ public class quizzes extends AppCompatActivity {
 
     void initQuiz() {
 
-        for (int i = 0; i < questions.size(); i++) {
-            quiz q = new quiz();
+        if (questions != null) {
+            for (int i = 0; i < questions.size(); i++) {
+                quiz q = new quiz();
 
-            q.setQuestion(questions.get(i));
-            q.setAnswer(answers.get(i));
-            q.setId(ids.get(i));
-            QuizList.add(q);
+                q.setQuestion(questions.get(i));
+                q.setAnswer(answers.get(i));
+                q.setId(ids.get(i));
+                QuizList.add(q);
 
+            }
         }
     }
+
 }

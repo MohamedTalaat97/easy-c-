@@ -75,7 +75,7 @@ public class quiz_categories extends AppCompatActivity {
 
     void openQuizzes(Integer id) {
 
-        Intent i = new Intent(getApplicationContext(), topic.class);
+        Intent i = new Intent(getApplicationContext(), quizzes.class);
         i.putExtra(CATID, id);
         startActivity(i);
 

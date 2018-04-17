@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#7282de</color>
     <color name="colorPrimaryDark">#303f9f</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff4081</color>
     <color name="blue">#60aee6</color>
     <color name="black">#000000</color>
     <color name="orange">#abffa500</color>
@@ -12,5 +12,6 @@
     <color name="red">	#680000</color>
     <color name="trans">#11000000</color>
     <color name="darkred">	#480000 </color>
+    <color name="usernameColor">#abffa500</color>
 
 </resources>

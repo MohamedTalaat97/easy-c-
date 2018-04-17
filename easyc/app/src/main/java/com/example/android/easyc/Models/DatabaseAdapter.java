@@ -281,7 +281,7 @@ public class DatabaseAdapter {
     }
 
     public void selectReplyIdUserNameUserIdContentBest_answer(int question_id,boolean isBestAnswer, OnTaskListeners.Result listeners) {
-        query = "select id,username,user_id,content,best_answer from user,reply where user.id = user_id and comment_id = " + question_id + " best_answer = "+isBestAnswer+" order by date";
+        query = "select r.id,username,user_id,content,best_answer from user u,reply r where u.id = user_id and comment_id = " + question_id + " and best_answer = "+isBestAnswer+" order by date";
         databaseLegacy.select(query, listeners);
     }
 
@@ -327,7 +327,7 @@ public class DatabaseAdapter {
 
 public void selectCommentUserIdUsernameTitleDescription(int questionID, OnTaskListeners.Result listener)
 {
-    query = "select user_id,username,title,description from comment c, user u where u.id = c.user_id id = "+questionID;
+    query = "select user_id,username,title,description from comment c, user u where u.id = c.user_id and c.id = "+questionID;
     databaseLegacy.select(query,listener);
 }
 
@@ -341,6 +341,17 @@ public  void updateReplyBestAnswer(int replyId,boolean isBest,OnTaskListeners.Bo
     public  void updateReplyBestAnswerByAll(boolean isBest,OnTaskListeners.Bool listener)
     {
         query = "update reply set best_Answer = "+ isBest ;
+        databaseLegacy.iud(query,listener);
+    }
+
+
+
+    public void insertReply(int userId,int questionId,String reply,OnTaskListeners.Bool listener)
+    {
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
+        String formattedDate = df.format(c);
+        query = "insert into reply (comment_id,user_id,content,date,best_answer) values("+questionId+","+userId+",'"+reply+"','"+formattedDate+"',"+false+")";
         databaseLegacy.iud(query,listener);
     }
 

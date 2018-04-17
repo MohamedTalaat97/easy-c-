@@ -191,4 +191,15 @@ public class DiscussionController extends Controller {
             }
         });
     }
+
+
+    public  void putReply(int questionId, String reply, final OnTaskListeners.Bool listener)
+    {
+        databaseAdapter().insertReply(userData().getUserId(), questionId, reply, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
+    }
 }

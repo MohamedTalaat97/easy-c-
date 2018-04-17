@@ -36,10 +36,11 @@ public class DatabaseLegacy {
                     }
                     stmt = conn.c.createStatement();
                     updated = stmt.executeUpdate(query);
-                    if(updated == 1)
+                 /*   if(updated == 1)
                         return true;
                     else
-                        return false;
+                        return false;*/
+                 return true;
                 } catch (SQLException e) {
                     e.printStackTrace();
                     conn.reconnect();

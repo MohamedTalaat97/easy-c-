@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -56,7 +55,8 @@ public class student_menu extends AppCompatActivity {
         options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goTo(options.class);
+            //    goTo(options.class);
+                goTo(discussion_room_questions.class);
             }
         });
         quiz.setOnClickListener(new View.OnClickListener() {

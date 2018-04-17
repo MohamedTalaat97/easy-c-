@@ -81,14 +81,11 @@ public class discussion_room_questions extends AppCompatActivity {
         });
 
 
-        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                goToQuestion(questionsId.get(position));
-            }
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                goToQuestion(questionsId.get(position));
 
             }
         });
@@ -200,9 +197,9 @@ public class discussion_room_questions extends AppCompatActivity {
     //go to see specific question
    void goToQuestion(int id)
     {
-        Intent intent  = new Intent(getApplicationContext(),put_opinion.class);
+        Intent intent  = new Intent(getApplicationContext(),replies_on_questions.class);
         intent.putExtra(QUESTION_ID,id);
-        intent.putExtra(MY_QUESTION,myQuestions);
+       // intent.putExtra(MY_QUESTION,myQuestions);
         startActivity(intent);
 
     }

@@ -35,6 +35,12 @@ public class DatabaseAdapter {
 
     }
 
+    public void selectCategoriesIds(OnTaskListeners.Result listeners) {
+        query = "select id from category";
+        databaseLegacy.select(query, listeners);
+
+    }
+
     public void selectCatagoryIdByName(String name, OnTaskListeners.Result listeners) {
         query = "select id from category where title = '" + name + "'";
         databaseLegacy.select(query, listeners);
@@ -52,7 +58,21 @@ public class DatabaseAdapter {
         databaseLegacy.select(query, listeners);
 
     }
+    public void selectQuestions(int cat_id, OnTaskListeners.Result listeners) {
+        query = "select question from question where cat_id = '" + cat_id + "'";
+        databaseLegacy.select(query, listeners);
 
+    }
+    public void selectQuestionsIds(int cat_id, OnTaskListeners.Result listeners) {
+        query = "select id from question where cat_id = '" + cat_id + "'";
+        databaseLegacy.select(query, listeners);
+    }
+
+    public void selectAnswers(int cat_id, OnTaskListeners.Result listeners) {
+        query = "select answer from question where cat_id = '" + cat_id + "'";
+        databaseLegacy.select(query, listeners);
+
+    }
 
     public void selectCode(int topic_id, OnTaskListeners.Result listeners) {
         query = "select code from topic where id = '" + topic_id + "'";

@@ -1,5 +1,6 @@
 package com.example.android.easyc.Views;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,57 +16,68 @@ import java.util.ArrayList;
 
 public class quiz_categories extends AppCompatActivity {
 
-QuizController quizController;
+    QuizController quizController;
     ListView categoriesList;
 
-    ArrayList<Integer> categories;
+    ArrayList<Integer> categoriesIds;
+    ArrayList<String> categoriesTitle;
+    public static String CATID = "CAT_ID";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_categories);
         categoriesList = (ListView) findViewById(R.id.quiz_categories_ListView);
         quizController = new QuizController();
-        categories = new ArrayList<Integer>();
-
+        categoriesIds = new ArrayList<Integer>();
+        categoriesTitle = new ArrayList<String>();
+        fillListCategories();
+        fillListCategoriesIds();
 
         categoriesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                                  @Override
-                                                  public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                                                      openQuizzes(categories.get(i));
-                                                  }
-                                              });
+                openQuizzes(categoriesIds.get(i));
+            }
+        });
 
-
-
-        fillList();
     }
 
 
+    void fillListCategories() {
 
-
-
-    // aquire the ids
-    //open quizzes using the clicked id
-    //construct adapter for makin an array of the class quiz
-    //set the adapter on it
-
-
-    void fillList() {
         quizController.getCategories(new OnTaskListeners.List() {
             @Override
             public void onSuccess(ArrayList<Object> result) {
 
-                //categories = (ArrayList<String>) (Object) result;
-               // ArrayAdapter<Integer> adapter = new ArrayAdapter<String>(quiz_categories.this, android.R.layout.simple_selectable_list_item, categories);
-                //categoriesList.setAdapter(adapter);
+                categoriesTitle = (ArrayList<String>) (Object) result;
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(quiz_categories.this, android.R.layout.simple_selectable_list_item, categoriesTitle);
+                categoriesList.setAdapter(adapter);
             }
         });
+
+
     }
 
+    void fillListCategoriesIds() {
 
-    void openQuizzes(Integer id)
-    {
+        quizController.getCategoriesIds(new OnTaskListeners.List() {
+            @Override
+            public void onSuccess(ArrayList<Object> result) {
+
+                categoriesIds = (ArrayList<Integer>) (Object) result;
+
+            }
+        });
+
+    }
+
+    void openQuizzes(Integer id) {
+
+        Intent i = new Intent(getApplicationContext(), topic.class);
+        i.putExtra(CATID, id);
+        startActivity(i);
 
 
     }

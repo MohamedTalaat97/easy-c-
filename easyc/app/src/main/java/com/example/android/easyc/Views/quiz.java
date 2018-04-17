@@ -1,24 +1,36 @@
 package com.example.android.easyc.Views;
 
-public class quiz
-{
+public class quiz {
+    Integer id;
     String Question;
-    Boolean Answer;
-    public quiz() {};
-    void setQuestion(String Q)
-    {
+    Integer Answer;
+
+    public quiz() {
+    }
+
+    ;
+
+    void setQuestion(String Q) {
         Question = Q;
     }
-    void setAnswer(Boolean A)
-    {
+
+    void setId(Integer d) {
+        id = d;
+    }
+
+    void setAnswer(Integer A) {
         Answer = A;
     }
-    String getQuestion()
-    {
+
+    String getQuestion() {
         return Question;
     }
-    Boolean getAnswer()
-    {
+
+    Integer getAnswer() {
         return Answer;
+    }
+
+    Integer getId() {
+        return id;
     }
 }

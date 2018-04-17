@@ -39,6 +39,7 @@ public class student_menu extends AppCompatActivity {
         course = findViewById(R.id.to_course);
         opinion = findViewById(R.id.to_opinion);
         options = findViewById(R.id.to_options);
+        quiz = findViewById(R.id.to_quiz);
 
         course.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +57,12 @@ public class student_menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goTo(options.class);
+            }
+        });
+        quiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(quiz_categories.class);
             }
         });
 
@@ -125,7 +132,7 @@ public class student_menu extends AppCompatActivity {
     void goTo(Class c) {
         Intent intent = new Intent(getApplicationContext(), c);
         startActivity(intent);
-       // overridePendingTransition(R.anim.goup, R.anim.godown);
+        // overridePendingTransition(R.anim.goup, R.anim.godown);
     }
 
     @Override

@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 06/04/2018 22:09:14
+ Date: 17/04/2018 23:11:33
 */
 
 SET NAMES utf8mb4;
@@ -123,12 +123,14 @@ CREATE TABLE `opinion`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id_opinion`(`user_id`) USING BTREE,
   CONSTRAINT `user_id_opinion` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of opinion
 -- ----------------------------
 INSERT INTO `opinion` VALUES (1, 17, 'dfdsfsdfTitle', 'Titledsfsdfsdfsdfsdnfoasdnoiasnmvlksnvlksnlkvmsdkmvsdkmvkasdmv;sdml;vasmdv;lmasd;lvma;dslmv;lsamv;samv;lsdmofsdofoasjffl;asdmf;kmscv;mcvzxcv', 1, 1, 1);
+INSERT INTO `opinion` VALUES (2, 20, 'i have an opinion', 'my opinion is to change the app', 1, 0, 1);
+INSERT INTO `opinion` VALUES (3, 26, 'what hapebd', 'sfnsfnsffnsfhsfhsfhsfhsfhsfjsfjdfjdfjdfjdfj', 0, 1, 1);
 
 -- ----------------------------
 -- Table structure for question
@@ -166,7 +168,24 @@ CREATE TABLE `reply`  (
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `comment_id` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of reply
+-- ----------------------------
+INSERT INTO `reply` VALUES (1, 20, 20, 'hello', '2018-04-17 10:31:05', 0);
+INSERT INTO `reply` VALUES (2, 20, 20, 'welcome', '2018-04-17 10:34:58', 1);
+INSERT INTO `reply` VALUES (3, 20, 20, 'hello\nthis is me', '2018-04-17 10:35:14', 0);
+INSERT INTO `reply` VALUES (4, 20, 21, 'this is me', '2018-04-17 10:36:45', 0);
+INSERT INTO `reply` VALUES (5, 20, 17, 'hi from the other side', '2018-04-17 10:38:45', 0);
+INSERT INTO `reply` VALUES (6, 20, 17, 'sdfdsfdsf', '2018-04-17 11:02:11', 0);
+INSERT INTO `reply` VALUES (7, 20, 17, 'hellp', '2018-04-17 11:03:13', 0);
+INSERT INTO `reply` VALUES (8, 20, 17, 'hellpk', '2018-04-17 11:03:19', 0);
+INSERT INTO `reply` VALUES (9, 20, 17, 'hello I dont think this is good idea to become that person', '2018-04-17 11:05:23', 0);
+INSERT INTO `reply` VALUES (10, 20, 17, 'hello I dont think this is good idea to become that person', '2018-04-17 11:05:35', 0);
+INSERT INTO `reply` VALUES (11, 20, 17, 'hello ia am me', '2018-04-17 11:20:33', 0);
+INSERT INTO `reply` VALUES (12, 20, 21, 'hello its me', '2018-04-17 11:43:49', 0);
+INSERT INTO `reply` VALUES (13, 16, 17, 'where are you ??', '2018-04-17 12:26:28', 0);
 
 -- ----------------------------
 -- Table structure for report
@@ -240,12 +259,21 @@ CREATE TABLE `user`  (
   `level` int(255) NULL DEFAULT 0,
   `request` varchar(999) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (17, 'khaled', '2625', 'khaledsab1997@gmail.com', 'I', 12, 1, 0, NULL);
-INSERT INTO `user` VALUES (18, 'khaleds', '1112', 'khaledsab1997+1@gmail.com', 'S', 12, 0, 0, '');
+INSERT INTO `user` VALUES (17, 'gyvy', '1111', 'khaledsab1997@gmail.com', 'I', 12, 0, 0, NULL);
+INSERT INTO `user` VALUES (18, 'buguy ', '1112', 'khaledsab1997+1@gmail.com', 'S', 12, 0, 0, '');
+INSERT INTO `user` VALUES (19, 'kkk', '111219', 'khaledsab1997+2@gmail.com', 'S', 20, 0, 0, '');
+INSERT INTO `user` VALUES (20, 'a', '1111', 'ykyktitkti@', 'S', 20, 0, 0, '');
+INSERT INTO `user` VALUES (21, 'kk', '1111', 'khaledsab_1997@yahoo.com', 'S', 12, 0, 0, '');
+INSERT INTO `user` VALUES (22, 'admin', '1111', 'sdf@sd', 'A', NULL, 0, 0, NULL);
+INSERT INTO `user` VALUES (23, 'khal', '1111', 'khaledsab1997+6@gmail.com', 'S', 22, 0, 0, '');
+INSERT INTO `user` VALUES (24, 'medo', '1234', 'gggdg@', 'I', 30, 0, 0, NULL);
+INSERT INTO `user` VALUES (25, '7mada', '1234', '44@', 'I', 40, 1, 0, NULL);
+INSERT INTO `user` VALUES (26, 'ahmed', '22222', 'khaledsab1997+56@gmail.com', 'S', 22, 0, 0, '');
+INSERT INTO `user` VALUES (27, 'omar', '71361', 'khaledsab1997@', 'I', 22, 0, 0, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

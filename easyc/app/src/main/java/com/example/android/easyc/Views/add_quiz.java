@@ -26,6 +26,7 @@ QuizController quizController;
     ArrayList<String> list;
     RadioButton trueButton;
     RadioButton falseButton;
+
     String Question;
     int answer;
     Button submit;
@@ -39,6 +40,7 @@ QuizController quizController;
         setContentView(R.layout.activity_add_quiz);
         quizController = new QuizController();
         catIds = new ArrayList<Integer>();
+        initData();
 
         quizController.getCategoriesIds(new OnTaskListeners.List() {
             @Override

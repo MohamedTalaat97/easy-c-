@@ -1,9 +1,9 @@
 package com.example.android.easyc.Views;
 
 public class quiz {
-    Integer id;
+    int id;
     String Question;
-    Integer Answer;
+    int Answer;
 
     public quiz() {
     }
@@ -14,11 +14,11 @@ public class quiz {
         Question = Q;
     }
 
-    void setId(Integer d) {
+    void setId(int d) {
         id = d;
     }
 
-    void setAnswer(Integer A) {
+    void setAnswer(int A) {
         Answer = A;
     }
 

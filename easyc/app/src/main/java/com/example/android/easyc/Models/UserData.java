@@ -7,7 +7,7 @@ public class UserData {
 
     private  static UserData instance = null;
     private  int userId = 17;
-    private  String userName;
+    private  String userName = "kk";
     private  int userLevel;
     private  char userType;
 

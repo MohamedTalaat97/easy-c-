@@ -1,14 +1,15 @@
 package com.example.android.easyc.Views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.android.easyc.Models.UserData;
@@ -16,7 +17,7 @@ import com.example.android.easyc.R;
 
 import java.util.ArrayList;
 
-public class cardViewAdapter extends RecyclerView.Adapter<cardViewAdapter.ViewHolder> {
+public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHolder> {
     private ArrayList<ListItems> listItems;
     private Context context;
     private UserData userData;
@@ -24,7 +25,15 @@ public class cardViewAdapter extends RecyclerView.Adapter<cardViewAdapter.ViewHo
     private replies_on_questions repliesOnQuestions;
     private String title;
 
-    public cardViewAdapter(ArrayList<ListItems> listItems, Context context, replies_on_questions repliesOnQuestions, String title) {
+
+
+    private Color bestAnswerColor;
+    private Color myReplyColor;
+    private Color othersReplyColor;
+    private Color questionReplyColor;
+    private Color usernameColor;
+
+    public repliesAdapter(ArrayList<ListItems> listItems, Context context, replies_on_questions repliesOnQuestions, String title) {
         this.listItems = listItems;
         this.context = context;
         userData = UserData.getInstance();
@@ -34,15 +43,18 @@ public class cardViewAdapter extends RecyclerView.Adapter<cardViewAdapter.ViewHo
             isMyQuestion = true;
         else
             isMyQuestion = false;
+
+
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_card_view, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_card_view_replies, parent, false);
 
         return new ViewHolder(v);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         ListItems listItem = listItems.get(position);
@@ -50,34 +62,40 @@ public class cardViewAdapter extends RecyclerView.Adapter<cardViewAdapter.ViewHo
         //if this item is the question
         if (position == 0) {
             //remove best answer button from it
-            viewHolder.bestAnswer.setVisibility(View.GONE);
+            viewHolder.bestAnswer.setVisibility(View.INVISIBLE);
             //change the background
-            viewHolder.relativeLayout.setBackgroundColor(Color.GREEN);
+            viewHolder.userName.setBackgroundColor(Color.GREEN);
             //change the direction of the layout
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                viewHolder.relativeLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+                viewHolder.cardView.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
             }
 
             //put the title of the question
             viewHolder.title.setText(title);
         } else {
-            //if it is not question so remove the title
-            viewHolder.title.setVisibility(View.GONE);
-            //if its the best answer then change the background
-            if(listItem.isBestAnswer())
-                viewHolder.relativeLayout.setBackgroundColor(Color.RED);
-
-            //remove the best answer button if it's not my question
-            if (!isMyQuestion) {
-                viewHolder.bestAnswer.setVisibility(View.GONE);
-            }
-
             //if the answer is mine
             //change background
             if (userData.getUserId() == listItem.getUserId()) {
-                viewHolder.relativeLayout.setBackgroundColor(Color.BLUE);
+                viewHolder.userName.setBackgroundColor(R.color.sky);
+                viewHolder.bestAnswer.setVisibility(View.INVISIBLE);
+               // viewHolder.cardView.setRadius(500);
 
             }
+
+            //if it is not question so remove the title
+            viewHolder.title.setVisibility(View.INVISIBLE);
+            //if its the best answer then change the background
+            if(listItem.isBestAnswer()) {
+                viewHolder.userName.setBackgroundColor(Color.RED);
+                viewHolder.bestAnswer.setVisibility(View.INVISIBLE);
+            }
+
+            //remove the best answer button if it's not my question
+            if (!isMyQuestion) {
+                viewHolder.bestAnswer.setVisibility(View.INVISIBLE);
+            }
+
+
         }
 
 
@@ -107,7 +125,8 @@ public class cardViewAdapter extends RecyclerView.Adapter<cardViewAdapter.ViewHo
         public TextView userName;
         public TextView content;
         public Button bestAnswer;
-        public RelativeLayout relativeLayout;
+      //  public RelativeLayout relativeLayout;
+        public CardView cardView;
         public TextView title;
 
         public ViewHolder(View itemView) {
@@ -117,8 +136,9 @@ public class cardViewAdapter extends RecyclerView.Adapter<cardViewAdapter.ViewHo
             userName = itemView.findViewById(R.id.userNameID);
             content = itemView.findViewById(R.id.Description);
             bestAnswer = itemView.findViewById(R.id.bestAnswerID);
-            relativeLayout = itemView.findViewById(R.id.cardLayout);
+            cardView = itemView.findViewById(R.id.replayCardViewID);
             title = itemView.findViewById(R.id.titlequestionid);
+
         }
     }
 }

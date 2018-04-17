@@ -67,6 +67,10 @@ public class DatabaseAdapter {
         query = "select id from question where cat_id = '" + cat_id + "'";
         databaseLegacy.select(query, listeners);
     }
+    public void selectcategoryIds( OnTaskListeners.Result listeners) {
+        query = "select id from category";
+        databaseLegacy.select(query, listeners);
+    }
 
     public void selectAnswers(int cat_id, OnTaskListeners.Result listeners) {
         query = "select answer from question where cat_id = '" + cat_id + "'";
@@ -95,6 +99,13 @@ public class DatabaseAdapter {
     public void insertUser(String userName, String Pass, char Type, String age, String email, boolean suspended, String requestText, OnTaskListeners.Bool listeners) {
         query = "insert into user(username,password,type,age,email,suspended,request)" +
                 " values('" + userName + "','" + Pass + "','" + Type + "'," + age + ",'" + email + "'," + suspended + ",'" + requestText + "')";
+        databaseLegacy.iud(query, listeners);
+
+    }
+
+    public void insertQuestion(Integer catId,Integer userId,String Question, Integer Answer, OnTaskListeners.Bool listeners) {
+        query = "insert into " +
+                " values('" +catId + "','" +catId + "','" + userId+ "'," + Question + ",'" + Answer + "')";
         databaseLegacy.iud(query, listeners);
 
     }

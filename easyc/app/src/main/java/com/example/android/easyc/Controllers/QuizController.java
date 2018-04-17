@@ -42,6 +42,16 @@ public class QuizController extends Controller {
             }
         });
     }
+    public void getCategoriedIds(final OnTaskListeners.List listener) {
+        databaseAdapter().selectcategoryIds(new OnTaskListeners.Result() {
+            @Override
+            public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
+                listener.onSuccess(resultToArray(data));
+            }
+        });
+    }
 
 
     public void getAnswers(int cat_id,final OnTaskListeners.List listener) {
@@ -66,5 +76,11 @@ public class QuizController extends Controller {
         });
     }
 
+    public void addQuestion (Integer catId,String Question, Integer Answer,final OnTaskListeners.Bool listener)
+
+    {
+        int user_id = userData().getUserId();
+
+    }
 
 }

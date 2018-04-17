@@ -24,7 +24,9 @@ public class instructor_menu extends AppCompatActivity {
 
         course = findViewById(R.id.to_edit_course);
         opinion = findViewById(R.id.to_put_opinion);
+
         options = findViewById(R.id.to_options1);
+        quiz = findViewById(R.id.to_add_quiz);
         /*course.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,13 +45,18 @@ public class instructor_menu extends AppCompatActivity {
                 goTo(options.class);
             }
         });
-
+        quiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(add_quiz.class);
+            }
+        });
     }
 
 
     void goTo(Class c) {
         Intent intent = new Intent(getApplicationContext(), c);
         startActivity(intent);
-        // overridePendingTransition(R.anim.goup, R.anim.godown);
+         overridePendingTransition(R.anim.goup, R.anim.godown);
     }
 }

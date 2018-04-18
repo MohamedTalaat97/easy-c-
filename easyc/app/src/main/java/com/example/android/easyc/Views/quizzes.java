@@ -36,10 +36,44 @@ public class quizzes extends AppCompatActivity {
         quizController = new QuizController();
         catId = getIntent().getIntExtra(quiz_categories.CATID, 1);
         quizListView = (ListView) findViewById(R.id.quiz_ListView);
-    initQuestions();
-        initAnswers();
-        initIds();
 
+
+
+
+        quizController.getQuiz(catId, new OnTaskListeners.threeLists() {
+            @Override
+            public void onSuccess(ArrayList<Object> result1,ArrayList<Object> result2,ArrayList<Object> result3) {
+
+
+                questions = (ArrayList<String>) (Object) result2;
+                ids = (ArrayList<Integer>) (Object) result1;
+
+                answers = (ArrayList<Integer>) (Object) result3;
+
+                if (questions != null) {
+                    for (int i = 0; i < questions.size(); i++) {
+                        quiz q = new quiz();
+                        try {
+
+                            q.setQuestion(questions.get(i));
+                            q.setAnswer(answers.get(i));
+                            q.setId(ids.get(i));
+                            QuizList.add(q);
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    qadapter = new quiz_adapter(quizzes.this, QuizList);
+
+
+                    quizListView.setAdapter(qadapter);
+
+            }
+        }});
        // quiz q= new quiz();
       //  q.setId(1);
        // q.setQuestion("what the fuck");
@@ -57,8 +91,7 @@ public class quizzes extends AppCompatActivity {
             public void onSuccess(ArrayList<Object> result) {
                 questions = (ArrayList<String>) (Object) result;
                 questionDone = true;
-                if (done())
-                    initQuiz();
+
             }
         });
 
@@ -70,8 +103,8 @@ public class quizzes extends AppCompatActivity {
             public void onSuccess(ArrayList<Object> result) {
                 answers = (ArrayList<Integer>) (Object) result;
                 answersDone =true;
-                if (done())
-                    initQuiz();
+
+
             }
         });
     }
@@ -92,29 +125,10 @@ public class quizzes extends AppCompatActivity {
 
                 ids = (ArrayList<Integer>) (Object) result;
                 idsDone =true;
-                if (done())
-                    initQuiz();
+
+
             }
         });
-    }
-
-    void initQuiz() {
-
-        if (questions != null) {
-            for (int i = 0; i < questions.size(); i++) {
-                quiz q = new quiz();
-
-                q.setQuestion(questions.get(i));
-     ///           q.setAnswer(answers.get(i));
-             //   q.setId(ids.get(i));
-                QuizList.add(q);
-
-            }
-        }
-        qadapter = new quiz_adapter(quizzes.this, QuizList);
-
-
-        quizListView.setAdapter(qadapter);
     }
 
 }

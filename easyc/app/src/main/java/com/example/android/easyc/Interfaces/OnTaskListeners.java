@@ -39,6 +39,12 @@ public interface OnTaskListeners {
         void onSuccess(ArrayList<Object> result);
     }
 
+    public interface threeLists
+    {
+
+        void onSuccess(ArrayList<Object> result1 ,ArrayList<Object> result2,ArrayList<Object> result3);
+
+    }
     //return integar arraylist and object arraylist
     public  interface IdAndList
     {

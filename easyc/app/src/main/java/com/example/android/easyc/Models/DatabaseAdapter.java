@@ -63,6 +63,12 @@ public class DatabaseAdapter {
         databaseLegacy.select(query, listeners);
 
     }
+
+    public void selectQuizIdQuestionAnswer(int cat_id, OnTaskListeners.Result listeners) {
+        query = "select id,question,answer from question where cat_id = " + cat_id ;
+        databaseLegacy.select(query, listeners);
+
+    }
     public void selectQuestionsIds(int cat_id, OnTaskListeners.Result listeners) {
         query = "select id from question where cat_id = '" + cat_id + "'";
         databaseLegacy.select(query, listeners);

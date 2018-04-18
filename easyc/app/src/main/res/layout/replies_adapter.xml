@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,17 +11,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="5dp"
-        android:background="@drawable/rounded_corner"
-        android:backgroundTint="@android:color/holo_orange_light"
-        card_view:cardCornerRadius="50dp"
+        card_view:cardBackgroundColor="@color/blue"
+        card_view:cardCornerRadius="20dp"
         card_view:cardElevation="12dp">
 
         <RelativeLayout
             android:id="@+id/cardLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:layoutDirection="ltr">
 
             <TextView
                 android:id="@+id/userNameID"
@@ -35,7 +33,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="11dp"
                 android:background="@drawable/rounded_corner"
-                android:backgroundTint="@color/orange"
                 android:gravity="left"
                 android:text="USERNAME" />
 
@@ -46,8 +43,8 @@
                 android:layout_below="@+id/bestAnswerID"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/rounded_corner"
-                android:backgroundTint="@color/gray">
+                android:background="@color/colorAccent"
+                android:backgroundTint="@drawable/rounded_corner">
 
                 <TextView
                     android:id="@+id/titlequestionid"
@@ -58,6 +55,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="40dp"
                     android:layout_marginStart="40dp"
+                    android:background="@drawable/rounded_corner"
                     android:text="TITLE"
                     android:visibility="visible" />
 
@@ -70,11 +68,11 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:gravity="start"
                     android:text="WHAT ARE YOU DOING"
                     android:textAlignment="textStart"
                     android:textSize="14sp"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:gravity="start" />
             </RelativeLayout>
 
             <Button
@@ -82,14 +80,10 @@
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/userNameID"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginEnd="23dp"
-                android:layout_marginRight="23dp"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="#75ff9a36"
+                android:backgroundTint="@color/darkorange"
                 android:elevation="0dp"
                 android:gravity="right"
                 android:padding="0dp"

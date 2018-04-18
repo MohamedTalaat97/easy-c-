@@ -1,6 +1,5 @@
 package com.example.android.easyc.Views;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
@@ -25,7 +24,7 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
     private UserData userData;
     private boolean isMyQuestion;
     private replies_on_questions repliesOnQuestions;
-    private String title;
+    public String title;
 
 
 
@@ -56,28 +55,26 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
         return new ViewHolder(v);
     }
 
-    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         ListItems listItem = listItems.get(position);
         //if this item is the question
-        if (position == 0) {
+        if (position ==0) {
             //remove best answer button from it
             viewHolder.bestAnswer.setVisibility(View.INVISIBLE);
             //change the background
-            viewHolder.userName.setBackgroundColor(Color.BLUE);
+            viewHolder.userName.setBackgroundColor(R.drawable.o24);
             //change the direction of the layout
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 viewHolder.cardView.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
             }
 
             //put the title of the question
-            viewHolder.title.setText(title);
         } else {
             //if the answer is mine
             //change background
             if (userData.getUserId() == listItem.getUserId()) {
-                viewHolder.userName.setBackgroundColor(R.color.sky);
+                viewHolder.userName.setBackgroundColor(Color.BLUE);
                 viewHolder.bestAnswer.setVisibility(View.INVISIBLE);
 
             }
@@ -100,8 +97,7 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
 
 
 
-
-
+        viewHolder.title.setText(title);
         YoYo.with(Techniques.FadeIn).playOn(viewHolder.cardView);
         viewHolder.userName.setText(listItem.getUsername());
         viewHolder.content.setText(listItem.getContent());
@@ -110,6 +106,14 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
             public void onClick(View v) {
                 repliesOnQuestions.putBestAnswer(listItems.get(position).getReplyId());
 
+            }
+        });
+
+        viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              //  Toast.makeText(context,position,Toast.LENGTH_SHORT).show();
+                System.out.print(position);
             }
         });
 
@@ -138,7 +142,6 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
             bestAnswer = itemView.findViewById(R.id.bestAnswerID);
             cardView = itemView.findViewById(R.id.replayCardViewID);
             title = itemView.findViewById(R.id.titlequestionid);
-
         }
     }
 }

@@ -65,7 +65,7 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
             //remove best answer button from it
             viewHolder.bestAnswer.setVisibility(View.INVISIBLE);
             //change the background
-            viewHolder.userName.setBackgroundColor(Color.GREEN);
+            viewHolder.userName.setBackgroundColor(Color.BLUE);
             //change the direction of the layout
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 viewHolder.cardView.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);

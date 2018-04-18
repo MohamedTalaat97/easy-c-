@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 17/04/2018 23:11:33
+ Date: 18/04/2018 10:11:05
 */
 
 SET NAMES utf8mb4;
@@ -142,7 +142,7 @@ CREATE TABLE `question`  (
   `cat_id` int(11) NULL DEFAULT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
   `question` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `answer` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `answer` int(1) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category`(`cat_id`) USING BTREE,
   INDEX `user`(`user_id`) USING BTREE,

@@ -1,5 +1,6 @@
 package com.example.android.easyc.Views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,9 @@ import com.example.android.easyc.R;
 import java.util.ArrayList;
 
 public class replies_on_questions extends AppCompatActivity {
+
+    public static String REPLYID = "REPLYID";
+    public static String QUESTIONID = "QUESTIONID";
 
     int question_id;
     RecyclerView recyclerView;
@@ -184,6 +188,14 @@ public class replies_on_questions extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    public void makeReport(Integer replyId,Integer questionId)
+    {
+        Intent intent = new Intent(getApplicationContext(),report_on.class);
+        intent.putExtra(REPLYID,replyId);
+        intent.putExtra(QUESTIONID,questionId);
+        startActivity(intent);
     }
 
 

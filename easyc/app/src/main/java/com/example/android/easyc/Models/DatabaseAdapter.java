@@ -58,6 +58,7 @@ public class DatabaseAdapter {
         databaseLegacy.select(query, listeners);
 
     }
+
     public void selectQuestions(int cat_id, OnTaskListeners.Result listeners) {
         query = "select question from question where cat_id = '" + cat_id + "'";
         databaseLegacy.select(query, listeners);
@@ -65,15 +66,17 @@ public class DatabaseAdapter {
     }
 
     public void selectQuizIdQuestionAnswer(int cat_id, OnTaskListeners.Result listeners) {
-        query = "select id,question,answer from question where cat_id = " + cat_id ;
+        query = "select id,question,answer from question where cat_id = " + cat_id;
         databaseLegacy.select(query, listeners);
 
     }
+
     public void selectQuestionsIds(int cat_id, OnTaskListeners.Result listeners) {
         query = "select id from question where cat_id = '" + cat_id + "'";
         databaseLegacy.select(query, listeners);
     }
-    public void selectcategoryIds( OnTaskListeners.Result listeners) {
+
+    public void selectcategoryIds(OnTaskListeners.Result listeners) {
         query = "select id from category";
         databaseLegacy.select(query, listeners);
     }
@@ -109,9 +112,9 @@ public class DatabaseAdapter {
 
     }
 
-    public void insertQuestion(Integer catId,Integer userId,String Question, Integer Answer, OnTaskListeners.Bool listeners) {
+    public void insertQuestion(Integer catId, Integer userId, String Question, Integer Answer, OnTaskListeners.Bool listeners) {
         query = "insert into " +
-                " values('" +catId + "','" +catId + "','" + userId+ "'," + Question + ",'" + Answer + "')";
+                " values('" + catId + "','" + catId + "','" + userId + "'," + Question + ",'" + Answer + "')";
         databaseLegacy.iud(query, listeners);
 
     }
@@ -297,8 +300,8 @@ public class DatabaseAdapter {
         databaseLegacy.select(query, listeners);
     }
 
-    public void selectReplyIdUserNameUserIdContentBest_answer(int question_id,boolean isBestAnswer, OnTaskListeners.Result listeners) {
-        query = "select r.id,username,user_id,content,best_answer from user u,reply r where u.id = user_id and comment_id = " + question_id + " and best_answer = "+isBestAnswer+" order by date";
+    public void selectReplyIdUserNameUserIdContentBest_answer(int question_id, boolean isBestAnswer, OnTaskListeners.Result listeners) {
+        query = "select r.id,username,user_id,content,best_answer from user u,reply r where u.id = user_id and comment_id = " + question_id + " and best_answer = " + isBestAnswer + " order by date";
         databaseLegacy.select(query, listeners);
     }
 
@@ -318,10 +321,9 @@ public class DatabaseAdapter {
         databaseLegacy.iud(query, listener);
     }
 
-    public void selectUserEmail(int userId,OnTaskListeners.Result listener)
-    {
-        query = "select email from user where id = "+userId;
-        databaseLegacy.select(query,listener);
+    public void selectUserEmail(int userId, OnTaskListeners.Result listener) {
+        query = "select email from user where id = " + userId;
+        databaseLegacy.select(query, listener);
     }
 
 
@@ -342,34 +344,86 @@ public class DatabaseAdapter {
     }*/
 
 
-public void selectCommentUserIdUsernameTitleDescription(int questionID, OnTaskListeners.Result listener)
-{
-    query = "select user_id,username,title,description from comment c, user u where u.id = c.user_id and c.id = "+questionID;
-    databaseLegacy.select(query,listener);
-}
-
-
-public  void updateReplyBestAnswer(int replyId,boolean isBest,OnTaskListeners.Bool listener)
-{
-    query = "update reply set best_Answer = "+ isBest +" where id = "+replyId;
-    databaseLegacy.iud(query,listener);
-}
-
-    public  void updateReplyBestAnswerByAll(boolean isBest,OnTaskListeners.Bool listener)
-    {
-        query = "update reply set best_Answer = "+ isBest ;
-        databaseLegacy.iud(query,listener);
+    public void selectCommentUserIdUsernameTitleDescription(int questionID, OnTaskListeners.Result listener) {
+        query = "select user_id,username,title,description from comment c, user u where u.id = c.user_id and c.id = " + questionID;
+        databaseLegacy.select(query, listener);
     }
 
 
+    public void updateReplyBestAnswer(int replyId, boolean isBest, OnTaskListeners.Bool listener) {
+        query = "update reply set best_Answer = " + isBest + " where id = " + replyId;
+        databaseLegacy.iud(query, listener);
+    }
 
-    public void insertReply(int userId,int questionId,String reply,OnTaskListeners.Bool listener)
-    {
+    public void updateReplyBestAnswerByAll(boolean isBest, OnTaskListeners.Bool listener) {
+        query = "update reply set best_Answer = " + isBest;
+        databaseLegacy.iud(query, listener);
+    }
+
+
+    public void insertReply(int userId, int questionId, String reply, OnTaskListeners.Bool listener) {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
         String formattedDate = df.format(c);
-        query = "insert into reply (comment_id,user_id,content,date,best_answer) values("+questionId+","+userId+",'"+reply+"','"+formattedDate+"',"+false+")";
+        query = "insert into reply (comment_id,user_id,content,date,best_answer) values(" + questionId + "," + userId + ",'" + reply + "','" + formattedDate + "'," + false + ")";
+        databaseLegacy.iud(query, listener);
+    }
+
+
+    public void insertReport(int userId, Integer questionId,Integer replyId,String discription, String type, OnTaskListeners.Bool listener) {
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
+        String formattedDate = df.format(c);
+        query = "insert into report (user_id,comment_id,reply_id,discription,date,solved,type) values("+userId+","+questionId+","+replyId+",'"+discription+"','"+formattedDate+"',"+false+",'"+type+"')";
+        databaseLegacy.iud(query, listener);
+    }
+
+
+    public void selectReportCommentidReplyidDiscription(int reportID, OnTaskListeners.Result listener) {
+        query = "select comment_id,reply_id,discription from report where id = "+reportID;
+        databaseLegacy.select(query, listener);
+    }
+
+
+
+
+    public void deleteUser(Integer replyId,OnTaskListeners.Bool listener)
+    {
+        query = "delete from user u,reply r where r.user_id = u.id and r.id = "+replyId;
         databaseLegacy.iud(query,listener);
     }
+
+    public void updateUserSuspendedByReplyid(Integer replyId,boolean suspended,OnTaskListeners.Bool listener)
+    {
+        query = "update user u ,report r set u.suspended  = "+ suspended +" wehre r.user_id = u.id and r.id = "+ replyId;
+        databaseLegacy.iud(query,listener);
+    }
+
+    public void deleteReply(Integer replyId,OnTaskListeners.Bool listener)
+    {
+        query = "delete from reply  where id = "+replyId;
+        databaseLegacy.iud(query,listener);
+    }
+
+    public void deleteComment(Integer commentId,OnTaskListeners.Bool listener)
+    {
+        query = "delete from comment  where id = "+commentId;
+        databaseLegacy.iud(query,listener);
+    }
+
+    public void selectCommentTitleDiscription(int questionId, OnTaskListeners.Result listener) {
+        query = "select title,discription from comment where id = " + questionId;
+        databaseLegacy.select(query, listener);
+    }
+
+    public void selectReplyContent(int replyId, OnTaskListeners.Result listener) {
+        query = "select content from reply where id = " + replyId;
+        databaseLegacy.select(query, listener);
+    }
+
+
+
+
+
 
 }

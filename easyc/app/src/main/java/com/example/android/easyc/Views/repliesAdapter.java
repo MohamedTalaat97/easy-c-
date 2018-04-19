@@ -57,7 +57,7 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        ListItems listItem = listItems.get(position);
+        final ListItems listItem = listItems.get(position);
         //if this item is the question
         if (position ==0) {
             //remove best answer button from it
@@ -117,6 +117,20 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
             }
         });
 
+        viewHolder.report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listItems.get(0) == listItems.get(position))
+                {
+                    repliesOnQuestions.makeReport(null,listItems.get(0).replyId);
+                }
+                else
+                {
+                    repliesOnQuestions.makeReport(listItems.get(position).replyId,listItems.get(0).replyId);
+                }
+            }
+        });
+
 
     }
 
@@ -132,6 +146,7 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
       //  public RelativeLayout relativeLayout;
         public CardView cardView;
         public TextView title;
+        public Button report;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -142,6 +157,7 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
             bestAnswer = itemView.findViewById(R.id.bestAnswerID);
             cardView = itemView.findViewById(R.id.replayCardViewID);
             title = itemView.findViewById(R.id.titlequestionid);
+            report = itemView.findViewById(R.id.reportID);
         }
     }
 }

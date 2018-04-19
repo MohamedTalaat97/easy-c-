@@ -188,4 +188,10 @@ public class Controller {
 
     }
 
+
+    public Object arrayToValue(ArrayList<Object> list)
+    {
+        return list.get(0);
+    }
+
 }

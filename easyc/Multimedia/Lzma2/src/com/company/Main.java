@@ -16,13 +16,17 @@ public class Main {
 
     // CompressXz
     public static void main(String[] args) throws Exception {
-        String from = "C:\\Users\\KhALeD SaBrY\\Desktop\\DataSet_1.tsv";
-        String to = "C:\\Users\\KhALeD SaBrY\\Desktop\\DataSet_1.txt";
-        try (FileOutputStream fileStream = new FileOutputStream(to);
-             XZOutputStream xzStream = new XZOutputStream(
-                     fileStream, new LZMA2Options(LZMA2Options.PRESET_MAX), BasicArrayCache.getInstance())) {
 
-            Files.copy(Paths.get(from), xzStream);
+
+        for (int i = 1; i <= 20; i++) {
+            String from = "E:\\DataSet_"+i+".tsv";
+            String to = "E:\\DataSet_"+i+".txt";
+            try (FileOutputStream fileStream = new FileOutputStream(to);
+                 XZOutputStream xzStream = new XZOutputStream(
+                         fileStream, new LZMA2Options(LZMA2Options.PRESET_MAX), BasicArrayCache.getInstance())) {
+
+                Files.copy(Paths.get(from), xzStream);
+            }
         }
     }
 

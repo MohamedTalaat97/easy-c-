@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.example.android.easyc.Controllers.DiscussionController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
+import com.example.android.easyc.Views.reportViews.report_on;
 
 import java.util.ArrayList;
 

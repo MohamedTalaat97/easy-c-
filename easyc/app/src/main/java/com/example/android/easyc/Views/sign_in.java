@@ -31,7 +31,8 @@ public class sign_in extends AppCompatActivity {
         //connect with the database
 
         connectionDb = ConnectionDb.getInstance();
-        connectionDb.connect(this);
+      //  connectionDb.connect(this);
+        connectionDb.serverConnect();
 
 
 

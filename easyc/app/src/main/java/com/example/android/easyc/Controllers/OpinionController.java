@@ -18,6 +18,7 @@ public class OpinionController extends Controller {
             public void onSuccess(ResultSet data) {
                 if (!checkIfFound(data))
                     return;
+
                     ArrayList<Integer> ids = (ArrayList<Integer>) (Object) resultToArray(data, 1);
                     ArrayList<Object> title = resultToArray(data, 2);
                     listener.onSuccess(ids, title);

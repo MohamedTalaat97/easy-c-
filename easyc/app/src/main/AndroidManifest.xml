@@ -49,9 +49,9 @@
         <activity android:name=".Views.quizzes" />
         <activity android:name=".Views.quiz_categories" />
         <activity android:name=".Views.add_quiz" />
-        <activity android:name=".Views.report_on" />
-        <activity android:name=".Views.show_reports" />
-        <activity android:name=".Views.show_a_report"></activity>
+        <activity android:name=".Views.reportViews.report_on" />
+        <activity android:name=".Views.reportViews.show_reports" />
+        <activity android:name=".Views.reportViews.show_a_report"></activity>
     </application>
 
 </manifest>

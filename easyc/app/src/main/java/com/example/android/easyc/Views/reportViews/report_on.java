@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.reportViews;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.android.easyc.Controllers.ReportController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
+import com.example.android.easyc.Views.replies_on_questions;
 
 import java.util.ArrayList;
 

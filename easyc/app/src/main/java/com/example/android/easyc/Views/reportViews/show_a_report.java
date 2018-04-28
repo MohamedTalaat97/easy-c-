@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.reportViews;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

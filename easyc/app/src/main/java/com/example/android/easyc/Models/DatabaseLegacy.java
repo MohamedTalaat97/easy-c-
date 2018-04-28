@@ -76,7 +76,7 @@ public class DatabaseLegacy {
                     if(!conn.checkConnection()) {
                         conn.reconnect();
                         if(!conn.checkConnection())
-                        return null;
+                            return null;
                     }
                         Statement stmt;
                         stmt = conn.c.createStatement();

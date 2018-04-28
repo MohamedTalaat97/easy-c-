@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.easyc.Views.show_reports">
+    tools:context="com.example.android.easyc.Views.reportViews.show_reports">
 
     <TabHost
         android:layout_width="match_parent"

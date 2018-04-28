@@ -67,6 +67,7 @@ public class ConnectionDb {
     }
 
 
+    //connect to the server
     public void serverConnect() {
         //if you want to put the host static for AVD uncomment the next line
        host = "10.168.1.21";

@@ -384,6 +384,13 @@ public class DatabaseAdapter {
         databaseLegacy.select(query, listener);
     }
 
+    public void selectReportIdDiscriptionByType(String type, OnTaskListeners.Result listener) {
+        query = "select id,discription from report where solved = false and type = '"+type +"'";
+        databaseLegacy.select(query, listener);
+    }
+
+
+
 
 
 

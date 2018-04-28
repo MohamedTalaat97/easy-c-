@@ -104,4 +104,17 @@ reportTypes.add(wrongAnswer);
         replyId = getIntent().getIntExtra(replies_on_questions.REPLYID,0);
 
     }
+
+
+
+    public static   ArrayList<String> reportsKinds()
+    {
+        ArrayList<String> kinds = new ArrayList<String>();
+        kinds.add(report_on.misLeadingAnswer);
+        kinds.add(report_on.misLeadingQuestion);
+        kinds.add(report_on.unApropiateAnswer);
+        kinds.add(report_on.wrongAnswer);
+        return  kinds;
+
+    }
 }

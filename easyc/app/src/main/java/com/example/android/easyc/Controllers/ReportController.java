@@ -9,6 +9,7 @@ import java.sql.ResultSet;
  */
 
 public class ReportController extends Controller {
+    public static String REPORTID = "REPORTID";
     public static String COMMENTID = "COMMENTID";
     public static String REPLYID = "REPLYID";
     public static String DISCRIPTION = "Discription";
@@ -98,6 +99,20 @@ public class ReportController extends Controller {
                 if (!checkIfFound(data))
                     return;
                 listener.onSuccess(resultToValue(data).toString());
+            }
+        });
+    }
+
+
+    public  void getReports(String kind , final OnTaskListeners.Map listener)
+    {
+        databaseAdapter().selectReportIdDiscriptionByType(kind, new OnTaskListeners.Result() {
+            @Override
+            public void onSuccess(ResultSet data) {
+                if(!checkIfFound(data))
+                    return;;
+                    listener.onSuccess(ReportController.REPORTID,resultToArray(data,1));
+                    listener.onSuccess(ReportController.DISCRIPTION,resultToArray(data,2));
             }
         });
     }

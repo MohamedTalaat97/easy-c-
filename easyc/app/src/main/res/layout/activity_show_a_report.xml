@@ -8,7 +8,7 @@
     tools:context="com.example.android.easyc.Views.reportViews.show_a_report">
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/decisionspinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp" />
@@ -20,20 +20,20 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/descriptionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner2"
+            android:layout_below="@+id/decisionspinner"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:paddingBottom="20dp" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/problemText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner2"
+            android:layout_below="@+id/decisionspinner"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -42,7 +42,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/takeActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

@@ -28,6 +28,7 @@ public class show_a_report extends AppCompatActivity {
 
     ArrayList<String> list;
     private static String state = "delete question";
+    private static String answer1 = "Delete Answer";
     Spinner decisions;
     Button takeAction;
 
@@ -38,6 +39,29 @@ public class show_a_report extends AppCompatActivity {
         setContentView(R.layout.activity_show_a_report);
         reportController = new ReportController();
         list = new ArrayList<String>();
+        decisions = findViewById(R.id.decisionspinner);
+        discriptionTextView = findViewById(R.id.descriptionText);
+        problemTextView = findViewById(R.id.problemText);
+        takeAction = findViewById(R.id.takeActionButton);
+
+        decisions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                takeAction.setText(decisions.getSelectedItem().toString());
+                loadData();
+            }
+        });
+
+        takeAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takeAction();
+            }
+        });
+
+        getDataFromIntent();
+        getReport();
+
     }
 
 
@@ -60,32 +84,35 @@ public class show_a_report extends AppCompatActivity {
     }
 
 
+    //load data
     void loadData() {
-        if (type == report_on.misLeadingQuestion) {
+        list.clear();
+        if (type.matches(report_on.misLeadingQuestion)) {
             loadQuestion();
             list.add(state);
             //adding the decision that you will take
 
         }
 
-        if (type == report_on.misLeadingAnswer) {
+        if (type.matches(report_on.misLeadingAnswer)) {
             loadAnswer();
             //adding the decision that you will take
+        }
+
+        if (type.matches(report_on.unApropiateAnswer)) {
+            loadAnswer();
+            list.add(answer1);
         }
         loadAdapter();
     }
 
+    // load to the decision spinner
     private void loadAdapter() {
         ArrayAdapter<String> adapterList = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, list);
         decisions.setAdapter(adapterList);
-        decisions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                takeAction.setText(decisions.getSelectedItem().toString());
-            }
-        });
     }
 
+    //get question text
     private void loadQuestion() {
         reportController.getquestion(questionId, new OnTaskListeners.Word() {
             @Override
@@ -97,6 +124,7 @@ public class show_a_report extends AppCompatActivity {
 
     }
 
+    //get answer text
     private void loadAnswer() {
         reportController.getAnswer(replyId, new OnTaskListeners.Word() {
             @Override
@@ -108,47 +136,48 @@ public class show_a_report extends AppCompatActivity {
     }
 
 
+    //get data from intent
+    //get type and id
     void getDataFromIntent() {
-        reportId = getIntent().getIntExtra(show_reports.REPLYID, 0);
+        reportId = getIntent().getIntExtra(show_reports.REPORTID, 0);
         type = getIntent().getStringExtra(show_reports.TYPE);
     }
 
 
+    void takeAction() {
+        if (decisions.getSelectedItem().toString().matches(state)) {
+            reportController.deleteComment(questionId, new OnTaskListeners.Bool() {
+                @Override
+                public void onSuccess(Boolean result) {
+                    finishActivity(result);
+                }
+            });
+        } else if (decisions.getSelectedItem().toString().matches(answer1)) {
+            reportController.deleteReply(replyId, new OnTaskListeners.Bool() {
+                @Override
+                public void onSuccess(Boolean result) {
 
+                    finishActivity(result);
+                }
 
-
-    void takeAction()
-    {
-        if(decisions.getSelectedItem().toString().matches(state))
-        {
-          reportController.deleteComment(questionId, new OnTaskListeners.Bool() {
-              @Override
-              public void onSuccess(Boolean result) {
-
-              }
-          });
+            });
         }
-     //   else
+        //   else
 
     }
 
-    void finishActivity(boolean result)
-    {
-        if(result)
-        {
-            reportController.toast("successfull task",getApplicationContext());
+    void finishActivity(boolean result) {
+        if (result) {
+            reportController.toast("successfull task", getApplicationContext());
             finish();
-        }
-        else
-        {
-            if(!reportController.checkConnection(getApplicationContext()))
+        } else {
+            if (!reportController.checkConnection(getApplicationContext()))
                 return;
-            reportController.toast("unsuccessful task",getApplicationContext());
+            reportController.toast("unsuccessful task", getApplicationContext());
 
         }
 
     }
-
 
 
 }

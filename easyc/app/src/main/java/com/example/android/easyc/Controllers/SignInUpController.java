@@ -1,6 +1,7 @@
 package com.example.android.easyc.Controllers;
 
 import com.example.android.easyc.Interfaces.OnTaskListeners;
+import com.example.android.easyc.Models.UserData;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -14,6 +15,12 @@ public class SignInUpController extends Controller {
     //get user Type
     public char getType() {
         return userData().getUserType();
+    }
+
+
+    public UserData getData()
+    {
+        return userData();
     }
 
     //be aware that it must be the return value to the view is void so you have to send the view with it
@@ -154,7 +161,7 @@ public class SignInUpController extends Controller {
 
     //get all requests
     public void getRequests(final OnTaskListeners.IdAndList listener) {
-        databaseAdapter().selectUserIdUserName(new OnTaskListeners.Result() {
+        databaseAdapter().selectUserIdUserNameByRequest(new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 if (!checkIfFound(data))
@@ -196,6 +203,16 @@ public class SignInUpController extends Controller {
     //deny specific reuqest using id
     public void denyRequest(Integer id, final OnTaskListeners.Bool listener) {
         databaseAdapter().updateUserSuspendedRequest(id, true, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
+    }
+
+    public void putRequestToBecomInstructor(String request, final OnTaskListeners.Bool listener)
+    {
+        databaseAdapter().updateUserRequest(userData().getUserId(), request, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
                 listener.onSuccess(result);

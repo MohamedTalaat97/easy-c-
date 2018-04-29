@@ -205,6 +205,15 @@ public class sign_up extends AppCompatActivity {
         if(!signInUpController.checkConnection(getApplicationContext()))
             return false;
 
+
+        if(requestText.getVisibility() == View.VISIBLE )
+        {
+            if(requestText.getText().toString().matches(""))
+            {
+                signInUpController.toast("please put your skills",getApplicationContext());
+                return false;
+            }
+        }
         try {
             int a = Integer.parseInt(age.getText().toString());
         } catch (NumberFormatException e) {

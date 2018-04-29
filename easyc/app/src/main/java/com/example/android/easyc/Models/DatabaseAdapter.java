@@ -204,8 +204,9 @@ public class DatabaseAdapter {
     }
 
 
-    public void selectUserIdUserName(OnTaskListeners.Result listener) {
-        query = "select id,username from user where suspended = true and type = 'I'  and request is not null";
+    public void selectUserIdUserNameByRequest(OnTaskListeners.Result listener) {
+     //   query = "select id,username from user where suspended = true and type = 'I'  and request is not null";
+        query = "select id,username from user where request is not null";
         databaseLegacy.select(query, listener);
     }
 
@@ -370,22 +371,22 @@ public class DatabaseAdapter {
     }
 
 
-    public void insertReport(int userId, Integer questionId,Integer replyId,String discription, String type, OnTaskListeners.Bool listener) {
+    public void insertReport(int userId, Integer questionId,Integer replyId,String description, String type, OnTaskListeners.Bool listener) {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
         String formattedDate = df.format(c);
-        query = "insert into report (user_id,comment_id,reply_id,discription,date,solved,type) values("+userId+","+questionId+","+replyId+",'"+discription+"','"+formattedDate+"',"+false+",'"+type+"')";
+        query = "insert into report (user_id,comment_id,reply_id,description,date,solved,type) values("+userId+","+questionId+","+replyId+",'"+description+"','"+formattedDate+"',"+false+",'"+type+"')";
         databaseLegacy.iud(query, listener);
     }
 
 
     public void selectReportCommentidReplyidDiscription(int reportID, OnTaskListeners.Result listener) {
-        query = "select comment_id,reply_id,discription from report where id = "+reportID;
+        query = "select comment_id,reply_id,description from report where id = "+reportID;
         databaseLegacy.select(query, listener);
     }
 
     public void selectReportIdDiscriptionByType(String type, OnTaskListeners.Result listener) {
-        query = "select id,discription from report where solved = false and type = '"+type +"'";
+        query = "select id,description from report where solved = false and type = '"+type +"'";
         databaseLegacy.select(query, listener);
     }
 
@@ -418,8 +419,8 @@ public class DatabaseAdapter {
         databaseLegacy.iud(query,listener);
     }
 
-    public void selectCommentTitleDiscription(int questionId, OnTaskListeners.Result listener) {
-        query = "select title,discription from comment where id = " + questionId;
+    public void selectCommentTitleDescription(int questionId, OnTaskListeners.Result listener) {
+        query = "select title,description from comment where id = " + questionId;
         databaseLegacy.select(query, listener);
     }
 
@@ -430,6 +431,17 @@ public class DatabaseAdapter {
 
 
 
+    public void updateReportSolved(int reportId,boolean solved ,OnTaskListeners.Bool listener )
+    {
+        query = "update report set solved = "+solved+" where id  = "+reportId;
+        databaseLegacy.iud(query,listener);
+    }
+
+    public void updateUserRequest(int userId,String request,OnTaskListeners.Bool listener)
+    {
+        query = "update user set request '"+request + "' where ID  = "+userId;
+        databaseLegacy.iud(query,listener);
+    }
 
 
 

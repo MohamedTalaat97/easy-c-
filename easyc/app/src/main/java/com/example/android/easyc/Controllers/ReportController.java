@@ -73,14 +73,26 @@ public class ReportController extends Controller {
         databaseAdapter().updateReplyBestAnswer(replyId, false, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
+                if(result)
                 listener.onSuccess(result);
             }
         });
 
     }
 
+
+    public void solveReport(int reportId, final OnTaskListeners.Bool listener)
+    {
+        databaseAdapter().updateReportSolved(reportId, true, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
+    }
+
     public void getquestion(Integer questionId, final OnTaskListeners.Word listener) {
-        databaseAdapter().selectCommentTitleDiscription(questionId, new OnTaskListeners.Result() {
+        databaseAdapter().selectCommentTitleDescription(questionId, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 if (!checkIfFound(data))

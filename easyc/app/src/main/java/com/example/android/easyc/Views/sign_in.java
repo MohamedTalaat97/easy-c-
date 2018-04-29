@@ -12,6 +12,7 @@ import com.example.android.easyc.Connections.ConnectionDb;
 import com.example.android.easyc.Controllers.SignInUpController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
+import com.example.android.easyc.Views.reportViews.show_reports;
 
 public class sign_in extends AppCompatActivity {
 
@@ -31,8 +32,7 @@ public class sign_in extends AppCompatActivity {
         //connect with the database
 
         connectionDb = ConnectionDb.getInstance();
-      //  connectionDb.connect(this);
-        connectionDb.serverConnect();
+        connectionDb.connect(this);
 
 
 
@@ -83,7 +83,7 @@ public class sign_in extends AppCompatActivity {
     void signIn() {
 
         //for testing
-        goTo(discussion_room_questions.class);
+        goTo(show_reports.class);
 
         if (check()) {
             //from the controller call signin function that you made and after it finish the function will call back to this function

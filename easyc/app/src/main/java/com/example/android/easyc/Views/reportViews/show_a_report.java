@@ -22,13 +22,14 @@ public class show_a_report extends AppCompatActivity {
     Integer reportId;
     String type;
     ReportController reportController;
-    String discription;
-    TextView discriptionTextView;
+    TextView description;
     TextView problemTextView;
 
     ArrayList<String> list;
-    private static String state = "delete question";
-    private static String answer1 = "Delete Answer";
+    private static String deleteQuestion = "Delete Question";
+    private static String deleteAnswer = "Delete Answer";
+    private static String removeBestAnswer = "Remove Best Answer";
+    private static String suspendUser = "Suspend User";
     Spinner decisions;
     Button takeAction;
 
@@ -40,18 +41,33 @@ public class show_a_report extends AppCompatActivity {
         reportController = new ReportController();
         list = new ArrayList<String>();
         decisions = findViewById(R.id.decisionspinner);
-        discriptionTextView = findViewById(R.id.descriptionText);
+        description = findViewById(R.id.descriptionText);
         problemTextView = findViewById(R.id.problemText);
         takeAction = findViewById(R.id.takeActionButton);
 
-        decisions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        getDataFromIntent();
+
+        decisions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 takeAction.setText(decisions.getSelectedItem().toString());
                 loadData();
             }
-        });
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        /*
+        decisions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+           //     takeAction.setText(decisions.getSelectedItem().toString());
+            //    loadData();
+            }
+        });
+*/
         takeAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +75,6 @@ public class show_a_report extends AppCompatActivity {
             }
         });
 
-        getDataFromIntent();
         getReport();
 
     }
@@ -72,7 +87,7 @@ public class show_a_report extends AppCompatActivity {
                 if (key == ReportController.COMMENTID)
                     questionId = (Integer) reportController.arrayToValue(list);
                 else if (key == ReportController.DISCRIPTION)
-                    discriptionTextView.setText(reportController.arrayToValue(list).toString());
+                    description.setText(reportController.arrayToValue(list).toString());
                 else if (key == ReportController.REPLYID)
                     replyId = (Integer) reportController.arrayToValue(list);
                 else if (key == ReportController.Fininshed) {
@@ -89,19 +104,33 @@ public class show_a_report extends AppCompatActivity {
         list.clear();
         if (type.matches(report_on.misLeadingQuestion)) {
             loadQuestion();
-            list.add(state);
+            list.add(deleteQuestion);
+            list.add(suspendUser);
             //adding the decision that you will take
 
         }
 
-        if (type.matches(report_on.misLeadingAnswer)) {
+        else if (type.matches(report_on.misLeadingAnswer)) {
             loadAnswer();
+            list.add(deleteAnswer);
+            list.add(removeBestAnswer);
+            list.add(suspendUser);
             //adding the decision that you will take
         }
 
-        if (type.matches(report_on.unApropiateAnswer)) {
+        else if (type.matches(report_on.unApropiateAnswer)) {
             loadAnswer();
-            list.add(answer1);
+            list.add(deleteAnswer);
+            list.add(suspendUser);
+        }
+
+        else if(type.matches(report_on.wrongAnswer))
+        {
+            loadAnswer();
+            list.add(deleteAnswer);
+            list.add(removeBestAnswer);
+            list.add(suspendUser);
+
         }
         loadAdapter();
     }
@@ -145,14 +174,14 @@ public class show_a_report extends AppCompatActivity {
 
 
     void takeAction() {
-        if (decisions.getSelectedItem().toString().matches(state)) {
+        if (decisions.getSelectedItem().toString().matches(deleteQuestion)) {
             reportController.deleteComment(questionId, new OnTaskListeners.Bool() {
                 @Override
                 public void onSuccess(Boolean result) {
                     finishActivity(result);
                 }
             });
-        } else if (decisions.getSelectedItem().toString().matches(answer1)) {
+        } else if (decisions.getSelectedItem().toString().matches(deleteAnswer)) {
             reportController.deleteReply(replyId, new OnTaskListeners.Bool() {
                 @Override
                 public void onSuccess(Boolean result) {
@@ -160,6 +189,40 @@ public class show_a_report extends AppCompatActivity {
                     finishActivity(result);
                 }
 
+            });
+        }
+
+        else if(decisions.getSelectedItem().toString().matches(removeBestAnswer))
+        {
+            reportController.changeBestAnswer(replyId, new OnTaskListeners.Bool() {
+                @Override
+                public void onSuccess(Boolean result) {
+                    if(result)
+                        reportController.solveReport(reportId, new OnTaskListeners.Bool() {
+                            @Override
+                            public void onSuccess(Boolean result) {
+
+                            }
+                        });
+                    finishActivity(result);
+                }
+            });
+        }
+
+        else if(decisions.getSelectedItem().toString().matches(suspendUser))
+        {
+            reportController.suspendUser(replyId, new OnTaskListeners.Bool() {
+                @Override
+                public void onSuccess(Boolean result) {
+                    if(result)
+                        reportController.solveReport(reportId, new OnTaskListeners.Bool() {
+                            @Override
+                            public void onSuccess(Boolean result) {
+
+                            }
+                        });
+                    finishActivity(result);
+                }
             });
         }
         //   else

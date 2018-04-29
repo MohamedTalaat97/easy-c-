@@ -20,6 +20,8 @@ public class options extends AppCompatActivity {
     private String changeUsername = "change Username";
     private String changePassword = "change Password";
     private String changeEmail = "change Email";
+    private String becomeAnInstructor = "Become An Instructor";
+
 
 
     @Override
@@ -29,9 +31,7 @@ public class options extends AppCompatActivity {
         listView = findViewById(R.id.optionlistview);
         signInUpController = new SignInUpController();
         list = new ArrayList<String>();
-        list.add(changeUsername);
-        list.add(changePassword);
-        list.add(changeEmail);
+fillList();
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_selectable_list_item, list);
@@ -49,12 +49,28 @@ public class options extends AppCompatActivity {
                 {
                     goTo(change_email.class);
                 }
+                else if(listView.getItemAtPosition(position).toString().matches(becomeAnInstructor))
+                {
+                    goTo(becomeAnInstructor.class);
+
+                }
             }
         });
 
 
+
+
     }
 
+    void fillList() {
+        list.add(changeUsername);
+        list.add(changePassword);
+        list.add(changeEmail);
+        if (signInUpController.getType() == 'S' && signInUpController.getData().getUserLevel() == 5)
+        {
+         list.add(becomeAnInstructor);
+        }
+    }
     void goTo(Class c) {
         Intent intent = new Intent(getApplicationContext(), c);
         startActivity(intent);

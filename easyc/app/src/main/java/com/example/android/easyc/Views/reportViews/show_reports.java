@@ -58,7 +58,7 @@ public class show_reports extends AppCompatActivity {
 
 
         initiateSpinner();
-        fillList();
+       // fillList();
     }
 
 
@@ -73,7 +73,7 @@ public class show_reports extends AppCompatActivity {
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_selectable_list_item, titleArrayList);
                     listView.setAdapter(adapter);
                 } else if (key.matches(ReportController.REPORTID)) {
-                    idArrayList = (ArrayList<Integer>) reportController.arrayToValue(list);
+                    idArrayList = (ArrayList<Integer>) (Object) list;
                 }
             }
         });

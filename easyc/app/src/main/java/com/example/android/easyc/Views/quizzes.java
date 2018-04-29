@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -30,7 +29,8 @@ public class quizzes extends AppCompatActivity {
     boolean questionDone = false;
     boolean answersDone = false;
     boolean idsDone = false;
-    int opener;
+    public static String opener;
+    int level;
 
 
     @Override
@@ -41,8 +41,10 @@ public class quizzes extends AppCompatActivity {
         questions = new ArrayList<String>();
         answers = new ArrayList<Integer>();
         ids = new ArrayList<Integer>();
+        opener = quiz_options.opener;
         quizController = new QuizController();
         catId = getIntent().getIntExtra(quiz_categories.CATID, 1);
+        level = getIntent().getIntExtra(quiz_options.opener, 1);
         quizListView = (ListView) findViewById(R.id.quiz_ListView);
         submit = findViewById(R.id.submitbutton);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -51,10 +53,9 @@ public class quizzes extends AppCompatActivity {
 
                 if (!checkToSubmit())
                     quizController.toast("please answer all questions", getApplicationContext());
-                else
-                {
+                else {
                     getAnswers();
-                quizController.toast("you got "+rightAnswers+" right & "+(answers.size()-rightAnswers)+" wrong",getApplicationContext());
+                    quizController.toast("you got " + rightAnswers + " right & " + (answers.size() - rightAnswers) + " wrong", getApplicationContext());
 
                 }
 
@@ -63,38 +64,57 @@ public class quizzes extends AppCompatActivity {
         });
 
 
-        quizController.getQuiz(catId, new OnTaskListeners.threeLists() {
-            @Override
-            public void onSuccess(ArrayList<Object> result1, ArrayList<Object> result2, ArrayList<Object> result3) {
+        fillQuiz();
 
 
-                questions = (ArrayList<String>) (Object) result2;
-                ids = (ArrayList<Integer>) (Object) result1;
-                answers = (ArrayList<Integer>) (Object) result3;
+    }
 
-                if (questions != null) {
-                    for (int i = 0; i < questions.size(); i++) {
-                        quiz q = new quiz();
-                        try {
 
-                            q.setQuestion(questions.get(i));
-                            q.setAnswer(answers.get(i));
-                            q.setId(ids.get(i));
-                            QuizList.add(q);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+    void fillQuiz() {
+
+        if (opener == "cat") {
+            quizController.getQuizByCategoryId(catId, new OnTaskListeners.threeLists() {
+                @Override
+                public void onSuccess(ArrayList<Object> result1, ArrayList<Object> result2, ArrayList<Object> result3) {
+
+
+                    questions = (ArrayList<String>) (Object) result2;
+                    ids = (ArrayList<Integer>) (Object) result1;
+                    answers = (ArrayList<Integer>) (Object) result3;
+
+                    if (questions != null) {
+                        for (int i = 0; i < questions.size(); i++) {
+                            quiz q = new quiz();
+                            try {
+
+                                q.setQuestion(questions.get(i));
+                                q.setAnswer(answers.get(i));
+                                q.setId(ids.get(i));
+                                QuizList.add(q);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
                         }
 
+                        qadapter = new quiz_adapter(quizzes.this, QuizList);
+
+
+                        quizListView.setAdapter(qadapter);
+
                     }
-
-                    qadapter = new quiz_adapter(quizzes.this, QuizList);
-
-
-                    quizListView.setAdapter(qadapter);
-
                 }
-            }
-        });
+            });
+
+        } else if (opener == "lev") {
+
+            // same but with level
+        } else if (opener == "lev_up") {
+
+
+            //same but the the level after
+            //check 3la max level
+        }
 
 
     }
@@ -109,8 +129,7 @@ public class quizzes extends AppCompatActivity {
                 if (rb.isChecked())
                     rightAnswers++;
 
-            } else
-                {
+            } else {
                 if (fb.isChecked())
                     rightAnswers++;
 

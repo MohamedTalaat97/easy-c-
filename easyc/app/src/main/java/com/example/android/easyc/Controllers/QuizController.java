@@ -8,6 +8,12 @@ import java.sql.ResultSet;
 public class QuizController extends Controller {
 
 
+    public int getUserLevel()
+
+    {
+
+        return userData().getUserLevel();
+    }
 
     public void getCategories(final OnTaskListeners.List listener) {
         databaseAdapter().selectCategories(new OnTaskListeners.Result() {
@@ -64,7 +70,7 @@ public class QuizController extends Controller {
             }
         });
     }
-    public void getQuiz(int cat_id,final OnTaskListeners.threeLists listener) {
+    public void getQuizByCategoryId(int cat_id, final OnTaskListeners.threeLists listener) {
         databaseAdapter().selectQuizIdQuestionAnswer(cat_id,new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {

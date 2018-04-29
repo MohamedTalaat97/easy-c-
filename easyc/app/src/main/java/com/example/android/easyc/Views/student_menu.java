@@ -62,7 +62,7 @@ public class student_menu extends AppCompatActivity {
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goTo(quiz_categories.class);
+                goTo(quiz_options.class);
             }
         });
 

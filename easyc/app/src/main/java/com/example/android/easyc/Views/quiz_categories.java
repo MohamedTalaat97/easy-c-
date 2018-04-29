@@ -22,6 +22,7 @@ public class quiz_categories extends AppCompatActivity {
     ArrayList<Integer> categoriesIds;
     ArrayList<String> categoriesTitle;
     public static String CATID = "CAT_ID";
+    public static String opener= "cat";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

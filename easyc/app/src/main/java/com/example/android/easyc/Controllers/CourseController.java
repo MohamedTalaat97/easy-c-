@@ -62,6 +62,19 @@ public class CourseController extends Controller {
 
     }
 
+
+    /// insert into category b2a w topic
+
+    public void getlevels(final OnTaskListeners.List listener) {
+        databaseAdapter().selectLevelsIds(new OnTaskListeners.Result() {
+            @Override
+            public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
+                listener.onSuccess(resultToArray(data));
+            }
+        });
+    }
     //get the code for specific title
     public void getCode(int topicId, final OnTaskListeners.Word listener) {
         databaseAdapter().selectCode(topicId, new OnTaskListeners.Result() {

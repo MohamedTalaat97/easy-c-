@@ -92,6 +92,10 @@ public class DatabaseAdapter {
         databaseLegacy.select(query, listeners);
     }
 
+    public void selectLevelsIds(OnTaskListeners.Result listeners) {
+        query = "select level_number from level";
+        databaseLegacy.select(query, listeners);
+    }
     public void selectAnswers(int cat_id, OnTaskListeners.Result listeners) {
         query = "select answer from question where cat_id = '" + cat_id + "'";
         databaseLegacy.select(query, listeners);
@@ -181,6 +185,10 @@ public class DatabaseAdapter {
         databaseLegacy.iud(query, listener);
     }
 
+    public void insertCategory(int level, String title, OnTaskListeners.Bool listener) {
+        query = "insert into category (level_id,title) values(" + level+ "," + title + ")";
+        databaseLegacy.iud(query, listener);
+    }
 
     public void selectUserUsernamePassword(String email, OnTaskListeners.Result listener) {
         query = "select username,password from user where email = '" + email + "'";

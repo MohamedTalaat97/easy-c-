@@ -52,8 +52,11 @@
         <activity android:name=".Views.reportViews.report_on" />
         <activity android:name=".Views.reportViews.show_reports" />
         <activity android:name=".Views.reportViews.show_a_report" />
-        <activity android:name=".Views.quiz_options"></activity>
-        <activity android:name=".Views.becomeAnInstructor"></activity>
+        <activity android:name=".Views.quiz_options" />
+        <activity android:name=".Views.becomeAnInstructor" />
+        <activity android:name=".Views.add_options" />
+        <activity android:name=".Views.add_category" />
+        <activity android:name=".Views.add_topic"></activity>
     </application>
 
 </manifest>

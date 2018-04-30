@@ -124,6 +124,9 @@ public class QuizController extends Controller {
     {
         int user_id = userData().getUserId();
 
+
+        ////insert into question call adapter
+
     }
 
 }

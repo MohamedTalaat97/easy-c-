@@ -83,7 +83,7 @@ public class sign_in extends AppCompatActivity {
     void signIn() {
 
         //for testing
-        goTo(show_reports.class);
+        //goTo(show_reports.class);
 
         if (check()) {
             //from the controller call signin function that you made and after it finish the function will call back to this function

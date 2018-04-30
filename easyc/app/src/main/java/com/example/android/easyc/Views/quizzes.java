@@ -54,8 +54,11 @@ public class quizzes extends AppCompatActivity {
                 if (!checkToSubmit())
                     quizController.toast("please answer all questions", getApplicationContext());
                 else {
+                    float score = calc();
                     getAnswers();
                     quizController.toast("you got " + rightAnswers + " right & " + (answers.size() - rightAnswers) + " wrong", getApplicationContext());
+                    if (score >=75)
+                        quizController.setUserLevel(level+1);
 
                 }
 
@@ -69,6 +72,17 @@ public class quizzes extends AppCompatActivity {
 
     }
 
+    void submit()
+    {
+
+
+
+    }
+
+    float calc()
+    {
+       return (((float)rightAnswers / (float)answers.size())*100);
+    }
 
     void fillQuiz() {
 
@@ -106,14 +120,75 @@ public class quizzes extends AppCompatActivity {
                 }
             });
 
-        } else if (opener == "lev") {
+        } else if (opener == "lev"  && level <= 5) {
 
-            // same but with level
-        } else if (opener == "lev_up") {
+            quizController.getQuizByLevelId(level, new OnTaskListeners.threeLists() {
+                @Override
+                public void onSuccess(ArrayList<Object> result1, ArrayList<Object> result2, ArrayList<Object> result3) {
 
 
-            //same but the the level after
-            //check 3la max level
+                    questions = (ArrayList<String>) (Object) result2;
+                    ids = (ArrayList<Integer>) (Object) result1;
+                    answers = (ArrayList<Integer>) (Object) result3;
+
+                    if (questions != null) {
+                        for (int i = 0; i < questions.size(); i++) {
+                            quiz q = new quiz();
+                            try {
+
+                                q.setQuestion(questions.get(i));
+                                q.setAnswer(answers.get(i));
+                                q.setId(ids.get(i));
+                                QuizList.add(q);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        qadapter = new quiz_adapter(quizzes.this, QuizList);
+
+
+                        quizListView.setAdapter(qadapter);
+
+                    }
+                }
+            });
+        } else if (opener == "lev_up" && level <5) {
+
+
+            quizController.getQuizByLevelUp(level, new OnTaskListeners.threeLists() {
+                @Override
+                public void onSuccess(ArrayList<Object> result1, ArrayList<Object> result2, ArrayList<Object> result3) {
+
+
+                    questions = (ArrayList<String>) (Object) result2;
+                    ids = (ArrayList<Integer>) (Object) result1;
+                    answers = (ArrayList<Integer>) (Object) result3;
+
+                    if (questions != null) {
+                        for (int i = 0; i < questions.size(); i++) {
+                            quiz q = new quiz();
+                            try {
+
+                                q.setQuestion(questions.get(i));
+                                q.setAnswer(answers.get(i));
+                                q.setId(ids.get(i));
+                                QuizList.add(q);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        qadapter = new quiz_adapter(quizzes.this, QuizList);
+
+
+                        quizListView.setAdapter(qadapter);
+
+                    }
+                }
+            });
         }
 
 

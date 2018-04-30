@@ -65,8 +65,19 @@ public class DatabaseAdapter {
 
     }
 
-    public void selectQuizIdQuestionAnswer(int cat_id, OnTaskListeners.Result listeners) {
+    public void selectQuizIdQuestionAnswerByCat(int cat_id, OnTaskListeners.Result listeners) {
         query = "select id,question,answer from question where cat_id = " + cat_id;
+        databaseLegacy.select(query, listeners);
+
+    }
+    public void selectQuizIdQuestionAnswerByLevel(int level, OnTaskListeners.Result listeners) {
+        query = "select id,question,answer from question where level_id = " + level;
+        databaseLegacy.select(query, listeners);
+
+    }
+    public void selectQuizIdQuestionAnswerToUp(int level, OnTaskListeners.Result listeners) {
+        int l = level+1;
+        query = "select id,question,answer from question where level_id = " + l;
         databaseLegacy.select(query, listeners);
 
     }

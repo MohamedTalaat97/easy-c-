@@ -112,8 +112,23 @@ public class CourseController extends Controller {
 
 
     }
-    public void getCategoriedIds(final OnTaskListeners.List listener) {
-        databaseAdapter().selectcategoryIds(new OnTaskListeners.Result() {
+
+    public void addTopic(int cat_id, String code,String out,String des,String title, final OnTaskListeners.Bool listener)
+    {
+        databaseAdapter().insertTopic(cat_id, code,out,des,title ,new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
+
+
+
+    }
+
+
+    public void getCategoriesIds(final OnTaskListeners.List listener) {
+        databaseAdapter().selectCategoriesIds(new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 if (!checkIfFound(data))

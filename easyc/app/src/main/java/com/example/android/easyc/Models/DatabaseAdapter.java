@@ -127,12 +127,7 @@ public class DatabaseAdapter {
 
     }
 
-    public void insertQuestion(Integer catId, Integer userId, String Question, Integer Answer, OnTaskListeners.Bool listeners) {
-        query = "insert into " +
-                " values('" + catId + "','" + catId + "','" + userId + "'," + Question + ",'" + Answer + "')";
-        databaseLegacy.iud(query, listeners);
 
-    }
 
     public void selectOpinionTitle(OnTaskListeners.Result listener) {
         query = "select id,title from opinion";
@@ -187,6 +182,15 @@ public class DatabaseAdapter {
 
     public void insertCategory(int level, String title, OnTaskListeners.Bool listener) {
         query = "insert into category (level_id,title) values(" + level+ "," + title + ")";
+        databaseLegacy.iud(query, listener);
+    }
+
+    public void insertQuestion(int level,int cat,int user,String question,int ans , OnTaskListeners.Bool listener) {
+        query = "insert into question (level_id,cat_id,user_id,question,answer) values(" + level+ "," +cat+ user+"," + question+","+ ans+")";
+        databaseLegacy.iud(query, listener);
+    }
+    public void insertTopic(int cat_id, String code,String out,String des,String title, OnTaskListeners.Bool listener) {
+        query = "insert into topic (cat_id,code,output,description,title) values(" +cat_id+ "," + code + ","+out+","+ des+","+title+")";
         databaseLegacy.iud(query, listener);
     }
 

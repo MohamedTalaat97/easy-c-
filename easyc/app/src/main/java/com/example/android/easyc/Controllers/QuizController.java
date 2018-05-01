@@ -123,10 +123,14 @@ public class QuizController extends Controller {
 
     {
         int user_id = userData().getUserId();
+        int user_level = userData().getUserLevel();
 
-
-        ////insert into question call adapter
-
+        databaseAdapter().insertQuestion(user_level, catId,user_id,Question,Answer ,new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
     }
 
 }

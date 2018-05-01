@@ -54,7 +54,8 @@ QuizController quizController;
 
 
 
-
+//add to exam
+    // and make him able to see his grades
     void initData()
     {
 
@@ -94,7 +95,7 @@ QuizController quizController;
 
     }
 
-    Integer getAnswer()
+    int getAnswer()
     {
         if (trueButton.isChecked())
             return 1;

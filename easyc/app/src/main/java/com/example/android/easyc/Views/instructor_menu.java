@@ -27,12 +27,12 @@ public class instructor_menu extends AppCompatActivity {
 
         options = findViewById(R.id.to_options1);
         quiz = findViewById(R.id.to_add_quiz);
-        /*course.setOnClickListener(new View.OnClickListener() {
+        course.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goTo(categories.class);
+                goTo(add_options.class);
             }
-        });*/
+        });
         opinion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

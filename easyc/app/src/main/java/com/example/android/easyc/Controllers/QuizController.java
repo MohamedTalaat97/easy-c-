@@ -75,6 +75,20 @@ public class QuizController extends Controller {
             }
         });
     }
+
+    public void getGrades( final OnTaskListeners.twoLists listener) {
+
+        int user_id = userData().getUserId();
+        databaseAdapter().selectExamGradeDate(user_id,new OnTaskListeners.Result() {
+            @Override
+            public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
+                listener.onSuccess(resultToArray(data,1),resultToArray(data,2));
+
+            }
+        });
+    }
     public void getQuizByCategoryId(int cat_id, final OnTaskListeners.threeLists listener) {
         databaseAdapter().selectQuizIdQuestionAnswerByCat(cat_id,new OnTaskListeners.Result() {
             @Override
@@ -133,4 +147,33 @@ public class QuizController extends Controller {
         });
     }
 
+    public void addScore(int score ,int  catId,String date,final OnTaskListeners.Bool listener)
+
+    {
+        int user_id = userData().getUserId();
+        int user_level = userData().getUserLevel();
+
+        databaseAdapter().insertexam(user_level, catId,user_id,score,date ,new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
+    }
+
+
+    public void upLevel(final OnTaskListeners.Bool listener)
+
+    {
+        int user_id = userData().getUserId();
+        int user_level = userData().getUserLevel();
+
+
+        databaseAdapter().updateUserLevel(user_id,user_level+1,new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
+    }
 }

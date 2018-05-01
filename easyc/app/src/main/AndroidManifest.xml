@@ -56,7 +56,8 @@
         <activity android:name=".Views.becomeAnInstructor" />
         <activity android:name=".Views.add_options" />
         <activity android:name=".Views.add_category" />
-        <activity android:name=".Views.add_topic"></activity>
+        <activity android:name=".Views.add_topic" />
+        <activity android:name=".Views.see_grades"></activity>
     </application>
 
 </manifest>

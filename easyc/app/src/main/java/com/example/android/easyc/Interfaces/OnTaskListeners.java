@@ -52,7 +52,7 @@ public interface OnTaskListeners {
     }
 
     //return two object arraylist
-    public  interface ListAndList
+    public  interface twoLists
     {
         void onSuccess(ArrayList<Object> list1,ArrayList<Object> list2);
     }

@@ -189,6 +189,11 @@ public class DatabaseAdapter {
         query = "insert into question (level_id,cat_id,user_id,question,answer) values(" + level+ "," +cat+ user+"," + question+","+ ans+")";
         databaseLegacy.iud(query, listener);
     }
+
+    public void insertexam(int level,int cat,int user,int grade,String date , OnTaskListeners.Bool listener) {
+        query = "insert into exam values(" + level+ "," +cat+","+ user+"," + grade+","+ date+")";
+        databaseLegacy.iud(query, listener);
+    }
     public void insertTopic(int cat_id, String code,String out,String des,String title, OnTaskListeners.Bool listener) {
         query = "insert into topic (cat_id,code,output,description,title) values(" +cat_id+ "," + code + ","+out+","+ des+","+title+")";
         databaseLegacy.iud(query, listener);
@@ -344,6 +349,10 @@ public class DatabaseAdapter {
         query = "update User set email = '" + email + "' where id = " + userId;
         databaseLegacy.iud(query, listener);
     }
+    public void updateUserLevel(int userId, int level, OnTaskListeners.Bool listener) {
+        query = "update user set level = '" + level + "' where id = " + userId;
+        databaseLegacy.iud(query, listener);
+    }
 
     public void selectUserEmail(int userId, OnTaskListeners.Result listener) {
         query = "select email from user where id = " + userId;
@@ -370,6 +379,11 @@ public class DatabaseAdapter {
 
     public void selectCommentUserIdUsernameTitleDescription(int questionID, OnTaskListeners.Result listener) {
         query = "select user_id,username,title,description from comment c, user u where u.id = c.user_id and c.id = " + questionID;
+        databaseLegacy.select(query, listener);
+    }
+
+    public void selectExamGradeDate(int user, OnTaskListeners.Result listener) {
+        query = "select grade,date from exam where user_id = " + user;
         databaseLegacy.select(query, listener);
     }
 

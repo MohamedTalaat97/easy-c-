@@ -7,12 +7,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import java.util.Calendar;
 
 import com.example.android.easyc.Controllers.QuizController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class quizzes extends AppCompatActivity {
 
@@ -54,15 +56,9 @@ public class quizzes extends AppCompatActivity {
                 if (!checkToSubmit())
                     quizController.toast("please answer all questions", getApplicationContext());
                 else {
-                    float score = calc();
-                    getAnswers();
-                    quizController.toast("you got " + rightAnswers + " right & " + (answers.size() - rightAnswers) + " wrong", getApplicationContext());
-                    if (score >=75)
-                        quizController.setUserLevel(level+1);
+                    checkAnswers();
 
                 }
-
-
             }
         });
 
@@ -72,16 +68,52 @@ public class quizzes extends AppCompatActivity {
 
     }
 
-    void submit()
-    {
+    void addGrade() {
+        quizController.addScore(rightAnswers/answers.size()*100, catId, getDate(), new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if (!result)
+                    quizController.toast("something went wrong adding the grade", getApplicationContext());
+            }
+        });
+
+
+    }
+
+
+    void checkAnswers() {
+        float score = calcGrade();
+        getAnswers();
+        quizController.toast("you got " + rightAnswers + " right & " + (answers.size() - rightAnswers) + " wrong", getApplicationContext());
+        if (score >= 75)
+        {
+            quizController.upLevel(new OnTaskListeners.Bool() {
+                @Override
+                public void onSuccess(Boolean result) {
+                    if (!result)
+                        quizController.toast("something went wrong uping the level", getApplicationContext());
+
+                }
+            });
+        }
+        addGrade();
 
 
 
     }
 
-    float calc()
-    {
-       return (((float)rightAnswers / (float)answers.size())*100);
+    String getDate() {
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c);
+        return formattedDate;
+
+
+    }
+
+    float calcGrade() {
+        return (((float) rightAnswers / (float) answers.size()) * 100);
     }
 
     void fillQuiz() {
@@ -120,7 +152,7 @@ public class quizzes extends AppCompatActivity {
                 }
             });
 
-        } else if (opener == "lev"  && level <= 5) {
+        } else if (opener == "lev" && level <= 5) {
 
             quizController.getQuizByLevelId(level, new OnTaskListeners.threeLists() {
                 @Override
@@ -154,7 +186,7 @@ public class quizzes extends AppCompatActivity {
                     }
                 }
             });
-        } else if (opener == "lev_up" && level <5) {
+        } else if (opener == "lev_up" && level < 5) {
 
 
             quizController.getQuizByLevelUp(level, new OnTaskListeners.threeLists() {
@@ -212,52 +244,6 @@ public class quizzes extends AppCompatActivity {
 
         }
 
-    }
-
-    void initQuestions() {
-        quizController.getQuestions(catId, new OnTaskListeners.List() {
-            @Override
-            public void onSuccess(ArrayList<Object> result) {
-                questions = (ArrayList<String>) (Object) result;
-                questionDone = true;
-
-            }
-        });
-
-    }
-
-    void initAnswers() {
-        quizController.getAnswers(catId, new OnTaskListeners.List() {
-            @Override
-            public void onSuccess(ArrayList<Object> result) {
-                answers = (ArrayList<Integer>) (Object) result;
-                answersDone = true;
-
-
-            }
-        });
-    }
-
-
-    boolean done() {
-        if (answersDone && questionDone && idsDone)
-            return true;
-        else return false;
-
-
-    }
-
-    void initIds() {
-        quizController.getIds(catId, new OnTaskListeners.List() {
-            @Override
-            public void onSuccess(ArrayList<Object> result) {
-
-                ids = (ArrayList<Integer>) (Object) result;
-                idsDone = true;
-
-
-            }
-        });
     }
 
 

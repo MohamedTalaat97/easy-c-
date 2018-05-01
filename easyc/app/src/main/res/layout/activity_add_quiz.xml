@@ -20,10 +20,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="0dp"
         android:orientation="vertical"
         android:padding="20dp">
 
+        <TextView
+            style="@style/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="7dp"
+            android:text="Add"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_info"
+            android:src="@drawable/menu" />
         <EditText
             android:id="@+id/addquestion"
             android:layout_width="match_parent"

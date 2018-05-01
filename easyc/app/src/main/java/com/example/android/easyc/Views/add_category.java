@@ -46,7 +46,9 @@ public class add_category extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addCategory();
+                if (check())
+                    addCategory();
+                else courseController.toast("please enter a valid name", getApplicationContext());
             }
         });
 
@@ -54,12 +56,24 @@ public class add_category extends AppCompatActivity {
     }
 
 
+    public void addCategory() {
 
-    public void addCategory()
-    {
+        courseController.addCategory(catName.getText().toString(), (Integer) levels.getSelectedItem(), new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if (result)
+                    courseController.toast("finished successfully", getApplicationContext());
+                else
+                    courseController.toast("something went wrong please try again", getApplicationContext());
+            }
+        });
 
-///take data and insert fe el adapter  w el oontroller
 
+    }
 
+    boolean check() {
+        if (catName.getText().toString().matches(""))
+            return false;
+        else return true;
     }
 }

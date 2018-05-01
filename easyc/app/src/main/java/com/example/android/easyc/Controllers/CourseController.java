@@ -99,6 +99,29 @@ public class CourseController extends Controller {
         });
     }
 
+
+    public void addCategory(String name,int level, final OnTaskListeners.Bool listener)
+    {
+        databaseAdapter().insertCategory(level, name, new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                listener.onSuccess(result);
+            }
+        });
+
+
+
+    }
+    public void getCategoriedIds(final OnTaskListeners.List listener) {
+        databaseAdapter().selectcategoryIds(new OnTaskListeners.Result() {
+            @Override
+            public void onSuccess(ResultSet data) {
+                if (!checkIfFound(data))
+                    return;
+                listener.onSuccess(resultToArray(data));
+            }
+        });
+    }
     //get the output for specific title
     public void getOutput(int topicId, final OnTaskListeners.Word listener) {
         databaseAdapter().selectOutput(topicId, new OnTaskListeners.Result() {

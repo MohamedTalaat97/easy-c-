@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.android.easyc.Models.UserData;
 import com.example.android.easyc.R;
+import com.example.android.easyc.Views.reportViews.show_reports;
 
 public class admin_menu extends AppCompatActivity {
 
@@ -16,6 +17,7 @@ public class admin_menu extends AppCompatActivity {
     ImageView showOpinion;
     ImageView options;
     ImageView request;
+    ImageView report;
     TextView name;
     UserData userData;
 
@@ -29,11 +31,24 @@ public class admin_menu extends AppCompatActivity {
         options = findViewById(R.id.to_options2);
         request = findViewById(R.id.to_request);
         name = findViewById(R.id.usernameAdmin);
+        report = findViewById(R.id.to_report);
 
         showOpinion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goTo(show_opinions.class);
+            }
+        });
+        showOpinion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(show_opinions.class);
+            }
+        });
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(show_reports.class);
             }
         });
         options.setOnClickListener(new View.OnClickListener() {

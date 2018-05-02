@@ -13,7 +13,6 @@ import com.example.android.easyc.R;
 public class admin_menu extends AppCompatActivity {
 
 
-
     ImageView showOpinion;
     ImageView options;
     ImageView request;
@@ -28,8 +27,8 @@ public class admin_menu extends AppCompatActivity {
 
         showOpinion = findViewById(R.id.to_show_opinion);
         options = findViewById(R.id.to_options2);
-request=findViewById(R.id.to_request);
-name = findViewById(R.id.usernameAdmin);
+        request = findViewById(R.id.to_request);
+        name = findViewById(R.id.usernameAdmin);
 
         showOpinion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,24 +54,12 @@ name = findViewById(R.id.usernameAdmin);
     }
 
 
-
-
-
-
-
-        void goTo(Class c) {
-            Intent intent = new Intent(getApplicationContext(), c);
-            startActivity(intent);
-            // overridePendingTransition(R.anim.goup, R.anim.godown);
-        }
-
-
-
-
-
-
-
-
-
+    void goTo(Class c) {
+        Intent intent = new Intent(getApplicationContext(), c);
+        startActivity(intent);
+        // overridePendingTransition(R.anim.goup, R.anim.godown);
     }
+
+
+}
 

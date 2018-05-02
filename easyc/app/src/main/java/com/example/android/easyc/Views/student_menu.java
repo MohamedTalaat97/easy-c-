@@ -19,6 +19,7 @@ public class student_menu extends AppCompatActivity {
     ImageView options;
     ImageView quiz;
     ImageView opinion;
+    ImageView discusion;
     GridView menu;
     TextView name;
     ProgressBar level;
@@ -39,6 +40,7 @@ public class student_menu extends AppCompatActivity {
         opinion = findViewById(R.id.to_opinion);
         options = findViewById(R.id.to_options);
         quiz = findViewById(R.id.to_quiz);
+        discusion = findViewById(R.id.to_dis);
 
         course.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +65,12 @@ public class student_menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goTo(quiz_options.class);
+            }
+        });
+       discusion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(discussion_room_questions.class);
             }
         });
 

@@ -84,7 +84,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:src="@drawable/course" />
+                    android:src="@drawable/request" />
+                <ImageView
+                    android:id="@+id/to_report"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/report" />
 
             </LinearLayout>
         </ScrollView>

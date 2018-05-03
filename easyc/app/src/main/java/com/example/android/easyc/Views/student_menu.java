@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.example.android.easyc.Controllers.StudentController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
+import com.example.android.easyc.Views.DiscussionViews.discussion_room_questions;
+import com.example.android.easyc.Views.DiscussionViews.put_question_discussion;
 
 public class student_menu extends AppCompatActivity {
 

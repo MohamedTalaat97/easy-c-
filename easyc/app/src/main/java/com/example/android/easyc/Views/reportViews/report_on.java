@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.android.easyc.Controllers.ReportController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
-import com.example.android.easyc.Views.replies_on_questions;
+import com.example.android.easyc.Views.DiscussionViews.replies_on_questions;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.DiscussionViews;
 
 /**
  * Created by KhALeD SaBrY on 14-Apr-18.

@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.DiscussionViews;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import com.example.android.easyc.R;
 
 import com.example.android.easyc.Controllers.DiscussionController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
+import com.example.android.easyc.Views.student_menu;
 
 public class put_question_discussion extends AppCompatActivity {
 

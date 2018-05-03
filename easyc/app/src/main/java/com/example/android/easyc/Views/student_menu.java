@@ -61,8 +61,7 @@ public class student_menu extends AppCompatActivity {
         options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    goTo(options.class);
-                goTo(discussion_room_questions.class);
+                goTo(options.class);
             }
         });
         quiz.setOnClickListener(new View.OnClickListener() {

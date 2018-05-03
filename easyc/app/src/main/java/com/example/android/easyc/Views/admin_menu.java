@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.example.android.easyc.Models.UserData;
 import com.example.android.easyc.R;
+import com.example.android.easyc.Views.OpinionViews.show_opinions;
+import com.example.android.easyc.Views.RequestViews.show_Requests;
 import com.example.android.easyc.Views.reportViews.show_reports;
 
 public class admin_menu extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.OpinionViews;
 
 /**
  * Created by KhALeD SaBrY on 15-Mar-18.
@@ -12,10 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.android.easyc.R;
-
 import com.example.android.easyc.Controllers.OpinionController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
+import com.example.android.easyc.R;
 
 public class show_opinion extends AppCompatActivity {
     OpinionController opinionController;

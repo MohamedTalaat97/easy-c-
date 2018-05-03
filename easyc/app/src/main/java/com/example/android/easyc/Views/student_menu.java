@@ -14,6 +14,7 @@ import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
 import com.example.android.easyc.Views.DiscussionViews.discussion_room_questions;
 import com.example.android.easyc.Views.DiscussionViews.put_question_discussion;
+import com.example.android.easyc.Views.OpinionViews.put_opinion;
 
 public class student_menu extends AppCompatActivity {
 

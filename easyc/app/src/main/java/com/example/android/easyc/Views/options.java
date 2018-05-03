@@ -54,7 +54,7 @@ fillList();
                 }
                 else if(listView.getItemAtPosition(position).toString().matches(becomeAnInstructor))
                 {
-                    goTo(becomeAnInstructor.class);
+                    goTo(com.example.android.easyc.Views.RequestViews.becomeAnInstructor.class);
 
                 }
             }

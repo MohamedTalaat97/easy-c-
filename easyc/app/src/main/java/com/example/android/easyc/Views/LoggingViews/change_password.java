@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.LoggingViews;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import com.example.android.easyc.Controllers.MailController;
 import com.example.android.easyc.Controllers.SignInUpController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
+import com.example.android.easyc.Views.options;
 
 public class change_password extends AppCompatActivity {
     EditText passwordText;

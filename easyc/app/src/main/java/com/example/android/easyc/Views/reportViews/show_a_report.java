@@ -181,7 +181,8 @@ public class show_a_report extends AppCompatActivity {
                     finishActivity(result);
                 }
             });
-        } else if (decisions.getSelectedItem().toString().matches(deleteAnswer)) {
+        }
+        else if (decisions.getSelectedItem().toString().matches(deleteAnswer)) {
             reportController.deleteReply(replyId, new OnTaskListeners.Bool() {
                 @Override
                 public void onSuccess(Boolean result) {
@@ -197,13 +198,6 @@ public class show_a_report extends AppCompatActivity {
             reportController.changeBestAnswer(replyId, new OnTaskListeners.Bool() {
                 @Override
                 public void onSuccess(Boolean result) {
-                    if(result)
-                        reportController.solveReport(reportId, new OnTaskListeners.Bool() {
-                            @Override
-                            public void onSuccess(Boolean result) {
-
-                            }
-                        });
                     finishActivity(result);
                 }
             });
@@ -214,13 +208,6 @@ public class show_a_report extends AppCompatActivity {
             reportController.suspendUser(replyId, new OnTaskListeners.Bool() {
                 @Override
                 public void onSuccess(Boolean result) {
-                    if(result)
-                        reportController.solveReport(reportId, new OnTaskListeners.Bool() {
-                            @Override
-                            public void onSuccess(Boolean result) {
-
-                            }
-                        });
                     finishActivity(result);
                 }
             });
@@ -231,8 +218,14 @@ public class show_a_report extends AppCompatActivity {
 
     void finishActivity(boolean result) {
         if (result) {
-            reportController.toast("successfull task", getApplicationContext());
-            finish();
+            reportController.solveReport(reportId, new OnTaskListeners.Bool() {
+                @Override
+                public void onSuccess(Boolean result) {
+                    reportController.toast("successfull task", getApplicationContext());
+                    finish();
+                }
+            });
+
         } else {
             if (!reportController.checkConnection(getApplicationContext()))
                 return;

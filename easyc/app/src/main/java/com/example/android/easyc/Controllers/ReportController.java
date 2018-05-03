@@ -116,6 +116,7 @@ public class ReportController extends Controller {
     }
 
 
+    //get all the reports under specific kind
     public  void getReports(String kind , final OnTaskListeners.Map listener)
     {
         databaseAdapter().selectReportIdDiscriptionByType(kind, new OnTaskListeners.Result() {

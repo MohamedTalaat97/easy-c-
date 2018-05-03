@@ -29,27 +29,32 @@ public class becomeAnInstructor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(!check())
-                    return;
-                signInUpController.putRequestToBecomInstructor(requestText.getText().toString(), new OnTaskListeners.Bool() {
-                    @Override
-                    public void onSuccess(Boolean result) {
-                        if (result) {
-                            signInUpController.toast("successful task", getApplicationContext());
-                            finish();
-
-                        } else if (!signInUpController.checkConnection(getApplicationContext()))
-                            return;
-                        else
-                            signInUpController.toast("unsuccessful task", getApplicationContext());
-                    }
-
-                });
+putRequest();
 
             }
         });
     }
 
+
+    void putRequest()
+    {
+        if(!check())
+            return;
+        signInUpController.putRequestToBecomInstructor(requestText.getText().toString(), new OnTaskListeners.Bool() {
+            @Override
+            public void onSuccess(Boolean result) {
+                if (result) {
+                    signInUpController.toast("successful task", getApplicationContext());
+                    finish();
+
+                } else if (!signInUpController.checkConnection(getApplicationContext()))
+                    return;
+                else
+                    signInUpController.toast("unsuccessful task", getApplicationContext());
+            }
+
+        });
+    }
     boolean check()
     {
         if(requestText.getText().toString().matches(""))

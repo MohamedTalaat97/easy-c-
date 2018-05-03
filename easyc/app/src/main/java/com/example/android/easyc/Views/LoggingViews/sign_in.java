@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.LoggingViews;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,9 @@ import com.example.android.easyc.Connections.ConnectionDb;
 import com.example.android.easyc.Controllers.SignInUpController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
-import com.example.android.easyc.Views.reportViews.show_reports;
+import com.example.android.easyc.Views.admin_menu;
+import com.example.android.easyc.Views.instructor_menu;
+import com.example.android.easyc.Views.student_menu;
 
 public class sign_in extends AppCompatActivity {
 

@@ -10,6 +10,9 @@ import android.widget.ListView;
 
 import com.example.android.easyc.Controllers.SignInUpController;
 import com.example.android.easyc.R;
+import com.example.android.easyc.Views.LoggingViews.change_email;
+import com.example.android.easyc.Views.LoggingViews.change_password;
+import com.example.android.easyc.Views.LoggingViews.change_username;
 
 import java.util.ArrayList;
 

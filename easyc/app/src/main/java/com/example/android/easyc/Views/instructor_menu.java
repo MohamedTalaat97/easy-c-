@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.android.easyc.R;
+import com.example.android.easyc.Views.OpinionViews.put_opinion;
 
 public class instructor_menu extends AppCompatActivity {
 

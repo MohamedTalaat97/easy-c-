@@ -28,13 +28,13 @@
             android:label="create an account" />
         <activity android:name=".Views.student_menu" />
         <activity android:name=".Views.categories" />
-        <activity android:name=".Views.show_opinions" />
-        <activity android:name=".Views.show_opinion" />
-        <activity android:name=".Views.put_opinion" />
+        <activity android:name=".Views.OpinionViews.show_opinions" />
+        <activity android:name=".Views.OpinionViews.show_opinion" />
+        <activity android:name=".Views.OpinionViews.put_opinion" />
         <activity android:name=".Views.topic" />
         <activity android:name=".Views.LoggingViews.forget_password_username" />
-        <activity android:name=".Views.show_Requests" />
-        <activity android:name=".Views.showRequest" />
+        <activity android:name=".Views.RequestViews.show_Requests" />
+        <activity android:name=".Views.RequestViews.showRequest" />
         <activity android:name=".Views.topic_description" />
         <activity android:name=".Views.DiscussionViews.discussion_room_questions" />
         <activity android:name=".Views.DiscussionViews.put_question_discussion" />
@@ -53,7 +53,7 @@
         <activity android:name=".Views.reportViews.show_reports" />
         <activity android:name=".Views.reportViews.show_a_report" />
         <activity android:name=".Views.quiz_options" />
-        <activity android:name=".Views.becomeAnInstructor" />
+        <activity android:name=".Views.RequestViews.becomeAnInstructor" />
         <activity android:name=".Views.add_options" />
         <activity android:name=".Views.add_category" />
         <activity android:name=".Views.add_topic" />

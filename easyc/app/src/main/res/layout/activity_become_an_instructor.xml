@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/images1"
-    tools:context="com.example.android.easyc.Views.becomeAnInstructor">
+    tools:context="com.example.android.easyc.Views.RequestViews.becomeAnInstructor">
 
     <EditText
         android:id="@+id/requestInstructorid"

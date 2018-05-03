@@ -1,17 +1,14 @@
 package com.example.android.easyc.Views.DiscussionViews;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.android.easyc.R;
-
 import com.example.android.easyc.Controllers.DiscussionController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
-import com.example.android.easyc.Views.student_menu;
+import com.example.android.easyc.R;
 
 public class put_question_discussion extends AppCompatActivity {
 
@@ -50,9 +47,10 @@ public class put_question_discussion extends AppCompatActivity {
                 public void onSuccess(Boolean result) {
                     if (result) {
                         discussionController.toast("successfully added", getApplicationContext());
-                        title.setText("");
+                        finish();
+                      /*  title.setText("");
                         description.setText("");
-                        goToMenu();
+                        goToMenu();*/
                     } else
                         discussionController.toast("unsuccessfully added", getApplicationContext());
                 }
@@ -75,11 +73,11 @@ public class put_question_discussion extends AppCompatActivity {
         return true;
     }
 
-
+/*
     //go back to menu after you put the question successfully
     void goToMenu() {
 
         Intent intent = new Intent(getApplicationContext(), student_menu.class);
         startActivity(intent);
-    }
+    }*/
 }

@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.OpinionViews;
 
 /**
  * Created by KhALeD SaBrY on 15-Mar-18.
@@ -16,6 +16,7 @@ import com.example.android.easyc.R;
 
 import com.example.android.easyc.Controllers.OpinionController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
+import com.example.android.easyc.Views.student_menu;
 
 public class put_opinion extends AppCompatActivity {
     OpinionController opinionController;

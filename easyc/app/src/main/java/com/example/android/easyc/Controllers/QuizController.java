@@ -153,7 +153,7 @@ public class QuizController extends Controller {
         int user_id = userData().getUserId();
         int user_level = userData().getUserLevel();
 
-        databaseAdapter().insertexam(user_level, catId,user_id,score,date ,new OnTaskListeners.Bool() {
+        databaseAdapter().insertExam(user_level, catId,user_id,score,date ,new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
                 listener.onSuccess(result);

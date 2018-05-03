@@ -7,11 +7,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
 import java.util.Calendar;
 
 import com.example.android.easyc.Controllers.QuizController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,9 +30,6 @@ public class quizzes extends AppCompatActivity {
     ArrayList<Integer> ids;
     quiz_adapter qadapter;
     int rightAnswers = 0;
-    boolean questionDone = false;
-    boolean answersDone = false;
-    boolean idsDone = false;
     public static String opener;
     int level;
 
@@ -61,32 +60,24 @@ public class quizzes extends AppCompatActivity {
                 }
             }
         });
-
-
         fillQuiz();
-
-
     }
 
     void addGrade() {
-        quizController.addScore(rightAnswers/answers.size()*100, catId, getDate(), new OnTaskListeners.Bool() {
+        quizController.addScore(rightAnswers / answers.size() * 100, catId, getDate(), new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
                 if (!result)
                     quizController.toast("something went wrong adding the grade", getApplicationContext());
             }
         });
-
-
     }
-
 
     void checkAnswers() {
         float score = calcGrade();
         getAnswers();
         quizController.toast("you got " + rightAnswers + " right & " + (answers.size() - rightAnswers) + " wrong", getApplicationContext());
-        if (score >= 75)
-        {
+        if (score >= 75) {
             quizController.upLevel(new OnTaskListeners.Bool() {
                 @Override
                 public void onSuccess(Boolean result) {
@@ -97,9 +88,6 @@ public class quizzes extends AppCompatActivity {
             });
         }
         addGrade();
-
-
-
     }
 
     String getDate() {
@@ -108,12 +96,31 @@ public class quizzes extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
         return formattedDate;
-
-
     }
 
     float calcGrade() {
         return (((float) rightAnswers / (float) answers.size()) * 100);
+    }
+
+    void fillList() {
+
+        if (questions != null) {
+            for (int i = 0; i < questions.size(); i++) {
+                quiz q = new quiz();
+                try {
+
+                    q.setQuestion(questions.get(i));
+                    q.setAnswer(answers.get(i));
+                    q.setId(ids.get(i));
+                    QuizList.add(q);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            qadapter = new quiz_adapter(quizzes.this, QuizList);
+            quizListView.setAdapter(qadapter);
+        }
+
     }
 
     void fillQuiz() {
@@ -123,32 +130,9 @@ public class quizzes extends AppCompatActivity {
                 @Override
                 public void onSuccess(ArrayList<Object> result1, ArrayList<Object> result2, ArrayList<Object> result3) {
 
-
                     questions = (ArrayList<String>) (Object) result2;
                     ids = (ArrayList<Integer>) (Object) result1;
                     answers = (ArrayList<Integer>) (Object) result3;
-
-                    if (questions != null) {
-                        for (int i = 0; i < questions.size(); i++) {
-                            quiz q = new quiz();
-                            try {
-
-                                q.setQuestion(questions.get(i));
-                                q.setAnswer(answers.get(i));
-                                q.setId(ids.get(i));
-                                QuizList.add(q);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-
-                        qadapter = new quiz_adapter(quizzes.this, QuizList);
-
-
-                        quizListView.setAdapter(qadapter);
-
-                    }
                 }
             });
 
@@ -158,71 +142,27 @@ public class quizzes extends AppCompatActivity {
                 @Override
                 public void onSuccess(ArrayList<Object> result1, ArrayList<Object> result2, ArrayList<Object> result3) {
 
-
                     questions = (ArrayList<String>) (Object) result2;
                     ids = (ArrayList<Integer>) (Object) result1;
                     answers = (ArrayList<Integer>) (Object) result3;
 
-                    if (questions != null) {
-                        for (int i = 0; i < questions.size(); i++) {
-                            quiz q = new quiz();
-                            try {
-
-                                q.setQuestion(questions.get(i));
-                                q.setAnswer(answers.get(i));
-                                q.setId(ids.get(i));
-                                QuizList.add(q);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-
-                        qadapter = new quiz_adapter(quizzes.this, QuizList);
-
-
-                        quizListView.setAdapter(qadapter);
-
-                    }
                 }
             });
         } else if (opener == "lev_up" && level < 5) {
-
 
             quizController.getQuizByLevelUp(level, new OnTaskListeners.threeLists() {
                 @Override
                 public void onSuccess(ArrayList<Object> result1, ArrayList<Object> result2, ArrayList<Object> result3) {
 
-
                     questions = (ArrayList<String>) (Object) result2;
                     ids = (ArrayList<Integer>) (Object) result1;
                     answers = (ArrayList<Integer>) (Object) result3;
 
-                    if (questions != null) {
-                        for (int i = 0; i < questions.size(); i++) {
-                            quiz q = new quiz();
-                            try {
 
-                                q.setQuestion(questions.get(i));
-                                q.setAnswer(answers.get(i));
-                                q.setId(ids.get(i));
-                                QuizList.add(q);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-
-                        qadapter = new quiz_adapter(quizzes.this, QuizList);
-
-
-                        quizListView.setAdapter(qadapter);
-
-                    }
                 }
             });
         }
-
+        fillList();
 
     }
 
@@ -235,15 +175,11 @@ public class quizzes extends AppCompatActivity {
             if (answers.get(i) == 1) {
                 if (rb.isChecked())
                     rightAnswers++;
-
             } else {
                 if (fb.isChecked())
                     rightAnswers++;
-
             }
-
         }
-
     }
 
 
@@ -257,11 +193,8 @@ public class quizzes extends AppCompatActivity {
             if (r.getCheckedRadioButtonId() == -1) {
                 return false;
             }
-
         }
         return true;
-
-
     }
 
 }

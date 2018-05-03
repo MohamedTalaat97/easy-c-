@@ -190,8 +190,8 @@ public class DatabaseAdapter {
         databaseLegacy.iud(query, listener);
     }
 
-    public void insertexam(int level,int cat,int user,int grade,String date , OnTaskListeners.Bool listener) {
-        query = "insert into exam values(" + level+ "," +cat+","+ user+"," + grade+","+ date+")";
+    public void insertExam(int level, int cat, int user, int grade, String date , OnTaskListeners.Bool listener) {
+        query = "insert into exam (level_id,cat_id,user_id,grade,date) values(" + level+ "," +cat+","+ user+"," + grade+","+ date+")";
         databaseLegacy.iud(query, listener);
     }
     public void insertTopic(int cat_id, String code,String out,String des,String title, OnTaskListeners.Bool listener) {

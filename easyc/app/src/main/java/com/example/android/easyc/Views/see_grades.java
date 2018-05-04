@@ -23,15 +23,22 @@ public class see_grades extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_see_grades);
-        gradesList = findViewById(R.id.grades_listview);
-        dates = new ArrayList<String>();
-        grades = new ArrayList<Integer>();
-        quizController = new QuizController();
+        try {
+            setContentView(R.layout.activity_see_grades);
+            gradesList = findViewById(R.id.grades_listview);
+            dates = new ArrayList<String>();
+            grades = new ArrayList<Integer>();
+            scores = new ArrayList<String>();
+            quizController = new QuizController();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         getGrades();
 
 
-// see how to display it b2a :"
+
     }
 
     void getGrades() {
@@ -42,13 +49,17 @@ public class see_grades extends AppCompatActivity {
                 grades = (ArrayList<Integer>) (Object) list1;
                 dates = (ArrayList<String>) (Object) list2;
 
-                if (grades.size() == dates.size()) {
-                    for (int i = 0; i < grades.size(); i++) {
-                        scores.set(i, grades.get(i).toString() + "    " + dates.get(i).toString());
+                try {
+                    if (grades.size() == dates.size()) {
+                        for (int i = 0; i < grades.size(); i++) {
+                           scores.add( grades.get(i).toString() + "    " + dates.get(i).toString());
+                        }
                     }
+                   ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_selectable_list_item, scores);
+                    gradesList.setAdapter(adapter);
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_selectable_list_item, scores);
-                gradesList.setAdapter(adapter);
+                catch(Exception e)
+                {e.printStackTrace();}
 
 
             }

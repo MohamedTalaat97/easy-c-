@@ -10,6 +10,7 @@ public class UserData {
     private  String userName = "kk";
     private  int userLevel;
     private  char userType;
+    private int maxLevel = 5;
 
 ////////////////////////////////////////////////////////////
 
@@ -58,6 +59,7 @@ public class UserData {
     {
         return userLevel;
     }
+    public int getMaxLevel(){return maxLevel;}
 
     public char getUserType()
     {

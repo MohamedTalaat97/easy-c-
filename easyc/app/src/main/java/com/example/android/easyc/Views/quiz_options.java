@@ -16,6 +16,7 @@ public class quiz_options extends AppCompatActivity {
     Button Qcategory;
     Button Qlevel;
     Button Qup;
+    Button Qgrades;
     int user_level;
 
     public static String opener = "lev";
@@ -31,7 +32,13 @@ public class quiz_options extends AppCompatActivity {
         Qcategory = findViewById(R.id.quiz_cat);
         Qlevel = findViewById(R.id.quiz_level);
         Qup = findViewById(R.id.quiz_up);
+        Qgrades = findViewById(R.id.quiz_grades);
 
+        if (user_level==5)
+        {
+            Qup.setVisibility(View.INVISIBLE);
+
+        }
         user_level = quizController.getUserLevel();
 
         Qcategory.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +53,17 @@ public class quiz_options extends AppCompatActivity {
             }
         });
 
+        Qgrades.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                opener = "cat";
+                Intent intent = new Intent(getApplicationContext(), see_grades.class);
+                startActivity(intent);
+
+
+            }
+        });
 
         Qlevel.setOnClickListener(new View.OnClickListener() {
             @Override

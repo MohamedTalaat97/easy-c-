@@ -36,12 +36,13 @@ public class add_category extends AppCompatActivity {
             public void onSuccess(ArrayList<Object> result)
             {
                 level = (ArrayList<Integer>) (Object) result;
+
+                ArrayAdapter<Integer> adp = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, level);
+                adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                levels.setAdapter(adp);
+
             }
         });
-
-        ArrayAdapter<Integer> adp = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, level);
-        adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        levels.setAdapter(adp);
 
 
         done.setOnClickListener(new View.OnClickListener() {

@@ -40,22 +40,29 @@ QuizController quizController;
         setContentView(R.layout.activity_add_quiz);
         quizController = new QuizController();
         catIds = new ArrayList<Integer>();
-        initData();
+        try {
+            initData();
 
-        quizController.getCategoriesIds(new OnTaskListeners.List() {
-            @Override
-            public void onSuccess(ArrayList<Object> result) {
-                catIds = (ArrayList<Integer>) (Object) result;
+            quizController.getCategoriesIds(new OnTaskListeners.List() {
+                @Override
+                public void onSuccess(ArrayList<Object> result) {
+                    catIds = (ArrayList<Integer>) (Object) result;
+                    ArrayAdapter<Integer> adp = new ArrayAdapter<Integer>(getApplicationContext(),android.R.layout.simple_spinner_item, catIds);
+                    adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    chooseLevel.setAdapter(adp);
 
-            }
-        });
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
 
 
 
-//add to exam
-    // and make him able to see his grades
     void initData()
     {
 
@@ -67,9 +74,7 @@ QuizController quizController;
         submit = findViewById(R.id.submitbutton);
 
 
-        ArrayAdapter<Integer> adp = new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, catIds);
-        adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        chooseLevel.setAdapter(adp);
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -41,13 +41,14 @@ public class add_topic extends AppCompatActivity {
             @Override
             public void onSuccess(ArrayList<Object> result) {
                 catIds = (ArrayList<Integer>) (Object) result;
+                ArrayAdapter<Integer> adp = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, catIds);
+                adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                categories.setAdapter(adp);
 
             }
         });
 
-        ArrayAdapter<Integer> adp = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, catIds);
-        adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        categories.setAdapter(adp);
+
 
         add_topic.setOnClickListener(new View.OnClickListener() {
             @Override

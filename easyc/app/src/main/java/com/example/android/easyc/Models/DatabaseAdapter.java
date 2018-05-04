@@ -181,7 +181,7 @@ public class DatabaseAdapter {
     }
 
     public void insertCategory(int level, String title, OnTaskListeners.Bool listener) {
-        query = "insert into category (level_id,title) values(" + level+ "," + title + ")";
+        query = "insert into category (level_id,title) values(" + level+ ",'" + title + "')";
         databaseLegacy.iud(query, listener);
     }
 
@@ -191,11 +191,11 @@ public class DatabaseAdapter {
     }
 
     public void insertExam(int level, int cat, int user, int grade, String date , OnTaskListeners.Bool listener) {
-        query = "insert into exam (level_id,cat_id,user_id,grade,date) values(" + level+ "," +cat+","+ user+"," + grade+","+ date+")";
+        query = "insert into exam (level_id,cat_id,user_id,grade,date) values(" + level+ "," +cat+","+ user+"," + grade+",'"+ date+"')";
         databaseLegacy.iud(query, listener);
     }
     public void insertTopic(int cat_id, String code,String out,String des,String title, OnTaskListeners.Bool listener) {
-        query = "insert into topic (cat_id,code,output,description,title) values(" +cat_id+ "," + code + ","+out+","+ des+","+title+")";
+        query = "insert into topic (cat_id,code,output,description,title) values(" +cat_id+ ",'" + code + "','"+out+"','"+ des+"','"+title+"')";
         databaseLegacy.iud(query, listener);
     }
 

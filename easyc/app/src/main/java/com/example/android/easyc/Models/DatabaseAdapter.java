@@ -93,7 +93,7 @@ public class DatabaseAdapter {
     }
 
     public void selectLevelsIds(OnTaskListeners.Result listeners) {
-        query = "select level_number from level";
+        query = "select id from level";
         databaseLegacy.select(query, listeners);
     }
     public void selectAnswers(int cat_id, OnTaskListeners.Result listeners) {

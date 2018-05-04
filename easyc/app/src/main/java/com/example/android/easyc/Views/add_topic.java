@@ -32,6 +32,7 @@ public class add_topic extends AppCompatActivity {
         catIds = new ArrayList<Integer>();
         code = findViewById(R.id.add_code);
         output = findViewById(R.id.add_output);
+        categories = findViewById(R.id.add_spinner_topic);
         des = findViewById(R.id.add_des);
         title = findViewById(R.id.add_title);
         add_topic = findViewById(R.id.add_topic);

@@ -63,8 +63,10 @@ public class quizzes extends AppCompatActivity {
         fillQuiz();
     }
 
+
+
     void addGrade() {
-        quizController.addScore(rightAnswers / answers.size() * 100, catId, getDate(), new OnTaskListeners.Bool() {
+        quizController.addScore((int)calcGrade(), catId, getDate(), new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
                 if (!result)
@@ -77,7 +79,7 @@ public class quizzes extends AppCompatActivity {
         float score = calcGrade();
         getAnswers();
         quizController.toast("you got " + rightAnswers + " right & " + (answers.size() - rightAnswers) + " wrong", getApplicationContext());
-        if (score >= 75) {
+      /*  if (score >= 75) {
             quizController.upLevel(new OnTaskListeners.Bool() {
                 @Override
                 public void onSuccess(Boolean result) {
@@ -86,7 +88,7 @@ public class quizzes extends AppCompatActivity {
 
                 }
             });
-        }
+        }*/
         addGrade();
     }
 
@@ -133,6 +135,7 @@ public class quizzes extends AppCompatActivity {
                     questions = (ArrayList<String>) (Object) result2;
                     ids = (ArrayList<Integer>) (Object) result1;
                     answers = (ArrayList<Integer>) (Object) result3;
+                    fillList();
                 }
             });
 
@@ -145,6 +148,7 @@ public class quizzes extends AppCompatActivity {
                     questions = (ArrayList<String>) (Object) result2;
                     ids = (ArrayList<Integer>) (Object) result1;
                     answers = (ArrayList<Integer>) (Object) result3;
+                    fillList();
 
                 }
             });
@@ -157,12 +161,13 @@ public class quizzes extends AppCompatActivity {
                     questions = (ArrayList<String>) (Object) result2;
                     ids = (ArrayList<Integer>) (Object) result1;
                     answers = (ArrayList<Integer>) (Object) result3;
+                    fillList();
 
 
                 }
             });
         }
-        fillList();
+
 
     }
 
@@ -187,12 +192,22 @@ public class quizzes extends AppCompatActivity {
 
         View v;
 
-        for (int i = 0; i < quizListView.getCount(); i++) {
-            v = quizListView.getChildAt(i);
-            RadioGroup r = v.findViewById(R.id.addTrueFalseGroup);
-            if (r.getCheckedRadioButtonId() == -1) {
-                return false;
+        try {
+            for (int i = 0; i < quizListView.getCount(); i++) {
+                v = quizListView.getChildAt(i);
+                RadioGroup r = v.findViewById(R.id.TrueFalseGroup);
+                if (!(v==null))
+                {
+
+                if (r.getCheckedRadioButtonId() == -1) {
+                    return false;
+                }
+                }
             }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
         return true;
     }

@@ -33,7 +33,8 @@ public class add_category extends AppCompatActivity {
         level = new ArrayList<Integer>();
         courseController.getlevels(new OnTaskListeners.List() {
             @Override
-            public void onSuccess(ArrayList<Object> result) {
+            public void onSuccess(ArrayList<Object> result)
+            {
                 level = (ArrayList<Integer>) (Object) result;
             }
         });

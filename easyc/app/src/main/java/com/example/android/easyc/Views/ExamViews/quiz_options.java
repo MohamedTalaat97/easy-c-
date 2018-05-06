@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.ExamViews;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -34,8 +34,7 @@ public class quiz_options extends AppCompatActivity {
         Qup = findViewById(R.id.quiz_up);
         Qgrades = findViewById(R.id.quiz_grades);
 
-        if (user_level==5)
-        {
+        if (user_level == 5) {
             Qup.setVisibility(View.INVISIBLE);
 
         }
@@ -45,9 +44,7 @@ public class quiz_options extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                opener = "cat";
-                Intent intent = new Intent(getApplicationContext(), quiz_categories.class);
-                startActivity(intent);
+                byCategory();
 
 
             }
@@ -57,10 +54,7 @@ public class quiz_options extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                opener = "cat";
-                Intent intent = new Intent(getApplicationContext(), see_grades.class);
-                startActivity(intent);
-
+                quizGrades();
 
             }
         });
@@ -70,11 +64,7 @@ public class quiz_options extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                // adelo el level
-                opener = "lev";
-                Intent intent = new Intent(getApplicationContext(), quizzes.class);
-                intent.putExtra(opener, user_level);
-                startActivity(intent);
+                quiz();
 
 
             }
@@ -84,14 +74,42 @@ public class quiz_options extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                opener = "lev_up";
-                Intent intent = new Intent(getApplicationContext(), quizzes.class);
-                intent.putExtra(opener, user_level);
-                startActivity(intent);
 
+                upLevel();
 
             }
         });
+    }
+
+
+    void byCategory()
+
+    {
+        opener = "cat";
+        Intent intent = new Intent(getApplicationContext(), quiz_categories.class);
+        startActivity(intent);
+    }
+
+    void quizGrades() {
+        opener = "cat";
+        Intent intent = new Intent(getApplicationContext(), see_grades.class);
+        startActivity(intent);
+
+    }
+
+    void upLevel() {
+        opener = "lev_up";
+        Intent intent = new Intent(getApplicationContext(), quizzes.class);
+        intent.putExtra(opener, user_level);
+        startActivity(intent);
+    }
+
+    void quiz() {
+        // adelo el level
+        opener = "lev";
+        Intent intent = new Intent(getApplicationContext(), quizzes.class);
+        intent.putExtra(opener, user_level);
+        startActivity(intent);
     }
 
     void goTo(Class c) {

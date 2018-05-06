@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.ExamViews;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import com.example.android.easyc.R;
 
 import java.util.ArrayList;
 
-public class add_quiz extends AppCompatActivity {
+public class add_Question_Quiz extends AppCompatActivity {
 
 QuizController quizController;
     ArrayList<Integer> catIds;

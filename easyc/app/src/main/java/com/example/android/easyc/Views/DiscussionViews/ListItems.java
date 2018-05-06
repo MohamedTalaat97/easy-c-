@@ -5,6 +5,7 @@ package com.example.android.easyc.Views.DiscussionViews;
  */
 
 public class ListItems {
+
     String username;
     String content;
     int userId;

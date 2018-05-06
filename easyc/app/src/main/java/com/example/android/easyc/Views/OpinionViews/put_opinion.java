@@ -16,7 +16,7 @@ import com.example.android.easyc.R;
 
 import com.example.android.easyc.Controllers.OpinionController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
-import com.example.android.easyc.Views.student_menu;
+import com.example.android.easyc.Views.MenuViews.student_menu;
 
 public class put_opinion extends AppCompatActivity {
     OpinionController opinionController;

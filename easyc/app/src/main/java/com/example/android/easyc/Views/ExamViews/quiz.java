@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.ExamViews;
 
 public class quiz {
     int id;

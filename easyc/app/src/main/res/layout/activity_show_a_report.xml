@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/images"
-    tools:context="com.example.android.easyc.Views.reportViews.show_a_report">
+    tools:context="com.example.android.easyc.Views.ReportViews.show_a_report">
 
     <Spinner
         android:id="@+id/decisionspinner"

@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.MenuViews;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import com.example.android.easyc.Models.UserData;
 import com.example.android.easyc.R;
 import com.example.android.easyc.Views.OpinionViews.show_opinions;
 import com.example.android.easyc.Views.RequestViews.show_Requests;
-import com.example.android.easyc.Views.reportViews.show_reports;
+import com.example.android.easyc.Views.ReportViews.show_reports;
 
 public class admin_menu extends AppCompatActivity {
 
@@ -56,7 +56,7 @@ public class admin_menu extends AppCompatActivity {
         options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goTo(options.class);
+                goTo(com.example.android.easyc.Views.options.class);
             }
         });
         request.setOnClickListener(new View.OnClickListener() {

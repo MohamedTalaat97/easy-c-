@@ -26,16 +26,16 @@
         <activity
             android:name=".Views.LoggingViews.sign_up"
             android:label="create an account" />
-        <activity android:name=".Views.student_menu" />
-        <activity android:name=".Views.categories" />
+        <activity android:name=".Views.MenuViews.student_menu" />
+        <activity android:name=".Views.ContentViews.categories" />
         <activity android:name=".Views.OpinionViews.show_opinions" />
         <activity android:name=".Views.OpinionViews.show_opinion" />
         <activity android:name=".Views.OpinionViews.put_opinion" />
-        <activity android:name=".Views.topic" />
+        <activity android:name=".Views.ContentViews.topic" />
         <activity android:name=".Views.LoggingViews.forget_password_username" />
         <activity android:name=".Views.RequestViews.show_Requests" />
         <activity android:name=".Views.RequestViews.showRequest" />
-        <activity android:name=".Views.topic_description" />
+        <activity android:name=".Views.ContentViews.topic_description" />
         <activity android:name=".Views.DiscussionViews.discussion_room_questions" />
         <activity android:name=".Views.DiscussionViews.put_question_discussion" />
         <activity android:name=".Views.DiscussionViews.replies_on_questions" />
@@ -44,20 +44,20 @@
         <activity android:name=".Views.LoggingViews.change_username" />
         <activity android:name=".Views.LoggingViews.change_email" />
         <activity android:name=".Views.DiscussionViews.repliesAdapter" />
-        <activity android:name=".Views.instructor_menu" />
-        <activity android:name=".Views.admin_menu" />
-        <activity android:name=".Views.quizzes" />
-        <activity android:name=".Views.quiz_categories" />
-        <activity android:name=".Views.add_quiz" />
-        <activity android:name=".Views.reportViews.report_on" />
-        <activity android:name=".Views.reportViews.show_reports" />
-        <activity android:name=".Views.reportViews.show_a_report" />
-        <activity android:name=".Views.quiz_options" />
+        <activity android:name=".Views.MenuViews.instructor_menu" />
+        <activity android:name=".Views.MenuViews.admin_menu" />
+        <activity android:name=".Views.ExamViews.quizzes" />
+        <activity android:name=".Views.ExamViews.quiz_categories" />
+        <activity android:name=".Views.ExamViews.add_Question_Quiz" />
+        <activity android:name=".Views.ReportViews.report_on" />
+        <activity android:name=".Views.ReportViews.show_reports" />
+        <activity android:name=".Views.ReportViews.show_a_report" />
+        <activity android:name=".Views.ExamViews.quiz_options" />
         <activity android:name=".Views.RequestViews.becomeAnInstructor" />
-        <activity android:name=".Views.add_options" />
-        <activity android:name=".Views.add_category" />
-        <activity android:name=".Views.add_topic" />
-        <activity android:name=".Views.see_grades"></activity>
+        <activity android:name=".Views.ContentViews.add_options" />
+        <activity android:name=".Views.ContentViews.add_category" />
+        <activity android:name=".Views.ContentViews.add_topic" />
+        <activity android:name=".Views.ExamViews.see_grades"></activity>
     </application>
 
 </manifest>

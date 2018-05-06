@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.MenuViews;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.android.easyc.R;
+import com.example.android.easyc.Views.ContentViews.add_options;
 import com.example.android.easyc.Views.OpinionViews.put_opinion;
+import com.example.android.easyc.Views.ExamViews.add_Question_Quiz;
 
 public class instructor_menu extends AppCompatActivity {
 
@@ -43,13 +45,13 @@ public class instructor_menu extends AppCompatActivity {
         options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goTo(options.class);
+                goTo(com.example.android.easyc.Views.options.class);
             }
         });
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goTo(add_quiz.class);
+                goTo(add_Question_Quiz.class);
             }
         });
     }

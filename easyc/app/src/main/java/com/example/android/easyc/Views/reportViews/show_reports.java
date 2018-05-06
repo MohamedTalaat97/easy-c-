@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views.reportViews;
+package com.example.android.easyc.Views.ReportViews;
 
 import android.content.Intent;
 import android.os.Bundle;

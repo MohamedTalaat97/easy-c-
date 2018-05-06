@@ -12,9 +12,9 @@ import com.example.android.easyc.Connections.ConnectionDb;
 import com.example.android.easyc.Controllers.SignInUpController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
-import com.example.android.easyc.Views.admin_menu;
-import com.example.android.easyc.Views.instructor_menu;
-import com.example.android.easyc.Views.student_menu;
+import com.example.android.easyc.Views.MenuViews.admin_menu;
+import com.example.android.easyc.Views.MenuViews.instructor_menu;
+import com.example.android.easyc.Views.MenuViews.student_menu;
 
 public class sign_in extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.ExamViews;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;

@@ -1,4 +1,4 @@
-package com.example.android.easyc.Views;
+package com.example.android.easyc.Views.MenuViews;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +12,11 @@ import android.widget.TextView;
 import com.example.android.easyc.Controllers.StudentController;
 import com.example.android.easyc.Interfaces.OnTaskListeners;
 import com.example.android.easyc.R;
+import com.example.android.easyc.Views.ContentViews.categories;
 import com.example.android.easyc.Views.DiscussionViews.discussion_room_questions;
 import com.example.android.easyc.Views.DiscussionViews.put_question_discussion;
 import com.example.android.easyc.Views.OpinionViews.put_opinion;
+import com.example.android.easyc.Views.ExamViews.quiz_options;
 
 public class student_menu extends AppCompatActivity {
 
@@ -62,7 +64,7 @@ public class student_menu extends AppCompatActivity {
         options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goTo(options.class);
+                goTo(com.example.android.easyc.Views.options.class);
             }
         });
         quiz.setOnClickListener(new View.OnClickListener() {

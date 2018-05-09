@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/images1"
+    android:background="@drawable/o20"
     tools:context=".Views.DiscussionViews.replies_on_questions">
 
     <android.support.v7.widget.RecyclerView
@@ -34,6 +34,7 @@
             android:layout_marginLeft="17dp"
             android:layout_marginStart="17dp"
             android:layout_weight="1"
+            style="@style/text"
             android:text="Put reply" />
 
         <EditText

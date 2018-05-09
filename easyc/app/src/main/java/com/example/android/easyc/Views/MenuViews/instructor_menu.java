@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.android.easyc.Models.UserData;
 import com.example.android.easyc.R;
 import com.example.android.easyc.Views.ContentViews.add_options;
 import com.example.android.easyc.Views.OpinionViews.put_opinion;
@@ -18,11 +20,14 @@ public class instructor_menu extends AppCompatActivity {
     ImageView options;
     ImageView quiz;
     ImageView opinion;
+    TextView name;
+    UserData userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructor_menu);
+        name = findViewById(R.id.username);
 
 
         course = findViewById(R.id.to_edit_course);
@@ -54,6 +59,8 @@ public class instructor_menu extends AppCompatActivity {
                 goTo(add_Question_Quiz.class);
             }
         });
+        userData = UserData.getInstance();
+        name.setText(userData.getUserName());
     }
 
 

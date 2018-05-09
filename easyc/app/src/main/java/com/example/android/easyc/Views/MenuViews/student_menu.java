@@ -94,9 +94,9 @@ public class student_menu extends AppCompatActivity {
                 username = result;
             }
         });
-        userLevel = studentController.getUserLevel();
+        userLevel = studentController.getLevel();
         name.setText(username);
-
+initProgress();
 
     }
 
@@ -145,7 +145,7 @@ public class student_menu extends AppCompatActivity {
     void initProgress() {
 
         level.setMax(100);
-        level.setProgress(userLevel * 10);
+        level.setProgress((userLevel * 20)+1);
     }
 
     //go to any class

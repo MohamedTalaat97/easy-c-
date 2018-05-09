@@ -70,7 +70,7 @@ public class ConnectionDb {
     //connect to the server
     public void serverConnect() {
         //if you want to put the host static for AVD uncomment the next line
-       host = "192.168.0.101";
+       host = "192.168.1.5";
 
         url = "jdbc:mysql://" + host + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
         try {

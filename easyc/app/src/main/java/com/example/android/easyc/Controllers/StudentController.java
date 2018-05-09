@@ -23,14 +23,21 @@ public class StudentController extends Controller {
     }
 
     public void getUserLevel(int id, final OnTaskListeners.Number listener) {
-        databaseAdapter().selectUserLevel(id, new OnTaskListeners.Result() {
-            @Override
-            public void onSuccess(ResultSet data) {
-                if (!checkIfFound(data))
-                    return;
-                listener.onSuccess((int) resultToValue(data));
-            }
-        });
+//        databaseAdapter().selectUserLevel(id, new OnTaskListeners.Result() {
+//            @Override
+//            public void onSuccess(ResultSet data) {
+//                if (!checkIfFound(data))
+//                    return;
+//                listener.onSuccess((int) resultToValue(data));
+//            }
+//        });
+
+    }
+
+    public int getLevel()
+    {
+
+        return userData().getUserLevel();
     }
 
     public int getUserId() {

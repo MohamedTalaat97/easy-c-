@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 18/04/2018 10:11:05
+ Date: 10/05/2018 00:06:09
 */
 
 SET NAMES utf8mb4;
@@ -50,14 +50,13 @@ CREATE TABLE `comment`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `userid`(`user_id`) USING BTREE,
   CONSTRAINT `userid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
 INSERT INTO `comment` VALUES (1, 17, 'dv', 'asdsdasdasdsad', NULL, 0);
 INSERT INTO `comment` VALUES (2, 17, 'dv', 'asdsdasdasdsad', NULL, 0);
-INSERT INTO `comment` VALUES (3, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
 INSERT INTO `comment` VALUES (4, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
 INSERT INTO `comment` VALUES (5, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
 INSERT INTO `comment` VALUES (6, 17, 'adasd', 'asdasdasd', '2008-12-25 00:00:00', 0);
@@ -75,6 +74,7 @@ INSERT INTO `comment` VALUES (17, 17, 'wrfs  dfsdf  sf ?', 'werw  e fdsfsdf', '2
 INSERT INTO `comment` VALUES (18, 17, 'ersgfdg', 'hjjfgjfgj', '2018-03-31 08:45:54', 0);
 INSERT INTO `comment` VALUES (19, 17, 'dfgfgfdgf', 'cvbvcbvbcvbvc', '2018-03-31 08:46:08', 0);
 INSERT INTO `comment` VALUES (20, 17, 'what is your ID ?', 'sdfsdfsdfsdfsdf', '2018-04-01 10:21:18', 0);
+INSERT INTO `comment` VALUES (21, 20, 'what is database ?', 'I dont know how to :-\nmake a database', '2018-05-03 10:27:20', 0);
 
 -- ----------------------------
 -- Table structure for exam
@@ -168,15 +168,14 @@ CREATE TABLE `reply`  (
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `comment_id` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of reply
 -- ----------------------------
 INSERT INTO `reply` VALUES (1, 20, 20, 'hello', '2018-04-17 10:31:05', 0);
-INSERT INTO `reply` VALUES (2, 20, 20, 'welcome', '2018-04-17 10:34:58', 1);
-INSERT INTO `reply` VALUES (3, 20, 20, 'hello\nthis is me', '2018-04-17 10:35:14', 0);
-INSERT INTO `reply` VALUES (4, 20, 21, 'this is me', '2018-04-17 10:36:45', 0);
+INSERT INTO `reply` VALUES (2, 20, 20, 'welcome', '2018-04-17 10:34:58', 0);
+INSERT INTO `reply` VALUES (4, 20, 21, 'this is me', '2018-04-17 10:36:45', 1);
 INSERT INTO `reply` VALUES (5, 20, 17, 'hi from the other side', '2018-04-17 10:38:45', 0);
 INSERT INTO `reply` VALUES (6, 20, 17, 'sdfdsfdsf', '2018-04-17 11:02:11', 0);
 INSERT INTO `reply` VALUES (7, 20, 17, 'hellp', '2018-04-17 11:03:13', 0);
@@ -186,46 +185,37 @@ INSERT INTO `reply` VALUES (10, 20, 17, 'hello I dont think this is good idea to
 INSERT INTO `reply` VALUES (11, 20, 17, 'hello ia am me', '2018-04-17 11:20:33', 0);
 INSERT INTO `reply` VALUES (12, 20, 21, 'hello its me', '2018-04-17 11:43:49', 0);
 INSERT INTO `reply` VALUES (13, 16, 17, 'where are you ??', '2018-04-17 12:26:28', 0);
+INSERT INTO `reply` VALUES (14, 20, 17, 'vg', '2018-04-18 09:24:36', 0);
+INSERT INTO `reply` VALUES (15, 20, 17, 'hellp\nsdfsdf', '2018-04-18 09:25:37', 0);
+INSERT INTO `reply` VALUES (16, 20, 17, 'I hope this article gave you very good knowledge on basics of RecyclerView. The next step is to follow the below articles that explains advanced RecyclerView that combines CardView and RecyclerView in a grid fashion, adding Swipe to Delete and Undo and adding Search Filter.', '2018-04-18 09:26:05', 0);
+INSERT INTO `reply` VALUES (17, 21, 20, 'any reply', '2018-05-03 10:28:15', 0);
 
 -- ----------------------------
 -- Table structure for report
 -- ----------------------------
 DROP TABLE IF EXISTS `report`;
 CREATE TABLE `report`  (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NULL DEFAULT NULL,
-  `cat_id` int(11) NULL DEFAULT NULL,
-  `topic_id` int(11) NULL DEFAULT NULL,
-  `question_id` int(11) NULL DEFAULT NULL,
-  `exam_id` int(11) NULL DEFAULT NULL,
-  `person_id` int(11) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
   `comment_id` int(11) NULL DEFAULT NULL,
   `reply_id` int(11) NULL DEFAULT NULL,
-  `report_id` int(11) NULL DEFAULT NULL,
   `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `answer` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `date` datetime(0) NULL DEFAULT NULL,
-  `solved` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `solved` tinyint(1) NULL DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `usernum`(`user_id`) USING BTREE,
-  INDEX `catnum`(`cat_id`) USING BTREE,
-  INDEX `topicnum`(`topic_id`) USING BTREE,
-  INDEX `questionnum`(`question_id`) USING BTREE,
-  INDEX `exannum`(`exam_id`) USING BTREE,
-  INDEX `personnum`(`person_id`) USING BTREE,
-  INDEX `commentnum`(`comment_id`) USING BTREE,
-  INDEX `replynum`(`reply_id`) USING BTREE,
-  INDEX `reportnum`(`report_id`) USING BTREE,
-  CONSTRAINT `catnum` FOREIGN KEY (`cat_id`) REFERENCES `category` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `commentnum` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `exannum` FOREIGN KEY (`exam_id`) REFERENCES `exam` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `personnum` FOREIGN KEY (`person_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `questionnum` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `replynum` FOREIGN KEY (`reply_id`) REFERENCES `reply` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `reportnum` FOREIGN KEY (`report_id`) REFERENCES `report` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `topicnum` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `usernum` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  INDEX `commentids`(`comment_id`) USING BTREE,
+  INDEX `replyidss`(`reply_id`) USING BTREE,
+  INDEX `userids`(`user_id`) USING BTREE,
+  CONSTRAINT `commentids` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `replyidss` FOREIGN KEY (`reply_id`) REFERENCES `reply` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `userids` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of report
+-- ----------------------------
+INSERT INTO `report` VALUES (1, 20, 21, 17, 'this is not answer', '2018-05-03 10:28:49', 0, 'Wrong Answer');
 
 -- ----------------------------
 -- Table structure for topic
@@ -265,7 +255,6 @@ CREATE TABLE `user`  (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (17, 'gyvy', '1111', 'khaledsab1997@gmail.com', 'I', 12, 0, 0, NULL);
-INSERT INTO `user` VALUES (18, 'buguy ', '1112', 'khaledsab1997+1@gmail.com', 'S', 12, 0, 0, '');
 INSERT INTO `user` VALUES (19, 'kkk', '111219', 'khaledsab1997+2@gmail.com', 'S', 20, 0, 0, '');
 INSERT INTO `user` VALUES (20, 'a', '1111', 'ykyktitkti@', 'S', 20, 0, 0, '');
 INSERT INTO `user` VALUES (21, 'kk', '1111', 'khaledsab_1997@yahoo.com', 'S', 12, 0, 0, '');

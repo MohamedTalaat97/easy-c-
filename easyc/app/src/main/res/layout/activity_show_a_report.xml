@@ -48,6 +48,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="22dp"
+        style="@style/text"
         android:text="takeAction" />
 
 </RelativeLayout>

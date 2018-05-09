@@ -221,11 +221,11 @@ public class show_a_report extends AppCompatActivity {
             reportController.solveReport(reportId, new OnTaskListeners.Bool() {
                 @Override
                 public void onSuccess(Boolean result) {
-                    reportController.toast("successfull task", getApplicationContext());
-                    finish();
+
                 }
             });
-
+            reportController.toast("successfull task", getApplicationContext());
+            finish();
         } else {
             if (!reportController.checkConnection(getApplicationContext()))
                 return;

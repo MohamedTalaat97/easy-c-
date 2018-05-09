@@ -57,7 +57,8 @@
         <activity android:name=".Views.ContentViews.add_options" />
         <activity android:name=".Views.ContentViews.add_category" />
         <activity android:name=".Views.ContentViews.add_topic" />
-        <activity android:name=".Views.ExamViews.see_grades"></activity>
+        <activity android:name=".Views.ExamViews.see_grades" />
+        <activity android:name=".Views.statistics"></activity>
     </application>
 
 </manifest>

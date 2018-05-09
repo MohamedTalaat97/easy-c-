@@ -24,6 +24,7 @@ public class options extends AppCompatActivity {
     private String changePassword = "change Password";
     private String changeEmail = "change Email";
     private String becomeAnInstructor = "Become An Instructor";
+    private String statistics = "Statistics";
 
 
 
@@ -57,6 +58,10 @@ fillList();
                     goTo(com.example.android.easyc.Views.RequestViews.becomeAnInstructor.class);
 
                 }
+                else if(listView.getItemAtPosition(position).toString().matches(statistics))
+                {
+                    goTo(statistics.class);
+                }
             }
         });
 
@@ -72,6 +77,11 @@ fillList();
         if (signInUpController.getType() == 'S' && signInUpController.getData().getUserLevel() == 5)
         {
          list.add(becomeAnInstructor);
+        }
+
+        if(signInUpController.getType() != 'S')
+        {
+            list.add(statistics);
         }
     }
     void goTo(Class c) {

@@ -481,5 +481,26 @@ public class DatabaseAdapter {
     }
 
 
+    public void selectUserCountByType(char type, OnTaskListeners.Result listener) {
+        query = "SELECT count(*) as 'result' FROM user where type = '"+type+"'";
+        databaseLegacy.select(query, listener);
+    }
+
+    public void selectOpinionCount( OnTaskListeners.Result listener) {
+        query = "SELECT count(*) as 'result' FROM opinion";
+        databaseLegacy.select(query, listener);
+    }
+
+    public void selectReportCount( OnTaskListeners.Result listener) {
+        query = "SELECT count(*) as 'result' FROM report";
+        databaseLegacy.select(query, listener);
+    }
+
+    public void selectExamAvgGrade( OnTaskListeners.Result listener) {
+        query = "SELECT AVG(grade) as 'result' FROM exam";
+        databaseLegacy.select(query, listener);
+    }
+
+
 
 }

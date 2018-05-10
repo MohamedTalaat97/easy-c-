@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.android.easyc.Models.UserData;
 import com.example.android.easyc.R;
 import com.example.android.easyc.Views.ContentViews.add_options;
+import com.example.android.easyc.Views.DiscussionViews.discussion_room_questions;
 import com.example.android.easyc.Views.OpinionViews.put_opinion;
 import com.example.android.easyc.Views.ExamViews.add_Question_Quiz;
 
@@ -20,6 +21,7 @@ public class instructor_menu extends AppCompatActivity {
     ImageView options;
     ImageView quiz;
     ImageView opinion;
+    ImageView discusionInstructor;
     TextView name;
     UserData userData;
 
@@ -28,7 +30,7 @@ public class instructor_menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructor_menu);
         name = findViewById(R.id.username);
-
+        discusionInstructor= findViewById(R.id.to_disc);
 
         course = findViewById(R.id.to_edit_course);
         opinion = findViewById(R.id.to_put_opinion);
@@ -57,6 +59,12 @@ public class instructor_menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goTo(add_Question_Quiz.class);
+            }
+        });
+        discusionInstructor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(discussion_room_questions.class);
             }
         });
         userData = UserData.getInstance();

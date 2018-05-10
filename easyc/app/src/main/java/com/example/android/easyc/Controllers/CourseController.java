@@ -10,6 +10,9 @@ import java.sql.ResultSet;
 
 
 public class CourseController extends Controller {
+    public  static String ids = "Ids";
+    public  static String names = "name";
+
 
     //get categories title
     public void getCategories(final OnTaskListeners.List listener) {
@@ -127,13 +130,14 @@ public class CourseController extends Controller {
     }
 
 
-    public void getCategoriesIds(final OnTaskListeners.List listener) {
-        databaseAdapter().selectCategoriesIds(new OnTaskListeners.Result() {
+    public void getCategoriesTitles(final OnTaskListeners.Map listener) {
+        databaseAdapter().selectCategoryIdTitle(new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
                 if (!checkIfFound(data))
                     return;
-                listener.onSuccess(resultToArray(data));
+                listener.onSuccess(ids,resultToArray(data,1));
+                listener.onSuccess(names,resultToArray(data,2));
             }
         });
     }

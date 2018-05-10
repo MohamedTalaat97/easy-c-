@@ -2,7 +2,6 @@ package com.example.android.easyc.Views.DiscussionViews;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -63,11 +62,11 @@ public class repliesAdapter extends RecyclerView.Adapter<repliesAdapter.ViewHold
             //remove best answer button from it
             viewHolder.bestAnswer.setVisibility(View.INVISIBLE);
             //change the background
-            viewHolder.userName.setBackgroundColor(R.drawable.o24);
+            //viewHolder.userName.setBackgroundColor(R.drawable.o24);
             //change the direction of the layout
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                viewHolder.cardView.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-            }
+          //  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            //    viewHolder.cardView.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+          //  }
 
             //put the title of the question
         } else {

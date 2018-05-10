@@ -1,7 +1,7 @@
 package com.example.android.easyc.Views.ContentViews;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,12 +24,17 @@ public class add_topic extends AppCompatActivity {
     Spinner categories;
     Button add_topic;
     ArrayList<Integer> catIds;
+    ArrayList<String> catNames;
+    int id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_topic);
         catIds = new ArrayList<Integer>();
+        catNames = new ArrayList<String>();
+
         code = findViewById(R.id.add_code);
         output = findViewById(R.id.add_output);
         categories = findViewById(R.id.add_spinner_topic);
@@ -37,17 +42,20 @@ public class add_topic extends AppCompatActivity {
         title = findViewById(R.id.add_title);
         add_topic = findViewById(R.id.add_topic);
         courseController = new CourseController();
-        courseController.getCategoriesIds(new OnTaskListeners.List() {
+        courseController.getCategoriesTitles(new OnTaskListeners.Map() {
             @Override
-            public void onSuccess(ArrayList<Object> result) {
-                catIds = (ArrayList<Integer>) (Object) result;
-                ArrayAdapter<Integer> adp = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_spinner_item, catIds);
-                adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                categories.setAdapter(adp);
-
+            public void onSuccess(String key, ArrayList<Object> list) {
+                if (key.matches(CourseController.ids)) {
+                    catIds = (ArrayList<Integer>) (Object) list;
+                    id = catIds.get(0);
+                } else {
+                    catNames = (ArrayList<String>) (Object) list;
+                    ArrayAdapter<String> adp = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, catNames);
+                    adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    categories.setAdapter(adp);
+                }
             }
         });
-
 
 
         add_topic.setOnClickListener(new View.OnClickListener() {
@@ -59,22 +67,27 @@ public class add_topic extends AppCompatActivity {
 
             }
         });
+
+
     }
 
+    //add topic
     void addTopic() {
+        id = catIds.get(categories.getSelectedItemPosition());
 
-        courseController.addTopic((Integer) categories.getSelectedItem(), code.getText().toString(), output.getText().toString(), des.getText().toString(), title.getText().toString(), new OnTaskListeners.Bool() {
+        courseController.addTopic(id, code.getText().toString(), output.getText().toString(), des.getText().toString(), title.getText().toString(), new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
-                if (result)
+                if (result) {
                     courseController.toast("finished successfully", getApplicationContext());
-                else
+                    finish();
+                } else
                     courseController.toast("something went wrong please try again", getApplicationContext());
             }
         });
     }
 
-
+    //check before add
     boolean check() {
         if (code.getText().toString().matches("") && output.getText().toString().matches("") && des.getText().toString().matches("") && title.getText().toString().matches(""))
             return false;

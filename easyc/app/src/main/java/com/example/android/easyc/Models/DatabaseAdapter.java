@@ -35,8 +35,8 @@ public class DatabaseAdapter {
 
     }
 
-    public void selectCategoriesIds(OnTaskListeners.Result listeners) {
-        query = "select id from category";
+    public void selectCategoryIdTitle(OnTaskListeners.Result listeners) {
+        query = "select Id,title from category";
         databaseLegacy.select(query, listeners);
 
     }

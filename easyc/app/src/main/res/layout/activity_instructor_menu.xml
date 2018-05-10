@@ -22,18 +22,8 @@
         android:orientation="horizontal"
         android:padding="5dp">
 
-        <ProgressBar
-            android:id="@+id/level_Bar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/trans"
-            android:paddingLeft="15dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/line" />
+
 
         <TextView
             android:id="@+id/username"
@@ -84,6 +74,12 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:src="@drawable/setting" />
+                <ImageView
+                    android:id="@+id/to_disc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/discusion" />
 
                 <ImageView
                     android:id="@+id/to_add_quiz"

@@ -58,13 +58,16 @@ public class add_category extends AppCompatActivity {
     }
 
 
+    //add the category
     public void addCategory() {
 
         courseController.addCategory(catName.getText().toString(), (Integer) levels.getSelectedItem(), new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
-                if (result)
+                if (result) {
                     courseController.toast("finished successfully", getApplicationContext());
+                    finish();
+                }
                 else
                     courseController.toast("something went wrong please try again", getApplicationContext());
             }
@@ -73,6 +76,7 @@ public class add_category extends AppCompatActivity {
 
     }
 
+    //check before add
     boolean check() {
         if (catName.getText().toString().matches(""))
             return false;

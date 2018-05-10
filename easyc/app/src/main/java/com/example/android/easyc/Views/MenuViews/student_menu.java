@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.android.easyc.Controllers.StudentController;
@@ -15,8 +14,8 @@ import com.example.android.easyc.R;
 import com.example.android.easyc.Views.ContentViews.categories;
 import com.example.android.easyc.Views.DiscussionViews.discussion_room_questions;
 import com.example.android.easyc.Views.DiscussionViews.put_question_discussion;
-import com.example.android.easyc.Views.OpinionViews.put_opinion;
 import com.example.android.easyc.Views.ExamViews.quiz_options;
+import com.example.android.easyc.Views.OpinionViews.put_opinion;
 
 public class student_menu extends AppCompatActivity {
 
@@ -28,7 +27,7 @@ public class student_menu extends AppCompatActivity {
     ImageView ask;
     GridView menu;
     TextView name;
-    ProgressBar level;
+    //ProgressBar level;
     int userId;
     String username;
     int userLevel;
@@ -41,7 +40,7 @@ public class student_menu extends AppCompatActivity {
         setContentView(R.layout.activity_student_menu);
         studentController = new StudentController();
         name = findViewById(R.id.username);
-        level = findViewById(R.id.level_Bar);
+        //level = findViewById(R.id.level_Bar);
         course = findViewById(R.id.to_course);
         opinion = findViewById(R.id.to_opinion);
         options = findViewById(R.id.to_options);
@@ -96,7 +95,7 @@ public class student_menu extends AppCompatActivity {
         });
         userLevel = studentController.getLevel();
         name.setText(username);
-initProgress();
+//initProgress();
 
     }
 
@@ -142,12 +141,12 @@ initProgress();
     }
 
 
-    void initProgress() {
+  /*  void initProgress() {
 
         level.setMax(100);
         level.setProgress((userLevel * 20)+1);
     }
-
+*/
     //go to any class
     void goTo(Class c) {
         Intent intent = new Intent(getApplicationContext(), c);

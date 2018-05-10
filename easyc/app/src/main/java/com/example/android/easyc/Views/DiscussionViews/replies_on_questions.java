@@ -57,10 +57,9 @@ public class replies_on_questions extends AppCompatActivity {
         putReply = findViewById(R.id.putReplyId);
         writeReply = findViewById(R.id.replytextId);
 
-      //  recyclerView.setHasFixedSize(true);
+        //  recyclerView.setHasFixedSize(true);
         manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
-
 
 
         listItems = new ArrayList<ListItems>();
@@ -80,7 +79,7 @@ public class replies_on_questions extends AppCompatActivity {
         fillList();
     }
 
-
+    //fill the list of content
     void fillList() {
         replyIds.clear();
         userIds.clear();
@@ -143,7 +142,7 @@ public class replies_on_questions extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-
+    //assgin best answer
     public void putBestAnswer(int replyId) {
         discussionController.updateReplyBestAnswer(replyId, true, new OnTaskListeners.Bool() {
             @Override
@@ -162,7 +161,7 @@ public class replies_on_questions extends AppCompatActivity {
         });
     }
 
-
+    //put a reply on question
     void enterReply() {
         if (!checkBeforeInsertReply())
             return;
@@ -183,6 +182,7 @@ public class replies_on_questions extends AppCompatActivity {
 
     }
 
+    //check
     boolean checkBeforeInsertReply() {
         if (writeReply.getText().toString().length() <= 0) {
             discussionController.toast("please put reply first", getApplicationContext());
@@ -191,16 +191,13 @@ public class replies_on_questions extends AppCompatActivity {
         return true;
     }
 
-    public void makeReport(Integer replyId,Integer questionId)
-    {
-        Intent intent = new Intent(getApplicationContext(),report_on.class);
-        intent.putExtra(REPLYID,replyId);
-        intent.putExtra(QUESTIONID,questionId);
+    //report on an unappropiate question or answer
+    public void makeReport(Integer replyId, Integer questionId) {
+        Intent intent = new Intent(getApplicationContext(), report_on.class);
+        intent.putExtra(REPLYID, replyId);
+        intent.putExtra(QUESTIONID, questionId);
         startActivity(intent);
     }
-
-
-
 
 
 }

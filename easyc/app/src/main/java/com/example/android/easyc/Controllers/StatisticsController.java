@@ -18,6 +18,7 @@ public class StatisticsController extends Controller {
         return userData();
     }
 
+    //get number of students
     public void getNumberOfStudent(final OnTaskListeners.Number listener)
     {
         databaseAdapter().selectUserCountByType('S', new OnTaskListeners.Result() {
@@ -37,6 +38,7 @@ public class StatisticsController extends Controller {
         });
     }
 
+    //get number of instructors
     public void getNumberOfInstructors(final OnTaskListeners.Number listener)
     {
         databaseAdapter().selectUserCountByType('I', new OnTaskListeners.Result() {
@@ -58,6 +60,7 @@ public class StatisticsController extends Controller {
         });
     }
 
+    //get number of opinions
     public void getNumberOfOpinions(final OnTaskListeners.Number listener)
     {
         databaseAdapter().selectOpinionCount(new OnTaskListeners.Result() {
@@ -79,6 +82,7 @@ public class StatisticsController extends Controller {
         });
     }
 
+    //get number of reports
     public void getNumberOfReports(final OnTaskListeners.Number listener)
     {
         databaseAdapter().selectReportCount(new OnTaskListeners.Result() {
@@ -100,6 +104,7 @@ public class StatisticsController extends Controller {
         });
     }
 
+    //get the average grade for the students
     public void getTheAverageGradeForStudents(final OnTaskListeners.Number listener)
     {
         databaseAdapter().selectExamAvgGrade(new OnTaskListeners.Result() {

@@ -34,22 +34,26 @@ public class StudentController extends Controller {
 
     }
 
+    //return userlevel
     public int getLevel()
     {
 
         return userData().getUserLevel();
     }
 
+    //return user id
     public int getUserId() {
 
 
         return userData().getUserId();
     }
 
+    //return username
     public String getUsername() {
         return userData().getUserName();
     }
 
+    //return userlevel
     public int getUserLevel() {
         return userData().getUserLevel();
     }

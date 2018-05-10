@@ -18,8 +18,7 @@ public class SignInUpController extends Controller {
     }
 
 
-    public UserData getData()
-    {
+    public UserData getData() {
         return userData();
     }
 
@@ -125,18 +124,19 @@ public class SignInUpController extends Controller {
         });
     }
 
-
+    //change username
     public void updateUsername(final String username, final OnTaskListeners.Bool listener) {
         databaseAdapter().updateUserUsername(userData().getUserId(), username, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
-                if(result)
+                if (result)
                     userData().setUserName(username);
                 listener.onSuccess(result);
             }
         });
     }
 
+    //change email
     public void updateEmail(String email, final OnTaskListeners.Bool listener) {
         databaseAdapter().updateUserEmail(userData().getUserId(), email, new OnTaskListeners.Bool() {
             @Override
@@ -146,7 +146,7 @@ public class SignInUpController extends Controller {
         });
     }
 
-
+    //change password
     public void updatePassword(String password, final OnTaskListeners.Bool listener) {
         databaseAdapter().updateUserPassword(userData().getUserId(), password, new OnTaskListeners.Bool() {
             @Override
@@ -210,8 +210,7 @@ public class SignInUpController extends Controller {
         });
     }
 
-    public void putRequestToBecomInstructor(String request, final OnTaskListeners.Bool listener)
-    {
+    public void putRequestToBecomInstructor(String request, final OnTaskListeners.Bool listener) {
         databaseAdapter().updateUserRequest(userData().getUserId(), request, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {

@@ -17,13 +17,13 @@ public class Controller {
     private static DatabaseAdapter databaseAdapter = null;
     //static so the data don't be deleted every time the controller made by object
 
-   private  UserData userData = null;
+    private UserData userData = null;
 
     public Controller() {
         if (databaseAdapter == null)
             databaseAdapter = new DatabaseAdapter();
 
-            userData = UserData.getInstance();
+        userData = UserData.getInstance();
 
     }
 
@@ -174,9 +174,7 @@ public class Controller {
 
         } catch (SQLException e) {
             return false;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return false;
         }
 
@@ -188,9 +186,8 @@ public class Controller {
 
     }
 
-
-    public Object arrayToValue(ArrayList<Object> list)
-    {
+    //get the first value in array
+    public Object arrayToValue(ArrayList<Object> list) {
         return list.get(0);
     }
 

@@ -15,7 +15,7 @@ public class ReportController extends Controller {
     public static String DISCRIPTION = "Discription";
     public static String Fininshed = "Fininshed";
 
-
+    //insert report in database
     public void putReport(Integer questionId, Integer replyId, String discription, String type, final OnTaskListeners.Bool listener) {
         databaseAdapter().insertReport(userData().getUserId(), questionId, replyId, discription, type, new OnTaskListeners.Bool() {
             @Override
@@ -25,6 +25,7 @@ public class ReportController extends Controller {
         });
     }
 
+    //get specific report
     public void getReport(Integer reportId, final OnTaskListeners.Map listener) {
         databaseAdapter().selectReportCommentidReplyidDiscription(reportId, new OnTaskListeners.Result() {
             @Override
@@ -39,7 +40,7 @@ public class ReportController extends Controller {
         });
     }
 
-
+    //suspend user
     public void suspendUser(Integer replyId, final OnTaskListeners.Bool listener) {
         databaseAdapter().updateUserSuspendedByReplyid(replyId, true, new OnTaskListeners.Bool() {
             @Override
@@ -50,6 +51,7 @@ public class ReportController extends Controller {
 
     }
 
+    //delete reply
     public void deleteReply(Integer replyId, final OnTaskListeners.Bool listener) {
         databaseAdapter().deleteReply(replyId, new OnTaskListeners.Bool() {
             @Override
@@ -59,6 +61,7 @@ public class ReportController extends Controller {
         });
     }
 
+    //delete question
     public void deleteComment(Integer commentId, final OnTaskListeners.Bool listener) {
         databaseAdapter().deleteComment(commentId, new OnTaskListeners.Bool() {
             @Override
@@ -69,20 +72,20 @@ public class ReportController extends Controller {
 
     }
 
+    //change best answer
     public void changeBestAnswer(Integer replyId, final OnTaskListeners.Bool listener) {
         databaseAdapter().updateReplyBestAnswer(replyId, false, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
-                if(result)
-                listener.onSuccess(result);
+                if (result)
+                    listener.onSuccess(result);
             }
         });
 
     }
 
-
-    public void solveReport(int reportId, final OnTaskListeners.Bool listener)
-    {
+    //solve a report
+    public void solveReport(int reportId, final OnTaskListeners.Bool listener) {
         databaseAdapter().updateReportSolved(reportId, true, new OnTaskListeners.Bool() {
             @Override
             public void onSuccess(Boolean result) {
@@ -91,6 +94,7 @@ public class ReportController extends Controller {
         });
     }
 
+    //get the description question
     public void getquestion(Integer questionId, final OnTaskListeners.Word listener) {
         databaseAdapter().selectCommentTitleDescription(questionId, new OnTaskListeners.Result() {
             @Override
@@ -104,6 +108,7 @@ public class ReportController extends Controller {
         });
     }
 
+    //get answer by reply id
     public void getAnswer(Integer replyId, final OnTaskListeners.Word listener) {
         databaseAdapter().selectReplyContent(replyId, new OnTaskListeners.Result() {
             @Override
@@ -117,15 +122,15 @@ public class ReportController extends Controller {
 
 
     //get all the reports under specific kind
-    public  void getReports(String kind , final OnTaskListeners.Map listener)
-    {
+    public void getReports(String kind, final OnTaskListeners.Map listener) {
         databaseAdapter().selectReportIdDiscriptionByType(kind, new OnTaskListeners.Result() {
             @Override
             public void onSuccess(ResultSet data) {
-                if(!checkIfFound(data))
-                    return;;
-                    listener.onSuccess(ReportController.REPORTID,resultToArray(data,1));
-                    listener.onSuccess(ReportController.DISCRIPTION,resultToArray(data,2));
+                if (!checkIfFound(data))
+                    return;
+                ;
+                listener.onSuccess(ReportController.REPORTID, resultToArray(data, 1));
+                listener.onSuccess(ReportController.DISCRIPTION, resultToArray(data, 2));
             }
         });
     }

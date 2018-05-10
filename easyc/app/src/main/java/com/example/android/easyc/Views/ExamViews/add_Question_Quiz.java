@@ -63,6 +63,7 @@ QuizController quizController;
 
 
 
+    //initialzation
     void initData()
     {
 
@@ -86,6 +87,7 @@ QuizController quizController;
     }
 
 
+    //add the question
     void add()
     {
         quizController.addQuestion((Integer)chooseLevel.getSelectedItem(), question.getText().toString(), getAnswer(), new OnTaskListeners.Bool() {
@@ -100,6 +102,7 @@ QuizController quizController;
 
     }
 
+    //get the answer
     int getAnswer()
     {
         if (trueButton.isChecked())
@@ -108,6 +111,7 @@ QuizController quizController;
 
     }
 
+    //check
     boolean check ()
     {
 

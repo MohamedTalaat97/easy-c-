@@ -121,6 +121,12 @@ public class DatabaseAdapter {
     }
 
     public void insertUser(String userName, String Pass, char Type, String age, String email, boolean suspended, String requestText, OnTaskListeners.Bool listeners) {
+        if(requestText.matches(""))
+        {
+            query = "insert into user(username,password,type,age,email,suspended,request)" +
+                    " values('" + userName + "','" + Pass + "','" + Type + "'," + age + ",'" + email + "'," + suspended + "," + null + ")";
+        }
+        else
         query = "insert into user(username,password,type,age,email,suspended,request)" +
                 " values('" + userName + "','" + Pass + "','" + Type + "'," + age + ",'" + email + "'," + suspended + ",'" + requestText + "')";
         databaseLegacy.iud(query, listeners);
